@@ -22,7 +22,7 @@ public class Main {
     private long window;
  
     public void run() {
-        System.out.println("Hello LWJGL " + Sys.getVersion() + "!");
+       // System.out.println("Hello LWJGL " + Sys.getVersion() + "!");
  
         try {
             init();
