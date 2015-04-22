@@ -2,9 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path=""/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry exported="true" kind="lib" path="/Users/rattle/Library/Mobile Documents/com~apple~CloudDocs/RMXLib/JAVA/AiCubo-Java/lwjgl/jar/lwjgl.jar" sourcepath="/Users/rattle/Library/Mobile Documents/com~apple~CloudDocs/RMXLib/JAVA/AiCubo-Java/lwjgl/src.zip"/>
-	<classpathentry exported="true" kind="lib" path="/Users/rattle/Library/Mobile Documents/com~apple~CloudDocs/RMXLib/JAVA/AiCubo-Java/lwjgl/src.zip"/>
-	<classpathentry kind="lib" path="/Users/rattle/Library/Mobile Documents/com~apple~CloudDocs/RMXLib/JAVA/AiCubo-Java/lwjgl"/>
-	<classpathentry kind="lib" path="/Users/rattle/Library/Mobile Documents/com~apple~CloudDocs/RMXLib/JAVA/AiCubo-Java/lwjgl/doc/javadoc.zip"/>
+	<classpathentry exported="true" kind="lib" path="/Users/rattle/Gits/AiCubo-Java/lwjgl/src.zip" sourcepath="/Users/rattle/Gits/AiCubo-Java/lwjgl/src.zip"/>
+	<classpathentry exported="true" kind="lib" path="/Users/rattle/Gits/AiCubo-Java/lwjgl/jar/lwjgl.jar" sourcepath="/Users/rattle/Gits/AiCubo-Java/lwjgl/src.zip"/>
+	<classpathentry exported="true" kind="lib" path="/Users/rattle/Gits/AiCubo-Java/lwjgl/doc/javadoc.zip" sourcepath="/Users/rattle/Gits/AiCubo-Java/lwjgl/doc/javadoc.zip"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
