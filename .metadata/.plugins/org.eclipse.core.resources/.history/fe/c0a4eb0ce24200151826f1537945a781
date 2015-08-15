@@ -1,0 +1,17 @@
+package rmx.engine;
+
+
+@StructClass
+public class Node {
+
+	
+	private Transform = new Transform();
+	
+	
+	public int foo;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

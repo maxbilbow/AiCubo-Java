@@ -1,0 +1,52 @@
+package rmx.engine;
+
+import javax.vecmath.Matrix4f;
+import javax.vecmath.Vector3f;
+
+public class Transform {
+	
+	public final Node node;
+	
+	public Transform(Node node) {
+		this.node = node;
+	}
+	protected Matrix4f transform = new Matrix4f();
+	
+	public Vector3f position() {
+		return new Vector3f(
+				this.transform.m30,
+				this.transform.m31,
+				this.transform.m32
+				);
+	}
+	
+	public void setPosition(Vector3f position) {
+		this.transform.m30 = position.x;
+		this.transform.m31 = position.y;
+		this.transform.m32 = position.z;
+	}
+	
+	public Vector3f left() {
+		return new Vector3f(
+				this.transform.m00,
+				this.transform.m01,
+				this.transform.m02
+				);
+	}
+	
+	public Vector3f up() {
+		return new Vector3f(
+				this.transform.m10,
+				this.transform.m11,
+				this.transform.m12
+				);
+	}
+	
+	public Vector3f forward() {
+		return new Vector3f(
+				this.transform.m20,
+				this.transform.m21,
+				this.transform.m22
+				);
+	}
+}

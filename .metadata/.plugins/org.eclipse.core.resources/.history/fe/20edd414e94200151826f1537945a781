@@ -1,0 +1,15 @@
+package rmx.gl;
+
+import rmx.engine.GameController;
+import org.lwjgl.opengl.*;
+public class GameView extends AGameView {
+	
+	protected GameView() {	
+		
+	}
+	
+	
+
+	}
+
+}

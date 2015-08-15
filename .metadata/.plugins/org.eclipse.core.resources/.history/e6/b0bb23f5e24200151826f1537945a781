@@ -1,0 +1,5 @@
+package rmx.engine;
+
+public class Camera {
+	float aspect, zNear, zFar;
+}

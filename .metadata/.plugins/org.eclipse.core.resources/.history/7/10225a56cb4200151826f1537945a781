@@ -1,0 +1,12 @@
+package rmx.engine;
+
+public interface ISingleton {
+//	ISingleton Singleton { get; set; }
+	boolean Destroyed { get; }
+//	GameObject gameObject { get; }
+
+}
+
+
+
+

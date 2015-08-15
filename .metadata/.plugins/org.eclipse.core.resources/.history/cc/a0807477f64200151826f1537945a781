@@ -1,0 +1,45 @@
+package rmx.engine;
+
+
+import rmx.RMXObject;
+
+@StructClass
+public class Node extends RMXObject {
+
+	
+	public final Transform transform;
+	
+	public Node(){
+		this.transform = new Transform(this);
+	}
+	private Camera camera;
+	
+
+	public Camera getCamera() {
+		if (camera != null)
+			System.out.println("We have a camera!");
+		return camera;
+	}
+
+	public void setCamera(Camera camera) {
+		this.camera = camera;
+	}
+	
+	public static Node newCameraNode() {
+		Node cameraNode = new Node();
+		cameraNode.camera = new Camera();
+		return cameraNode;
+	}
+	
+	public static void main(String[]args) {
+		RMXObject o = new RMXObject();
+		o.setName("Parent");
+		Node o2 = Node.newCameraNode();
+		
+		o.sendMessage("getCamera",null);
+		o2.sendMessage("getCamera",null);
+		o.sendMessage("getCamera","Balls");
+		o2.sendMessage("getCamera","Balls");
+
+	}
+}

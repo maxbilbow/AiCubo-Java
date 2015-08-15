@@ -1,0 +1,11 @@
+package rmx.engine;
+
+public class Camera {
+	private float aspect, zNear, zFar;
+	
+	public Camera() {
+		this.aspect = 16/9;
+		this.zNear = 1;
+		this.zFar = 1000;
+	}
+}

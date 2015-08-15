@@ -1,0 +1,7 @@
+package rmx.engine;
+
+import javax.vecmath.Vector3f;
+
+public class PhysicsBody {
+	protected Matrix4f transform;
+}

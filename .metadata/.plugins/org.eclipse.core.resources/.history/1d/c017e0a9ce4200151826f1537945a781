@@ -1,0 +1,5 @@
+package rmx.engine;
+
+public static final class Singletons {
+
+}

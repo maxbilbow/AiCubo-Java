@@ -1,0 +1,24 @@
+package rmx.gl;
+
+public class GameView extends AGameView {
+	protected GameView() {	
+		
+	}
+	private static GameView singleton;
+	
+	public static GameView getInstance() {
+		if(singleton == null) {
+			  synchronized(GameView.class) {
+		    	 if(singleton == null) {
+		    	   singleton = new GameView();
+		       }
+		     }
+		  }
+		  return singleton;
+	}
+	public static void main(String[] args) {
+    	SharedLibraryLoader.load();
+        new GameView().run();
+    }
+
+}

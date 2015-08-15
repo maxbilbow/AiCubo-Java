@@ -1,0 +1,23 @@
+package rmx.engine;
+
+
+@StructClass
+public class Node {
+
+	
+	private Transform transform = new Transform();
+	
+	
+	public int foo;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+	public Transform getTransform() {
+		return transform;
+	}
+	public void setTransform(Transform transform) {
+		this.transform = transform;
+	}
+
+}

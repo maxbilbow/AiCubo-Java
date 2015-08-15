@@ -1,0 +1,30 @@
+package rmx.engine;
+
+
+@StructClass
+public class Node {
+
+	
+	private Transform transform;
+	
+	private Camera camera;
+	
+	public Transform getTransform() {
+		return transform;
+	}
+
+	public Camera getCamera() {
+		return camera;
+	}
+
+
+	public void setCamera(Camera camera) {
+		this.camera = camera;
+	}
+	
+	public static Node newCameraNode() {
+		Node cameraNode = new Node();
+		cameraNode.camera = new Camera();
+		return cameraNode;
+	}
+}

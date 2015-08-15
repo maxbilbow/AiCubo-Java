@@ -1,0 +1,17 @@
+1439582623784	Move files
+1439582841018	Move compilation units
+1439582856605	Move compilation units
+1439584340815	Delete element
+1439592406423	Delete element
+1439592859951	Move compilation unit
+1439592883977	Move compilation unit
+1439593057510	Rename type 'RMXView'
+1439597441691	Encapsulate field 'transform'
+1439597951294	Encapsulate field 'farZ'
+1439597959334	Encapsulate field 'fov'
+1439597964588	Encapsulate field 'nearZ'
+1439598017542	Encapsulate field 'camera'
+1439598207288	Encapsulate field 'pointOfView'
+1439600454901	Delete element
+1439600575403	Encapsulate field 'renderDelegate'
+1439600931860	Encapsulate field 'view'
