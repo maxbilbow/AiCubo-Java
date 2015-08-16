@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import rmx.Bugger;
 import rmx.RMXObject;
+import rmx.engine.math.Matrix4;
 
 import java.util.HashMap;
 
@@ -125,12 +126,12 @@ public class Node extends RMXObject {
 		}
 	}
 	
-	public void draw() {
+	public void draw(Matrix4 modelMatrix) {
 		if (this.geometry() != null) {
-			this.geometry().render(this);
+			this.geometry().render(this, modelMatrix);
 		}
 		for (Node child : this.children) {
-			child.draw();
+			child.draw(modelMatrix);
 		}
 	}
 	

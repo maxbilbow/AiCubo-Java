@@ -59,29 +59,25 @@ public class Camera extends NodeComponent {
         fW = fH * aspect;
 
         glFrustum( -fW, fW, -fH, fH, nearZ, farZ );
-        Matrix4 m = (Matrix4)getNode().transform.localMatrix().clone();
-        m.set(this.getNode().transform.localMatrix());
-//        m.negate();
-        glMultMatrixf(m.buffer());
+       
+
+//		
+		 Matrix4 m = (Matrix4)this.getNode().transform.worldMatrix().clone();
+		 Matrix4 root = Scene.getCurrent().rootNode.transform.localMatrix();
+		 root.set(m);
+		 m.mul(root);
+//		 root.negate();
+//		 m.mul(Scene.getCurrent().rootNode.transform.localMatrix());
+//	        m.set(this.getNode().transform.localMatrix());
+//	        m.negatePosition();
+	     glMultMatrixf(m.buffer());
 	}
 
 	
 	public Matrix4 modelViewMatrix() {
 		return this.getNode().transform.localMatrix();
 	}
-	public Matrix4 look() {
-		Matrix4 root = Scene.getCurrent().rootNode.transform.localMatrix();
-		Transform t = this.getNode().transform;
-//		glMultMatrixf(m.buffer());
-		root.set(t.localMatrix());
-		Vector3 p = (Vector3) t.position().clone();
-		p.negate();
-		root.setTranslation(p);	
-		System.out.println(root);
-//		t.localMatrix().setIdentity();
-		return root;
-	}
-	
+
 	public void onEventDidEnd(String event, Object args) {
 		if (event == END_OF_GAMELOOP) {
 			this.modelViewMatrix().resetBuffers();

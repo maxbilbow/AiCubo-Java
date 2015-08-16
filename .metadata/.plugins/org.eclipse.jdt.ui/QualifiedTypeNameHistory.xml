@@ -44,11 +44,11 @@
 <fullyQualifiedTypeName name="javax.vecmath.Matrix4f"/>
 <fullyQualifiedTypeName name="rmx.engine.Geometry"/>
 <fullyQualifiedTypeName name="java.nio.ShortBuffer"/>
-<fullyQualifiedTypeName name="rmx.engine.math.Matrix4"/>
 <fullyQualifiedTypeName name="rmx.engine.Node"/>
 <fullyQualifiedTypeName name="rmx.Bugger"/>
 <fullyQualifiedTypeName name="rmx.engine.Camera"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="rmx.RMXObject"/>
 <fullyQualifiedTypeName name="rmx.engine.math.Vector3"/>
+<fullyQualifiedTypeName name="rmx.engine.math.Matrix4"/>
 </qualifiedTypeNameHistroy>

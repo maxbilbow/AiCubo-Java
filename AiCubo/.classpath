@@ -10,6 +10,5 @@
 	<classpathentry kind="lib" path="/Users/Max/Gits/AiCubo-Java/lwjgl/src.zip"/>
 	<classpathentry kind="lib" path="/Users/Max/Gits/AiCubo-Java/lwjgl/doc/javadoc.zip"/>
 	<classpathentry kind="lib" path="/Users/Max/Gits/AiCubo-Java/vecmath-1.5.1.jar" sourcepath="/Users/Max/Gits/AiCubo-Java/vecmath"/>
-	<classpathentry kind="lib" path="/Users/Max/Gits/AiCubo-Java/YouTube-tutorials-master/lib/lwjgl_util.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -120,54 +120,54 @@ public class GameController extends RMXObject implements RenderDelegate, Runnabl
 		Node player = Node.getCurrent();
 	
 		if (this.keys.getOrDefault(GLFW_KEY_W, false)) {
-			player.broadcastMessage("move","forward:-1");
-		}
-		
-		if (this.keys.getOrDefault(GLFW_KEY_S, false)) {
 			player.broadcastMessage("move","forward:1");
 		}
 		
-		if (this.keys.getOrDefault(GLFW_KEY_A, false)) {
-			player.broadcastMessage("move","left:-1");
+		if (this.keys.getOrDefault(GLFW_KEY_S, false)) {
+			player.broadcastMessage("move","forward:-1");
 		}
 		
-		if (this.keys.getOrDefault(GLFW_KEY_D, false)) {
+		if (this.keys.getOrDefault(GLFW_KEY_A, false)) {
 			player.broadcastMessage("move","left:1");
 		}
 		
+		if (this.keys.getOrDefault(GLFW_KEY_D, false)) {
+			player.broadcastMessage("move","left:-1");
+		}
+		
 		if (this.keys.getOrDefault(GLFW_KEY_Q, false)) {
-			player.broadcastMessage("move","up:1");
+			player.broadcastMessage("move","up:-1");
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_E, false)) {
-			player.broadcastMessage("move","up:-1");
+			player.broadcastMessage("move","up:1");
 		}
 		if (this.keys.getOrDefault(GLFW_KEY_SPACE, false)) {
 			player.broadcastMessage("jump");
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_RIGHT, false)) {
-			player.broadcastMessage("move","yaw:1");
-		}
-		
-		if (this.keys.getOrDefault(GLFW_KEY_LEFT, false)) {
 			player.broadcastMessage("move","yaw:-1");
 		}
 		
-		if (this.keys.getOrDefault(GLFW_KEY_UP, false)) {
-			player.broadcastMessage("move","pitch:1");
+		if (this.keys.getOrDefault(GLFW_KEY_LEFT, false)) {
+			player.broadcastMessage("move","yaw:1");
 		}
 		
-		if (this.keys.getOrDefault(GLFW_KEY_DOWN, false)) {
+		if (this.keys.getOrDefault(GLFW_KEY_UP, false)) {
 			player.broadcastMessage("move","pitch:-1");
 		}
 		
+		if (this.keys.getOrDefault(GLFW_KEY_DOWN, false)) {
+			player.broadcastMessage("move","pitch:1");
+		}
+		
 		if (this.keys.getOrDefault(GLFW_KEY_X, false)) {
-			player.broadcastMessage("move","roll:1");
+			player.broadcastMessage("move","roll:-1");
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_Z, false)) {
-			player.broadcastMessage("move","roll:-1");
+			player.broadcastMessage("move","roll:1");
 		}
 	}
 	

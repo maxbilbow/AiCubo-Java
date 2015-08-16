@@ -3,8 +3,8 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.Sys;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
-import org.lwjgl.util.Display;
-import org.lwjgl.util.glu.GLU;
+//import org.lwjgl.util.Display;
+//import org.lwjgl.util.glu.GLU;
 
 import java.nio.ByteBuffer;
 import java.nio.DoubleBuffer;
