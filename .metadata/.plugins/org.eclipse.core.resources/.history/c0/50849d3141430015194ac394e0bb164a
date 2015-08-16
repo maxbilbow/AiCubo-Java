@@ -1,0 +1,17 @@
+package rmx.engine;
+
+public abstract class NodeComponent {
+	private Node node;
+	void setNode(Node node) {
+		this.node = node;
+	}
+	
+	public Node getNode() {
+		return this.node;
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -15,3 +15,13 @@
 1439600454901	Delete element
 1439600575403	Encapsulate field 'renderDelegate'
 1439600931860	Encapsulate field 'view'
+1439634443509	Encapsulate field 'geometry'
+1439635575946	Extract constant 'NODE'
+1439641093092	Encapsulate field 'enabled'
+1439654184551	Encapsulate field 'parent'
+1439677001949	Encapsulate field 'aspect'
+1439722633585	Encapsulate field 'width'
+1439722646527	Encapsulate field 'height'
+1439723693377	Encapsulate field 'm'
+1439731726744	Move compilation unit
+1439737984784	Move compilation unit

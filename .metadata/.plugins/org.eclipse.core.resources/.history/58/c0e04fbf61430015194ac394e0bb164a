@@ -1,0 +1,72 @@
+package rmx.gl;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
+import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
+import static org.lwjgl.glfw.GLFW.glfwSetWindowShouldClose;
+import static org.lwjgl.opengl.GL11.GL_TRUE;
+import java.util.HashMap;
+import org.lwjgl.glfw.GLFWKeyCallback;
+
+import rmx.engine.Node;
+
+public class KeyCallback extends GLFWKeyCallback implements IKeyProcessor {
+	public static char forward = 'w', back = 's', left = 'a', right = 'd', up = 'e', down = 'q', stop = 'c', jump = ' ';
+//	public static boolean update = true;
+    public HashMap<Integer,Boolean> keyStates = new HashMap<Integer,Boolean>();//, keySpecialStates[] = new boolean[246];
+	
+    private static KeyCallback singleton = new KeyCallback();
+    private KeyCallback() {    }
+    
+    public static KeyCallback getInstance() {
+    	return singleton;
+    }
+	 @Override
+     public void invoke(long window, int key, int scancode, int action, int mods) {
+		 switch (action) {
+		 case GLFW_PRESS:
+			 this.keyDown(key);
+			 break;
+		 case GLFW_RELEASE:
+			 this.keyUp(key);
+			 switch (key) {
+			 case GLFW_KEY_ESCAPE:
+				 glfwSetWindowShouldClose(window, GL_TRUE);
+				 break;
+			 }
+			 break;
+		 default:
+			 System.out.println(key + " "+ scancode + " "+ action + " "+ mods);
+		 }
+     }
+
+	@Override
+	public void repeatedKeys() {
+		if (this.keyStates.getOrDefault((int)'w',false)) {
+			Node.getCurrent().transform.moveForward(1);
+		}
+		
+	}
+
+	
+	@Override
+	public void keyDown(int key) {			
+		this.keyStates.put(key, true);
+		
+		boolean isChar = Character.isValidCodePoint(key);//.matches("[a-z]");
+		if (isChar)
+			System.out.println("		Key Down: " + (char)key);
+		else
+			System.out.println("Special Key Down: " + key);
+
+	}
+
+	@Override
+	public void keyUp(int key) {
+		boolean isChar = Character.isValidCodePoint(key);//.matches("[a-z]");
+		
+		this.keyStates.put(key, false);
+		if (isChar)
+			System.out.println("		  Key up: " + (char)key);
+		else
+			System.out.println("  Special Key up: " + key);
+	}
+}

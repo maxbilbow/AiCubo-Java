@@ -1,0 +1,10 @@
+package rmx.engine;
+
+import rmx.Bugger;
+
+public interface Behaviour extends  {
+
+	
+	
+	public abstract void lateUpdate();
+}

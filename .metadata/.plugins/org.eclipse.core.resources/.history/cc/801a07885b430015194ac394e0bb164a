@@ -1,0 +1,10 @@
+package rmx.engine;
+
+import rmx.Bugger;
+
+public abstract class Behaviour extends NodeComponent {
+
+	
+	
+	public abstract void lateUpdate();
+}

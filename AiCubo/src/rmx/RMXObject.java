@@ -6,7 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
-public class RMXObject extends EventListener implements KeyValueObserver {
+public class RMXObject  implements EventListener, KeyValueObserver {
 	private HashMap<String, Object> values = new HashMap<String, Object> ();
 	private HashMap<String, LinkedList<KeyValueObserver>> observers = new HashMap<String, LinkedList<KeyValueObserver>>  ();
 //	protected String name = "Unnamed RMXObject";
@@ -16,10 +16,6 @@ public class RMXObject extends EventListener implements KeyValueObserver {
 	
 	public RMXObject() {
 		this.setName("Unnamed RMXObject");
-		this.awake();
-	}
-	
-	protected void awake() {
 		try {
 			if (this.addToGlobalListeners())
 				NotificationCenter.getInstance().addListener(this);
@@ -27,8 +23,19 @@ public class RMXObject extends EventListener implements KeyValueObserver {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		this.onAwake();
 	}
-
+	
+	protected void onAwake(){}
+	
+	public void startListening(){
+    	NotificationCenter.getInstance().addListener(this);
+    }
+	
+	public void stopListening() {
+    	NotificationCenter.getInstance().removeListener(this);
+	}
+	
 	protected void willBeginEvent(String theEvent){
 		NotificationCenter.getInstance().EventWillStart (theEvent);
 	}
@@ -106,7 +113,7 @@ public class RMXObject extends EventListener implements KeyValueObserver {
 		"onEventDidEnd"
 	};
 
-
+	private HashMap<String,Boolean> _imps = new HashMap<String,Boolean>();
 	/**
 	 * Determines whether the RMXObject descendant should start listening for events.
 	 * Decision is based on whether the derived class has overridden one of the methods used in Event Notification
@@ -119,48 +126,47 @@ public class RMXObject extends EventListener implements KeyValueObserver {
 			Method method;
 			try {
 				method = classType.getDeclaredMethod(vMethod, String.class, Object.class);
-				if (method.getDeclaringClass() != RMXObject.class) 
+				if (method.getDeclaringClass() != RMXObject.class) {
+					_imps.put(method.getName(), true);
 					return true;
-				} catch (NoSuchMethodException e) {
-					System.out.println(classType.getName() + " Does not override " + vMethod);
+				} else {
+					_imps.put(method.getName(), false);
 				}
+			} catch (NoSuchMethodException e) {
+				Bugger.log(classType.getName() + " Does not override " + vMethod);
 			}
+		}
 		return false;
 	}
 	
-	@Override
-	public void sendMessage(String message, Object args){
+	public void sendMessage(String message, Object args) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		Class<?> classType = this.getClass();
-		try {
-			Method method;
-			if (args != null) {
-				method = classType.getDeclaredMethod(message, args.getClass());
-				method.invoke(this,args);
-			} else {
-				method = classType.getDeclaredMethod(message);
-				method.invoke(this);
-			}
-		} catch (NoSuchMethodException e) {
-//			System.out.println(classType.getName() + " Does not implement " + message + " with args: " + args);
-		} catch (IllegalAccessException e) {
-			System.out.println(classType.getName() + " IllegalAccessException " + message + " with args: " + args);
-		} catch (IllegalArgumentException e) {
-			System.out.println(classType.getName() + " IllegalArgumentException " + message + " with args: " + args);
-		} catch (InvocationTargetException e) {
-			System.out.println(classType.getName() + " InvocationTargetException " + message + " with args: " + args);
+		Method method;
+		if (args != null) {
+			method = classType.getDeclaredMethod(message, args.getClass());
+			method.invoke(this,args);
+		} else {
+			method = classType.getDeclaredMethod(message);
+			method.invoke(this);
 		}
+	}
+	
+	public void sendMessage(String message) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		Class<?> classType = this.getClass();
+			Method method = classType.getDeclaredMethod(message);
+			method.invoke(this);
 	}
 	
 	@Override
 	public void onEventDidStart(String theEvent, Object args){
 		String arg = args != null ? args.toString() : "N/A";
-        System.out.println(this.uniqueName() + " => Event Started: " + theEvent + " ("+ NotificationCenter.getInstance().statusOf(theEvent) +"), with args: " + arg);
+		Bugger.log(this.uniqueName() + " => Event Started: " + theEvent + " ("+ NotificationCenter.getInstance().statusOf(theEvent) +"), with args: " + arg);
     }
 	
 	@Override
 	public void onEventDidEnd(String theEvent, Object args){
 		String arg = args != null ? args.toString() : "N/A";
-        System.out.println(this.uniqueName() + " => Event Ended: " + theEvent + " ("+ NotificationCenter.getInstance().statusOf(theEvent) +"), with args: " + arg);
+		Bugger.log(this.uniqueName() + " => Event Ended: " + theEvent + " ("+ NotificationCenter.getInstance().statusOf(theEvent) +"), with args: " + arg);
     }
 	
 	
@@ -188,12 +194,12 @@ public class RMXObject extends EventListener implements KeyValueObserver {
 	
 	@Override
 	public void onValueForKeyWillChange(String key, Object value, RMXObject sender) {
-        System.out.println(this.uniqueName() + " >> " + sender.uniqueName() + " will change: " + key + ", from old value: " + value);
+        Bugger.log(this.uniqueName() + " >> " + sender.uniqueName() + " will change: " + key + ", from old value: " + value);
 	}
 
 	@Override
 	public void onValueForKeyDidChange(String key, Object value, RMXObject sender) {
-		System.out.println(this.uniqueName() + " >> " + sender.uniqueName() + " did change: " + key + ", to new value: " + value);
+		Bugger.log(this.uniqueName() + " >> " + sender.uniqueName() + " did change: " + key + ", to new value: " + value);
 	}
 
 	@Override
@@ -203,30 +209,69 @@ public class RMXObject extends EventListener implements KeyValueObserver {
 	}
 	
 	
-	public static void main(String[]args) {
-		RMXObject o = new RMXObject();
-		o.setName("Parent");
-		RMXObject o2 = new Derived();
-		o2.setName("Child");
+	
+
+	@Override
+	public void broadcastMessage(String message) {
+		try {
+			this.sendMessage(message);
+		} catch (SecurityException | IllegalAccessException 
+				| InvocationTargetException e) {
+			Bugger.log( e.getClass().getSimpleName() + ": " + message + "()");
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+//			Bugger.log(e.getClass().getSimpleName() + ": " + message + "()");
+		}
 		
-		o.sendMessage("printName",null);
-		o2.sendMessage("printName",null);
-		o.sendMessage("printName","Balls");
-		o2.sendMessage("printName","Balls");
-		o.didCauseEvent("Hello!");
+	}
+
+	@Override
+	public void broadcastMessage(String message, Object args) {
+			try {
+				this.sendMessage(message, args);
+			} catch ( SecurityException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+				Bugger.log(e.getClass().getSimpleName() + ": " + message + "("+args +")");
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				//Bugger.log(e.getClass().getSimpleName() + ": " + message + "("+args +")");
+			}
+		
+	}
+
+	
+	@Override
+	public boolean doesImplementMethod(String name) {
+		// TODO Auto-generated method stub
+//		Bugger.logAndPrint(name + " implements " + name + ": " +  _imps.getOrDefault(name, false), false);
+		return _imps.getOrDefault(name, false);
 	}
 }
 class Derived extends RMXObject {
 	@Override
 	public void onEventDidEnd(String theEvent, Object args){
 		String arg = args != null ? args.toString() : "N/A";
-        System.out.println(this.getClass().getName() + " => Event Ended: " + theEvent + " ("+ NotificationCenter.getInstance().statusOf(theEvent) +"), with args: " + arg);
+        Bugger.log(this.getClass().getName() + " => Event Ended: " + theEvent + " ("+ NotificationCenter.getInstance().statusOf(theEvent) +"), with args: " + arg);
     }
 	
 	public void printName() {
-		System.out.println("My Name is " + getName());
+		Bugger.log("My Name is " + getName());
 	}
 	public void printName(String arg) {
-		System.out.println("My Name is NOT " + arg);
+		Bugger.log("My Name is NOT " + arg);
+	}
+	
+	public static void TEST() {
+		RMXObject o = new RMXObject();
+		o.setName("Parent");
+		RMXObject o2 = new Derived();
+		o2.setName("Child");
+		
+		o.broadcastMessage("printName");
+		o2.broadcastMessage("printName");
+		o.broadcastMessage("printName","Balls");
+		o2.broadcastMessage("printName","Balls");
+		o.didCauseEvent("Hello!");
+		
 	}
 }

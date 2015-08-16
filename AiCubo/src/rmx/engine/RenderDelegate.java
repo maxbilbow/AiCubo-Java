@@ -1,6 +1,6 @@
 package rmx.engine;
 
 public interface RenderDelegate {
-	public void renderScene();
-	public void updateLogic();
+	public void updateBeforeScene();
+	public void updateAfterScene();
 }

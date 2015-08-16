@@ -1,69 +1,51 @@
 package rmx.gl;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
-import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
-import static org.lwjgl.glfw.GLFW.glfwSetWindowShouldClose;
+import static org.lwjgl.glfw.GLFW.*;
+//import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 import static org.lwjgl.opengl.GL11.GL_TRUE;
-import java.util.HashMap;
 import org.lwjgl.glfw.GLFWKeyCallback;
 
-public class KeyCallback extends GLFWKeyCallback implements IKeyProcessor {
+
+
+
+public class KeyCallback extends GLFWKeyCallback {
 	public static char forward = 'w', back = 's', left = 'a', right = 'd', up = 'e', down = 'q', stop = 'c', jump = ' ';
-	public static boolean update = true;
-    public HashMap<Integer,Boolean> keyStates = new HashMap<Integer,Boolean>();//, keySpecialStates[] = new boolean[246];
+//	public static boolean update = true;
+    public final KeyStates keyStates = new KeyStates();//, keySpecialStates[] = new boolean[246];
 	
+    private static KeyCallback singleton = new KeyCallback();
+    private KeyCallback() {    }
+    boolean mouseLocked = false;
+    public static KeyCallback getInstance() {
+    	return singleton;
+    }
 	 @Override
      public void invoke(long window, int key, int scancode, int action, int mods) {
-         if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
-             glfwSetWindowShouldClose(window, GL_TRUE); 
-         else if (action == 1 && !this.keyStates.getOrDefault(key, false)) {
-        	 this.keyPressed((char) key, scancode, mods);
-         } else if (this.keyStates.getOrDefault(key, false)) {
-        	 this.keyUp((char) key,scancode, mods);
-         } 
-    	 System.out.println(key + " "+ scancode + " "+ action + " "+ mods);
+		if (action == GLFW_PRESS) {
+			this.keyStates.put(key, true);
+			System.out.println("Key Down: " + (char) key + " "+ scancode + " "+ action + " "+ mods);
+		} else if (action == GLFW_RELEASE) {
+			this.keyStates.put(key, false);
+			System.out.println("  Key Up: " + (char) key + " "+ scancode + " "+ action + " "+ mods);
+		}
+		
+		if (action == GLFW_RELEASE)
+			switch (key) {
+			case GLFW_KEY_ESCAPE:
+				glfwSetWindowShouldClose(window, GL_TRUE);
+				break;
+			case GLFW_KEY_W:
+//			 Node.getCurrent().transform.moveForward(1);
+				break;
+			case GLFW_KEY_M:
+				if (mouseLocked) {
+					glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+					mouseLocked = false;
+				} else {
+					glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+					mouseLocked = true;
+				}
+				break;			 
+			}
      }
 
-	@Override
-	public void repeatedKeys() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void movement(float speed, int key) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyDownOperations(int key) {
-		
-	}
-
-	@Override
-	public void keyUpOperations(int key) {
-		
-	}
-
-	@Override
-	public void keyPressed(int key, int scancode, int mods) {
-		boolean isChar = Character.isValidCodePoint(key);//.matches("[a-z]");
-			
-		this.keyStates.put(key, true);
-		if (isChar)
-			System.out.println("		Key Down: " + (char)key);
-		else
-			System.out.println("Special Key Down: " + key);
-	}
-
-	@Override
-	public void keyUp(int key, int scancode, int mods) {
-		boolean isChar = Character.isValidCodePoint(key);//.matches("[a-z]");
-		
-		this.keyStates.put(key, false);
-		if (isChar)
-			System.out.println("		  Key up: " + (char)key);
-		else
-			System.out.println("  Special Key up: " + key);
-	}
 }

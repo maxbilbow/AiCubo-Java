@@ -1,0 +1,5 @@
+package rmx.gl;
+
+public interface GLView {
+
+}

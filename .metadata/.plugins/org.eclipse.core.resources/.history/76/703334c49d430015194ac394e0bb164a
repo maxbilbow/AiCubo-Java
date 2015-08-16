@@ -1,0 +1,103 @@
+import javax.vecmath.Matrix4f;
+import javax.vecmath.Vector3f;
+
+import rmx.Bugger;
+import rmx.engine.Behaviour;
+import rmx.engine.GameController;
+import rmx.engine.Geometry;
+import rmx.engine.Node;
+import rmx.engine.NodeComponent;
+import rmx.engine.Scene;
+import rmx.gl.SharedLibraryLoader;
+class ABehaviour extends NodeComponent implements Behaviour {
+
+	
+	@Override
+	public void lateUpdate() {
+		// TODO Auto-generated method stub	
+	}
+
+	@Override
+	public void update() {
+		Bugger.logAndPrint(this.getNode().transform.position(), false);
+	}
+	
+}
+public final class Main {
+	void LookAt( Matrix4f matrix)
+	{
+//	lsMath math;
+	Vector3f e, l, u;
+//	lsVector3 forward, side, up;
+	lsMatrix4x4 matrix2, mat2;
+
+	e = eyePosition;
+	l = lookAt;
+	u = upVector;
+
+	// make sure up is normalized
+	up = upVector;
+	up.normalize();
+	// forward vector
+	forward = l - e;
+	forward.normalize();
+	// side vector
+	side = math.Cross( forward, up );
+	side.normalize();
+	// recalc up vector
+	up = math.Cross( forward, side );
+	up.normalize();
+
+
+	matrix2.matrix[0] = side.x;
+	matrix2.matrix[4] = side.y;
+	matrix2.matrix[8] = side.z;
+
+	matrix2.matrix[1] = up.x;
+	matrix2.matrix[5] = up.y;
+	matrix2.matrix[9] = up.z;
+
+	matrix2.matrix[2] = -forward.x;
+	matrix2.matrix[6] = -forward.y;
+	matrix2.matrix[10] = -forward.z;
+
+	mat2 *= matrix2;
+	mat2.TranslateMatrix( -e.x, -e.y, -e.z );
+
+	*this = mat2;
+	}
+	
+	
+	public static void main(String[] args) {	
+		SharedLibraryLoader.load();
+		GameController game = GameController.getInstance();
+		
+		Scene scene = Scene.getCurrent();
+		Node n = Node.getCurrent();
+		
+		n.setGeometry(new Geometry());
+//		n.addBehaviour(new ABehaviour());
+		scene.rootNode.addChild(n);
+		Node child = new Node();
+		child.transform.setPosition(10,4,12);
+		
+		Node cube = new Node();
+		cube.transform.setPosition(0,0,20);
+		cube.setGeometry(new Geometry());
+//		scene.rootNode.addChild(cube);
+//		Node cube2 = new Node();
+//		cube.transform.setPosition(0,0,-20);
+//		scene.rootNode.addChild(cube2);
+//		cube2.setGeometry(new Geometry());
+//		Node cube3 = new Node();
+//		cube.transform.setPosition(-20,10,0);
+//		scene.rootNode.addChild(cube3);
+//		cube3.setGeometry(new Geometry());
+//		Node cube4 = new Node();
+//		cube.transform.setPosition(20,-5,0);
+//		scene.rootNode.addChild(cube4);
+//		cube4.setGeometry(new Geometry());
+//		n.addChild(child);
+		game.Start();
+	}
+}

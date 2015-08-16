@@ -1,0 +1,26 @@
+package rmx.engine;
+
+import rmx.Bugger;
+import rmx.RMXObject;
+
+public class Behaviour extends NodeComponent {
+
+	private boolean enabled = true;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	}
+
+	public  void update() {
+		Bugger.logAndPrint(this.getNode().transform.position());
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	
+//	public abstract void lateUpdate();
+}

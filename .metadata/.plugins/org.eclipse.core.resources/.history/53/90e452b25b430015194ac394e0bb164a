@@ -1,0 +1,5 @@
+package rmx;
+
+public interface Messageable {
+
+}

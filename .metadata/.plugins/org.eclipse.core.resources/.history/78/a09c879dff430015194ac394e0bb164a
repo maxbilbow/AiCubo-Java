@@ -1,0 +1,13 @@
+package rmx.gl;
+
+import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.glfw.GLFWKeyCallback;
+
+public interface GLView {
+	public void initGL();
+	public void enterGameLoop();
+	public long Window();
+	public GLFWErrorCallback errorCallback();
+    public GLFWKeyCallback   keyCallback();
+    public void setDelegate(RenderDelegate delegate);
+}

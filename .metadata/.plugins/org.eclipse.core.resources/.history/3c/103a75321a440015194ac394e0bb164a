@@ -1,0 +1,5 @@
+package rmx.db;
+
+public final class RMX {
+	public static final float PI_OVER_180 = (float) (Math.PI / 180);
+}

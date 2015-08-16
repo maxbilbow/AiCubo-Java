@@ -1,0 +1,26 @@
+package rmx.engine;
+
+import rmx.RMXObject;
+
+public class Behaviour extends RMXObject {
+
+	private boolean enabled;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public  void update() {
+		System.out.println("Update");
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	
+//	public abstract void lateUpdate();
+}

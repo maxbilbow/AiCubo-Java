@@ -1,0 +1,73 @@
+import javax.vecmath.Matrix4f;
+import javax.vecmath.Vector3f;
+
+import rmx.Bugger;
+import rmx.engine.Behaviour;
+import rmx.engine.GameController;
+import rmx.engine.Geometry;
+import rmx.engine.Node;
+import rmx.engine.NodeComponent;
+import rmx.engine.Scene;
+import rmx.gl.SharedLibraryLoader;
+class ABehaviour extends NodeComponent implements Behaviour {
+
+	
+	@Override
+	public void lateUpdate() {
+		// TODO Auto-generated method stub	
+	}
+
+	@Override
+	public void update() {
+		Bugger.logAndPrint(this.getNode().transform.position(), false);
+	}
+	
+}
+
+
+
+public final class Main implements Runnable {
+
+	Thread thread;
+	void Start() {
+//		thread = new Thread(this,"Game");
+//		thread.start();
+		this.run();
+	}
+	public void run() {
+		SharedLibraryLoader.load();
+		GameController game = GameController.getInstance();
+		
+		Scene scene = Scene.getCurrent();
+		Node n = Node.getCurrent();
+		
+//		n.setGeometry(new Geometry());
+//		n.addBehaviour(new ABehaviour());
+		scene.rootNode.addChild(n);
+		Node child = new Node();
+		child.transform.setPosition(10,4,12);
+		
+		Node cube = new Node();
+		cube.transform.setPosition(0,0,20);
+		cube.setGeometry(new Geometry());
+		scene.rootNode.addChild(cube);
+		Node cube2 = new Node();
+		cube.transform.setPosition(0,0,-20);
+		scene.rootNode.addChild(cube2);
+		cube2.setGeometry(new Geometry());
+		Node cube3 = new Node();
+		cube.transform.setPosition(-20,10,0);
+		scene.rootNode.addChild(cube3);
+		cube3.setGeometry(new Geometry());
+		Node cube4 = new Node();
+		cube.transform.setPosition(20,-5,0);
+		scene.rootNode.addChild(cube4);
+		cube4.setGeometry(new Geometry());
+		n.addChild(child);
+		game.Start();
+	}
+	
+	public static void main(String[] args) {	
+		new Main().Start();
+	}
+}

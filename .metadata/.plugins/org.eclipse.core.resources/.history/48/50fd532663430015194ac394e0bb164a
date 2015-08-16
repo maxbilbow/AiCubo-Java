@@ -1,0 +1,52 @@
+package rmx.gl;
+import static org.lwjgl.glfw.GLFW.*;
+//import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
+import static org.lwjgl.glfw.GLFW.glfwSetWindowShouldClose;
+import static org.lwjgl.opengl.GL11.GL_TRUE;
+import java.util.HashMap;
+import org.lwjgl.glfw.GLFWKeyCallback;
+
+import rmx.engine.Node;
+
+public class KeyCallback extends GLFWKeyCallback {
+	public static char forward = 'w', back = 's', left = 'a', right = 'd', up = 'e', down = 'q', stop = 'c', jump = ' ';
+//	public static boolean update = true;
+    public HashMap<Integer,Boolean> keyStates = new HashMap<Integer,Boolean>();//, keySpecialStates[] = new boolean[246];
+	
+    private static KeyCallback singleton = new KeyCallback();
+    private KeyCallback() {    }
+    
+    public static KeyCallback getInstance() {
+    	return singleton;
+    }
+	 @Override
+     public void invoke(long window, int key, int scancode, int action, int mods) {
+		if (action == GLFW_PRESS)
+			this.keyStates.put(key, true);
+		else if (action == GLFW_RELEASE)
+			this.keyStates.put(key, false);
+		
+		 switch (key) {
+		 case GLFW_KEY_ESCAPE:
+			 if (action == GLFW_RELEASE)
+				 glfwSetWindowShouldClose(window, GL_TRUE);
+			 break;
+		 case GLFW_KEY_W:
+			 Node.getCurrent().transform.moveForward(1);
+			 break;
+		 default:
+			 System.out.println("Unknown state: " + key + " "+ scancode + " "+ action + " "+ mods);
+		 }
+     }
+
+	@Override
+	public void repeatedKeys() {
+		if (this.keyStates.getOrDefault((int)'w',false)) {
+			Node.getCurrent().transform.moveForward(1);
+		}
+		
+	}
+
+	
+
+}

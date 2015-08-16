@@ -1,0 +1,5 @@
+package rmx.engine.math;
+
+public class Vector3 extends Vector3f {
+
+}

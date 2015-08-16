@@ -1,0 +1,56 @@
+package rmx.engine;
+
+
+
+import rmx.RMXObject;
+
+public class Scene extends RMXObject {
+	
+	protected static class node {
+        Scene scene;
+        node next;
+        node prev;
+
+        node(node prev, Scene element, node next) {
+            this.scene = element;
+            this.next = next;
+            this.prev = prev;
+        }
+     
+    }
+	
+	static node current = new node();
+	
+	public Scene() {
+	}
+	
+//	private static Scene current;
+	public static Scene getCurrent() {
+		if (current.scene != null)
+			return current.scene;
+		else
+			current.scene = new Scene();
+		return current.scene;
+	}
+	
+	public static Scene setCurrent(Scene scene) {
+		current.next = new node(current, scene);
+		current = current.next;
+		return current.prev.scene;
+	}
+	
+	public void makeCurrent() {
+		setCurrent(this);
+	}
+	
+	public void update() {
+		
+	}
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

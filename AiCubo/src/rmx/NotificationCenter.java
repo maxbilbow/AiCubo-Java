@@ -1,7 +1,9 @@
 package rmx;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
+
 
 
 public final class NotificationCenter {
@@ -19,7 +21,7 @@ public final class NotificationCenter {
 	}
 	private static NotificationCenter singleton;
 	
-	private LinkedList<EventListener> listeners = new LinkedList<EventListener> ();
+	private ArrayList<EventListener> listeners = new ArrayList<EventListener> ();
 
 	private HashMap<String, EventStatus> events = new HashMap<String, EventStatus> ();
 
@@ -32,14 +34,8 @@ public final class NotificationCenter {
 	}
 
 	public void addListener(EventListener listener) {
-		if (!hasListener(listener)) {
+		if (!hasListener(listener)) 
 			listeners.add(listener);
-		}
-//		if (Bugger.WillLog (RMXTests.EventCenter, listener.GetType () + " was added to Listeners ("+ Listeners.Count + ")"))
-//			Debug.Log (Bugger.Last);
-//		if (Bugger.WillLog(Testing.EventCenter, "Listeners: " + Listeners.Count))
-//			Debug.Log (Bugger.Last);
-
 	}
 
 	public boolean removeListener(EventListener listener) {
@@ -84,7 +80,8 @@ public final class NotificationCenter {
 		if (!isActive (theEvent)) {
 			events.put(theEvent, o!=null && o.getClass() == EventStatus.class ? (EventStatus) o : EventStatus.Active);
 			for (EventListener listener : listeners) {
-				listener.onEventDidStart(theEvent, o);
+				if (listener.doesImplementMethod("onEventDidStart"))
+					listener.onEventDidStart(theEvent, o);
 			}
 		}
 	}
@@ -95,13 +92,20 @@ public final class NotificationCenter {
 	public void EventDidEnd(String theEvent, Object o) {
 		events.put(theEvent, o!=null&& o.getClass() == EventStatus.class ? (EventStatus) o : EventStatus.Completed);
 		for (EventListener listener : listeners) {
-			listener.onEventDidEnd(theEvent, o);
+			if (listener.doesImplementMethod("onEventDidEnd"))
+				listener.onEventDidEnd(theEvent, o);
 		}
 	}
 
 	public void BroadcastMessage(String message, Object args) {
 		for (EventListener listener : listeners) {
-			listener.sendMessage(message, args);
+			try {
+				listener.sendMessage(message, args);
+			} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+				Bugger.log(this.getClass().getName() + " " + e.getMessage() + ": " + message + " with args: " + args);
+//				e.printStackTrace();
+			}
 		}
 	}
 

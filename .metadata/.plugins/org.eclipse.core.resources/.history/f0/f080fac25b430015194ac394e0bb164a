@@ -1,0 +1,10 @@
+package rmx.engine;
+
+import rmx.Messageable;
+
+public interface Behaviour extends Messageable {
+
+	
+	
+	public void lateUpdate();
+}

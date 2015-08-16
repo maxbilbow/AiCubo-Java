@@ -1,6 +1,6 @@
 package rmx.engine;
 
 
-public class PhysicsBody {
+public class PhysicsBody extends NodeComponent {
 	
 }
