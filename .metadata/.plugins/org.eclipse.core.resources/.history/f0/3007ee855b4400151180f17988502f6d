@@ -1,0 +1,21 @@
+package rmx.engine;
+
+
+public class PhysicsBody extends NodeComponent {
+
+	float mass = 1;
+	public float getMass() {
+		return mass;
+	}
+	
+	public void setMass(float mass) {
+		this.mass = mass;
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

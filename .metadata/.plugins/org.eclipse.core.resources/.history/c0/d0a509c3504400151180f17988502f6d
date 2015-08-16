@@ -1,0 +1,10 @@
+package rmx.gl;
+
+import org.lwjgl.glfw.GLFWCursorPosCallback;
+
+public class CursorCallback extends GLFWCursorPosCallback {
+	void center();
+	void MouseButton(int button, int state, int x, int y);
+	void MouseMotion(int x, int y);
+	void mouseFree(int x, int y);
+}

@@ -92,7 +92,7 @@ public class Bugger {
 	
 	
 	
-	public static void main (String[] args) {
+	public static void test (String[] args) {
 //		Bugger b = Bugger.getInstance();
 		log("Hello!");
 //		Print(true);

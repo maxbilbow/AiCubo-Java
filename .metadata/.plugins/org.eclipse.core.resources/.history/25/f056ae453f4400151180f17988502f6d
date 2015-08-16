@@ -1,0 +1,16 @@
+package rmx.engine.math;
+
+public class EulerAngles extends Vector3 {
+	
+	public float pitch() {
+		return this.x;
+	}
+	
+	public float yaw() {
+		return this.y;
+	}
+	
+	public float roll() {
+		return this.z;
+	}
+}

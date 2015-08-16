@@ -1,0 +1,11 @@
+package rmx.engine.math;
+
+import javax.vecmath.Vector3f;
+
+public class Vector3 extends Vector3f {
+	public Vector3(float x, float y, float z) {
+		// TODO Auto-generated constructor stub
+	}
+
+	static final int SIZE = 3;
+}

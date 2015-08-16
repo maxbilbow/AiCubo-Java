@@ -1,0 +1,22 @@
+package rmx.gl;
+
+import org.lwjgl.glfw.GLFWCursorPosCallback;
+
+public class CursorCallback extends GLFWCursorPosCallback {
+//	void center();
+//	void MouseButton(int button, int state, int x, int y);
+//	void MouseMotion(int x, int y);
+//	void mouseFree(int x, int y);
+	
+	private static KeyCallback singleton = new CursorCallback();
+	    private CursorCallback() {    }
+	    public static CursorCallback getInstance() {
+	    	return singleton;
+	    }
+	    
+	@Override
+	public void invoke(long window, double xpos, double ypos) {
+		// TODO Auto-generated method stub
+		
+	}
+

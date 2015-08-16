@@ -25,3 +25,6 @@
 1439723693377	Encapsulate field 'm'
 1439731726744	Move compilation unit
 1439737984784	Move compilation unit
+1439757116314	Encapsulate field 'mouseLocked'
+1439757840420	Encapsulate field 'gravity'
+1439763777024	Delete element

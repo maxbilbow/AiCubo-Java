@@ -8,7 +8,7 @@ import rmx.engine.math.Matrix4;
 public class Scene extends RMXObject {
 	
 	
-
+	private PhysicsWorld physicsWorld = new PhysicsWorld();
 	public final Node rootNode = new Node();
 	static node current = new node(null,null,null);
 	
@@ -53,8 +53,8 @@ public class Scene extends RMXObject {
 
 	public void renderScene(Camera cam) {
 //		cam.look();
-		Matrix4 modelMatrix = (Matrix4) rootNode.transform.localMatrix().clone();
-		modelMatrix.negate();
+		Matrix4 modelMatrix = cam.modelViewMatrix();
+		//modelMatrix.negate();
 		for (Node child : this.rootNode.getChildren()) {
 			child.draw(modelMatrix);
 		}
@@ -62,6 +62,7 @@ public class Scene extends RMXObject {
 
 
 	public void updateSceneLogic() {
+		this.physicsWorld.updatePhysics(this.rootNode);
 		this.rootNode.updateLogic();
 	}
 

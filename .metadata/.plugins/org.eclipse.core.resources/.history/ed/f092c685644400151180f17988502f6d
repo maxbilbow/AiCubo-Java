@@ -1,0 +1,18 @@
+
+
+import rmx.engine.GameController;
+
+
+
+
+public final class Main implements Runnable {	
+	
+	public static void main(String[] args) {	
+		new Main().run();
+	}
+
+	@Override
+	public void run() {
+		GameController.getInstance().Start(); 
+	}
+}

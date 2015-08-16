@@ -1,71 +1,67 @@
 package rmx.engine;
-import org.lwjgl.BufferUtils;
-import org.lwjgl.Sys;
+
+
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 //import org.lwjgl.util.Display;
 //import org.lwjgl.util.glu.GLU;
 
 import java.nio.ByteBuffer;
-import java.nio.DoubleBuffer;
-import java.nio.FloatBuffer;
-import java.nio.ShortBuffer;
-
-import javax.vecmath.Matrix4f;
-import javax.vecmath.Vector4f;
 
 import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL15.GL_ARRAY_BUFFER;
-import static org.lwjgl.opengl.GL15.GL_ELEMENT_ARRAY_BUFFER;
-import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
-import static org.lwjgl.opengl.GL15.glBindBuffer;
-import static org.lwjgl.opengl.GL15.glBufferData;
-import static org.lwjgl.opengl.GL15.glGenBuffers;
-import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
-import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
-import static org.lwjgl.opengl.GL30.glBindVertexArray;
-import static org.lwjgl.opengl.GL30.glGenVertexArrays;
+//import static org.lwjgl.opengl.GL15.GL_ARRAY_BUFFER;
+//import static org.lwjgl.opengl.GL15.GL_ELEMENT_ARRAY_BUFFER;
+//import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
+//import static org.lwjgl.opengl.GL15.glBindBuffer;
+//import static org.lwjgl.opengl.GL15.glBufferData;
+//import static org.lwjgl.opengl.GL15.glGenBuffers;
+//import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
+//import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
+//import static org.lwjgl.opengl.GL30.glBindVertexArray;
+//import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 import static org.lwjgl.system.MemoryUtil.*;
 
 import static rmx.RMX.*;
 
 import rmx.Bugger;
 import rmx.RMXObject;
+import rmx.gl.CursorCallback;
 import rmx.gl.GLView;
 import rmx.gl.KeyCallback;
 
 public class GameView extends RMXObject implements GLView{
  
 	private Node _pointOfView;
-	private int _height = 340, _width = 600;
+//	private int _height = 340, _width = 600;
+	private int _height = 720, _width = 1280;
 	
-	
-	 // The indices of the vertex position and colour attributes, we use these attributes in the vertex shader
-    private static final int VERTEX_POSITION = 1, VERTEX_COLOUR = 0;
-    // The error callback function for GLFW
-//    private static GLFWErrorCallback errorCallback;
-    private static GLFWCursorPosCallback cursorCallback;
-    // The window handle
-    private static long windowID;
-    // The Vertex Array Object (VAO):  stores the of bindings between Vertex Attributes and vertex data
-    private static int vertexArrayObject;
-    // The Vertex Buffer Object (VBO): stores vertex position and colour data
-    private static int vertexBufferObject;
-    // The Index Buffer Object (IBO): stores the indices of the data in the VBO, used by glDrawElements
-    private static int indexBufferObject;
-    // The OpenGL shader program handle
-    private static int shaderProgram;
-    private static int uniformModelviewProjection;
-    // In LWJGL we store vertex and index data using Buffers, because they most resemble C/C++ data arrays
-    private static ByteBuffer vertexData;// = BufferUtils.createDoubleBuffer(20);
-    private static ShortBuffer indexData;// = BufferUtils.createShortBuffer(6);
-    private static Matrix4f modelviewMatrix = new Matrix4f();
-    private static Matrix4f projectionMatrix = new Matrix4f();
-    private static FloatBuffer mvpMatrix = BufferUtils.createFloatBuffer(16);
-    private static Vector4f translate = new Vector4f(0, 0, -5, 1);
-    private static int mouseX = -9999, mouseY = -9999;
+//	
+//	 // The indices of the vertex position and colour attributes, we use these attributes in the vertex shader
+//    private static final int VERTEX_POSITION = 1, VERTEX_COLOUR = 0;
+//    // The error callback function for GLFW
+////    private static GLFWErrorCallback errorCallback;
+//    private static GLFWCursorPosCallback cursorCallback;
+//    // The window handle
+//    private static long windowID;
+//    // The Vertex Array Object (VAO):  stores the of bindings between Vertex Attributes and vertex data
+//    private static int vertexArrayObject;
+//    // The Vertex Buffer Object (VBO): stores vertex position and colour data
+//    private static int vertexBufferObject;
+//    // The Index Buffer Object (IBO): stores the indices of the data in the VBO, used by glDrawElements
+//    private static int indexBufferObject;
+//    // The OpenGL shader program handle
+//    private static int shaderProgram;
+//    private static int uniformModelviewProjection;
+//    // In LWJGL we store vertex and index data using Buffers, because they most resemble C/C++ data arrays
+//    private static ByteBuffer vertexData;// = BufferUtils.createDoubleBuffer(20);
+//    private static ShortBuffer indexData;// = BufferUtils.createShortBuffer(6);
+//    private static Matrix4f modelviewMatrix = new Matrix4f();
+//    private static Matrix4f projectionMatrix = new Matrix4f();
+//    private static FloatBuffer mvpMatrix = BufferUtils.createFloatBuffer(16);
+//    private static Vector4f translate = new Vector4f(0, 0, -5, 1);
+//    private static int mouseX = -9999, mouseY = -9999;
     
     static {
 //    	vertexData = Geometry.cube().vertices();
@@ -105,8 +101,9 @@ public class GameView extends RMXObject implements GLView{
             throw new RuntimeException("Failed to create the GLFW window");
  
         // Setup a key callback. It will be called every time a key is pressed, repeated or released.
-        glfwSetKeyCallback(_window, _keyCallback = rmx.gl.KeyCallback.getInstance());
+        glfwSetKeyCallback(_window, _keyCallback = KeyCallback.getInstance());
  
+        glfwSetCursorPosCallback(_window, CursorCallback.getInstance());
         // Get the resolution of the primary monitor
         ByteBuffer vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
         // Center our window
@@ -127,44 +124,44 @@ public class GameView extends RMXObject implements GLView{
 //        more();
     }
  
-    private void _more() {
-    	 
-    	GLContext.createFromCurrent();
-    	// >> Vertex Array Objects (VAO) are OpenGL Objects that store the
-        // >> set of bindings between Vertex Attributes and the user's source
-        // >> vertex data. (http://www.opengl.org/wiki/Vertex_Array_Object)
-        // >> glGenVertexArrays returns n vertex array object names in arrays.
-        // Create a VAO and store the handle in vertexArrayObject
-        vertexArrayObject = glGenVertexArrays();
-        // >> glGenBuffers returns n buffer object names in buffers.
-        // >> No buffer objects are associated with the returned buffer object names
-        // >> until they are first bound by calling glBindBuffer.
-        vertexBufferObject = glGenBuffers();
-        indexBufferObject = glGenBuffers();
-
-        // >> glBindVertexArray binds the vertex array object with name array.
-        // Bind the VAO to OpenGL
-        glBindVertexArray(vertexArrayObject);
-        // >> glBindBuffer binds a buffer object to the specified buffer binding point.
-        // >> Vertex Buffer Objects (VBOs) are Buffer Objects that are used for
-        // >> vertex data. (VBO = GL_ARRAY_BUFFER)
-        // Bind our buffer object to GL_ARRAY_BUFFER, thus making it a VBO.
-        glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
-
-        // >> glBufferData creates a new data store for the buffer object currently bound
-        // >> to target. Any pre-existing data store is deleted. The new data store is created
-        // >> with the specified size in bytes and usage. If data is not NULL, the data
-        // >> store is initialized with data from this pointer. In its initial state, the
-        // >> new data store is not mapped, it has a NULL mapped pointer, and its mapped
-        // >> access is GL_READ_WRITE.
-        // Store the vertex data (position and colour) in the VBO.
-       
-        glBufferData(GL_ARRAY_BUFFER, vertexData, GL_STATIC_DRAW);
-        // Store the vertex index data in the IBO.
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexData, GL_STATIC_DRAW);
-
-    }
+//    private void _more() {
+//    	 
+//    	GLContext.createFromCurrent();
+//    	// >> Vertex Array Objects (VAO) are OpenGL Objects that store the
+//        // >> set of bindings between Vertex Attributes and the user's source
+//        // >> vertex data. (http://www.opengl.org/wiki/Vertex_Array_Object)
+//        // >> glGenVertexArrays returns n vertex array object names in arrays.
+//        // Create a VAO and store the handle in vertexArrayObject
+//        vertexArrayObject = glGenVertexArrays();
+//        // >> glGenBuffers returns n buffer object names in buffers.
+//        // >> No buffer objects are associated with the returned buffer object names
+//        // >> until they are first bound by calling glBindBuffer.
+//        vertexBufferObject = glGenBuffers();
+//        indexBufferObject = glGenBuffers();
+//
+//        // >> glBindVertexArray binds the vertex array object with name array.
+//        // Bind the VAO to OpenGL
+//        glBindVertexArray(vertexArrayObject);
+//        // >> glBindBuffer binds a buffer object to the specified buffer binding point.
+//        // >> Vertex Buffer Objects (VBOs) are Buffer Objects that are used for
+//        // >> vertex data. (VBO = GL_ARRAY_BUFFER)
+//        // Bind our buffer object to GL_ARRAY_BUFFER, thus making it a VBO.
+//        glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
+//        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
+//
+//        // >> glBufferData creates a new data store for the buffer object currently bound
+//        // >> to target. Any pre-existing data store is deleted. The new data store is created
+//        // >> with the specified size in bytes and usage. If data is not NULL, the data
+//        // >> store is initialized with data from this pointer. In its initial state, the
+//        // >> new data store is not mapped, it has a NULL mapped pointer, and its mapped
+//        // >> access is GL_READ_WRITE.
+//        // Store the vertex data (position and colour) in the VBO.
+//       
+//        glBufferData(GL_ARRAY_BUFFER, vertexData, GL_STATIC_DRAW);
+//        // Store the vertex index data in the IBO.
+//        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexData, GL_STATIC_DRAW);
+//
+//    }
  
    
     @Override

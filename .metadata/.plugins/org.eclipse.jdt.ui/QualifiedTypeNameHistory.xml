@@ -25,7 +25,6 @@
 <fullyQualifiedTypeName name="org.lwjgl.util.Display"/>
 <fullyQualifiedTypeName name="org.lwjgl.util.vector.Matrix4f"/>
 <fullyQualifiedTypeName name="rmx.gl.GameView"/>
-<fullyQualifiedTypeName name="javax.vecmath.AxisAngle4f"/>
 <fullyQualifiedTypeName name="org.lwjgl.glfw.GLFW"/>
 <fullyQualifiedTypeName name="java.lang.Math"/>
 <fullyQualifiedTypeName name="rmx.db.RMX"/>
@@ -37,18 +36,26 @@
 <fullyQualifiedTypeName name="java.nio.ByteOrder"/>
 <fullyQualifiedTypeName name="org.lwjgl.opengl.GL11"/>
 <fullyQualifiedTypeName name="java.nio.FloatBuffer"/>
-<fullyQualifiedTypeName name="javax.vecmath.Vector3f"/>
 <fullyQualifiedTypeName name="java.nio.ByteBuffer"/>
 <fullyQualifiedTypeName name="org.lwjgl.BufferUtils"/>
 <fullyQualifiedTypeName name="javax.vecmath.Vector4f"/>
 <fullyQualifiedTypeName name="javax.vecmath.Matrix4f"/>
 <fullyQualifiedTypeName name="rmx.engine.Geometry"/>
 <fullyQualifiedTypeName name="java.nio.ShortBuffer"/>
-<fullyQualifiedTypeName name="rmx.engine.Node"/>
 <fullyQualifiedTypeName name="rmx.Bugger"/>
 <fullyQualifiedTypeName name="rmx.engine.Camera"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="rmx.RMXObject"/>
+<fullyQualifiedTypeName name="rmx.engine.math.EulerAngles"/>
+<fullyQualifiedTypeName name="javax.vecmath.AxisAngle4f"/>
+<fullyQualifiedTypeName name="org.lwjgl.glfw.GLFWCursorPosCallback"/>
+<fullyQualifiedTypeName name="rmx.gl.CursorCallback"/>
+<fullyQualifiedTypeName name="javax.vecmath.Vector2f"/>
+<fullyQualifiedTypeName name="javax.vecmath.Vector3f"/>
 <fullyQualifiedTypeName name="rmx.engine.math.Vector3"/>
 <fullyQualifiedTypeName name="rmx.engine.math.Matrix4"/>
+<fullyQualifiedTypeName name="rmx.RMXObject"/>
+<fullyQualifiedTypeName name="rmx.RMX"/>
+<fullyQualifiedTypeName name="rmx.engine.Behaviour"/>
+<fullyQualifiedTypeName name="rmx.engine.behaviours.SpriteBehaviour"/>
+<fullyQualifiedTypeName name="rmx.engine.Node"/>
 </qualifiedTypeNameHistroy>

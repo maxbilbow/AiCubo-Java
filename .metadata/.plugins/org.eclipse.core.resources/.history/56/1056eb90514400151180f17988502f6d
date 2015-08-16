@@ -1,0 +1,25 @@
+package rmx.gl;
+
+import org.lwjgl.glfw.GLFWCursorPosCallback;
+
+import rmx.engine.Node;
+
+public class CursorCallback extends GLFWCursorPosCallback {
+//	void center();
+//	void MouseButton(int button, int state, int x, int y);
+//	void MouseMotion(int x, int y);
+//	void mouseFree(int x, int y);
+	
+	private static CursorCallback singleton = new CursorCallback();
+	    private CursorCallback() {    }
+	    public static CursorCallback getInstance() {
+	    	return singleton;
+	    }
+	    
+	private float xpos ,ypos;
+	@Override
+	public void invoke(long window, double xpos, double ypos) {
+		Node.getCurrent().broadcastMessage("move","yaw:"+xpos);
+		
+	}
+}

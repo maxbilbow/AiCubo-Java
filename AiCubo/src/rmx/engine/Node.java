@@ -41,8 +41,10 @@ public class Node extends RMXObject {
 	}
 	
 	public void addBehaviour(Behaviour behaviour) {
-		this.behaviours.add(behaviour);
-		behaviour.setNode(this);
+		if (behaviour != null) {
+			this.behaviours.add(behaviour);
+			behaviour.setNode(this);
+		}
 	}
 	
 	public NodeComponent getComponent(Class<?> type) {
@@ -57,8 +59,10 @@ public class Node extends RMXObject {
 	}
 	
 	public void addChild(Node child) {
-		this.children.add(child);
-		child.setParent(this);
+		if (!this.children.contains(child)) {
+			this.children.add(child);
+			child.setParent(this);
+		}
 	}
 	
 	public boolean removeChildNode(Node node) {
@@ -75,9 +79,14 @@ public class Node extends RMXObject {
 	
 	public Node(){
 		this.transform = new Transform(this);
-		this.setComponent(Transform.class, this.transform);
+		
 	}
 	
+
+	public Node(String name) {
+		this.transform = new Transform(this);
+		this.setName(name);
+	}
 
 	public Camera camera() {
 		return (Camera) this.getComponent(Camera.class);
@@ -88,7 +97,7 @@ public class Node extends RMXObject {
 	}
 	
 	public static Node newCameraNode() {
-		Node cameraNode = new Node();
+		Node cameraNode = new Node("CameraNode");
 		cameraNode.setCamera(new Camera());
 		return cameraNode;
 	}
@@ -169,7 +178,7 @@ public class Node extends RMXObject {
 	}
 
 	public void setParent(Node parent) {
-		if (this.parent != null) {
+		if (this.parent != null && parent != this.parent) {
 			this.parent.removeChildNode(this);
 ;		}
 		this.parent = parent;
@@ -196,5 +205,20 @@ public class Node extends RMXObject {
 			b.broadcastMessage(message,args);
 		}
 		
+	}
+	
+	public static Node makeCube(float s,boolean body, Behaviour b) {
+		Node n = new Node("Cube");
+		n.setGeometry(Geometry.cube());
+		if (body)
+			n.setPhysicsBody(new PhysicsBody());
+		n.transform.setScale(s, s, s);
+		n.addBehaviour(b);
+		n.addToCurrentScene();
+		return n;
+	}
+
+	private void addToCurrentScene() {
+		Scene.getCurrent().rootNode.addChild(this);
 	}
 }

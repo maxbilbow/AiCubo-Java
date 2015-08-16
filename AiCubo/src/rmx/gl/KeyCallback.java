@@ -14,7 +14,7 @@ public class KeyCallback extends GLFWKeyCallback {
 	
     private static KeyCallback singleton = new KeyCallback();
     private KeyCallback() {    }
-    boolean mouseLocked = false;
+//    boolean mouseLocked = false;
     public static KeyCallback getInstance() {
     	return singleton;
     }
@@ -37,12 +37,13 @@ public class KeyCallback extends GLFWKeyCallback {
 //			 Node.getCurrent().transform.moveForward(1);
 				break;
 			case GLFW_KEY_M:
-				if (mouseLocked) {
+				CursorCallback cursor = CursorCallback.getInstance();
+				if (cursor.isCursorLocked()) {
 					glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-					mouseLocked = false;
+					cursor.lockCursor(false);
 				} else {
 					glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-					mouseLocked = true;
+					cursor.lockCursor(true);
 				}
 				break;			 
 			}

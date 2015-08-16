@@ -26,10 +26,7 @@ public abstract class NodeComponent extends RMXObject {
 	public Transform transform() {
 		return this.node.transform;
 	}
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+	
 	
 	
 

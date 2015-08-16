@@ -1,0 +1,14 @@
+
+import rmx.Bugger;
+import rmx.engine.Behaviour;
+import rmx.engine.GameController;
+import rmx.engine.NodeComponent;
+
+
+
+public final class Main implements Runable {	
+	
+	public static void main(String[] args) {	
+		GameController.getInstance().Start(); 
+	}
+}

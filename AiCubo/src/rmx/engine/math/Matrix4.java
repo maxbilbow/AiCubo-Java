@@ -1,11 +1,11 @@
 package rmx.engine.math;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+
 import java.nio.FloatBuffer;
 
+import javax.vecmath.AxisAngle4f;
 import javax.vecmath.Matrix4f;
-import javax.vecmath.Vector3f;
+
 import javax.vecmath.Vector4f;
 
 import org.lwjgl.BufferUtils;
@@ -43,6 +43,7 @@ public class Matrix4 extends Matrix4f{
 	
 	private FloatBuffer _buffer = BufferUtils.createFloatBuffer(SIZE);
 	private boolean _bufferReady = false;
+
 	
 	public void resetBuffers() {
 		_bufferReady = false;
@@ -124,14 +125,28 @@ public class Matrix4 extends Matrix4f{
 		Vector3 v;
 		switch (direction) {
 		case "forward":
+			scale *= -1;
 			v = this.forward();
 			break;
 		case "up":
-			scale *= -1;
+//			scale *= -1;
 			v = this.up();
 			break;
 		case "left":
+			scale *= -1;
 			v = this.left();
+			break;
+		case "x":
+//			scale *= -1;
+			v = new Vector3(1,0,0);
+			break;
+		case "y":
+//			scale *= -1;
+			v = new Vector3(0,1,0);
+			break;
+		case "z":
+//			scale *= -1;
+			v = new Vector3(0,0,1);
 			break;
 		default:
 			return false;
@@ -142,6 +157,58 @@ public class Matrix4 extends Matrix4f{
 				v.z * scale
 				);
 		return true;
+	}
+	
+	
+	public boolean rotate(String direction, float scale) {
+		Vector3 v;
+		switch (direction) {
+		case "pitch":
+//			scale *= -1;
+			v = this.left();
+			break;
+		case "yaw":
+//			scale *= -1;
+			v = this.up();
+			break;
+		case "roll":
+//			scale *= -1;
+			v = this.forward();
+			break;
+		default:
+			return false;
+		}
+		this.rotate(scale,v.x,v.y,v.z);
+//				v.x * scale, 
+//				v.y * scale,
+//				v.z * scale
+//				);
+		return true;
+	}
+	
+	private void rotate(float radians, float x, float y, float z) {
+		Matrix4 rMatrix = new Matrix4();
+		rMatrix.setIdentity();
+		rMatrix.setRotation(new AxisAngle4f(x,y,z,radians * 0.2f ));//*  RMX.PI_OVER_180));
+//		_rMatrix.transpose();
+		
+//		_quaternion.set(new AxisAngle4f(v.x,v.y,v.z,degrees * 0.1f));
+		Vector3 p = this.position();
+		this.mul(rMatrix);
+		this.setPosition(p);
+		
+	}
+	
+	public void setPosition(Vector3 v) {
+		m30 = v.x;
+		m31 = v.y;
+		m32 = v.z;
+	}
+	
+	public void setPosition(int x, int y, int z) {
+		m30 = x;
+		m31 = y;
+		m32 = z;
 	}
 	
 	public void negatePosition() {
@@ -211,5 +278,19 @@ public class Matrix4 extends Matrix4f{
 		}
 		return _pos;
 	}
+	
+	private EulerAngles _eulerAngles = new EulerAngles();
+	public EulerAngles eulerAngles() {
+		_eulerAngles.y = (float) Math.atan2(-m20,m00);
+		_eulerAngles.x = (float) Math.asin(m10);
+		_eulerAngles.z = (float) Math.atan2(-m12,m11);
+				
+				
+//		_eulerAngles.x = (float) Math.atan2( m22, m23);
+//		_eulerAngles.y = (float) Math.atan2(-m21, Math.sqrt(m22 * m22 + m23 * m23));
+//		_eulerAngles.z = (float) Math.atan2( m11, m01);
+		return _eulerAngles;
+	}
+
 	
 }

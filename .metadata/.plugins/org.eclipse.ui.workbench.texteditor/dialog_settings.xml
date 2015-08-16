@@ -2,33 +2,35 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="setGeom" key="selection"/>
+		<item value="Transform" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="setGeom"/>
-			<item value="draw"/>
-			<item value="start"/>
-			<item value="pointOf"/>
-			<item value="glUniformMatrix4"/>
-			<item value="buffersize"/>
-			<item value="buffer"/>
-			<item value="this.addV"/>
+			<item value="transform"/>
+			<item value="physics"/>
+			<item value="callba"/>
+			<item value=", X,"/>
+			<item value=",-X,"/>
+			<item value=", -X,"/>
+			<item value="1.0f);"/>
+			<item value="1.0f,"/>
 		</list>
 		<list key="replacehistory">
+			<item value=", Y,"/>
+			<item value=",-Y,"/>
+			<item value=", -Y,"/>
+			<item value="Z);"/>
+			<item value="X,"/>
 			<item value="_cube.addV"/>
 			<item value="this.addVertex"/>
 			<item value="Bugger.log"/>
-			<item value="NotificationCenter.getInstance()"/>
-			<item value=""/>
-			<item value="NotificationCenter.getInstance()."/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="265" key="DIALOG_WIDTH"/>
-		<item value="1|.SF NS Text|11.0|0|COCOA|1|.SFNSText-Regular" key="DIALOG_FONT_NAME"/>
+		<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
 		<item value="1027" key="DIALOG_X_ORIGIN"/>
 		<item value="53" key="DIALOG_Y_ORIGIN"/>

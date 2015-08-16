@@ -15,7 +15,7 @@ import static org.lwjgl.glfw.GLFW.glfwDestroyWindow;
 import static org.lwjgl.glfw.GLFW.glfwTerminate;
 
 import org.lwjgl.Sys;
-
+import org.lwjgl.opengl.GL11;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_RIGHT;
@@ -24,6 +24,7 @@ import static org.lwjgl.glfw.GLFW.GLFW_KEY_UP;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_DOWN;
 
 import rmx.RMXObject;
+import rmx.engine.behaviours.SpriteBehaviour;
 import rmx.gl.GLView;
 import rmx.gl.KeyCallback;
 import rmx.gl.KeyStates;
@@ -53,41 +54,80 @@ public class GameController extends RMXObject implements RenderDelegate, Runnabl
 	
 	private static GameController singleton = new GameController();
 	
+	private void initpov() {
+		Node n = Node.getCurrent();
+		n.setPhysicsBody(new PhysicsBody());
+		n.physicsBody().setMass(0.5f);
+		n.addBehaviour(new SpriteBehaviour());
+		n.transform.setScale(2f, 0.1f, 2f);	
+		Scene.getCurrent().rootNode.addChild(n);
+	}
 	public void setup() {		
 		Scene scene = Scene.getCurrent();
-		Node n = Node.getCurrent();
+		initpov();
+
 		
-//		n.setGeometry(new Geometry());
-//		n.addBehaviour(new ABehaviour());
-		scene.rootNode.addChild(n);
-//		Node child = new Node();
-//		child.transform.setPosition(10,4,12);
-//		n.addChild(child);
-		
-		Node cube = new Node();
+		Node cube = Node.makeCube(0.5f, true, new Behaviour() {
+
+			@Override
+			public void update() {
+				this.getNode().transform.move("forward:0.1");
+				
+			}
+			
+		});
 		cube.transform.setPosition(0,0,5);
-		cube.setGeometry(Geometry.cube());
-		scene.rootNode.addChild(cube);
-//		Node cube2 = new Node();
-//		cube.transform.setPosition(-10,0,-10);
-//		scene.rootNode.addChild(cube2);
-//		cube2.setGeometry(Geometry.cube());
-//		Node cube3 = new Node();
-//		cube.transform.setPosition(-10,0,10);
-//		cube3.addChild(cube2);
-//		scene.rootNode.addChild(cube3);
-//		cube3.setGeometry(Geometry.cube());
-//		Node cube4 = new Node();
-//		cube.transform.setPosition(10,-5,10);
-//		scene.rootNode.addChild(cube4);
-//		cube4.setGeometry(Geometry.cube());
+		
+		
+		Node cube2 = Node.makeCube(0.2f, false, new Behaviour() {
+			@Override
+			public void update() {
+				this.getNode().transform.move("yaw:0.1");
+				this.getNode().transform.move("pitch:0.1");
+				this.getNode().transform.move("roll:0.1");
+			}
+			
+		});
+		
+		
+		Node cube3 = Node.makeCube(0.5f, true, new Behaviour() {
+			@Override
+			public void update() {
+				this.getNode().transform.move("forward:0.5");
+				this.getNode().transform.move("yaw:0.1");
+			}
+			
+		});
+		cube3.transform.setPosition(-10,0,10);
+		cube3.addChild(cube2);
+		cube2.transform.setPosition(0f,1f,0f);
+		
+		Node floor = new Node();
+		floor.transform.setPosition(0,0,0);
+		scene.rootNode.addChild(floor);
+		
+		floor.setGeometry(new Geometry(4*3){
+
+			@Override
+			protected void drawWithScale(float x, float y, float z) {
+				float inf = 99999;//Float.POSITIVE_INFINITY;
+				GL11.glBegin(GL11.GL_POLYGON);    
+	            GL11.glColor3f(0.8f,0.8f,0.8f);           
+	            GL11.glVertex3f( inf, -y,-inf);        
+	            GL11.glVertex3f(-inf, -y,-inf);        
+	            GL11.glVertex3f(-inf, -y, inf);
+	            GL11.glVertex3f( inf, -y, inf);  	
+	            GL11.glEnd(); 
+			}
+			
+		});
 		
 	}
 
 	public void run() {
         System.out.println("Hello LWJGL " + Sys.getVersion() + "!");
        
-        try {
+//        try {
         	SharedLibraryLoader.load();
         	this.setup();
             this.view.initGL();
@@ -96,12 +136,14 @@ public class GameController extends RMXObject implements RenderDelegate, Runnabl
             // Release window and window callbacks
             glfwDestroyWindow(view.window());
             view.keyCallback().release();
-        } finally {
+//        } catch (Exception e){
+//        	e.printStackTrace();
+//        } finally {
             // Terminate GLFW and release the GLFWerrorfun
             glfwTerminate();
             
 			view.errorCallback().release();
-        }
+//        }
     }
 
 	@Override
@@ -147,11 +189,11 @@ public class GameController extends RMXObject implements RenderDelegate, Runnabl
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_RIGHT, false)) {
-			player.broadcastMessage("move","yaw:-1");
+			player.broadcastMessage("move","yaw:1");
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_LEFT, false)) {
-			player.broadcastMessage("move","yaw:1");
+			player.broadcastMessage("move","yaw:-1");
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_UP, false)) {
@@ -163,11 +205,11 @@ public class GameController extends RMXObject implements RenderDelegate, Runnabl
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_X, false)) {
-			player.broadcastMessage("move","roll:-1");
+			player.broadcastMessage("move","roll:1");
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_Z, false)) {
-			player.broadcastMessage("move","roll:1");
+			player.broadcastMessage("move","roll:-1");
 		}
 	}
 	

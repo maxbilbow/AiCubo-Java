@@ -1,0 +1,18 @@
+
+
+import rmx.engine.GameController;
+
+
+
+
+public final class AiCubo implements Runnable {	
+	
+	public static void main(String[] args) {	
+		new AiCubo().run();
+	}
+
+	@Override
+	public void run() {
+		GameController.getInstance().Start(); 
+	}
+}

@@ -1,7 +1,7 @@
 package rmx.engine;
 
-import javax.vecmath.AxisAngle4f;
-//import javax.vecmath.Matrix4f;
+
+
 import javax.vecmath.Quat4f;
 import javax.vecmath.Vector3f;
 
@@ -16,21 +16,49 @@ public class Transform extends NodeComponent {
 	
 	public final Node node;
 	
-	private Matrix4 _rMatrix = new Matrix4();
-	private Matrix4 _worldMatrix = new Matrix4();
+//	private Matrix4 _rMatrix = new Matrix4();
+	private Matrix4 _worldMatrix;
+	private Matrix4 _axis;
+	private Matrix4 _localMatrix;
 	private Quat4f   _quaternion = new Quat4f();
 	private Vector3f _eulerAngles = new Vector3f();
+	private Vector3 _scale = new Vector3(1f,1f,1f);
 	public Transform(Node node) {
 		this.node = node;
+		node.setComponent(Transform.class, this);
 		this._localMatrix = new Matrix4();
 		this._localMatrix.setIdentity();
+		this._worldMatrix = new Matrix4();
+		this._worldMatrix.set(_localMatrix);
 		
 		this._axis = new Matrix4();
 		this._axis.setIdentity();
 	}
 	
-	private Matrix4 _axis;
-	private Matrix4 _localMatrix;
+	public Vector3 scale() {
+		return _scale;
+	}
+	
+	public void setScale(float x, float y, float z) {
+		_scale.x = x;
+		_scale.y = y;
+		_scale.z = z;
+	}
+	
+
+	
+	/**
+	 * TODO: Test with children
+	 * @return
+	 */
+	public float mass() {
+		float mass = node.physicsBody() != null ? node.physicsBody().getMass() : 0;
+		for (Node child : node.getChildren()){
+			mass += child.transform.mass();
+		}
+		return mass;
+	}
+	
 	
 	/**
 	 * TODO probably doesnt work. How do you do this maths?
@@ -83,25 +111,11 @@ public class Transform extends NodeComponent {
 		String[] options = args.split(":");
 		String direction = options[0];
 		float scale = (float) (Float.parseFloat(options[1]) * 0.1);
-		if (_localMatrix.translate(direction, scale)) {
-			Bugger.logAndPrint("\n"+ this.worldMatrix(), false);
+		if (_localMatrix.translate(direction, scale) 
+				|| _localMatrix.rotate(direction, scale)) 
 			return;
-		}
-		switch (direction) {
-		case "pitch":
-			this.rotateAround(_localMatrix.left(), scale);
-			break;
-		case "yaw":
-			this.rotateAround(_localMatrix.up(), scale);
-			break;
-		case "roll":
-			this.rotateAround(_localMatrix.forward(), scale);
-			break;
-		}
-//		Transform child = node.getChildren().get(0).transform;
-//		Bugger.logAndPrint("\nParent: \n" + this.worldMatrix() + 
-//				"\nChild: \n" + child.worldMatrix(), false);
-		Bugger.logAndPrint("\n"+ this.worldMatrix(), false);
+		else
+			Bugger.logAndPrint("Warning: \"" + args + "\" was not recognised", true);
 	}
 	
 	public Quat4f quaternion() {
@@ -130,17 +144,17 @@ public class Transform extends NodeComponent {
 	}
 	
 	
-	public void rotateAround(Vector3f v, float degrees) {
-		_rMatrix.setIdentity();
-		_rMatrix.setRotation(new AxisAngle4f(v.x,v.y,v.z,degrees * 0.2f ));//*  RMX.PI_OVER_180));
-//		_rMatrix.transpose();
-		
-//		_quaternion.set(new AxisAngle4f(v.x,v.y,v.z,degrees * 0.1f));
-		Vector3f p = this.localPosition();
-		_localMatrix.mul(_rMatrix);
-		this.setPosition(p);
-		
-	}
+//	public void rotateAround(Vector3f v, float degrees) {
+//		_rMatrix.setIdentity();
+//		_rMatrix.setRotation(new AxisAngle4f(v.x,v.y,v.z,degrees * 0.2f ));//*  RMX.PI_OVER_180));
+////		_rMatrix.transpose();
+//		
+////		_quaternion.set(new AxisAngle4f(v.x,v.y,v.z,degrees * 0.1f));
+//		Vector3f p = this.localPosition();
+//		_localMatrix.mul(_rMatrix);
+//		this.setPosition(p);
+//		
+//	}
 
 	public Matrix4 localMatrix() {
 		return _localMatrix;
@@ -150,5 +164,11 @@ public class Transform extends NodeComponent {
 //		this.localMatrix.m32 += 1;
 //		Bugger.logAndPrint(this.localMatrix.m32, false);
 //	}
+	
+	public void setNode(Node node) {
+		if (this.node != node)
+			throw new IllegalArgumentException("Transform can only be assigned once");
+		super.setNode(this.node);
+	}
 
 }

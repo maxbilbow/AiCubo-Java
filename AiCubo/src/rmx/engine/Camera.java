@@ -1,12 +1,9 @@
 package rmx.engine;
 
-import org.lwjgl.opengl.GL11;
-
 import static org.lwjgl.opengl.GL11.*;
 import static rmx.RMX.*;
 
 import rmx.engine.math.Matrix4;
-import rmx.engine.math.Vector3;
 import rmx.gl.GLView;
 
 public class Camera extends NodeComponent {
@@ -63,19 +60,24 @@ public class Camera extends NodeComponent {
 
 //		
 		 Matrix4 m = (Matrix4)this.getNode().transform.worldMatrix().clone();
-		 Matrix4 root = Scene.getCurrent().rootNode.transform.localMatrix();
-		 root.set(m);
-		 m.mul(root);
+//		 Matrix4 root = Scene.getCurrent().rootNode.transform.localMatrix();
+//		 root.set(m);
+//		 m.mul(root);
 //		 root.negate();
+		 m.setPosition(0,0,0);
+		 m.invert();
 //		 m.mul(Scene.getCurrent().rootNode.transform.localMatrix());
 //	        m.set(this.getNode().transform.localMatrix());
 //	        m.negatePosition();
+		 
+//		 m.setIdentity();
 	     glMultMatrixf(m.buffer());
 	}
-
 	
 	public Matrix4 modelViewMatrix() {
-		return this.getNode().transform.localMatrix();
+		Matrix4 m = (Matrix4)this.getNode().transform.worldMatrix().clone();
+		m.negate();
+		return m;
 	}
 
 	public void onEventDidEnd(String event, Object args) {
