@@ -124,26 +124,28 @@ public class GameController extends RMXObject implements RenderDelegate, Runnabl
 		
 	}
 
+        @Override
 	public void run() {
-        System.out.println("Hello LWJGL " + Sys.getVersion() + "!");
-       
-//        try {
-        	SharedLibraryLoader.load();
-        	this.setup();
+//        
+//       System.out.println("Hello LWJGL " + Sys.getVersion() + "!");
+        try {
+            
+            this.setup();
+            SharedLibraryLoader.load();
+            
             this.view.initGL();
             this.view.enterGameLoop();
  
             // Release window and window callbacks
             glfwDestroyWindow(view.window());
             view.keyCallback().release();
-//        } catch (Exception e){
-//        	e.printStackTrace();
-//        } finally {
+        } catch (Exception e){
+        	e.printStackTrace();
+        } finally {
             // Terminate GLFW and release the GLFWerrorfun
             glfwTerminate();
-            
-			view.errorCallback().release();
-//        }
+            view.errorCallback().release();
+        }
     }
 
 	@Override
@@ -156,7 +158,7 @@ public class GameController extends RMXObject implements RenderDelegate, Runnabl
 		
 	}
 	
-	KeyStates keys = KeyCallback.getInstance().keyStates;
+	public final KeyStates keys = new KeyStates();
 	
 	private void repeatedKeys() {
 		Node player = Node.getCurrent();
