@@ -23,11 +23,11 @@ public final class NotificationCenter {
 	}
 	private static NotificationCenter singleton;
 	
-	private ArrayList<EventListener> listeners = new ArrayList<EventListener> ();
+	private ArrayList<IEventListener> listeners = new ArrayList<IEventListener> ();
 
 	private HashMap<String, EventStatus> events = new HashMap<String, EventStatus> ();
 
-	public boolean hasListener(EventListener listener) {
+	public boolean hasListener(IEventListener listener) {
 		return listeners.contains(listener);
 	}
 	
@@ -35,12 +35,12 @@ public final class NotificationCenter {
 		events.put(theEvent, EventStatus.Idle);
 	}
 
-	public void addListener(EventListener listener) {
+	public void addListener(IEventListener listener) {
 		if (!hasListener(listener)) 
 			listeners.add(listener);
 	}
 
-	public boolean removeListener(EventListener listener) {
+	public boolean removeListener(IEventListener listener) {
 		return listeners.remove(listener);
 	}
 
@@ -81,8 +81,8 @@ public final class NotificationCenter {
 	public void EventWillStart(String theEvent, Object o) {
 		if (!isActive (theEvent)) {
 			events.put(theEvent, o!=null && o.getClass() == EventStatus.class ? (EventStatus) o : EventStatus.Active);
-			for (EventListener listener : listeners) {
-				if (listener.doesImplementMethod("onEventDidStart"))
+			for (IEventListener listener : listeners) {
+				if (listener.implementsMethod("onEventDidStart", String.class, Object.class))
 					listener.onEventDidStart(theEvent, o);
 			}
 		}
@@ -93,14 +93,14 @@ public final class NotificationCenter {
 	}
 	public void EventDidEnd(String theEvent, Object o) {
 		events.put(theEvent, o!=null&& o.getClass() == EventStatus.class ? (EventStatus) o : EventStatus.Completed);
-		for (EventListener listener : listeners) {
-			if (listener.doesImplementMethod("onEventDidEnd"))
+		for (IEventListener listener : listeners) {
+			if (listener.implementsMethod("onEventDidEnd", String.class, Object.class))
 				listener.onEventDidEnd(theEvent, o);
 		}
 	}
 
 	public void BroadcastMessage(String message, Object args) {
-		for (EventListener listener : listeners) {
+		for (IEventListener listener : listeners) {
 			try {
 				listener.sendMessage(message, args);
 			} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException

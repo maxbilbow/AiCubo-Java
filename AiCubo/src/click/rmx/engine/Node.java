@@ -156,7 +156,7 @@ public class Node extends RMXObject {
 			o2.sendMessage("getCamera",null);
 			o.sendMessage("getCamera","Balls");
 			o2.sendMessage("getCamera","Balls");
-		}catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+		}catch (SecurityException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

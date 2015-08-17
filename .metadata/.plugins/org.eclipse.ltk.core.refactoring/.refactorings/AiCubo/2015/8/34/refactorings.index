@@ -3,3 +3,8 @@
 1439773056343	Rename package 'com.maxbilbow.rmx.events'
 1439773083142	Move compilation units
 1439773508569	Rename package 'com.maxbilbow.rmx'
+1439778656712	Rename method 'doesImplementMethod'
+1439779338800	Rename method 'implementMethod'
+1439784695444	Delete element
+1439784712586	Rename type 'EventListener'
+1439784742058	Rename type 'Messageable'
