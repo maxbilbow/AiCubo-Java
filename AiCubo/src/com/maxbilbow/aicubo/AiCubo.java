@@ -1,7 +1,7 @@
 
 package com.maxbilbow.aicubo;
 
-import rmx.engine.GameController;
+import click.rmx.engine.GameController;
 public final class AiCubo {	
 	
 	public static void main(String[] args) {
