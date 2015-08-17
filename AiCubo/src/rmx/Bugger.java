@@ -8,11 +8,12 @@ public class Bugger {
 	public static final boolean logging = true;
 	public static final boolean debug = true;
 	
-	private LinkedList<String> logs = new LinkedList<String>();
+	private final LinkedList<String> logs = new LinkedList<>();
 
 	private static Bugger singleton;
 	private Bugger(){ 
 		Runtime.getRuntime().addShutdownHook(new Thread() {
+                    @Override
 		    public void run() {
 		        if (singleton != null)
 		        	singleton.printAll();

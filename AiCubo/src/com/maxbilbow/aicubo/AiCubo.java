@@ -8,7 +8,7 @@ public final class AiCubo {
 		try {
 			GameController.getInstance().Start();
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			System.exit(1);
 		}
 	}
