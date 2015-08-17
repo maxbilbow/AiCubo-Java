@@ -8,16 +8,12 @@
 		<item value="900" key="dialogHeight"/>
 		<item value="1600" key="dialogWidth"/>
 		<list key="textEntries">
-			<item value="1"/>
 		</list>
 		<list key="orderedElements">
-			<item value="org.eclipse.emf.importer.ui.EMFModelWizard"/>
 		</list>
 		<list key="orderedProviders">
-			<item value="org.eclipse.ui.wizards"/>
 		</list>
 		<list key="textArray">
-			<item value="main"/>
 		</list>
 	</section>
 	<section name="NewWizardAction">
