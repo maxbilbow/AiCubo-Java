@@ -1,0 +1,30 @@
+/**
+ * 
+ */
+package click.rmx.engine.math;
+import static click.rmx.engine.math.Tools.*;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+/**
+ * @author Max
+ *
+ */
+public class ToolsTest {
+
+	public boolean rBounds(int min, int max) {
+		double result = Tools.rBounds(min, max);
+		return result >= min && result < max || false;
+	}
+	@Test
+	public void test() {
+		int min = -5; int max = 5;
+		for (int i = 0; i<10000000;++i) {
+			assert(this.rBounds(min,max));
+//			System.out.println(d);
+		}
+//		fail("Not yet implemented");
+	}
+
+}

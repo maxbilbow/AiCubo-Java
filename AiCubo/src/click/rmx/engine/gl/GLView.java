@@ -15,7 +15,7 @@ public interface GLView {
     public void setDelegate(RenderDelegate delegate);
     public int height();
     public int width();
-    
+    public void setSize(int width, int height);
     public boolean setPointOfView(Node pov);
     public Node pointOfView();
 }

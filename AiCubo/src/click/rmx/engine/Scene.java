@@ -50,20 +50,35 @@ public class Scene extends RMXObject {
      
     }
 	
+	private RenderDelegate renderDelegate;
+	
 
 	public void renderScene(Camera cam) {
+		 if (this.renderDelegate != null) 
+     		this.renderDelegate.updateBeforeSceneRender(cam);
 //		cam.look();
 		Matrix4 modelMatrix = cam.modelViewMatrix();
 		//modelMatrix.negate();
 		for (Node child : this.rootNode.getChildren()) {
 			child.draw(modelMatrix);
 		}
+		
 	}
 
 
 	public void updateSceneLogic() {
+		 if (this.renderDelegate != null) 
+	     		this.renderDelegate.updateBeforeSceneLogic();
 		this.physicsWorld.updatePhysics(this.rootNode);
 		this.rootNode.updateLogic();
+	}
+
+	public RenderDelegate getRenderDelegate() {
+		return renderDelegate;
+	}
+
+	public void setRenderDelegate(RenderDelegate renderDelegate) {
+		this.renderDelegate = renderDelegate;
 	}
 
 }

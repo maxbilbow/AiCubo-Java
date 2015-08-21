@@ -1,0 +1,25 @@
+/**
+ * 
+ */
+package click.rmx.engine.math;
+import static click.rmx.engine.math.Tools.*;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+/**
+ * @author Max
+ *
+ */
+public class ToolsTest {
+
+	public void rBound(int min, int max) {
+		
+	}
+	@Test
+	public void test() {
+		
+//		fail("Not yet implemented");
+	}
+
+}

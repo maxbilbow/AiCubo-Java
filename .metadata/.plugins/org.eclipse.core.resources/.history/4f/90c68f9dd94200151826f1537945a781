@@ -1,5 +1,0 @@
-package rmx.engine;
-
-public @interface StructClass {
-
-}

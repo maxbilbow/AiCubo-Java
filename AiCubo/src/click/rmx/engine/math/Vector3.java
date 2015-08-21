@@ -16,4 +16,13 @@ public class Vector3 extends Vector3f {
 	}
 
 	static final int SIZE = 3;
+	
+	public static final Vector3 Zero = new Vector3();
+	public static final Vector3 X = new Vector3(1,0,0);
+	public static final Vector3 Y = new Vector3(0,1,0);
+	public static final Vector3 Z = new Vector3(0,0,1);
+	
+	public Vector3 clone() {
+		return this.clone();	
+	}
 }

@@ -16,10 +16,13 @@ public class Camera extends NodeComponent {
 		this.fovX = this.fovY = 45;
 		this.nearZ = 1;
 		this.farZ = 2000;
-		this.aspect = 16/9;
+		this.aspect = 1;
 		
 	}
 
+	public void setAspect(int width, int height) {
+		this.aspect = width / height;
+	}
 	public float getFarZ() {
 		return farZ;
 	}
@@ -47,6 +50,7 @@ public class Camera extends NodeComponent {
 	public Matrix4 projectionMatrix() {	
 		return _projectionMatrix;
 	}
+	
 	public void perspective(GLView view) {
 		aspect = view.width() / view.height();
         double fW, fH;
@@ -58,14 +62,12 @@ public class Camera extends NodeComponent {
         glFrustum( -fW, fW, -fH, fH, nearZ, farZ );
        
 
-//		
+        	
 		 Matrix4 m = (Matrix4)this.getNode().transform.worldMatrix().clone();
-//		 Matrix4 root = Scene.getCurrent().rootNode.transform.localMatrix();
-//		 root.set(m);
-//		 m.mul(root);
-//		 root.negate();
+//		 Bugger.logAndPrint("\n"+m, false);
 		 m.setPosition(0,0,0);
 		 m.invert();
+//		 Bugger.logAndPrint("\n"+m, false);
 //		 m.mul(Scene.getCurrent().rootNode.transform.localMatrix());
 //	        m.set(this.getNode().transform.localMatrix());
 //	        m.negatePosition();
@@ -75,8 +77,11 @@ public class Camera extends NodeComponent {
 	}
 	
 	public Matrix4 modelViewMatrix() {
+
 		Matrix4 m = (Matrix4)this.getNode().transform.worldMatrix().clone();
+//		Bugger.logAndPrint("\n"+m, false);
 		m.negate();
+//		Bugger.logAndPrint("\n"+m, false);
 		return m;
 	}
 

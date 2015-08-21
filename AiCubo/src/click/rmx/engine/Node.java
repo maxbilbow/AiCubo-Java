@@ -9,7 +9,7 @@ import click.rmx.Bugger;
 import click.rmx.RMXObject;
 import click.rmx.engine.math.Matrix4;
 
-@StructClass
+
 public class Node extends RMXObject {
 
 	private static Node current;
@@ -145,31 +145,7 @@ public class Node extends RMXObject {
 	
 	
 	
-	public static void test(String[] args) {
-		RMXObject o = new RMXObject();
-		o.setName("Parent");
-		Node o2 = Node.newCameraNode();
-		
-		try {
-			o.sendMessage("getCamera",null);
-		
-			o2.sendMessage("getCamera",null);
-			o.sendMessage("getCamera","Balls");
-			o2.sendMessage("getCamera","Balls");
-		}catch (SecurityException | IllegalAccessException | IllegalArgumentException
-					| InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		if (o2.geometry() == null)
-			Bugger.log("That's OK then");
-		if (o2.camera() != null)
-			Bugger.log("That's OK then");
-		
-//		o2.addBehaviour(new ABehaviour());
-		
-		o2.updateLogic();
-	}
+	
 	
 	
 	public Node getParent() {
@@ -201,9 +177,9 @@ public class Node extends RMXObject {
 			c.broadcastMessage(message, args);
 		}
 		for (Behaviour b : this.behaviours) {
-			b.broadcastMessage(message,args);
+			b.broadcastMessage(message, args);
 		}
-		
+//		Bugger.logAndPrint(message + args[0],false);
 	}
 	
 	public static Node makeCube(float s,boolean body, Behaviour b) {

@@ -186,7 +186,7 @@ public class Matrix4 extends Matrix4f{
 		return true;
 	}
 	
-	private void rotate(float radians, float x, float y, float z) {
+	public void rotate(float radians, float x, float y, float z) {
 		Matrix4 rMatrix = new Matrix4();
 		rMatrix.setIdentity();
 		rMatrix.setRotation(new AxisAngle4f(x,y,z,radians * 0.2f ));//*  RMX.PI_OVER_180));

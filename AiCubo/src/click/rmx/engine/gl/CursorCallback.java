@@ -4,6 +4,7 @@ package click.rmx.engine.gl;
 
 import org.lwjgl.glfw.GLFWCursorPosCallback;
 
+import click.rmx.Bugger;
 import click.rmx.engine.Node;
 
 public class CursorCallback extends GLFWCursorPosCallback {
@@ -34,11 +35,12 @@ public class CursorCallback extends GLFWCursorPosCallback {
 		} else {
 			double dx = xpos - this.xpos;
 			double dy = ypos - this.ypos;
-			dx *= 0.1; dy *= 0.1;
+			dx *= 0.05; dy *= 0.05;
 			this.xpos = xpos;
 			this.ypos = ypos;
-			Node.getCurrent().broadcastMessage("move","yaw:"+dx);
-			Node.getCurrent().broadcastMessage("move","pitch:"+dy);
+			Node.getCurrent().broadcastMessage("applyTorque","yaw:"+dx);
+			Node.getCurrent().broadcastMessage("applyTorque","pitch:"+dy);
+			Bugger.logAndPrint(dx + ", " + dy, false);
 		}
 		
 		

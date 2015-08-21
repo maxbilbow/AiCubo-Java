@@ -5,6 +5,7 @@ import static org.lwjgl.opengl.GL11.GL_TRUE;
 import org.lwjgl.glfw.GLFWKeyCallback;
 
 import click.rmx.engine.GameController;
+import click.rmx.engine.Node;
 
 
 
@@ -47,7 +48,10 @@ public class KeyCallback extends GLFWKeyCallback {
 					glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 					cursor.lockCursor(true);
 				}
-				break;			 
+				break;
+			case GLFW_KEY_SPACE:
+				Node.getCurrent().broadcastMessage("jump");
+				break;
 			}
      }
 

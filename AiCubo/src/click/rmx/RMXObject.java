@@ -9,6 +9,7 @@ import click.rmx.messages.NotificationCenter;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.EventListener;
 import java.util.HashMap;
 
 public class RMXObject  implements IEventListener, KeyValueObserver {
@@ -19,6 +20,9 @@ public class RMXObject  implements IEventListener, KeyValueObserver {
 	private static int _count = 0;
 	private int id = _count++;
 	
+	public static int Count() {
+		return _count;
+	}
 	public RMXObject() {
 		this.setName("Unnamed RMXObject");
 		try {
@@ -113,10 +117,24 @@ public class RMXObject  implements IEventListener, KeyValueObserver {
 		}
 	}
 
-	protected static String[] ListenerMethods = {
-		"onEventDidStart",
-		"onEventDidEnd"
-	};
+	
+	private final static String[] listenerMethods; 
+	
+	/**
+	 * get the name of all EventListener methods. We will check whether these have been overridden later.
+	 * If so, the object will be added to listeners on initialization
+	 * TODO: Check that this is indeed efficient, or if "startListening()" should just be called instead.
+	 */
+	static {
+		Method[] m = IEventListener.class.getDeclaredMethods();
+		listenerMethods = new String[m.length];		
+		for (int i=0; i<m.length ; ++i) {
+			listenerMethods[i] = IEventListener.class.getMethods()[i].getName();
+//			System.out.println("ADDING: " + listenerMethods[i]);
+		}
+		
+	}
+
 
 	private HashMap<String,Boolean> _imps = new HashMap<String,Boolean>();
 	
@@ -141,17 +159,17 @@ public class RMXObject  implements IEventListener, KeyValueObserver {
 			switch (type) {
 			case OVERRIDES:
 				classType.getDeclaredMethod(methodName, args);
-				Bugger.log(this.getClass().getSimpleName() + "::" + key + " OVERRIDES SUPER");
+//				Bugger.log(this.getClass().getSimpleName() + "::" + key + " OVERRIDES SUPER");
 				break;
 			default:
 				classType.getMethod(methodName, args);
-				Bugger.log(this.getClass().getSimpleName() + "::" + key + " EXISTS IN HIRACHY");
+//				Bugger.log(this.getClass().getSimpleName() + "::" + key + " EXISTS IN HIRACHY");
 				break;		
 			}
 			_imps.put(key, true);
 			return true;
 		} catch (NoSuchMethodException e) {
-			Bugger.log(this.getClass().getSimpleName() + "::" + key + " NOT Implemented");
+//			Bugger.log(this.getClass().getSimpleName() + "::" + key + " NOT Implemented");
 			_imps.put(key, false);
 		}
 		return false;
@@ -165,7 +183,7 @@ public class RMXObject  implements IEventListener, KeyValueObserver {
 	private boolean addToGlobalListeners() throws SecurityException { 
 		
 		boolean result = false;
-		for (String method : ListenerMethods) {
+		for (String method : listenerMethods) {
 			if (checkMethodWithName(method, OVERRIDES, String.class, Object.class))
 				result = true;
 		}
@@ -308,8 +326,8 @@ class Derived extends RMXObject {
 		
 		o.broadcastMessage("printName");
 		o2.broadcastMessage("printName");
-		o.broadcastMessage("printName","Balls");
-		o2.broadcastMessage("printName","Balls");
+		o.broadcastMessage("printName",new String[]{"Balls"});
+		o2.broadcastMessage("printName",new String[]{"Balls"});
 		o.didCauseEvent("Hello!");
 		
 	}

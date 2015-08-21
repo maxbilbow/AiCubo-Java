@@ -1,0 +1,91 @@
+package click.rmx.engine;
+
+import static click.rmx.RMX.getCurrentFramerate;
+
+
+import click.rmx.engine.math.Vector3;
+
+public class PhysicsBody extends NodeComponent {
+
+	private float mass = 0; float friction = 0.5f; float rotationalFriction = 0.5f;
+	private float damping = 0.2f; float rotationalDamping = 0.2f;
+	private Vector3 lastPosition, forces, torque, velocity;
+	
+	public PhysicsBody() {
+		this.lastPosition = new Vector3();
+		this.forces = new Vector3();
+		this.torque = new Vector3();
+		this.velocity = new Vector3();
+	}
+	public float getMass() {
+		return mass;
+	}
+	
+	public float TotalMass() {
+		return this.getNode().transform.mass();
+	}
+	
+	
+	
+	public void setMass(float mass) {
+		this.mass = mass;
+	}
+
+	public void applyForce(float force, Vector3 direction, Vector3 atPoint) {
+		if (Math.abs(force) > this.damping) {
+			float damping = force > 0 ? this.damping : -this.damping;
+			this.forces.x += direction.x * (force - this.damping);
+			this.forces.y += direction.y * (force - this.damping);
+			this.forces.z += direction.z * (force - this.damping);
+		}
+	}
+	
+	public void applyTorque(float force, Vector3 axis, Vector3 atPoint) {
+		if (Math.abs(force) > this.damping) {
+			float damping = force > 0 ? this.rotationalDamping : -this.rotationalDamping;
+			this.torque.x += axis.x * (force - this.rotationalDamping);
+			this.torque.y += axis.y * (force - this.rotationalDamping);
+			this.torque.z += axis.z * (force - this.rotationalDamping);
+		}
+	}
+
+	public void updatePhysics(PhysicsWorld physics){
+		Node node = this.getNode();
+		this.applyGravity(physics.getGravity());
+		lastPosition.set(node.transform.position());
+		
+		node.transform.translate(forces);
+		node.transform.localMatrix().rotate(this.torque.x, 1, 0, 0);
+		node.transform.localMatrix().rotate(this.torque.y, 0, 1, 0);
+		node.transform.localMatrix().rotate(this.torque.z, 0, 0, 1);
+		this.forces.scale(1 - this.friction);
+		this.torque.scale(1 - this.rotationalFriction);
+		this.updateVelocity();
+		
+	}
+	
+	private void updateVelocity() {
+		this.velocity.x = this.transform().position().x - this.lastPosition.x;
+		this.velocity.y = this.transform().position().x - this.lastPosition.y;
+		this.velocity.z = this.transform().position().x - this.lastPosition.z;
+	}
+	
+	public static final String
+	ApplyForce = "ApplyForce";
+
+	private void applyGravity(Vector3 g) {
+		float ground = this.getNode().transform.scale().y;
+		float mass = getNode().transform.mass();
+		float framerate = getCurrentFramerate();
+		float height = this.getNode().transform.worldMatrix().m31;
+		if (height > ground) {
+			//			System.out.println(node.getName() + " >> BEFORE: " + m.position());
+			this.forces.x += g.x * framerate * mass;
+			this.forces.y += g.y * framerate * mass;
+			this.forces.z += g.z * framerate * mass;
+		} else if (this.getNode().getParent().getParent() == null) {
+			this.transform().localMatrix().m31 = ground;
+		}
+
+	}
+}

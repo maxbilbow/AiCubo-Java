@@ -6,6 +6,7 @@ import javax.vecmath.Quat4f;
 import javax.vecmath.Vector3f;
 
 import click.rmx.Bugger;
+import click.rmx.engine.math.EulerAngles;
 import click.rmx.engine.math.Matrix4;
 import click.rmx.engine.math.Vector3;
 
@@ -20,7 +21,7 @@ public class Transform extends NodeComponent {
 	private Matrix4 _axis;
 	private Matrix4 _localMatrix;
 	private Quat4f   _quaternion = new Quat4f();
-	private Vector3f _eulerAngles = new Vector3f();
+	private EulerAngles _eulerAngles = new EulerAngles();
 	private Vector3 _scale = new Vector3(1f,1f,1f);
 	public Transform(Node node) {
 		this.node = node;
@@ -78,19 +79,27 @@ public class Transform extends NodeComponent {
 		Node parentNode = this.node.getParent();
 		return parentNode != null ? this.node.getParent().transform : null;
 	}
-	public Vector3f localPosition() {
+	public Vector3 localPosition() {
 		return _localMatrix.position();
 	}
 	
-	public Vector3f position() {
+	public Vector3 position() {
 		Transform parent = this.parent();
 		if (parent != null && parent.parent() != null) {
-			Vector3f result = (Vector3f) this.localPosition().clone();
+			Vector3 result = (Vector3) this.localPosition().clone();
 			result.add(parent.position());
 			return result;
 		}
 		return this.localPosition();
 	}
+	
+	public void translate(Vector3 v) {
+		this._localMatrix.m30 += v.x;
+		this._localMatrix.m31 += v.y;
+		this._localMatrix.m32 += v.z;
+	}
+	
+
 	
 	public void setPosition(Vector3f position) {
 		this._localMatrix.m30 = position.x;
@@ -98,10 +107,10 @@ public class Transform extends NodeComponent {
 		this._localMatrix.m32 = position.z;
 	}
 	
-	public void setPosition(float x, float y, float z) {
-		this._localMatrix.m30 = x;
-		this._localMatrix.m31 = y;
-		this._localMatrix.m32 = z;
+	public void setPosition(double d, double e, double f) {
+		this._localMatrix.m30 = (float) d;
+		this._localMatrix.m31 = (float) e;
+		this._localMatrix.m32 = (float) f;
 	}
 	
 	
@@ -130,16 +139,12 @@ public class Transform extends NodeComponent {
 	
 	public Vector3f eulerAngles() {
 //		_rotation.set(this.worldMatrix());
-		return localEulerAngles();
+		return this.worldMatrix().eulerAngles();
 	}
 	
 	
-	public Vector3f localEulerAngles() {
-		Matrix4 m = this.worldMatrix();
-		_eulerAngles.x = (float) Math.atan2( m.m22, m.m23);
-		_eulerAngles.y = (float) Math.atan2(-m.m21, Math.sqrt(m.m22 * m.m22 + m.m23 * m.m23));
-		_eulerAngles.z = (float) Math.atan2( m.m11, m.m01);
-		return _eulerAngles;
+	public EulerAngles localEulerAngles() {
+		return this.localMatrix().eulerAngles();
 	}
 	
 	

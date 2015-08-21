@@ -14,13 +14,15 @@ import static org.lwjgl.glfw.GLFW.GLFW_KEY_Z;
 import static org.lwjgl.glfw.GLFW.glfwDestroyWindow;
 import static org.lwjgl.glfw.GLFW.glfwTerminate;
 
-import org.lwjgl.Sys;
+
 import org.lwjgl.opengl.GL11;
+
+import com.maxbilbow.aicubo.EntityGenerator;
 
 import click.rmx.RMXObject;
 import click.rmx.engine.behaviours.SpriteBehaviour;
 import click.rmx.engine.gl.GLView;
-import click.rmx.engine.gl.KeyCallback;
+
 import click.rmx.engine.gl.KeyStates;
 import click.rmx.engine.gl.SharedLibraryLoader;
 
@@ -40,6 +42,10 @@ public class GameController extends RMXObject implements RenderDelegate, Runnabl
 		
 	}
 	
+	public GLView getView() {
+		return this.view;
+	}
+	
 	public static GameController getInstance() {
 		if(singleton == null) {
 			  synchronized(GameController.class) {
@@ -57,50 +63,58 @@ public class GameController extends RMXObject implements RenderDelegate, Runnabl
 	private void initpov() {
 		Node n = Node.getCurrent();
 		n.setPhysicsBody(new PhysicsBody());
-		n.physicsBody().setMass(0.5f);
+		n.physicsBody().setMass(1.0f);
 		n.addBehaviour(new SpriteBehaviour());
 		n.transform.setScale(2f, 0.1f, 2f);	
 		Scene.getCurrent().rootNode.addChild(n);
 	}
 	public void setup() {		
 		Scene scene = Scene.getCurrent();
-		initpov();
-
+		scene.setRenderDelegate(this);
+		initpov();		
+//		Node cube = Node.makeCube(0.5f, true, new Behaviour() {
+//
+//			@Override
+//			public void update() {
+//				this.getNode().transform.move("forward:0.1");
+//				
+//			}
+//			
+//		});
+//		cube.transform.setPosition(0,0,5);
 		
-		Node cube = Node.makeCube(0.5f, true, new Behaviour() {
+		EntityGenerator eg = new EntityGenerator() {
 
 			@Override
-			public void update() {
-				this.getNode().transform.move("forward:0.1");
+			public Node makeEntity() {
+				Node cube2 = Node.makeCube(0.1f, false, new Behaviour() {
+					@Override
+					public void update() {
+						this.getNode().transform.move("yaw:0.1");
+						this.getNode().transform.move("pitch:0.1");
+						this.getNode().transform.move("roll:0.1");
+					}
+				});
 				
+				
+				Node cube3 = Node.makeCube(0.3f, true, new Behaviour() {
+					@Override
+					public void update() {
+						this.getNode().transform.move("forward:0.5");
+						this.getNode().transform.move("yaw:0.1");
+					}
+					
+				});
+//				cube3.transform.setPosition(-10,0,10);
+				cube3.addChild(cube2);
+				cube2.transform.setPosition(0f,0.5f,0f);
+				return cube3;
 			}
 			
-		});
-		cube.transform.setPosition(0,0,5);
-		
-		
-		Node cube2 = Node.makeCube(0.2f, false, new Behaviour() {
-			@Override
-			public void update() {
-				this.getNode().transform.move("yaw:0.1");
-				this.getNode().transform.move("pitch:0.1");
-				this.getNode().transform.move("roll:0.1");
-			}
-			
-		});
-		
-		
-		Node cube3 = Node.makeCube(0.5f, true, new Behaviour() {
-			@Override
-			public void update() {
-				this.getNode().transform.move("forward:0.5");
-				this.getNode().transform.move("yaw:0.1");
-			}
-			
-		});
-		cube3.transform.setPosition(-10,0,10);
-		cube3.addChild(cube2);
-		cube2.transform.setPosition(0f,1f,0f);
+		};
+		eg.yMin = eg.yMax = 0;
+		eg.xMax = eg.xMax = eg.zMin = eg.zMax = 0;
+		eg.makeShapesAndAddToScene(scene, 100);
 		
 		Node floor = new Node();
 		floor.transform.setPosition(0,0,0);
@@ -121,6 +135,7 @@ public class GameController extends RMXObject implements RenderDelegate, Runnabl
 			}
 			
 		});
+		
 		
 	}
 
@@ -149,12 +164,12 @@ public class GameController extends RMXObject implements RenderDelegate, Runnabl
     }
 
 	@Override
-	public void updateBeforeScene() {
+	public void updateBeforeSceneLogic(Object... args) {
 		this.repeatedKeys();	
 	}
 
 	@Override
-	public void updateAfterScene() {
+	public void updateBeforeSceneRender(Object... args) {
 		
 	}
 	
@@ -164,54 +179,52 @@ public class GameController extends RMXObject implements RenderDelegate, Runnabl
 		Node player = Node.getCurrent();
 	
 		if (this.keys.getOrDefault(GLFW_KEY_W, false)) {
-			player.broadcastMessage("move","forward:1");
+			player.broadcastMessage("applyForce","forward:1");
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_S, false)) {
-			player.broadcastMessage("move","forward:-1");
+			player.broadcastMessage("applyForce","forward:-1");
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_A, false)) {
-			player.broadcastMessage("move","left:1");
+			player.broadcastMessage("applyForce","left:1");
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_D, false)) {
-			player.broadcastMessage("move","left:-1");
+			player.broadcastMessage("applyForce","left:-1");
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_Q, false)) {
-			player.broadcastMessage("move","up:-1");
+			player.broadcastMessage("applyForce","up:-1");
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_E, false)) {
-			player.broadcastMessage("move","up:1");
-		}
-		if (this.keys.getOrDefault(GLFW_KEY_SPACE, false)) {
-			player.broadcastMessage("jump");
+			player.broadcastMessage("applyForce","up:1");
 		}
 		
+		
 		if (this.keys.getOrDefault(GLFW_KEY_RIGHT, false)) {
-			player.broadcastMessage("move","yaw:1");
+			player.broadcastMessage("applyTorque","yaw:0.5");
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_LEFT, false)) {
-			player.broadcastMessage("move","yaw:-1");
+			player.broadcastMessage("applyTorque","yaw:-0.5");
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_UP, false)) {
-			player.broadcastMessage("move","pitch:-1");
+			player.broadcastMessage("applyTorque","pitch:-0.5");
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_DOWN, false)) {
-			player.broadcastMessage("move","pitch:1");
+			player.broadcastMessage("applyTorque","pitch:0.5");
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_X, false)) {
-			player.broadcastMessage("move","roll:1");
+			player.broadcastMessage("applyTorque","roll:0.5");
 		}
 		
 		if (this.keys.getOrDefault(GLFW_KEY_Z, false)) {
-			player.broadcastMessage("move","roll:-1");
+			player.broadcastMessage("applyTorque","roll:-0.5");
 		}
 	}
 	
