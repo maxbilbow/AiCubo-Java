@@ -1,6 +1,6 @@
 package click.rmx.engine;
 
-import static click.rmx.RMX.getCurrentFramerate;
+
 
 
 import click.rmx.engine.math.Vector3;
@@ -13,12 +13,50 @@ public class PhysicsBody extends NodeComponent {
 	private float damping = 0.1f; 
 	private float rotationalDamping = 1.0f;
 	private float restitution = 0.2f;
-	
+	private PhysicsBodyType type;
 	private Vector3 forces, torque, velocity, rotationalVelocity;
+	private CollisionBody collisionBody;
 	
+	public static PhysicsBody newStaticBody() {
+		PhysicsBody body = new PhysicsBody();
+		body.setType(PhysicsBodyType.Static);
+		
+		return body;
+	}
 	
-	public PhysicsBody() {
+	@Override
+	public void setNode(Node node) {
+		super.setNode(node);
+		switch (this.type) {
+		case Dynamic:
+			this.collisionBody = new CollisionBody(this);
+			break;
+		case Static:
+			this.collisionBody = new CollisionBody(this);
+			break;
+		case Kinematic:
+			this.collisionBody = new CollisionBody(this);
+			break;
+		}
+	}
+	
+	public static PhysicsBody newDynamicBody() {
+		PhysicsBody body = new PhysicsBody();
+		body.setType(PhysicsBodyType.Dynamic);
+
+		return body;
+	}
+
+	public static PhysicsBody newKinematicBody() {
+		PhysicsBody body = new PhysicsBody();
+		body.setType(PhysicsBodyType.Kinematic);
+
+		return body;
+	}
+	
+	private PhysicsBody() {
 //		this.lastPosition = new Vector3();
+//		this.type = PhysicsBodyType.Dynamic;
 		this.forces = new Vector3();
 		this.torque = new Vector3();
 		this.velocity = new Vector3();
@@ -85,54 +123,39 @@ public class PhysicsBody extends NodeComponent {
 	public void updatePhysics(PhysicsWorld physics){
 		Node node = this.getNode();
 		
-		
-		this.applyGravity(physics.getGravity());
 
-		this.updateVelocity();
-		
-		node.transform.translate(this.velocity);
-		node.transform.rotate(this.rotationalVelocity.x, 1, 0, 0);
-		node.transform.rotate(this.rotationalVelocity.y, 0, 1, 0);
-		node.transform.rotate(this.rotationalVelocity.z, 0, 0, 1);
-		
-		
-	}
-	
-	private void updateVelocity() {
 		float mass = TotalMass();
-		
+		//Update velocity with forces
 		this.velocity.x += this.forces.x / mass;
 		this.velocity.y += this.forces.y / mass;
 		this.velocity.z += this.forces.z / mass;
 		this.forces.set(0,0,0);
 		
+		//Updaye rotational velocity with torque
 		this.rotationalVelocity.x += this.torque.x / mass;
 		this.rotationalVelocity.y += this.torque.y / mass;
 		this.rotationalVelocity.z += this.torque.z / mass;
 		this.torque.set(0,0,0);
 		
+		
+		
+		//apply velocities to translation
+		node.transform.translate(this.velocity);
+		node.transform.rotate(this.rotationalVelocity.x, 1, 0, 0);
+		node.transform.rotate(this.rotationalVelocity.y, 0, 1, 0);
+		node.transform.rotate(this.rotationalVelocity.z, 0, 0, 1);
+		
+		//lose energy
 		this.velocity.scale(1 / (1 + this.friction));
 		this.rotationalVelocity.scale(1 / (1 + this.rollingFriction));
+		
 	}
+	
 	
 //	public static final String
 //	ApplyForce = "applyForce";
 
-	private void applyGravity(Vector3 g) {
-		float ground = this.getNode().transform.scale().y / 2;
-		float mass = getNode().transform.mass();
-		float framerate = getCurrentFramerate();
-		float height = this.getNode().transform.worldMatrix().m31;
-		if (height > ground) {
-			//			System.out.println(node.getName() + " >> BEFORE: " + m.position());
-			this.forces.x += g.x * framerate * mass;
-			this.forces.y += g.y * framerate * mass;
-			this.forces.z += g.z * framerate * mass;
-		} else if (this.getNode().getParent().getParent() == null) {
-			this.transform().localMatrix().m31 = ground;
-		}
-		
-	}
+	
 
 	public float getRestitution() {
 		return restitution;
@@ -145,5 +168,21 @@ public class PhysicsBody extends NodeComponent {
 			this.restitution = 0;
 		else
 			this.restitution = restitution;
+	}
+
+	public PhysicsBodyType getType() {
+		return type;
+	}
+
+	public void setType(PhysicsBodyType type) {
+		this.type = type;
+	}
+
+	public CollisionBody getCollisionBody() {
+		return collisionBody;
+	}
+
+	public void setCollisionBody(CollisionBody collisionBody) {
+		this.collisionBody = collisionBody;
 	}
 }

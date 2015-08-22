@@ -4,8 +4,12 @@ import java.util.LinkedList;
 
 public class CollisionBody extends NodeComponent {
 
-	private boolean cheked;
-
+	public final PhysicsBody physicsBody;
+//	public final node;
+	public CollisionBody(PhysicsBody body) {
+		this.physicsBody = body;
+		this.setNode(body.getNode());
+	}
 	public Object getBoundingBox() {
 		return null;
 	}
@@ -14,12 +18,4 @@ public class CollisionBody extends NodeComponent {
 		return null;
 	}
 
-	public boolean wasChecked() {
-		// TODO Auto-generated method stub
-		return this.cheked;
-	}
-	
-	public void setChecked(boolean checked) {
-		this.cheked = checked;
-	}
 }

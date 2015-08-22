@@ -13,3 +13,5 @@
 1440197968223	Encapsulate field 'friction'
 1440263719916	Encapsulate field 'collisionDelegate'
 1440264698176	Encapsulate field 'restitution'
+1440277829391	Encapsulate field 'type'
+1440277890225	Encapsulate field 'collisionBody'

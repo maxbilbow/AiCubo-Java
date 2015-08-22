@@ -19,14 +19,14 @@ import click.rmx.engine.math.Vector3;
 public final class AiCubo extends GameController {	
 	protected void initpov() {
 		Node body = Node.getCurrent();
-		body.setPhysicsBody(new PhysicsBody());
+		body.setPhysicsBody(PhysicsBody.newDynamicBody());
 		body.physicsBody().setMass(5.0f);
 //		body.physicsBody().setFriction(0f);
 //		body.physicsBody().setRestitution(0);
 		body.addBehaviour(new SpriteBehaviour());
 		body.transform.setScale(2f, 10.0f, 2f);	
 		Scene.getCurrent().rootNode.addChild(body);
-		body.setCollisionBody(new CollisionBody());
+//		body.setCollisionBody(new CollisionBody());
 		Node head = new Node();
 		body.addChild(head);
 		head.setCamera(new Camera());
@@ -70,7 +70,7 @@ public final class AiCubo extends GameController {
 			public Node makeEntity() {
 				float speed = (float) (Tools.rBounds(10, 500) / 1000);
 				float rotation = (float) (Tools.rBounds(1, (int)speed * 1000) / 1000);
-				Node body = Node.makeCube(1f, true, new Behaviour() {
+				Node body = Node.makeCube(1f, PhysicsBody.newDynamicBody(), new Behaviour() {
 					@Override
 					public void update() {
 						this.getNode().broadcastMessage("applyForce","forward:"+speed);
@@ -86,8 +86,8 @@ public final class AiCubo extends GameController {
 				body.physicsBody().setDamping(0f);
 //				body.physicsBody().setFriction(0f);
 //				body.physicsBody().setRestitution(1);
-				body.setCollisionBody(new CollisionBody());
-				Node head = Node.makeCube(body.transform.radius() / 2, false, new Behaviour() {
+//				body.setCollisionBody(new CollisionBody());
+				Node head = Node.makeCube(body.transform.radius() / 2, null, new Behaviour() {
 					@Override
 					public void update() {
 						this.getNode().transform.move("yaw:0.1");

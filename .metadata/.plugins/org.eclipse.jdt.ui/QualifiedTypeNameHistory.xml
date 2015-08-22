@@ -56,8 +56,8 @@
 <fullyQualifiedTypeName name="com.maxbilbow.aicubo.EntityGenerator"/>
 <fullyQualifiedTypeName name="click.rmx.engine.Scene"/>
 <fullyQualifiedTypeName name="junit.extensions.TestSetup"/>
-<fullyQualifiedTypeName name="click.rmx.engine.PhysicsBody"/>
 <fullyQualifiedTypeName name="click.rmx.engine.Camera"/>
 <fullyQualifiedTypeName name="click.rmx.engine.CollisionBody"/>
 <fullyQualifiedTypeName name="click.rmx.RMX"/>
+<fullyQualifiedTypeName name="click.rmx.engine.PhysicsBody"/>
 </qualifiedTypeNameHistroy>

@@ -26,8 +26,7 @@ public class PhysicsWorldTest {
 			@Override
 			public Node makeEntity() {
 				Node n = new Node();
-				n.setPhysicsBody(new PhysicsBody());
-				n.setCollisionBody(new CollisionBody());
+				n.setPhysicsBody(PhysicsBody.newDynamicBody());
 				return n;
 			}
 			

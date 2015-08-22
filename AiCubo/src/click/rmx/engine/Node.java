@@ -119,12 +119,12 @@ public class Node extends RMXObject {
 		this.setComponent(PhysicsBody.class, body);
 	}
 	
-	public CollisionBody collisionBody(){
-		return (CollisionBody) this.getComponent(CollisionBody.class);
-	}
-	
-	public void setCollisionBody(CollisionBody body) {
-		this.setComponent(CollisionBody.class, body);
+	public CollisionBody collisionBody() {
+		PhysicsBody body = this.physicsBody();
+		if (body != null)
+			return body.getCollisionBody();
+		else
+			return null;
 	}
 	
 	public void updateLogic() {
@@ -192,11 +192,11 @@ public class Node extends RMXObject {
 		}
 	}
 	
-	public static Node makeCube(float s,boolean body, Behaviour b) {
+	public static Node makeCube(float s,PhysicsBody body, Behaviour b) {
 		Node n = new Node("Cube");
 		n.setGeometry(Geometry.cube());
-		if (body)
-			n.setPhysicsBody(new PhysicsBody());
+		if (body != null)
+			n.setPhysicsBody(body);
 		n.transform.setScale(s, s, s);
 		n.addBehaviour(b);
 		n.addToCurrentScene();

@@ -1,15 +1,17 @@
 package click.rmx.engine;
 
+
+
 import static click.rmx.RMX.getCurrentFramerate;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import click.rmx.RMX;
+
 import click.rmx.RMXObject;
-import click.rmx.engine.math.Matrix4;
+
 import click.rmx.engine.math.Vector3;
-import junit.extensions.TestSetup;
+
 
 public class PhysicsWorld extends RMXObject {
 	private Vector3 gravity = new Vector3(0f,-9.8f,0f);
@@ -31,11 +33,29 @@ public class PhysicsWorld extends RMXObject {
 	public void updatePhysics(Node rootNode) {
 		for (Node node : rootNode.getChildren()) {
 			if (node.physicsBody() != null) {
+				this.applyGravityToNode(node);
 				node.physicsBody().updatePhysics(this);
 			}
 		}
 	}
 
+	private void applyGravityToNode(Node node) {
+		float ground = node.transform.scale().y / 2;
+		float mass = node.transform.mass();
+		float framerate = getCurrentFramerate();
+		float height = node.transform.worldMatrix().m31;
+		if (height > ground) {
+			//			System.out.println(node.getName() + " >> BEFORE: " + m.position());
+			node.physicsBody().applyForce(framerate * mass, this.gravity, Vector3.Zero);
+//			node.forces.x += g.x * framerate * mass;
+//			this.forces.y += g.y * framerate * mass;
+//			this.forces.z += g.z * framerate * mass;
+		} else if (node.getParent().getParent() == null) {
+			node.transform.localMatrix().m31 = ground;
+		}
+		
+	}
+	
 	public void updateCollisionEvents(Node rootNode) {
 //		LinkedList<CollisionBody> unchecked = new LinkedList<>();
 		unchecked.clear();
@@ -56,11 +76,7 @@ public class PhysicsWorld extends RMXObject {
 			
 	}
 
-	private void swapLists() {
-//		LinkedList<CollisionBody> temp = unchecked;
-//		unchecked = checked;
-//		checked = temp;
-	}
+
 //	LinkedList<CollisionBody> checked = new LinkedList<>();
 	LinkedList<CollisionBody> unchecked = new LinkedList<>();
 	int count = 0; int checks = 0;
