@@ -2,6 +2,7 @@ package click.rmx.engine;
 
 
 
+import click.rmx.Bugger;
 import click.rmx.RMXObject;
 import click.rmx.engine.math.Matrix4;
 
@@ -9,30 +10,34 @@ public class Scene extends RMXObject {
 	
 	
 	private PhysicsWorld physicsWorld = new PhysicsWorld();
-	public final Node rootNode = new Node();
-	static node current = new node(null,null,null);
+	public final Node rootNode;
+	private static Scene _current;// = new node(null,null,null);
 	
 	public Scene() {
-
+		Bugger.log("Scene initializing...");
+		this.rootNode = new Node();
+		if (_current == null)
+			_current = this;
 	}
 	
 //	private static Scene current;
 	public static Scene getCurrent() {
-		if (current.scene != null)
-			return current.scene;
+		Bugger.log("Get current scene...");
+		if (_current != null)
+			return _current;
 		else
-			current.scene = new Scene();
-		return current.scene;
+			_current = new Scene();
+		return _current;
 	}
 	
-	public static Scene setCurrent(Scene scene) {
-		current.next = new node(current, scene,null);
-		current = current.next;
-		return current.prev.scene;
-	}
+//	public static Scene setCurrent(Scene scene) {
+//		Scene old = _current;
+//		_current = scene;
+//		return old;
+//	}
 	
 	public void makeCurrent() {
-		setCurrent(this);
+		_current = this;
 	}
 	
 	
@@ -69,8 +74,10 @@ public class Scene extends RMXObject {
 	public void updateSceneLogic() {
 		 if (this.renderDelegate != null) 
 	     		this.renderDelegate.updateBeforeSceneLogic();
-		this.physicsWorld.updatePhysics(this.rootNode);
 		this.rootNode.updateLogic();
+		this.physicsWorld.updatePhysics(this.rootNode);
+		this.physicsWorld.updateCollisionEvents(this.rootNode);
+		this.rootNode.updateAfterPhysics();
 	}
 
 	public RenderDelegate getRenderDelegate() {
@@ -78,6 +85,7 @@ public class Scene extends RMXObject {
 	}
 
 	public void setRenderDelegate(RenderDelegate renderDelegate) {
+		Bugger.log("Setting render delegate: " + renderDelegate);
 		this.renderDelegate = renderDelegate;
 	}
 

@@ -21,7 +21,7 @@ public abstract class EntityGenerator {
 				Tools.rBounds(yMin, yMax),
 				Tools.rBounds(zMin, zMax)
 				);
-		node.transform.localMatrix().rotate("yaw", (float)Tools.rBounds(0, 360));
+		node.transform.rotate("yaw", (float)Tools.rBounds(0, 360));
 		return node;
 	}
 	public void makeShapesAndAddToScene(Scene scene, int quantity) {

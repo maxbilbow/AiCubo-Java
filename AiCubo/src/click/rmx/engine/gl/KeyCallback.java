@@ -25,10 +25,10 @@ public class KeyCallback extends GLFWKeyCallback {
      public void invoke(long window, int key, int scancode, int action, int mods) {
 		if (action == GLFW_PRESS) {
 			GameController.getInstance().keys.put(key, true);
-			System.out.println("Key Down: " + (char) key + " "+ scancode + " "+ action + " "+ mods);
+//			System.out.println("Key Down: " + (char) key + " "+ scancode + " "+ action + " "+ mods);
 		} else if (action == GLFW_RELEASE) {
 			GameController.getInstance().keys.put(key, false);
-			System.out.println("  Key Up: " + (char) key + " "+ scancode + " "+ action + " "+ mods);
+//			System.out.println("  Key Up: " + (char) key + " "+ scancode + " "+ action + " "+ mods);
 		}
 		
 		if (action == GLFW_RELEASE)
@@ -52,6 +52,11 @@ public class KeyCallback extends GLFWKeyCallback {
 			case GLFW_KEY_SPACE:
 				Node.getCurrent().broadcastMessage("jump");
 				break;
+			}
+		else if (action == GLFW_PRESS)
+			switch (key) {
+			case GLFW_KEY_SPACE:
+				Node.getCurrent().broadcastMessage("crouch");
 			}
      }
 

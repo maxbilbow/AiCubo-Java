@@ -11,3 +11,5 @@
 1440186537397	Encapsulate field 'renderDelegate'
 1440191976475	Encapsulate field 'force'
 1440197968223	Encapsulate field 'friction'
+1440263719916	Encapsulate field 'collisionDelegate'
+1440264698176	Encapsulate field 'restitution'

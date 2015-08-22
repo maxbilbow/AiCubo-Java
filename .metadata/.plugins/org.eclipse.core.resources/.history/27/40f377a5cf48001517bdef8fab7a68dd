@@ -1,0 +1,13 @@
+package com.maxbilbow.aicubo;
+
+import click.rmx.engine.Node;
+
+public class AxisGenerator extends EntityGenerator {
+
+	@Override
+	public Node makeEntity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

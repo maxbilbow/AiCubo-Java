@@ -109,95 +109,10 @@ public class Matrix4 extends Matrix4f{
 		return _buffer;
 	}
 
-	static boolean rows = true;
-	public void translate(float x, float y, float z) {
-		if (rows) {
-			m30 += x;
-			m31 += y;
-			m32 += z;
-		} else {
-			m03 += x;
-			m13 += y;
-			m23 += z;
-		}
-	}
-	public boolean translate(String direction, float scale) {
-		Vector3 v;
-		switch (direction) {
-		case "forward":
-			scale *= -1;
-			v = this.forward();
-			break;
-		case "up":
-//			scale *= -1;
-			v = this.up();
-			break;
-		case "left":
-			scale *= -1;
-			v = this.left();
-			break;
-		case "x":
-//			scale *= -1;
-			v = new Vector3(1,0,0);
-			break;
-		case "y":
-//			scale *= -1;
-			v = new Vector3(0,1,0);
-			break;
-		case "z":
-//			scale *= -1;
-			v = new Vector3(0,0,1);
-			break;
-		default:
-			return false;
-		}
-		this.translate(
-				v.x * scale, 
-				v.y * scale,
-				v.z * scale
-				);
-		return true;
-	}
+
 	
 	
-	public boolean rotate(String direction, float scale) {
-		Vector3 v;
-		switch (direction) {
-		case "pitch":
-//			scale *= -1;
-			v = this.left();
-			break;
-		case "yaw":
-//			scale *= -1;
-			v = this.up();
-			break;
-		case "roll":
-//			scale *= -1;
-			v = this.forward();
-			break;
-		default:
-			return false;
-		}
-		this.rotate(scale,v.x,v.y,v.z);
-//				v.x * scale, 
-//				v.y * scale,
-//				v.z * scale
-//				);
-		return true;
-	}
 	
-	public void rotate(float radians, float x, float y, float z) {
-		Matrix4 rMatrix = new Matrix4();
-		rMatrix.setIdentity();
-		rMatrix.setRotation(new AxisAngle4f(x,y,z,radians * 0.2f ));//*  RMX.PI_OVER_180));
-//		_rMatrix.transpose();
-		
-//		_quaternion.set(new AxisAngle4f(v.x,v.y,v.z,degrees * 0.1f));
-		Vector3 p = this.position();
-		this.mul(rMatrix);
-		this.setPosition(p);
-		
-	}
 	
 	public void setPosition(Vector3 v) {
 		m30 = v.x;
@@ -222,62 +137,8 @@ public class Matrix4 extends Matrix4f{
 		m32 += v.z;
 		m33 += v.w; //TODO check this is correct
 	}
-	private Vector3 _left = new Vector3();
-	private Vector3 _up = new Vector3();
-	private Vector3 _fwd = new Vector3();
-	private Vector3 _pos = new Vector3();
 	
-	public Vector3 left() {
-		if (rows){
-		_left.x = this.m00;
-		_left.y = this.m01;
-		_left.z = this.m02;
-		} else {
-		_left.x = this.m00;
-		_left.y = this.m10;
-		_left.z = this.m20;
-		}
-		return _left;
-	}
 	
-	public Vector3 up() {
-		if (rows) {
-		_up.x = this.m10;
-		_up.y = this.m11;
-		_up.z = this.m12;
-		} else {
-		_up.x = this.m01;
-		_up.y = this.m11;
-		_up.z = this.m21;
-		}
-		return _up;
-	}
-	
-	public Vector3 forward() {
-		if (rows) {
-		_fwd.x = this.m20;
-		_fwd.y = this.m21;
-		_fwd.z = this.m22;
-		} else {
-		_fwd.x = this.m02;
-		_fwd.y = this.m12;
-		_fwd.z = this.m22;
-		}
-		return _fwd;
-	}
-	
-	public Vector3 position() {
-		if (rows) {
-		_pos.x = this.m30;
-		_pos.y = this.m31;
-		_pos.z = this.m32;
-		} else {
-		_pos.x = this.m03;
-		_pos.y = this.m13;
-		_pos.z = this.m23;
-		}
-		return _pos;
-	}
 	
 	private EulerAngles _eulerAngles = new EulerAngles();
 	public EulerAngles eulerAngles() {

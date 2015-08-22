@@ -35,12 +35,12 @@ public class CursorCallback extends GLFWCursorPosCallback {
 		} else {
 			double dx = xpos - this.xpos;
 			double dy = ypos - this.ypos;
-			dx *= 0.05; dy *= 0.05;
+			dx *= 0.05; dy *= 0.01;
 			this.xpos = xpos;
 			this.ypos = ypos;
 			Node.getCurrent().broadcastMessage("applyTorque","yaw:"+dx);
-			Node.getCurrent().broadcastMessage("applyTorque","pitch:"+dy);
-			Bugger.logAndPrint(dx + ", " + dy, false);
+			Node.getCurrent().broadcastMessage("lookUp",(float)dy);
+//			Bugger.logAndPrint(dx + ", " + dy, false);
 		}
 		
 		

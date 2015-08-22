@@ -7,20 +7,53 @@ import click.rmx.engine.math.Vector3;
 
 public class PhysicsBody extends NodeComponent {
 
-	private float mass = 0; float friction = 0.5f; float rotationalFriction = 0.5f;
-	private float damping = 0.2f; float rotationalDamping = 0.2f;
-	private Vector3 lastPosition, forces, torque, velocity;
+	private float mass = 1.0f; 
+	private float friction = 0.1f; 
+	private float rollingFriction = 0.5f;
+	private float damping = 0.1f; 
+	private float rotationalDamping = 1.0f;
+	private float restitution = 0.2f;
+	
+	private Vector3 forces, torque, velocity, rotationalVelocity;
+	
 	
 	public PhysicsBody() {
-		this.lastPosition = new Vector3();
+//		this.lastPosition = new Vector3();
 		this.forces = new Vector3();
 		this.torque = new Vector3();
 		this.velocity = new Vector3();
+		this.rotationalVelocity = new Vector3();
+	}
+	
+	public void setDamping(float damping) {
+		this.damping = damping < 0 ? 0 : damping;
+	}
+	public float getDamping() {
+		return this.damping;
+	}
+	
+	public void setRotationalDamping(float damping) {
+		this.rotationalDamping = damping < 0 ? 0 : damping;
+	}
+	
+	public void setFriction(float friction) {
+		this.friction = friction < 0 ? 0 : friction;
+	}
+	
+	public void setRollingFriction(float friction) {
+		this.rollingFriction = friction < 0 ? 0 : friction;
+	}
+	
+	
+	public Vector3 getVelocity() {
+//		this.velocity.set(this.getNode().transform.position());
+//		this.velocity.sub(this.lastPosition);
+		return this.velocity;
 	}
 	public float getMass() {
 		return mass;
 	}
-	
+
 	public float TotalMass() {
 		return this.getNode().transform.mass();
 	}
@@ -33,48 +66,60 @@ public class PhysicsBody extends NodeComponent {
 
 	public void applyForce(float force, Vector3 direction, Vector3 atPoint) {
 //		if (Math.abs(force) > this.damping) {
-			float damping = this.damping * (1-this.damping);
-			this.forces.x += direction.x * force * damping;
-			this.forces.y += direction.y * force * damping;
-			this.forces.z += direction.z * force * damping;
+			force /= (1 + this.damping);
+			this.forces.x += direction.x * force;
+			this.forces.y += direction.y * force;
+			this.forces.z += direction.z * force;
 //		}
 	}
 	
 	public void applyTorque(float force, Vector3 axis, Vector3 atPoint) {
 //		if (Math.abs(force) > this.rotationalDamping) {
-			float damping = 1 - this.rotationalDamping;
-			this.torque.x += axis.x * force * damping;
-			this.torque.y += axis.y * force * damping;
-			this.torque.z += axis.z * force * damping;
+		force /= (1 + this.rotationalDamping);
+		this.torque.x += axis.x * force;
+		this.torque.y += axis.y * force;
+		this.torque.z += axis.z * force;
 //		}
 	}
 
 	public void updatePhysics(PhysicsWorld physics){
 		Node node = this.getNode();
-		this.applyGravity(physics.getGravity());
-		lastPosition.set(node.transform.position());
 		
-		node.transform.translate(forces);
-		node.transform.localMatrix().rotate(this.torque.x, 1, 0, 0);
-		node.transform.localMatrix().rotate(this.torque.y, 0, 1, 0);
-		node.transform.localMatrix().rotate(this.torque.z, 0, 0, 1);
-		this.forces.scale(1 - this.friction);
-		this.torque.scale(1 - this.rotationalFriction);
+		
+		this.applyGravity(physics.getGravity());
+
 		this.updateVelocity();
+		
+		node.transform.translate(this.velocity);
+		node.transform.rotate(this.rotationalVelocity.x, 1, 0, 0);
+		node.transform.rotate(this.rotationalVelocity.y, 0, 1, 0);
+		node.transform.rotate(this.rotationalVelocity.z, 0, 0, 1);
+		
 		
 	}
 	
 	private void updateVelocity() {
-		this.velocity.x = this.transform().position().x - this.lastPosition.x;
-		this.velocity.y = this.transform().position().x - this.lastPosition.y;
-		this.velocity.z = this.transform().position().x - this.lastPosition.z;
+		float mass = TotalMass();
+		
+		this.velocity.x += this.forces.x / mass;
+		this.velocity.y += this.forces.y / mass;
+		this.velocity.z += this.forces.z / mass;
+		this.forces.set(0,0,0);
+		
+		this.rotationalVelocity.x += this.torque.x / mass;
+		this.rotationalVelocity.y += this.torque.y / mass;
+		this.rotationalVelocity.z += this.torque.z / mass;
+		this.torque.set(0,0,0);
+		
+		this.velocity.scale(1 / (1 + this.friction));
+		this.rotationalVelocity.scale(1 / (1 + this.rollingFriction));
 	}
 	
-	public static final String
-	ApplyForce = "ApplyForce";
+//	public static final String
+//	ApplyForce = "applyForce";
 
 	private void applyGravity(Vector3 g) {
-		float ground = this.getNode().transform.scale().y;
+		float ground = this.getNode().transform.scale().y / 2;
 		float mass = getNode().transform.mass();
 		float framerate = getCurrentFramerate();
 		float height = this.getNode().transform.worldMatrix().m31;
@@ -86,6 +131,19 @@ public class PhysicsBody extends NodeComponent {
 		} else if (this.getNode().getParent().getParent() == null) {
 			this.transform().localMatrix().m31 = ground;
 		}
+		
+	}
 
+	public float getRestitution() {
+		return restitution;
+	}
+
+	public void setRestitution(float restitution) {
+		if (restitution > 1)
+			this.restitution = 1;
+		else if (restitution < 0)
+			this.restitution = 0;
+		else
+			this.restitution = restitution;
 	}
 }

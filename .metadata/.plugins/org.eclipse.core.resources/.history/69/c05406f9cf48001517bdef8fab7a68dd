@@ -1,0 +1,19 @@
+package com.maxbilbow.aicubo;
+
+import click.rmx.engine.Node;
+
+public class AxisGenerator extends EntityGenerator {
+
+	public float size = 1000.0f; 
+	@Override
+	public Node makeEntity() {
+		Node Y = Node.makeCube(size, false, null);
+		
+		return null;
+	}
+	
+	public void invoke() {
+		
+	}
+
+}

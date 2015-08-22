@@ -29,7 +29,7 @@
 			<item value="1|.SF NS Text|11.0|0|COCOA|1|.SFNSText-Regular" key="DIALOG_FONT_NAME"/>
 			<item value="500" key="DIALOG_HEIGHT"/>
 			<item value="-32" key="DIALOG_X_ORIGIN"/>
-			<item value="-11" key="DIALOG_Y_ORIGIN"/>
+			<item value="-7" key="DIALOG_Y_ORIGIN"/>
 		</section>
 	</section>
 	<section name="NewClassWizardPage">
@@ -52,11 +52,12 @@
 	</section>
 	<section name="FatJarPackageWizard">
 		<item value="/Users/rattle/Dropbox/Dropbox Professional/App Archive/AiCubo/Java/AiCubo-Java.xml" key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION"/>
-		<item value="AiCubo (1) - AiCubo" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
-		<item value="/Users/rattle/Dropbox/Dropbox Professional/App Archive/AiCubo/Java/AjCubo 0.1.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
+		<item value="AiCubo - AiCubo" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
+		<item value="/Users/Max/Dropbox/Dropbox Professional/App Archive/AiCubo/Java/AjCubo 0.1.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
 		<item value="true" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
-		<item value="1" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
+		<item value="2" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
 		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="/Users/Max/Dropbox/Dropbox Professional/App Archive/AiCubo/Java/AjCubo 0.1.jar"/>
 			<item value="/Users/rattle/Dropbox/Dropbox Professional/App Archive/AiCubo/Java/AjCubo 0.1.jar"/>
 		</list>
 		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">

@@ -1,0 +1,8 @@
+package click.rmx.engine;
+
+public class CollisionBody extends NodeComponent {
+
+	public void checkForCollisions(LinkedList<CollisionBody> potentialCollisions) {
+		
+	}
+}

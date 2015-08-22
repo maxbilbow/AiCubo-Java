@@ -1,0 +1,40 @@
+package click.rmx.engine;
+
+import java.util.LinkedList;
+
+public class CollisionBody extends NodeComponent {
+
+	private boolean cheked;
+
+	boolean niaveMatch(Node nodeA, Node nodeB) {
+		float min = nodeA.transform.scale().length() +
+				nodeB.transform.scale().length();
+		float distance = nodeA.transform.position().length() -
+				nodeB.transform.position().length();
+		boolean isHit = abs(distance) < min;
+		if (isHit) {
+			System.out.println("HIT at distance: " + distance + " < " + min);
+		} else {
+			System.out.println("MISS at distance: " + distance + " > " + min);
+		}
+		return isHit;
+	}
+	
+	public CollisionEvent checkForCollisions(CollisionBody potentialCollision) {
+		Node A = this.getNode(); Node B = potentialCollision.getNode();
+		if (this.niaveMatch(A, B))
+			return new CollisionEvent(A,B);
+		else
+			return null;
+				
+	}
+
+	public boolean wasChecked() {
+		// TODO Auto-generated method stub
+		return this.cheked;
+	}
+	
+	public void setChecked(boolean checked) {
+		this.cheked = checked;
+	}
+}

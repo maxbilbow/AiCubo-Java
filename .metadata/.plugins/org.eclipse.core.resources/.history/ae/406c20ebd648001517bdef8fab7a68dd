@@ -1,0 +1,10 @@
+package click.rmx.engine;
+
+import java.util.LinkedList;
+
+public class CollisionBody extends NodeComponent {
+
+	public CollisionEvent checkForCollisions(CollisionBody potentialCollision) {
+		return null;
+	}
+}

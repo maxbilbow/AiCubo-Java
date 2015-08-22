@@ -22,7 +22,38 @@ public class Vector3 extends Vector3f {
 	public static final Vector3 Y = new Vector3(0,1,0);
 	public static final Vector3 Z = new Vector3(0,0,1);
 	
+	
 	public Vector3 clone() {
-		return this.clone();	
+		return (Vector3)super.clone();	
+	}
+	
+	public boolean isZero() {
+		return x == 0 && y == 0 && z == 0;
+	}
+	
+	public float getLength() {
+		float lenA = 
+				x * x +
+				y * y +
+				z * z;
+		return (float) Math.sqrt(lenA);
+	}
+	
+	public Vector3 getVectorTo(Vector3 b) {
+		float dx = b.x - x;
+		float dy = b.y - y;
+		float dz = b.z - z;
+		return new Vector3(dx,dy,dz);
+	}
+	
+	public float getDistanceTo(Vector3 b) {
+		float dx = b.x - x;
+		float dy = b.y - y;
+		float dz = b.z - z;			
+		return (float) Math.sqrt(
+				dx * dx +
+				dy * dy +
+				dz * dz
+				);
 	}
 }
