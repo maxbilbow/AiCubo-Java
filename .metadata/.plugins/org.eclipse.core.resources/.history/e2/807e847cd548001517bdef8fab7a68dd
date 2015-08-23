@@ -1,0 +1,6 @@
+package click.rmx.engine;
+
+public class CollisionBody extends NodeComponent {
+
+	
+}

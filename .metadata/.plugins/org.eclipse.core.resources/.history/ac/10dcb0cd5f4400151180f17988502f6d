@@ -1,5 +1,0 @@
-package rmx.engine.behaviours;
-
-public class SpriteBehaviour extends Behaviour {
-
-}

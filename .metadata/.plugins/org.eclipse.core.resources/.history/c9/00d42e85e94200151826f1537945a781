@@ -1,6 +1,0 @@
-package rmx.engine;
-
-public interface RenderDelegate {
-	@Optional
-	void renderScene();
-}

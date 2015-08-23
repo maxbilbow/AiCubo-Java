@@ -1,0 +1,8 @@
+package com.maxbilbow.rmx.messages;
+
+import com.maxbilbow.rmx.RMXObject;
+
+public interface KeyValueObserver {
+	void onValueForKeyWillChange(String key, Object value, RMXObject sender);
+	void onValueForKeyDidChange(String key, Object value, RMXObject sender);
+}

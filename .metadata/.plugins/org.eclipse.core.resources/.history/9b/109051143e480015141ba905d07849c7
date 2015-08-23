@@ -1,0 +1,7 @@
+package click.rmx.engine;
+
+public interface RenderDelegate {
+	public void updateBeforeSceneLogic(Object args = null);
+	public void updateBeforeSceneRender(Object args);
+//	public void updateLast(Object args);
+}

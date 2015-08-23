@@ -1,0 +1,29 @@
+package com.maxbilbow.aicubo;
+
+import click.rmx.engine.Node;
+import click.rmx.engine.Scene;
+import click.rmx.engine.math.Vector3;
+import static java.Math.*;
+public abstract class EntityGenerator {
+	public abstract Node makeEntity();
+	public int 
+	xMin, yMin, zMin,
+	xMax, yMax, zMax;
+	
+	public EntityGenerator() {
+		xMax = yMax = zMax =  100;
+		xMin = yMin = zMin = -100;
+	}
+	
+	private float rBounds(int min, int max) {
+		float ret = Math.random() % Math
+		return ret;
+	}
+	protected void initPositionOf(Node node) {
+		
+		node.transform.setPosition(Math.random() % );
+	}
+	public void makeShapesAndAddToScene(Scene scene, int count) {
+		
+	}
+}

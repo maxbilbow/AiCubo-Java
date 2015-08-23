@@ -1,0 +1,24 @@
+package click.rmx.engine;
+
+import java.util.LinkedList;
+
+public class CollisionBody extends NodeComponent {
+
+	boolean niaveMatch(Node nodeA, Node nodeB) {
+		return false;
+	}
+	
+	public CollisionEvent checkForCollisions(CollisionBody potentialCollision) {
+		Node A = this.getNode(); Node B = potentialCollision.getNode();
+		if (this.niaveMatch(A, B))
+			return new CollisionEvent(A,B);
+		else
+			return null;
+				
+	}
+
+	public boolean wasChecked() {
+		// TODO Auto-generated method stub
+		return this.cheked;
+	}
+}

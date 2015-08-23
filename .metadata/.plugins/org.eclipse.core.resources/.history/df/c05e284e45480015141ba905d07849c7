@@ -1,0 +1,15 @@
+package click.rmx.engine.math;
+
+import static java.lang.Math.abs;
+import static java.lang.Math.random;
+
+public final class Tools {
+
+	public static double rBounds(int min, int max) {
+		double ret = random() * (max + min) - min;
+		return ret;
+	}
+	
+	
+
+}
