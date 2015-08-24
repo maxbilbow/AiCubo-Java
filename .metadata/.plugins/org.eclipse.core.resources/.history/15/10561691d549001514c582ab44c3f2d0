@@ -1,0 +1,6 @@
+package click.rmx.engine;
+
+public interface Ticker {
+	public Time getTick();
+	public void updateTime(Time time);
+}

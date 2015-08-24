@@ -10,6 +10,8 @@ import click.rmx.Bugger;
 import click.rmx.engine.math.EulerAngles;
 import click.rmx.engine.math.Matrix4;
 import click.rmx.engine.math.Vector3;
+import click.rmx.engine.physics.CollisionBody;
+import click.rmx.engine.physics.PhysicsBody;
 
 
 
@@ -18,18 +20,30 @@ public class Transform extends NodeComponent {
 	public final Node node;
 	
 //	private Matrix4 _rMatrix = new Matrix4();
-	private Matrix4 _worldMatrix;
-	private Matrix4 _axis;
-	private Matrix4 _localMatrix;
-	private Quat4f   _quaternion = new Quat4f();
-	private Vector3 _left = new Vector3();
-	private Vector3 _up = new Vector3();
-	private Vector3 _fwd = new Vector3();
-	private Vector3 _localPosition = new Vector3();
+	private final Matrix4 _worldMatrix;
+	private final Matrix4 _axis;
+	private final Matrix4 _localMatrix;
+	private final Quat4f  _quaternion = new Quat4f();
+	private final Vector3 _left = new Vector3();
+	private final Vector3 _up = new Vector3();
+	private final Vector3 _fwd = new Vector3();
+	private final Vector3 _localPosition = new Vector3();
+	private final Vector3 _lastPosition = new Vector3();
 	
 	
+	public Vector3 lastPosition() {
+		return this._lastPosition;
+	}
 	
-	
+	public void stepBack(String args) {
+		if (args.contains("x"))
+			this.localMatrix().m30 = _lastPosition.x;
+		if (args.contains("y"))
+			this.localMatrix().m31 = _lastPosition.y;
+		if (args.contains("z"))
+			this.localMatrix().m32 = _lastPosition.z;
+//		this.setPosition(lastPosition());
+	}
 //	private EulerAngles _eulerAngles = new EulerAngles();
 	private Vector3 _scale = new Vector3(1f,1f,1f);
 	public Transform(Node node) {
@@ -74,20 +88,23 @@ public class Transform extends NodeComponent {
 		_scale.x = x;
 		_scale.y = y;
 		_scale.z = z;
+		
 	}
 	
-
 	
+	private float totalMass; private long _tmTimestamp = -1;
 	/**
 	 * TODO: Test with children
 	 * @return
 	 */
 	public float mass() {
-		float mass = node.physicsBody() != null ? node.physicsBody().getMass() : 0;
+		if (node.tick() == _tmTimestamp)
+			return this.totalMass;
+		totalMass = node.physicsBody() != null ? node.physicsBody().getMass() : 0;
 		for (Node child : node.getChildren()){
-			mass += child.transform.mass();
+			totalMass += child.transform.mass();
 		}
-		return mass;
+		return totalMass;
 	}
 	
 	
@@ -95,15 +112,21 @@ public class Transform extends NodeComponent {
 	 * TODO probably doesnt work. How do you do this maths?
 	 * @return
 	 */
+//	private long _wmTimestamp = -1;//stops this algorithm repeating everytime called.
 	public Matrix4 worldMatrix() {
+//		if (node.tick() == _wmTimestamp)
+//			return _worldMatrix;
 		Transform parent = this.parent();
 		if (parent != null && parent.parent() != null) {
 			_worldMatrix.set(this._localMatrix);//.clone();
 			_worldMatrix.mul(this.parent().worldMatrix());
 			return _worldMatrix;
 		} else {
+			this._worldMatrix.set(_localMatrix);
 			return this._localMatrix;
 		}
+//		_wmTimestamp = this.node.tick();
+//		return _worldMatrix;
 	}
 	
 	public Transform parent() {
@@ -118,17 +141,12 @@ public class Transform extends NodeComponent {
 		return _localPosition;
 	}
 	
-	private Vector3 _position = new Vector3();
+
 	public Vector3 position() {
-		Transform parent = this.parent();
-		if (parent != null && parent.parent() != null) {
-			_position.set(this.localPosition());
-			_position.add(parent.position());
-			return _position;
-		}
-		return this.localPosition();
+		return this.worldMatrix().position();
 	}
 	
+
 	public Transform rootTransform() {
 		Transform parent = this.parent();
 		if (parent != null && parent.parent() != null) {
@@ -147,6 +165,8 @@ public class Transform extends NodeComponent {
 		this._localMatrix.m30 = position.x;
 		this._localMatrix.m31 = position.y;
 		this._localMatrix.m32 = position.z;
+		if (node.tick() <= 0)
+			this.updateLastPosition();
 	}
 	
 	public void setPosition(double d, double e, double f) {
@@ -302,6 +322,27 @@ public class Transform extends NodeComponent {
 
 	public float radius() {
 		return (_scale.x + _scale.y + _scale.z) / 3;
+	}
+
+	public float getWidth() {
+		// TODO Auto-generated method stub
+		return scale().x * 2;
+	}
+
+	public float getHeight() {
+		// TODO Auto-generated method stub
+		return scale().y * 2;
+	}
+
+	public float getLength() {
+		// TODO Auto-generated method stub
+		return scale().z * 2;
+	}
+
+	public void updateLastPosition() {
+		_lastPosition.x = _localMatrix.m30;
+		_lastPosition.y = _localMatrix.m31;
+		_lastPosition.z = _localMatrix.m32;
 	}
 
 }

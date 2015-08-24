@@ -12,6 +12,8 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 
 import click.rmx.RMXObject;
+import click.rmx.engine.gl.Mesh;
+import click.rmx.engine.gl.Tree;
 import click.rmx.engine.math.EulerAngles;
 import click.rmx.engine.math.Matrix4;
 
@@ -20,7 +22,15 @@ public abstract class Geometry extends RMXObject {
 
 	private ByteBuffer _elements;
 	private ShortBuffer _indexData;
+	
+	public Mesh mesh;
+//	public Tree<Mesh> tree;
+	
 	private int _e = 0;
+	
+	public Geometry(Mesh mesh) {
+		this.mesh = mesh;
+	}
 	public Geometry(int size) {
 		_elements = BufferUtils.createByteBuffer(size);
 		_indexData = BufferUtils.createShortBuffer(size / 3);
@@ -124,32 +134,38 @@ public abstract class Geometry extends RMXObject {
 				@Override
 				protected void drawWithScale(float X, float Y, float Z) {
 					GL11.glBegin(GL11.GL_QUADS);    
-		            GL11.glColor3f(1.0f,1.0f,0.0f);           
+		            GL11.glColor3f(1.0f,1.0f,0.0f);   
+		            glNormal3f(0,1,0);
 		            GL11.glVertex3f( X, Y,-Z);        
 		            GL11.glVertex3f(-X, Y,-Z);        
 		            GL11.glVertex3f(-X, Y, Z);
 		            GL11.glVertex3f( X, Y, Z);  
-		            GL11.glColor3f(1.0f,0.5f,0.0f);            
+		            GL11.glColor3f(1.0f,0.5f,0.0f);  
+		            glNormal3f(0,-1,0);
 		            GL11.glVertex3f( X,-Y, Z);
 		            GL11.glVertex3f(-X,-Y, Z);
 		            GL11.glVertex3f(-X,-Y,-Z);
 		            GL11.glVertex3f( X,-Y,-Z);
 		            GL11.glColor3f(1.0f,0.0f,0.0f);
+		            glNormal3f(0,0,1);
 		            GL11.glVertex3f( X, Y, Z);
 		            GL11.glVertex3f(-X, Y, Z);
 		            GL11.glVertex3f(-X,-Y, Z);
 		            GL11.glVertex3f( X,-Y, Z);
 		            GL11.glColor3f(1.0f,1.0f,0.0f);
+		            glNormal3f(0,0,-1);
 		            GL11.glVertex3f( X,-Y,-Z);
 		            GL11.glVertex3f(-X,-Y,-Z);
 		            GL11.glVertex3f(-X, Y,-Z);
 		            GL11.glVertex3f( X, Y,-Z);
 		            GL11.glColor3f(0.0f,0.0f,1.0f);
+		            glNormal3f(-1,0,0);
 		            GL11.glVertex3f(-X, Y, Z);
 		            GL11.glVertex3f(-X, Y,-Z);
 		            GL11.glVertex3f(-X,-Y,-Z);
 		            GL11.glVertex3f(-X,-Y, Z);
 		            GL11.glColor3f(1.0f,0.0f,1.0f);
+		            glNormal3f(1,0,0);
 		            GL11.glVertex3f( X, Y,-Z);
 		            GL11.glVertex3f( X, Y, Z);
 		            GL11.glVertex3f( X,-Y, Z);

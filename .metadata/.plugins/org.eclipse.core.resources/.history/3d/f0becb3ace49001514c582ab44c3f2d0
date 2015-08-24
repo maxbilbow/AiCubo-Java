@@ -1,0 +1,25 @@
+package click.rmx.engine.physics;
+
+import click.rmx.engine.Node;
+
+public class BoundingSphere extends CollisonBounds {
+
+	public BoundingSphere(Node node) {
+		super(node);
+		// TODO Auto-generated constructor stub
+	}
+
+	public float radius() {
+		return new Vector3(
+				this.transform.collisionBody().boundingBox.xMax(),
+				this.transform.collisionBody().boundingBox.yMax(),
+				this.transform.collisionBody().boundingBox.zMax()
+				).
+	}
+	@Override
+	public boolean intersects(BoundingBox other) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author rattle
- *
- */
-package rmx;
-

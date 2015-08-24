@@ -1,14 +1,19 @@
 package click.rmx.engine;
 
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import click.rmx.RMXObject;
+import click.rmx.engine.behaviours.Behaviour;
+import click.rmx.engine.behaviours.IBehaviour;
 import click.rmx.engine.math.Matrix4;
+import click.rmx.engine.physics.CollisionBody;
+import click.rmx.engine.physics.PhysicsBody;
 
 
-public class Node extends RMXObject {
+public class Node extends RMXObject implements Ticker{
 
 	private static Node current;
 	
@@ -30,14 +35,14 @@ public class Node extends RMXObject {
 		return current;
 	}
 	private HashMap<Class<?>,NodeComponent> components = new HashMap<Class<?>,NodeComponent>();
-	private ArrayList<Behaviour> behaviours = new ArrayList<Behaviour>();
+	private ArrayList<IBehaviour> behaviours = new ArrayList<IBehaviour>();
 	
 	public void setComponent(Class<?> type, NodeComponent component) {
 		this.components.put(type, component);
 		component.setNode(this);
 	}
 	
-	public void addBehaviour(Behaviour behaviour) {
+	public void addBehaviour(IBehaviour behaviour) {
 		if (behaviour != null) {
 			this.behaviours.add(behaviour);
 			behaviour.setNode(this);
@@ -127,26 +132,35 @@ public class Node extends RMXObject {
 			return null;
 	}
 	
-	public void updateLogic() {
-		for (Behaviour behaviour : this.behaviours) {
+	public void updateLogic(long time) {
+		
+		for (IBehaviour behaviour : this.behaviours) {
 			if (behaviour.isEnabled())
 				behaviour.update();
 		}
 		for (Node child : this.children)
-			child.updateLogic();
+			child.updateLogic(time);
 		
 	}
-	public void updateAfterPhysics() {
-		for (Behaviour behaviour : this.behaviours) {
+	public void updateAfterPhysics(long time) {
+		for (IBehaviour behaviour : this.behaviours) {
 			if (behaviour.isEnabled())
 				behaviour.lateUpdate();
 		}
+		for (Node child: this.children)
+			child.updateAfterPhysics(time);
+		this.transform.updateLastPosition();
+		this.updateTick(time);
+		///.set(arg0);
 	}
 	
 	public void draw(Matrix4 modelMatrix) {
 		if (this.geometry() != null) {
 			this.geometry().render(this, modelMatrix);
 		}
+		LightSource light = (LightSource) this.getComponent(LightSource.class);
+		if (light != null)
+			light.shine();
 		for (Node child : this.children) {
 			child.draw(modelMatrix);
 		}
@@ -164,13 +178,16 @@ public class Node extends RMXObject {
 		this.parent = parent;
 	}
 	
+	/**
+	 * Sends a message to all behaviours and all children of this node.
+	 */
 	@Override
 	public void broadcastMessage(String message) {
 		super.broadcastMessage(message);
-		for (NodeComponent c : this.components.values()) {
-			c.broadcastMessage(message);
-		}
-		for (Behaviour b : this.behaviours) {
+//		for (NodeComponent c : this.components.values()) {
+//			c.broadcastMessage(message);
+//		}
+		for (IBehaviour b : this.behaviours) {
 			b.broadcastMessage(message);
 		}
 		for (Node child : this.children) {
@@ -178,13 +195,16 @@ public class Node extends RMXObject {
 		}
 	}
 
+	/**
+	 * Sends a message to all behaviours and all children of this node.
+	 */
 	@Override
 	public void broadcastMessage(String message, Object args) {
 		super.broadcastMessage(message, args);
-		for (NodeComponent c : this.components.values()) {
-			c.broadcastMessage(message, args);
-		}
-		for (Behaviour b : this.behaviours) {
+//		for (NodeComponent c : this.components.values()) {
+//			c.broadcastMessage(message, args);
+//		}
+		for (IBehaviour b : this.behaviours) {
 			b.broadcastMessage(message, args);
 		}
 		for (Node child : this.children) {
@@ -205,5 +225,18 @@ public class Node extends RMXObject {
 
 	private void addToCurrentScene() {
 		Scene.getCurrent().rootNode.addChild(this);
+	}
+
+	private long tick = System.currentTimeMillis();
+	
+	@Override
+	public long tick() {
+		// TODO Auto-generated method stub
+		return this.tick;
+	}
+
+	@Override
+	public void updateTick(long newTick) {
+		this.tick = newTick;
 	}
 }

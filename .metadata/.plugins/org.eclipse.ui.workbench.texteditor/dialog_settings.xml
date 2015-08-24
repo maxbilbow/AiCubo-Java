@@ -2,37 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="" key="selection"/>
+		<item value="update" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="setNode"/>
-			<item value="coll"/>
-			<item value="getInstance"/>
-			<item value="fric"/>
-			<item value="setDa"/>
-			<item value="velocity ="/>
-			<item value="velocity.set"/>
-			<item value="getVe"/>
+			<item value="update"/>
+			<item value="bounds"/>
+			<item value="setPosition"/>
+			<item value="damping"/>
+			<item value="ground"/>
+			<item value="rootTr"/>
+			<item value="Vector4f"/>
+			<item value="Vector3f"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Vector4"/>
+			<item value="Vector3"/>
+			<item value="Matrix3"/>
+			<item value=""/>
+			<item value="Vector2"/>
+			<item value="//Util.checkGLError();"/>
 			<item value=", Y,"/>
 			<item value=",-Y,"/>
-			<item value=", -Y,"/>
-			<item value="Z);"/>
-			<item value="X,"/>
-			<item value="_cube.addV"/>
-			<item value="this.addVertex"/>
-			<item value="Bugger.log"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="265" key="DIALOG_WIDTH"/>
-		<item value="1|.SF NS Text|11.0|0|COCOA|1|.SFNSText-Regular" key="DIALOG_FONT_NAME"/>
+		<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
-		<item value="1027" key="DIALOG_X_ORIGIN"/>
-		<item value="53" key="DIALOG_Y_ORIGIN"/>
+		<item value="1539" key="DIALOG_X_ORIGIN"/>
+		<item value="109" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

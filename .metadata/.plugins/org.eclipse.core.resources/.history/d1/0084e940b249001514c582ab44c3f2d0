@@ -1,0 +1,5 @@
+package silvertiger.tutorial.lwjgl.core;
+
+public class FixedTimestepGame {
+
+}

@@ -1,0 +1,5 @@
+package click.rmx.engine;
+
+public class LightSource extends NodeComponent {
+
+}

@@ -1,0 +1,10 @@
+package click.rmx.engine.behaviours;
+
+import click.rmx.engine.Behaviour;
+import click.rmx.engine.CollisionEvent;
+
+public interface CollisionHandler extends IBehaviour {
+
+
+	public void onCollision(final CollisionEvent e);
+}

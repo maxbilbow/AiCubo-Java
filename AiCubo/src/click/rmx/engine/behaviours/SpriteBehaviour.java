@@ -1,6 +1,5 @@
 package click.rmx.engine.behaviours;
 
-import click.rmx.engine.Behaviour;
 import click.rmx.engine.Transform;
 
 import click.rmx.engine.math.Vector3;
@@ -31,7 +30,7 @@ public class SpriteBehaviour extends Behaviour {
 		if (crouching) {
 			crouch();
 		}
-		float force = this.getNode().transform.mass() * 20.0f; //TODO: base this on gravity
+		float force = this.getNode().transform.mass() * 10.0f; //TODO: base this on gravity
 		this.getNode().physicsBody().applyForce(force, Vector3.Y, Vector3.Zero);
 	}
 	

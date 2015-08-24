@@ -1,0 +1,5 @@
+package click.rmx.engine.behaviours;
+
+public interface ICollisionHandler extends IBehaviour{
+
+}

@@ -1,0 +1,12 @@
+package click.rmx.engine.math;
+
+import java.nio.FloatBuffer;
+
+public class Matrix2 {
+
+	public FloatBuffer getBuffer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

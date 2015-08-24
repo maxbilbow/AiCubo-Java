@@ -2,9 +2,12 @@ package click.rmx.engine;
 
 
 
+import java.time.LocalTime;
+
 import click.rmx.Bugger;
 import click.rmx.RMXObject;
 import click.rmx.engine.math.Matrix4;
+import click.rmx.engine.physics.PhysicsWorld;
 
 public class Scene extends RMXObject {
 	
@@ -66,18 +69,20 @@ public class Scene extends RMXObject {
 		//modelMatrix.negate();
 		for (Node child : this.rootNode.getChildren()) {
 			child.draw(modelMatrix);
+			
 		}
 		
 	}
 
-
-	public void updateSceneLogic() {
+	long tick = 0;
+	public void updateSceneLogic(long time) {
+		this.tick = time;
 		 if (this.renderDelegate != null) 
 	     		this.renderDelegate.updateBeforeSceneLogic();
-		this.rootNode.updateLogic();
+		this.rootNode.updateLogic(time);
 		this.physicsWorld.updatePhysics(this.rootNode);
 		this.physicsWorld.updateCollisionEvents(this.rootNode);
-		this.rootNode.updateAfterPhysics();
+		this.rootNode.updateAfterPhysics(time);
 	}
 
 	public RenderDelegate getRenderDelegate() {

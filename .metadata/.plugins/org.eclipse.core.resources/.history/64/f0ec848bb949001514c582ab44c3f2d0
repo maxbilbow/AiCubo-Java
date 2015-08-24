@@ -1,0 +1,8 @@
+package click.rmx.engine.behaviours;
+
+public interface IBehaviour {
+	public void update();
+	
+	public void lateUpdate();
+	public void setNode(Node node);
+}

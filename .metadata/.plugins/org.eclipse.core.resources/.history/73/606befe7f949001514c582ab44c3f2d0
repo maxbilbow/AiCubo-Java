@@ -1,0 +1,178 @@
+package click.rmx.engine.physics;
+
+import click.rmx.RMX;
+import click.rmx.engine.Node;
+import click.rmx.engine.Transform;
+import click.rmx.engine.math.Vector3;
+
+public final class CollisionEvent {
+	public final Node nodeA, nodeB;
+	public final Vector3 hitPointA;
+	public final Vector3 hitPointB;
+	public final Vector3 AtoB;
+	public final float dist;
+	public String log;
+	public CollisionEvent(Node nodeA, Node nodeB) {
+		this.log = "\nNew Collision Event: " + nodeA.uniqueName() + " vs. " + nodeB.uniqueName();
+		this.nodeA = nodeA;
+		this.nodeB = nodeB;
+		this.hitPointA = Vector3.Zero;
+		this.hitPointB = Vector3.Zero;
+		Transform A = nodeA.transform;//.rootTransform();
+		Transform B = nodeB.transform;//.rootTransform();
+
+
+		Vector3 posA = A.localPosition();
+		Vector3 posB = B.localPosition();
+		log += "\n        Pos A: " + posA ;
+		log += "\n        Pos B: " + posB ;
+		AtoB = posA.getVectorTo(posB);
+		dist = A.localPosition().getDistanceTo(B.localPosition());
+		if (Float.isNaN(dist))
+			System.err.println(A.localPosition() + ", " + B.localPosition());
+		try {
+			this.seperateBodies(A,B);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getMessage());
+			System.exit(1);
+		} finally {
+			this.processMomentum(A,B);
+			nodeA.broadcastMessage("onCollision", this);
+			nodeB.broadcastMessage("onCollision", this);
+		}
+	}
+
+	private void seperateBodies(Transform A, Transform B) throws Exception {
+		//apply force relative to overlapping areas 
+		float min;
+		
+//		if (PhysicsWorld.UseBoundingBox)
+			min = nodeA.collisionBody().boundingSphere.radius() + nodeB.collisionBody().boundingSphere.radius();
+//		else
+//			min = nodeA.transform.radius() + nodeB.transform.radius();
+		log += "\n       A to B: " + AtoB ;
+
+		final float delta = min - dist / 2;
+		log += "\n     Distance: " + dist + " < " + min + ", delta == " + delta;
+		if (dist > min || dist < 0)
+			throw new Exception("Distance" + dist + " should be less than min: " + min + "\n" + log);		
+//			System.err.println("Distance" + dist + " should be less than min: " + min);
+
+		AtoB.normalize();
+		AtoB.scale(-delta);
+		if (AtoB.isZero()) {
+			AtoB.set(-min,0,0);
+		}
+		
+		float dx = Math.abs(AtoB.x);
+		float dy = Math.abs(AtoB.y);
+		float dz = Math.abs(AtoB.z);
+		
+		if (A.node.tick() > 0) {
+			String axis;
+			if (dy > dx && dy > dz) 
+				axis = "y";
+			else if (dx > dy && dx > dz)
+				axis = "x";
+			else
+				axis = "z";
+		if (A.physicsBody().getType() == PhysicsBodyType.Dynamic)
+			A.rootTransform().stepBack(axis);
+		if (B.physicsBody().getType() == PhysicsBodyType.Dynamic)
+			B.rootTransform().stepBack(axis);
+	
+			
+		
+		} else {
+		boolean aStatic = A.physicsBody().getType() == PhysicsBodyType.Static;
+		boolean bStatic = B.physicsBody().getType() == PhysicsBodyType.Static;
+		boolean isStatic =  aStatic || bStatic;
+		String axis;
+		if (dy > dx && dy > dz) {
+			float space = A.collisionBody().boundingBox.yMax() + B.collisionBody().boundingBox.yMax();
+//			float shift = (isStatic) ? space : space / 2; 
+			if (!aStatic)
+				A.rootTransform().translate(0,bStatic ? space : space / 2,0);
+			if (!bStatic)
+				B.rootTransform().translate(0,aStatic ? space : space / 2,0);
+		} else if (dx > dy && dx > dz) {
+			float space = A.collisionBody().boundingBox.xMax() + B.collisionBody().boundingBox.xMax();
+			if (!aStatic)
+				A.rootTransform().translate(bStatic ? space : space / 2,0,0);
+			if (!bStatic)
+				B.rootTransform().translate(aStatic ? space : space / 2,0,0);
+		} else {
+			float space = A.collisionBody().boundingBox.zMax() + B.collisionBody().boundingBox.zMax();
+			if (!aStatic)
+				A.rootTransform().translate(0,0,bStatic ? space : space / 2);
+			if (!bStatic)
+				B.rootTransform().translate(0,0,aStatic ? space : space / 2);
+		}
+		}
+			
+	
+
+//		if (A.node == Node.getCurrent() || B.node == Node.getCurrent())
+//			System.out.println(log);
+		if (A.collisionBody().boundingBox.intersects(B.collisionBody().boundingBox) ){
+			log += "\n Translating A: " + AtoB;
+			float time = RMX.getCurrentFramerate();
+			A.physicsBody().applyForce(time , AtoB, hitPointA);//.translate(AtoB);
+
+			log += "\n Translating B: " + AtoB;
+			B.physicsBody().applyForce(-time, AtoB, hitPointB);//translate(AtoB);
+		}
+
+
+	}
+
+
+	private void processMomentum(Transform A, Transform B)  {
+
+		log += "\n\nCollision Momentum Report: " + nodeA.uniqueName() + " vs. " + nodeB.uniqueName();
+
+		Vector3 Va = A.node.physicsBody().getVelocity().clone();
+		Vector3 Vb = B.node.physicsBody().getVelocity().clone();
+		Vector3 direction = Vector3.makeSubtraction(Va, Vb);
+		if (direction.isZero())
+			return;
+		else
+			direction.normalize();
+		
+		float m1 = A.mass();
+		float m2 = B.mass();
+
+//		float res = (1 - A.node.physicsBody().getRestitution()) * (1 - B.node.physicsBody().getRestitution());
+//		float resA = 1 - A.node.physicsBody().getRestitution();
+//		float resB = 1 - B.node.physicsBody().getRestitution();
+
+		
+
+		
+		float lossA = 1 - A.node.physicsBody().getRestitution();
+		float lossB = 1 - B.node.physicsBody().getRestitution();
+		float v1 = Va.length();
+		float v2 = Vb.length();
+		
+		float mass = m1 + m2 + 0.01f;
+		float diffMass = m1 - m2;
+		float forceOnA = -m2;// (diffMass * v1 + 2 * m2 * v2 ) / mass;
+		
+		float forceOnB = m1;//(2 * m1 * v1 - diffMass * v2 ) / mass;
+
+		//Transfer of forces
+		
+		nodeA.physicsBody().applyForce( forceOnA * lossA , direction, hitPointA);
+		nodeB.physicsBody().applyForce( forceOnB * lossB , direction, hitPointB);
+
+		//Loss of energy
+//		nodeA.physicsBody().applyForce(-m1 , direction, hitPointA);
+//		nodeA.physicsBody().applyForce(-m2 , direction, hitPointA);
+
+
+		//		System.out.println(log);
+		//System.out.println("Velocities: " +
+		//				"\n     "+ nodeA.uniqueName() + ": " + va + nodeB.uniqueName() + ": " + vb);
+	}
+}

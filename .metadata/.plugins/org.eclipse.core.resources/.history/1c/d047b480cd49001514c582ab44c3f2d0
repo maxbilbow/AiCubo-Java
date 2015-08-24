@@ -1,0 +1,39 @@
+package click.rmx.engine.physics;
+
+import click.rmx.engine.Node;
+
+public class BoundingBox extends CollisonBounds {
+	static final int MIN = 0, MAX = 1;
+	static final int FRONT = 0, BACK = 1, LEFT = 2 , RIGHT = 3, TOP = 4, BOTTOM = 5;
+public float xMin() {
+    	return - this.transform.getWidth() / 2;
+    }
+    public float yMin() {
+    	return - this.transform.getHeight() / 2;
+    }
+    public float zMin() {
+    	return - this.transform.getLength() / 2;
+    }
+    public float xMax() {
+    	return - this.transform.getWidth() / 2;
+    }
+    public float yMax() {
+    	return - this.transform.getHeight() / 2;
+    }
+    public float zMax() {
+    	return - this.transform.getWidth() / 2;
+    }
+    
+   
+    
+//    boolean didIntersect(Vector3 maxPos, Vector3 minPos, Vector3 max, Vector3 min) {
+//    	return (
+//    		maxPos.x + max.x < minPos.x + min.x ||
+//    		maxPos.y + max.y < minPos.y + min.y ||
+//    		maxPos.z + max.z < minPos.z + min.z
+//    		);
+//    }
+    
+    
+   
+}

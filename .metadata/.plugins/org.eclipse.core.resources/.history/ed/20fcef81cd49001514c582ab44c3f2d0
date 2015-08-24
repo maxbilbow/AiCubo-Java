@@ -1,0 +1,60 @@
+package click.rmx.engine.physics;
+
+import java.util.LinkedList;
+
+import click.rmx.engine.NodeComponent;
+import click.rmx.engine.math.Vector3;
+
+public class CollisionBody extends NodeComponent {
+
+	public static final int 
+	NO_COLLISIONS = -1,
+	DEFAULT_COLLISION_GROUP = 0,
+	EXCLUSIVE_COLLISION_GROUP = 01234;
+	;
+	private int collisionGroup = DEFAULT_COLLISION_GROUP;
+	public final PhysicsBody physicsBody;
+	
+	public final CollisonBounds boundingBox;
+//	public final node;
+	public CollisionBody(PhysicsBody body) {
+		this.physicsBody = body;
+		this.setNode(body.getNode());
+		this.boundingBox = new BoundingBox(body.getNode());
+	}
+	public int getCollisionGroup() {
+		return collisionGroup;
+	}
+	public void setCollisionGroup(int collisionGroup) {
+		this.collisionGroup = collisionGroup;
+	}
+	
+
+	public boolean intersects(BoundingBox other) {
+    	Vector3 a = this.transform.position();
+    	Vector3 b = other.transform.position();
+    	
+    	if (this.xMin() + a.x > other.xMax() + b.x)
+    		return false;
+    	if (this.yMin() + a.y > other.yMax() + b.y)
+    		return false;
+    	if (this.zMin() + a.z > other.zMax() + b.z)
+    		return false;
+    	if (this.xMax() + a.x < other.xMin() + b.x)
+    		return false;
+    	if (this.yMax() + a.y < other.xMin() + b.y)
+    		return false;
+    	if (this.zMax() + a.z < other.xMin() + b.z)
+    		return false;
+//    	for (int i=0; i<faces.length;) {
+//    		if (this.didIntersect(thisPos, otherPos, this.faces[i][MAX], other.faces[i][MIN]))
+//    				return false;
+//    		if (this.didIntersect(otherPos, thisPos, other.faces[i][MAX], this.faces[i][MIN]))
+//    				return false;
+//    	}
+
+        // All tests failed, we have a intersection
+        return true;
+    }
+}
+

@@ -1,0 +1,11 @@
+package click.rmx.engine.physics;
+
+public class BoundingSphere extends CollisonBounds {
+
+	@Override
+	public boolean intersects(BoundingBox other) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

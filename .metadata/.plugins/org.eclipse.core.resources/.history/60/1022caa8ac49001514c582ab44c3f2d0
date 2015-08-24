@@ -1,0 +1,5 @@
+package com.maxbilbow.aicubo;
+
+public class VertexBufferObject {
+
+}

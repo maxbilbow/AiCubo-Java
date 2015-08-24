@@ -1,0 +1,14 @@
+package click.rmx.engine.math;
+
+import java.nio.FloatBuffer;
+
+import javax.vecmath.Vector4f;
+
+public class Vector4 extends Vector4f {
+
+	public FloatBuffer getBuffer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

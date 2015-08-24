@@ -1,0 +1,12 @@
+package click.rmx.engine.behaviours;
+
+import click.rmx.engine.Node;
+import click.rmx.messages.IMessageable;
+
+public interface IBehaviour extends IMessageable{
+	public void update();
+	public void lateUpdate();
+	public void setNode(Node node);
+	public boolean isEnabled();
+
+}

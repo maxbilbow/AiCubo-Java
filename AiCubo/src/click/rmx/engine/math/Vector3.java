@@ -1,6 +1,10 @@
 package click.rmx.engine.math;
 
+import java.nio.FloatBuffer;
+
 import javax.vecmath.Vector3f;
+
+import org.lwjgl.BufferUtils;
 
 public class Vector3 extends Vector3f {
 	/**
@@ -12,6 +16,10 @@ public class Vector3 extends Vector3f {
 		super();
 	}
 	public Vector3(float x, float y, float z) {
+		super(x,y,z);
+	}
+	
+	public Vector3(int x, int y, int z) {
 		super(x,y,z);
 	}
 
@@ -55,5 +63,33 @@ public class Vector3 extends Vector3f {
 				dy * dy +
 				dz * dz
 				);
+	}
+	  /**
+     * Returns the Buffer representation of this vector.
+     *
+     * @return Vector as FloatBuffer
+     */
+    public FloatBuffer getBuffer() {
+        FloatBuffer buffer = BufferUtils.createFloatBuffer(4);
+        buffer.put(x).put(y).put(z).put(1);
+        buffer.flip();
+        return buffer;
+    }
+    
+    public static Vector3 makeSubtraction(Vector3 left, Vector3 right) {
+    	Vector3 result = left.clone();
+    	result.sub(right);
+    	return result;
+    }
+    
+    public static Vector3 makeAddition(Vector3 left, Vector3 right) {
+    	Vector3 result = left.clone();
+    	result.add(right);
+    	return result;
+    }
+	public Vector3 getNormalized() {
+		Vector3 n = this.clone();
+		n.normalize();
+		return n;
 	}
 }

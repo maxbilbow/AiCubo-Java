@@ -1,7 +1,7 @@
 package com.maxbilbow.aicubo;
 
 import click.rmx.engine.Node;
-import click.rmx.engine.PhysicsBody;
+import click.rmx.engine.physics.PhysicsBody;
 
 public class AxisGenerator extends EntityGenerator {
 
@@ -14,18 +14,27 @@ public class AxisGenerator extends EntityGenerator {
 	
 	@Override
 	public Node makeEntity() {
-		Node X = Node.makeCube(1, PhysicsBody.newStaticBody(), null);
-		Node Y = Node.makeCube(1, PhysicsBody.newStaticBody(), null);
-		Node Z = Node.makeCube(1, PhysicsBody.newStaticBody(), null);
+//		Node X = Node.makeCube(1, PhysicsBody.newStaticBody(), null);
+//		Node Y = Node.makeCube(1, PhysicsBody.newStaticBody(), null);
+//		Node Z = Node.makeCube(1, PhysicsBody.newStaticBody(), null);
+		
+		Node X = Node.makeCube(1, PhysicsBody.newTransientBody(), null);
+		Node Y = Node.makeCube(1, PhysicsBody.newTransientBody(), null);
+		Node Z = Node.makeCube(1, PhysicsBody.newTransientBody(), null);
+		
 		X.transform.setScale(size, 1.0f, 1.0f);
 		Y.transform.setScale(1.0f, size, 1.0f);
 		Z.transform.setScale(1.0f, 1.0f, size);
 		
-		Node axis = new Node();
-		axis.addChild(X);
-		axis.addChild(Y);
-		axis.addChild(Z);
-		return axis;
+		
+//		X.physicsBody().setMass(size);
+//		Y.physicsBody().setMass(size);
+//		Z.physicsBody().setMass(size);
+//		Node axis = new Node();
+//		axis.addChild(X);
+//		axis.addChild(Y);
+//		axis.addChild(Z);
+		return null;
 	}
 
 }

@@ -1,8 +1,0 @@
-package rmx.gl;
-
-public final class GL {
-	GLView _current;
-	public static GLView activeGLView() {
-		return _current;
-	}
-}

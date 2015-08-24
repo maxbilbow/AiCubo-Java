@@ -13,6 +13,10 @@
 		<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>
 		<item value="472" key="DIALOG_HEIGHT"/>
 	</section>
+	<section name="RefactoringWizard.Extract Superclass">
+		<item value="600" key="width"/>
+		<item value="400" key="height"/>
+	</section>
 	<section name="InferTypeArguments">
 		<item value="true" key="leaveUnconstrainedRaw"/>
 		<item value="true" key="assumeCloneReturnsSameType"/>

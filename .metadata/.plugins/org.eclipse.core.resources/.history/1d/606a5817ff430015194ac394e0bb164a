@@ -1,7 +1,0 @@
-package rmx.gl;
-
-public interface GLView {
-	public void initGL();
-	public void enterGameLoop();
-	public long window();
-}

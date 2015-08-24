@@ -1,0 +1,5 @@
+package click.rmx.engine.gl;
+
+public class Texture {
+
+}

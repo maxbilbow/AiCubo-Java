@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-<typeInfo handle="=AiCubo/src&lt;com.maxbilbow.aicubo{EntityGenerator.java[EntityGenerator" modifiers="1025" timestamp="1440245709000"/>
-<typeInfo handle="=AiCubo/src&lt;click.rmx.engine{NodeComponent.java[NodeComponent" modifiers="1025" timestamp="1440191898000"/>
+<typeInfo handle="=AiCubo/src&lt;com.maxbilbow.aicubo{EntityGenerator.java[EntityGenerator" modifiers="1025" timestamp="1440339642000"/>
+<typeInfo handle="=AiCubo/\/Users\/rattle\/Gits\/AiCubo-Java\/AiCubo\/lib\/vecmath-1.5.1.jar&lt;javax.vecmath(Vector4f.class[Vector4f" modifiers="33" timestamp="1440339642000"/>
+<typeInfo handle="=AiCubo/\/Users\/rattle\/Gits\/AiCubo-Java\/AiCubo\/lib\/vecmath-1.5.1.jar&lt;javax.vecmath(Vector2f.class[Vector2f" modifiers="33" timestamp="1440339642000"/>
+<typeInfo handle="=AiCubo/\/Users\/rattle\/Gits\/AiCubo-Java\/AiCubo\/lib\/vecmath-1.5.1.jar&lt;javax.vecmath(Matrix3f.class[Matrix3f" modifiers="33" timestamp="1440339642000"/>
+<typeInfo handle="=AiCubo/src&lt;click.rmx.engine.physics{CollisionBody.java[CollisionBody" modifiers="1" timestamp="1440359775000"/>
+<typeInfo handle="=AiCubo/src&lt;click.rmx.engine{NodeComponent.java[NodeComponent" modifiers="1025" timestamp="1440339642000"/>
 </typeInfoHistroy>

@@ -1,0 +1,100 @@
+package com.maxbilbow.aicubo;
+
+import org.lwjgl.BufferUtils;
+import org.lwjgl.glfw.GLFW;
+import org.lwjgl.opengl.*;
+import static org.lwjgl.opengl.ARBVertexArrayObject.*;
+import static org.lwjgl.opengl.ARBVertexArrayBGRA.*;
+import static org.lwjgl.opengl.ARBVertexAttrib64Bit.*;
+import static org.lwjgl.opengl.ARBVertexProgram.*;
+import static org.lwjgl.opengl.GLXARBVertexBufferObject.*;
+
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL12.*;
+import static org.lwjgl.opengl.GL13.*;
+import static org.lwjgl.opengl.GL14.*;
+import static org.lwjgl.opengl.GL15.*;
+import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL21.*;
+import static org.lwjgl.opengl.GL30.*;
+import static org.lwjgl.opengl.GL31.*;
+import static org.lwjgl.opengl.GL32.*;
+import static org.lwjgl.opengl.GL33.*;
+import static org.lwjgl.opengl.GL40.*;
+import static org.lwjgl.opengl.GL41.*;
+import static org.lwjgl.opengl.GL42.*;
+import static org.lwjgl.opengl.GL43.*;
+import static org.lwjgl.opengl.GL44.*;
+import static org.lwjgl.opengl.GL45.*;
+
+
+public class VertexBufferTest {
+
+	public static int createVBOID() {
+	    IntBuffer buffer = BufferUtils.createIntBuffer(1);
+	    GL15.glGenBuffers(buffer);
+	    return buffer.get(0);
+	    //Or alternatively you can simply use the convenience method:
+//	    return GL15.glGenBuffers(); //Which can only supply you with a single id.
+	}
+	
+	public static int createARBVBOID() {
+		  if (GLContext.createFromCurrent().getCapabilities().GL_ARB_vertex_buffer_object) {
+		    IntBuffer buffer = BufferUtils.createIntBuffer(1);
+		    ARBVertexBufferObject.glGenBuffersARB(buffer);
+		    return buffer.get(0);
+		  }
+		  return 0;
+		}
+	
+	public static void vertexBufferData(int id, FloatBuffer buffer) { //Not restricted to FloatBuffer
+	    GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, id); //Bind buffer (also specifies type of buffer)
+	    GL15.glBufferData(GL15.GL_ARRAY_BUFFER, buffer, GL15.GL_STATIC_DRAW); //Send up the data and specify usage hint.
+	}
+	
+	public static void indexBufferData(int id, IntBuffer buffer) { //Not restricted to IntBuffer
+	    GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, id);
+	    GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, buffer, GL15.GL_STATIC_DRAW);
+	}
+	
+	public static void bufferData(int id, FloatBuffer buffer) {
+		  if (GLContext.createFromCurrent().getCapabilities().GL_ARB_vertex_buffer_object) {
+		    ARBVertexBufferObject.glBindBufferARB(ARBVertexBufferObject.GL_ARRAY_BUFFER_ARB, id);
+		    ARBVertexBufferObject.glBufferDataARB(ARBVertexBufferObject.GL_ARRAY_BUFFER_ARB, buffer, ARBVertexBufferObject.GL_STATIC_DRAW_ARB);
+		  }
+		}
+	
+	public static void setup() {
+		int vCount = 8;
+		ByteBuffer vboId;                              // ID of VBO
+		long[] vertices = new long[vCount*3]; // create vertex array
+		//...
+
+		// generate a new VBO and get the associated ID
+
+		glGenBuffers(1, vboId);
+
+		// bind VBO in order to use
+		
+		glBindBuffer(GL_ARRAY_BUFFER, vboId);//GL_ARRAY_BUFFER_BINDING
+
+
+		// upload data to VBO
+		glBufferDataARB(GL_ARRAY_BUFFER_ARB, dataSize, vertices, GL_STATIC_DRAW_ARB);
+
+		// it is safe to delete after copying data to VBO
+		delete [] vertices;
+		...
+
+		// delete VBO when program terminated
+		glDeleteBuffersARB(1, &vboId);
+	}
+	public static void Draw() {
+		
+	}
+}

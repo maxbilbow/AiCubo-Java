@@ -1,7 +1,0 @@
-package com.maxbilbow.rmx.messages;
-
-public enum EventStatus {
-
-	Active, Completed, Idle, Success, Failure, ForceNewEvent
-	
-}

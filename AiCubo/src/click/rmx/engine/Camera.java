@@ -73,7 +73,7 @@ public class Camera extends NodeComponent {
 //	        m.negatePosition();
 		 
 //		 m.setIdentity();
-	     glMultMatrixf(m.buffer());
+	     glMultMatrixf(m.rowBuffer());
 	}
 	
 	public Matrix4 modelViewMatrix() {

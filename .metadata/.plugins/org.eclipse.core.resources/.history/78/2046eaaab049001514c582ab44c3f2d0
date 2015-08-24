@@ -1,0 +1,7 @@
+package click.rmx.engine.math;
+
+import javax.vecmath.Matrix3f;
+
+public class Matrix3 extends Matrix3f {
+
+}

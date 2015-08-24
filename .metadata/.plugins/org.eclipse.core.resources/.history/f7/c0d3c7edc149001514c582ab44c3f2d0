@@ -1,0 +1,27 @@
+package click.rmx.engine.physics;
+
+import java.util.LinkedList;
+
+import click.rmx.engine.NodeComponent;
+
+public class CollisionBody extends NodeComponent {
+
+	public final PhysicsBody physicsBody;
+	
+	public final BoundingBox boundingBox;
+//	public final node;
+	public CollisionBody(PhysicsBody body) {
+		this.physicsBody = body;
+		this.setNode(body.getNode());
+		this.boundingBox = new BoundingBox(body.getNode());
+	}
+	public BoundingBox getBoundingBox() {
+		return this.boundingBox;
+	}
+	
+	public Object getBoundingSphere() {
+		return null;
+	}
+
+}
+

@@ -1,0 +1,71 @@
+package click.rmx.engine.physics;
+
+import click.rmx.engine.Node;
+import click.rmx.engine.Transform;
+import click.rmx.engine.math.Vector2;
+import click.rmx.engine.math.Vector3;
+
+public class BoundingBox {
+	static final int MIN = 0, MAX = 1;
+	static final int FRONT = 0, BACK = 1, LEFT = 2 , RIGHT = 3, TOP = 4, BOTTOM = 5;
+	Vector3[][] faces;
+    
+    final Transform transform;
+    
+    public BoundingBox(Node entity) {
+    	this.transform = entity.transform.rootTransform();
+    	Vector3 pos = this.transform.position();
+    	Vector3 min, max;
+    	min = new Vector3(
+    			- this.transform.getWidth(),
+                - this.transform.getHeight(),
+                - this.transform.getLength()
+    			);
+        max = new Vector3(
+                + this.transform.getWidth(),
+                + this.transform.getHeight(),
+                + this.transform.getLength()
+        );
+        
+        faces = new Vector3[][] {
+        	{  new Vector3(min.x,min.y,max.z), new Vector3(max.x,max.y,max.z) }, //front
+        	{  new Vector3(min.x,min.y,min.z), new Vector3(max.x,max.y,min.z) }, //back
+        	{  new Vector3(max.x,min.y,min.z), new Vector3(max.x,max.y,max.z) }, //left
+        	{  new Vector3(min.x,min.y,min.z), new Vector3(min.x,max.y,max.z) }, //right
+        	{  new Vector3(min.x,max.y,min.z), new Vector3(max.x,max.y,max.z) }, //top
+        	{  new Vector3(min.x,min.y,min.z), new Vector3(max.x,min.y,max.z) }, //bottom
+        };
+    }
+
+    /**
+     * Checks if this AABB intersects another AABB.
+     *
+     * @param other The other AABB
+     * @return true if a collision was detected.
+     */
+    public boolean intersects(BoundingBox other) {
+    	Vector3 thisPos = this.transform.position();
+    	Vector3 otherPos = other.transform.position();
+    	for (int i=0;i<6;++i) {
+    		if (this.didIntersect(thisPos, otherPos, this.faces[i][MAX], other.faces[i][MIN]))
+    				return false;
+    		if (this.didIntersect(otherPos, thisPos, other.faces[i][MAX], this.faces[i][MIN]))
+    				return false;
+    			return false;
+    	}
+
+        // All tests failed, we have a intersection
+        return true;
+    }
+    
+    boolean didIntersect(Vector3 maxPos, Vector3 minPos, Vector3 max, Vector3 min) {
+    	return (
+    		maxPos.x + max.x < minPos.x + min.x ||
+    		maxPos.y + max.y < minPos.y + min.y ||
+    		maxPos.z + max.z < minPos.z + min.z
+    		);
+    }
+    
+    
+   
+}

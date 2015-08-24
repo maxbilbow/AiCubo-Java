@@ -1,0 +1,18 @@
+package click.rmx.engine.math;
+
+import java.nio.FloatBuffer;
+
+import javax.vecmath.Vector2f;
+
+public class Vector2 extends Vector2f {
+
+	public Vector2(float x, float y) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public FloatBuffer getBuffer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
