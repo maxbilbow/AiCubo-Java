@@ -41,6 +41,8 @@ public class PhysicsWorld extends RMXObject {
 	}
 
 	private void applyGravityToNode(Node node) {
+		if (this.gravity.isZero())
+			return;
 		float ground = node.transform.getHeight() / 2;//.scale().y / 2;
 		float mass = node.transform.mass();
 		float framerate = getCurrentFramerate();
@@ -157,15 +159,19 @@ public class PhysicsWorld extends RMXObject {
 
 		boolean isHit = A.intersects(B);
 		if (isHit) {
-			CollisionEvent e = new CollisionEvent(A.getNode(),B.getNode());
+			CollisionEvent e = new CollisionEvent(A.getNode(),B.getNode(),securityKey);
 			if (collisionDelegate != null)
-				collisionDelegate.handleCollision(A.getNode(), B.getNode(), e);
+				collisionDelegate.doBeforeCollision(A.getNode(), B.getNode(), e);
+			e.processCollision(securityKey);
+			if (collisionDelegate != null)
+				collisionDelegate.doAfterCollision(A.getNode(), B.getNode(), e);
 
 		} 
 		return isHit;			
 
 	}
 
+	private static final int securityKey = (int) (Math.random() * 100);
 	private CollisionDelegate collisionDelegate;
 
 

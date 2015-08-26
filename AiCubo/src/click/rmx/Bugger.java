@@ -5,8 +5,8 @@ import java.util.LinkedList;
 
 
 public class Bugger {
-	public static final boolean logging = true;
-	public static final boolean debug = true;
+	public static  boolean logging = true;
+	public static  boolean debug = true;
 	
 	private final LinkedList<String> logs = new LinkedList<>();
 

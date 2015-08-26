@@ -1,14 +1,14 @@
 
 package com.maxbilbow.aicubo;
 
-import java.lang.reflect.InvocationTargetException;
+
 
 import org.lwjgl.opengl.GL11;
 
 import click.rmx.Bugger;
 import click.rmx.engine.Camera;
 import click.rmx.engine.GameController;
-import click.rmx.engine.GameView;
+
 import click.rmx.engine.Geometry;
 import click.rmx.engine.LightSource;
 import click.rmx.engine.Node;
@@ -23,6 +23,8 @@ import click.rmx.engine.math.Vector3;
 import click.rmx.engine.physics.CollisionEvent;
 import click.rmx.engine.physics.PhysicsBody;
 public final class AiCubo extends GameController {	
+	
+	Node player, cameraNode;
 	protected void initpov() {
 		Node body = Node.getCurrent();
 		body.setPhysicsBody(PhysicsBody.newDynamicBody());
@@ -31,7 +33,7 @@ public final class AiCubo extends GameController {
 //		body.physicsBody().setRestitution(0);
 //		body.physicsBody().setDamping(0);
 		body.addBehaviour(new SpriteBehaviour());
-		body.transform.setScale(3f, 5.0f, 3f);	
+		body.transform.setScale(4f, 4.0f, 4f);	
 		Scene.getCurrent().rootNode.addChild(body);
 //		body.setCollisionBody(new CollisionBody());
 		Node head = new Node();
@@ -59,17 +61,24 @@ public final class AiCubo extends GameController {
 			
 		});
 		
+
 		this.view.setPointOfView(head);
+		this.player = body;
+		this.cameraNode = head;
 		
 	}
 	static final int bounds = 200;
+	
+	protected AiCubo(){
+		super();
+	}
 	public void initActors() {	
 		Bugger.log("Setting up scene...");
 		Scene scene = Scene.getCurrent();
 		Bugger.log("SUCCESS");
-		scene.setRenderDelegate(this);
+		
 		Bugger.log("Setting up actors...");
-		initpov();		
+
 		Bugger.log("POV success");
 		Bugger.log("Initializing entity generator");
 		
@@ -151,6 +160,7 @@ public final class AiCubo extends GameController {
 			}
 			
 		};
+		
 		Bugger.log("Entity generator initialized");
 		eg.yMin = eg.yMax = 0;
 		eg.xMax = eg.zMax = 100;
@@ -191,37 +201,44 @@ public final class AiCubo extends GameController {
 		Node wallA = Node.makeCube(10, PhysicsBody.newStaticBody(), null);
 		wallA.transform.setScale(bounds, 10, 10);
 		wallA.transform.setPosition(0,0,bounds+10);
+		wallA.addToCurrentScene();
 		Node wallB = Node.makeCube(10, PhysicsBody.newStaticBody(), null);
 		wallB.transform.setScale(bounds, 10, 10);
 		wallB.transform.setPosition(0,0,-bounds-10);
+		wallB.addToCurrentScene();
 		Node wallC = Node.makeCube(10, PhysicsBody.newStaticBody(), null);
 		wallC.transform.setScale(10, 10, bounds);
 		wallC.transform.setPosition(bounds+10,0,0);
+		wallC.addToCurrentScene();
 		Node wallD = Node.makeCube(10, PhysicsBody.newStaticBody(), null);
 		wallD.transform.setScale(10, 10, bounds);
 		wallD.transform.setPosition(-bounds-10,0,0);
+		wallD.addToCurrentScene();
 		
 		Node light = Node.makeCube(10, PhysicsBody.newStaticBody(), null);
 		light.transform.setPosition(100,50,100);
 		light.setComponent(LightSource.class, new LightSource());
+		light.addToCurrentScene();
 	
 	}
 	
 	
-	public static AiCubo getInstance() {
-		if(singleton == null) {
-			synchronized(GameController.class) {
-				if(singleton == null) {
-					singleton = new AiCubo();
-					singleton.setView(new GameView());
-				}
-			}
-		}
-		return (AiCubo) singleton;
-	}
+//	public static AiCubo getInstance() {
+//		if(singleton == null) {
+//			synchronized(GameController.class) {
+//				if(singleton == null) {
+//					singleton = new AiCubo();
+//					singleton.setView(new GameView());
+//				}
+//			}
+//		}
+//		return (AiCubo) singleton;
+//	}
 	public static void main(String[] args) {
 //		try {
-			AiCubo.getInstance().Start();
+			AiCubo game = new AiCubo();
+			game.initActors();
+			game.Start();
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //			System.exit(1);
@@ -232,7 +249,8 @@ public final class AiCubo extends GameController {
 	@Override
 	public void setup() {
 		// TODO Auto-generated method stub
-		initActors();
+//		initActors();
+		Scene.getCurrent().setRenderDelegate(this);
 	}
 }
 

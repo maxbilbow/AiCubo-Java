@@ -219,11 +219,11 @@ public class Node extends RMXObject implements Ticker{
 			n.setPhysicsBody(body);
 		n.transform.setScale(s, s, s);
 		n.addBehaviour(b);
-		n.addToCurrentScene();
+//		n.addToCurrentScene();
 		return n;
 	}
 
-	private void addToCurrentScene() {
+	public void addToCurrentScene() {
 		Scene.getCurrent().rootNode.addChild(this);
 	}
 

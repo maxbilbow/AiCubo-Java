@@ -35,5 +35,6 @@ public class CollisionBody extends NodeComponent {
 		return this.boundingBox.intersects(other.boundingBox);
 	}
 	
+
 }
 

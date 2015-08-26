@@ -28,21 +28,35 @@ public class Transform extends NodeComponent {
 	private final Vector3 _up = new Vector3();
 	private final Vector3 _fwd = new Vector3();
 	private final Vector3 _localPosition = new Vector3();
-	private final Vector3 _lastPosition = new Vector3();
+//	private final Vector3 _lastPosition = new Vector3();
 	
 	
 	public Vector3 lastPosition() {
-		return this._lastPosition;
+		return this.history[0];
+	}
+	private int stepsBack = 0;
+	public boolean stepBack(String args) {
+		if (stepsBack >= history.length)
+			return false;
+		if (args.contains("x"))
+			this.localMatrix().m30 = history[stepsBack].x;
+		if (args.contains("y"))
+			this.localMatrix().m31 = history[stepsBack].y;
+		if (args.contains("z"))
+			this.localMatrix().m32 = history[stepsBack].z;
+//		stepsBack++;
+		return !history[stepsBack++].isZero();
+//		this.setPosition(lastPosition());
 	}
 	
-	public void stepBack(String args) {
+	
+	public void moveAlongAxis(String args, float n) {
 		if (args.contains("x"))
-			this.localMatrix().m30 = _lastPosition.x;
+			this.localMatrix().m30 += n;
 		if (args.contains("y"))
-			this.localMatrix().m31 = _lastPosition.y;
+			this.localMatrix().m31 += n;
 		if (args.contains("z"))
-			this.localMatrix().m32 = _lastPosition.z;
-//		this.setPosition(lastPosition());
+			this.localMatrix().m32 += n;
 	}
 //	private EulerAngles _eulerAngles = new EulerAngles();
 	private Vector3 _scale = new Vector3(1f,1f,1f);
@@ -56,6 +70,9 @@ public class Transform extends NodeComponent {
 		
 		this._axis = new Matrix4();
 		this._axis.setIdentity();
+		
+		for (int i = 0; i< history.length; ++i)
+			history[i] = new Vector3();
 	}
 	
 	public Vector3 left() {
@@ -206,7 +223,7 @@ public class Transform extends NodeComponent {
 		return q;
 	}
 	
-	public Vector3f eulerAngles() {
+	public Vector3 eulerAngles() {
 //		_rotation.set(this.worldMatrix());
 		return this.worldMatrix().eulerAngles();
 	}
@@ -221,7 +238,7 @@ public class Transform extends NodeComponent {
 	public void rotate(float radians, float x, float y, float z) {
 //		Matrix4 rMatrix = new Matrix4();
 		_rMatrix.setIdentity();
-		_rMatrix.setRotation(new AxisAngle4f(x,y,z,radians * 0.2f ));//*  RMX.PI_OVER_180));
+		_rMatrix.setRotation(new AxisAngle4f(x,y,z,radians));//*  RMX.PI_OVER_180));
 //		_rMatrix.transpose();
 		
 //		_quaternion.set(new AxisAngle4f(v.x,v.y,v.z,degrees * 0.1f));
@@ -302,6 +319,18 @@ public class Transform extends NodeComponent {
 //			scale *= -1;
 			v = this.forward();
 			break;
+		case "x":
+//			scale *= -1;
+			v = Vector3.X;
+			break;
+		case "y":
+//			scale *= -1;
+			v = Vector3.Y;
+			break;
+		case "z":
+//			scale *= -1;
+			v = Vector3.Z;
+			break;
 		default:
 			return false;
 		}
@@ -339,10 +368,14 @@ public class Transform extends NodeComponent {
 		return scale().z * 2;
 	}
 
+	Vector3[] history = new Vector3[2];
+//	private int historyCheck = 0;
 	public void updateLastPosition() {
-		_lastPosition.x = _localMatrix.m30;
-		_lastPosition.y = _localMatrix.m31;
-		_lastPosition.z = _localMatrix.m32;
+		for (int i=history.length-1; i>0; --i) {
+			history[i].set(history[i-1]);
+		}
+		history[0].set(this.localPosition());
+		stepsBack = 0;
 	}
 
 }

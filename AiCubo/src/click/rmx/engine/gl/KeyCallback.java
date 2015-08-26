@@ -2,6 +2,9 @@ package click.rmx.engine.gl;
 import static org.lwjgl.glfw.GLFW.*;
 //import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 import static org.lwjgl.opengl.GL11.GL_TRUE;
+
+import java.util.ArrayList;
+
 import org.lwjgl.glfw.GLFWKeyCallback;
 
 import click.rmx.engine.GameController;
@@ -21,6 +24,8 @@ public class KeyCallback extends GLFWKeyCallback {
     public static KeyCallback getInstance() {
     	return singleton;
     }
+    
+    public ArrayList<IKeyCallback> callbacks = new ArrayList<>();
 	 @Override
      public void invoke(long window, int key, int scancode, int action, int mods) {
 		if (action == GLFW_PRESS) {
@@ -58,6 +63,10 @@ public class KeyCallback extends GLFWKeyCallback {
 			case GLFW_KEY_SPACE:
 				Node.getCurrent().broadcastMessage("crouch");
 			}
+		
+		for (IKeyCallback callback : this.callbacks) {
+			callback.invoke(window, key, scancode, action, mods);
+		}
      }
 
 }

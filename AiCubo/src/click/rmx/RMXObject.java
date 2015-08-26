@@ -20,6 +20,9 @@ public class RMXObject  implements IEventListener, KeyValueObserver {
 	private static int _count = 0;
 	private int id = _count++;
 	
+	public int uniqueID() {
+		return this.id;
+	}
 	public static int Count() {
 		return _count;
 	}

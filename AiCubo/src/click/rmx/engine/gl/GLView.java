@@ -11,7 +11,7 @@ public interface GLView {
 	public void enterGameLoop();
 	public long window();
 	public GLFWErrorCallback errorCallback();
-    public GLFWKeyCallback   keyCallback();
+    public KeyCallback keyCallback();
     public void setDelegate(RenderDelegate delegate);
     public int height();
     public int width();

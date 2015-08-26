@@ -45,7 +45,7 @@ public class GameView extends RMXObject implements GLView{
     
     // We need to strongly reference callback instances.
     private GLFWErrorCallback _errorCallback;
-    private GLFWKeyCallback   _keyCallback;
+    private KeyCallback  _keyCallback = KeyCallback.getInstance();
  
     // The window handle
     private long _window;
@@ -74,7 +74,7 @@ public class GameView extends RMXObject implements GLView{
             throw new RuntimeException("Failed to create the GLFW window");
  
         // Setup a key callback. It will be called every time a key is pressed, repeated or released.
-        glfwSetKeyCallback(_window, _keyCallback = KeyCallback.getInstance());
+        glfwSetKeyCallback(_window, _keyCallback);
  
         glfwSetCursorPosCallback(_window, CursorCallback.getInstance());
         // Get the resolution of the primary monitor
@@ -222,7 +222,7 @@ public class GameView extends RMXObject implements GLView{
 	}
 
 	@Override
-	public GLFWKeyCallback keyCallback() {
+	public KeyCallback keyCallback() {
 		// TODO Auto-generated method stub
 		return _keyCallback;
 	}

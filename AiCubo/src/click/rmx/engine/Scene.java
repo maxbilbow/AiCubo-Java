@@ -74,9 +74,12 @@ public class Scene extends RMXObject {
 		
 	}
 
-	long tick = 0;
+	private long _tick = 0;
+	public long tick() {
+		return _tick;
+	}
 	public void updateSceneLogic(long time) {
-		this.tick = time;
+		this._tick = time;
 		 if (this.renderDelegate != null) 
 	     		this.renderDelegate.updateBeforeSceneLogic();
 		this.rootNode.updateLogic(time);
@@ -94,4 +97,8 @@ public class Scene extends RMXObject {
 		this.renderDelegate = renderDelegate;
 	}
 
+	
+	public PhysicsWorld getPhysicsWorld() {
+		return this.physicsWorld;
+	}
 }
