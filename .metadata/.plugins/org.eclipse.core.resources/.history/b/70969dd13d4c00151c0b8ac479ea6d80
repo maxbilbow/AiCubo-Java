@@ -113,12 +113,12 @@ public final class CollisionEvent {
 		Vector3 posA = nodeA.transform.localPosition(); Vector3 posB = nodeB.transform.localPosition();
 
 
-		float dx = boxA.xMax() + posA.x - boxB.xMin() - posB.x; //left
-		float dx2 = boxB.xMax() + posB.x - boxA.xMin() - posA.x;//right
-		float dy = boxA.yMax() + posA.y - boxB.yMin() - posB.y; //top
-		float dy2 = boxB.yMax() + posB.y - boxA.yMin() - posA.y;//bottom
-		float dz = boxA.zMax() + posA.z - boxB.zMin() - posB.z; //front
-		float dz2 = boxB.zMax() + posB.z - boxA.zMin() - posA.z;//back
+		float dx = boxA.xMax() + posA.x - boxB.xMin() - posB.x;//Math.abs(AtoB.x);
+		float dx2 = boxB.xMax() + posB.x - boxA.xMin() - posA.x;
+		float dy = boxA.yMax() + posA.y - boxB.yMin() - posB.y;//Math.abs(AtoB.y);
+		float dy2 = boxB.yMax() + posB.y - boxA.yMin() - posA.y;
+		float dz = boxA.zMax() + posA.z - boxB.zMin() - posB.z;// Math.abs(AtoB.z);
+		float dz2 = boxB.zMax() + posB.z - boxA.zMin() - posA.z;
 		String axis = "x"; float diff = dx; float sign = 1;
 
 		//		System.out.println(" dx: " + dx + ",  dy: " + dy + ",  dz: " + dz);

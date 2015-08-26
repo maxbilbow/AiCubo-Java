@@ -111,7 +111,10 @@ public abstract class GameController extends RMXObject implements RenderDelegate
 		this.repeatedKeys();	
 	}
 
-
+	@Override
+	public void updateBeforeSceneRender(Object... args) {
+		
+	}
 	
 	public final KeyStates keys = new KeyStates();
 	

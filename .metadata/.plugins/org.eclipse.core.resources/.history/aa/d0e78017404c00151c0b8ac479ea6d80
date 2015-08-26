@@ -74,8 +74,6 @@ public final class AiCubo extends GameController {
 	protected AiCubo(){
 		super();
 	}
-	
-	EntityGenerator eg;
 	public void initActors() {	
 		Bugger.log("Setting up scene...");
 		Scene scene = Scene.getCurrent();
@@ -86,13 +84,13 @@ public final class AiCubo extends GameController {
 		Bugger.log("POV success");
 		Bugger.log("Initializing entity generator");
 
-		eg = new EntityGenerator() {
+		EntityGenerator eg = new EntityGenerator() {
 
 			@Override
 			public Node makeEntity() {
 				float speed = (float) (Tools.rBounds(30, 100) / 1000);
 				float rotation = (float) (Tools.rBounds(1, (int)speed * 1000) / 1000);
-				Node body = Node.makeCube((float)Tools.rBounds(1, 2), PhysicsBody.newDynamicBody(), new Behaviour() {
+				Node body = Node.makeCube(1f, PhysicsBody.newDynamicBody(), new Behaviour() {
 
 					@Override
 					public void update() {
@@ -138,10 +136,11 @@ public final class AiCubo extends GameController {
 
 				});
 
+				body.addBehaviour(new SpriteBehaviour());
 
 
 				body.addBehaviour(new SpriteBehaviour());
-				body.physicsBody().setMass((float) Tools.rBounds(2,8));
+				body.physicsBody().setMass(2.0f);
 				//				body.physicsBody().setRestitution((float)Tools.rBounds(2,8)/10);
 				//				body.transform.setScale(2, 2, 2);
 				//				body.physicsBody().setDamping(0f);
@@ -169,12 +168,12 @@ public final class AiCubo extends GameController {
 		};
 
 		Bugger.log("Entity generator initialized");
-		eg.yMin = 0; eg.yMax = 50;
+		eg.yMin = eg.yMax = 0;
 		eg.xMax = eg.zMax = 100;
 		eg.xMin = eg.zMin = -100;
 
 		Bugger.log("Generating...");
-		
+		eg.makeShapesAndAddToScene(scene, 500);
 		Bugger.log("Success. Creating floor");
 		Node floor = new Node();
 		floor.transform.setPosition(0,0,0);
@@ -252,18 +251,7 @@ public final class AiCubo extends GameController {
 		//		}
 	}
 
-	long tick = 0; int count = 0;
-	@Override
-	public void updateBeforeSceneRender(Object... args) {
-		long timePassed = Scene.getCurrent().tick() -  tick;
-		if (count < 500 && timePassed > 500) {
-			eg.makeShapesAndAddToScene(Scene.getCurrent(), 1);
-			this.tick = Scene.getCurrent().tick();
-			count++;
-		}
-		
-	}
-	
+
 	@Override
 	public void setup() {
 		// TODO Auto-generated method stub

@@ -9,7 +9,6 @@ import org.lwjgl.opengl.*;
 
 import click.rmx.Bugger;
 import click.rmx.RMXObject;
-import click.rmx.engine.behaviours.Behaviour;
 import click.rmx.engine.gl.CursorCallback;
 import click.rmx.engine.gl.GLView;
 import click.rmx.engine.gl.KeyCallback;
@@ -188,30 +187,9 @@ public class GameView extends RMXObject implements GLView{
 	public boolean setPointOfView(Node pointOfView) {
 		if (pointOfView.camera() == null) {
 			pointOfView.setCamera(new Camera());
-			pointOfView.addBehaviour(new Behaviour(){
-
-				//			public void lookUp(String speed) {
-				//				
-				//			}
-
-				@Override
-				public void broadcastMessage(String message, Object args) {
-
-					if (message == "lookUp") {
-						//					Bugger.logAndPrint(message + ": "+ args , false);
-						pointOfView.transform.rotate("pitch", (float) args);
-					}
-				}
-				@Override
-				public void update() {
-					// TODO Auto-generated method stub
-
-				}
-
-			});
 		} else if (_pointOfView == pointOfView) 
 			return false;
-		if (_pointOfView != null)
+		else if (_pointOfView != null)
 			_pointOfView.camera().stopListening();
 		
 		_pointOfView = pointOfView;

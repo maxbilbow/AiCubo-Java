@@ -55,9 +55,9 @@
 <fullyQualifiedTypeName name="click.rmx.engine.gl.KeyCallback"/>
 <fullyQualifiedTypeName name="org.lwjgl.glfw.GLFWKeyCallback"/>
 <fullyQualifiedTypeName name="org.lwjgl.opengl.GL11"/>
-<fullyQualifiedTypeName name="click.rmx.engine.gl.IKeyCallback"/>
 <fullyQualifiedTypeName name="com.maxbilbow.aicubo.AiCubo"/>
 <fullyQualifiedTypeName name="click.rmx.RMX"/>
 <fullyQualifiedTypeName name="click.rmx.engine.math.Vector3"/>
 <fullyQualifiedTypeName name="click.rmx.engine.physics.PhysicsBodyType"/>
+<fullyQualifiedTypeName name="click.rmx.engine.gl.IKeyCallback"/>
 </qualifiedTypeNameHistroy>

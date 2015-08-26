@@ -92,7 +92,7 @@ public final class AiCubo extends GameController {
 			public Node makeEntity() {
 				float speed = (float) (Tools.rBounds(30, 100) / 1000);
 				float rotation = (float) (Tools.rBounds(1, (int)speed * 1000) / 1000);
-				Node body = Node.makeCube((float)Tools.rBounds(1, 2), PhysicsBody.newDynamicBody(), new Behaviour() {
+				Node body = Node.makeCube((float)Tools.rBounds(1, 3), PhysicsBody.newDynamicBody(), new Behaviour() {
 
 					@Override
 					public void update() {
@@ -252,14 +252,13 @@ public final class AiCubo extends GameController {
 		//		}
 	}
 
-	long tick = 0; int count = 0;
+	long tick = 0;
 	@Override
 	public void updateBeforeSceneRender(Object... args) {
 		long timePassed = Scene.getCurrent().tick() -  tick;
-		if (count < 500 && timePassed > 500) {
+		if (timePassed > 60) {
 			eg.makeShapesAndAddToScene(Scene.getCurrent(), 1);
 			this.tick = Scene.getCurrent().tick();
-			count++;
 		}
 		
 	}

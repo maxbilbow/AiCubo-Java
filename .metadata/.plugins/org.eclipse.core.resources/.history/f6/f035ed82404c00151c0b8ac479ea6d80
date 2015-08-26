@@ -199,7 +199,7 @@ public class GameView extends RMXObject implements GLView{
 
 					if (message == "lookUp") {
 						//					Bugger.logAndPrint(message + ": "+ args , false);
-						pointOfView.transform.rotate("pitch", (float) args);
+						head.transform.rotate("pitch", (float) args);
 					}
 				}
 				@Override
