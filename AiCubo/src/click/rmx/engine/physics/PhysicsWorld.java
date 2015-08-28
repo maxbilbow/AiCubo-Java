@@ -41,7 +41,7 @@ public class PhysicsWorld extends RMXObject {
 	}
 
 	private void applyGravityToNode(Node node) {
-		if (this.gravity.isZero())
+		if (this.gravity.isZero() || !node.physicsBody().isEffectedByGravity())
 			return;
 		float ground = node.transform.getHeight() / 2;//.scale().y / 2;
 		float mass = node.transform.mass();

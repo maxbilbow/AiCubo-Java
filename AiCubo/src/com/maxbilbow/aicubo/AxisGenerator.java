@@ -18,13 +18,18 @@ public class AxisGenerator extends EntityGenerator {
 //		Node Y = Node.makeCube(1, PhysicsBody.newStaticBody(), null);
 //		Node Z = Node.makeCube(1, PhysicsBody.newStaticBody(), null);
 		
-		Node X = Node.makeCube(1, PhysicsBody.newTransientBody(), null);
-		Node Y = Node.makeCube(1, PhysicsBody.newTransientBody(), null);
-		Node Z = Node.makeCube(1, PhysicsBody.newTransientBody(), null);
+		Node X = Node.makeCube(1, PhysicsBody.newStaticBody(), null);
+		Node Y = Node.makeCube(1, PhysicsBody.newStaticBody(), null);
+		Node Z = Node.makeCube(1, PhysicsBody.newStaticBody(), null);
 		
 		X.transform.setScale(size, 1.0f, 1.0f);
-		Y.transform.setScale(1.0f, size, 1.0f);
+//		Y.transform.setScale(1.0f, size, 1.0f);
 		Z.transform.setScale(1.0f, 1.0f, size);
+		
+		X.addToCurrentScene();
+//		Y.addToCurrentScene();
+		Z.addToCurrentScene();
+		
 		
 		
 //		X.physicsBody().setMass(size);

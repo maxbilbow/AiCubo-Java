@@ -52,6 +52,17 @@ public class Bugger {
 	int count = 1;
 //	private String previousLog = "";
 	
+	
+	public static void PrintTrace() {
+		StackTraceElement[] trace = Thread.currentThread().getStackTrace();//[2];
+		System.out.println("TRACE:");
+		int i =0;
+		for (StackTraceElement e : trace) {
+			if (i++ > 0)
+			System.out.println(e);
+		}
+	}
+	
 	private String logMessage(Object o) {
 		
 		StackTraceElement trace = Thread.currentThread().getStackTrace()[3];

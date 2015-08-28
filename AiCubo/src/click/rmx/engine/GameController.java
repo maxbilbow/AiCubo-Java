@@ -77,6 +77,10 @@ public abstract class GameController extends RMXObject implements RenderDelegate
 	public void addKeyCallback(IKeyCallback callback) {
 		this.view.keyCallback().callbacks.add(callback);
 	}
+	
+	public void addKeyListenerForKey(int key, IKeyCallback listener) {
+		this.view.keyCallback().addKeyListenerForKey(key, listener);
+	}
         @Override
 	public void run() {
 //        

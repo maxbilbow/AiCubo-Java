@@ -1,6 +1,7 @@
 package click.rmx.engine.physics;
 
 import click.rmx.RMX;
+import click.rmx.RMXObject;
 import click.rmx.engine.Node;
 import click.rmx.engine.Transform;
 import click.rmx.engine.math.Vector3;
@@ -12,6 +13,7 @@ public final class CollisionEvent {
 	public final Vector3 AtoB;
 	public final float startingDistance;
 	public final float planeDistance;
+	private boolean isPrevented = false;
 	public String axis;
 	public String log;
 	private final int key;
@@ -28,6 +30,8 @@ public final class CollisionEvent {
 		startingDistance = this.getDistance(); // A.localPosition().getDistanceTo(B.localPosition());
 		if (Float.isNaN(startingDistance))
 			System.err.println(AtoB + " is not a number - " + this);
+		nodeA.broadcastMessage("onCollisionStart",this);
+		nodeB.broadcastMessage("onCollisionStart",this);
 
 	}
 
@@ -36,16 +40,19 @@ public final class CollisionEvent {
 	 * @param key prevents this method being called illegally
 	 */
 	public void processCollision(int key) {
+		if (this.isPrevented)
+			return;
 		if (this.key != key)
 			throw new IllegalArgumentException("key mismatch: " + key + " += " + this.key);
 
 		this.seperateBodies(nodeA.transform,nodeB.transform);
 		this.processMomentum(nodeA.transform,nodeB.transform);
-		nodeA.broadcastMessage("onCollision", this);
-		nodeB.broadcastMessage("onCollision", this);
+		nodeA.broadcastMessage("onCollisionEnd", this);
+		nodeB.broadcastMessage("onCollisionEnd", this);
 	}
 
 	private void seperateBodies(Transform A, Transform B)  {
+
 		//apply force relative to overlapping areas 
 		float min;
 		float dist = this.startingDistance;
@@ -76,6 +83,7 @@ public final class CollisionEvent {
 			else if (B.physicsBody().getType() == PhysicsBodyType.Dynamic)
 				B.rootTransform().stepBack(axis);//diff * sign);
 		}
+		
 		if (A.collisionBody().boundingBox.intersects(B.collisionBody().boundingBox) ) { 
 			
 //			diff = this.getPlaneDistance();
@@ -84,21 +92,16 @@ public final class CollisionEvent {
 //			else if (B.physicsBody().getType() == PhysicsBodyType.Dynamic)
 //				B.rootTransform().moveAlongAxis(axis, diff);//diff * sign);
 
-		//		else {// if (A.collisionBody().boundingBox.intersects(B.collisionBody().boundingBox) ){
-		//			log += "\n Translating A: " + diff;
 					float time = RMX.getCurrentFramerate();
-					float escapeForce = time * AtoB.length();
+					float escapeForce = time;// * AtoB.length();
 					Vector3 dir = //AtoB.getNormalized();
 							new Vector3(axis == "x" ? 1 : 0, axis == "y" ? 1 : 0, axis == "z" ? 1 : 0
 									);
-		//
-								A.physicsBody().applyForce(escapeForce, dir, hitPointA);//.translate(AtoB);
-		//			//
-		//			//			log += "\n Translating B: " + AtoB;
-								B.physicsBody().applyForce(-escapeForce, dir, hitPointB);//translate(AtoB);
-		//		} else {
-		//			System.out.println("Success on axis: " + axis);
-		//		}
+
+								A.physicsBody().applyForce(escapeForce * (A.mass() + diff), dir, hitPointA);//.translate(AtoB);
+
+								B.physicsBody().applyForce(-escapeForce * (B.mass() + diff), dir, hitPointB);//translate(AtoB);
+
 
 		}
 
@@ -155,7 +158,7 @@ public final class CollisionEvent {
 	}
 
 	private void processMomentum(Transform A, Transform B)  {
-
+	
 		log += "\n\nCollision Momentum Report: " + nodeA.uniqueName() + " vs. " + nodeB.uniqueName();
 
 		Vector3 Va = A.node.physicsBody().getVelocity();
@@ -189,6 +192,7 @@ public final class CollisionEvent {
 
 		//Transfer of forces
 
+		
 		nodeA.physicsBody().applyForce( forceOnA * lossA , direction, hitPointA);
 		nodeB.physicsBody().applyForce( forceOnB * lossB , direction, hitPointB);
 
@@ -206,6 +210,18 @@ public final class CollisionEvent {
 	public float getDistance() {
 
 		return Vector3.makeSubtraction(nodeA.transform.position(), nodeB.transform.position()).length();
+	}
+
+	public boolean isPrevented() {
+		return this.isPrevented;
+	}
+
+	public void preventCollision(boolean isPrevented) {
+		this.isPrevented = isPrevented;
+	}
+
+	public Node getOther(Node node) {
+		return node == nodeA ? nodeB : nodeA;
 	}
 
 }

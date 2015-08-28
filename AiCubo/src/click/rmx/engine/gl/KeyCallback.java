@@ -4,6 +4,7 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.GL_TRUE;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.lwjgl.glfw.GLFWKeyCallback;
 
@@ -67,6 +68,21 @@ public class KeyCallback extends GLFWKeyCallback {
 		for (IKeyCallback callback : this.callbacks) {
 			callback.invoke(window, key, scancode, action, mods);
 		}
+		ArrayList<IKeyCallback> listeners = this.keyListeners.getOrDefault(key,null);
+		if (listeners != null)
+			for (IKeyCallback callback : listeners) {
+				callback.invoke(window, key, scancode, action, mods);
+			} 
      }
+
+
+	 HashMap<Integer,ArrayList<IKeyCallback>> keyListeners = new HashMap<>();
+
+	 public void addKeyListenerForKey(int key, IKeyCallback listener) {
+		 if (!keyListeners.containsKey(key)) {
+			 keyListeners.put(key, new ArrayList<>());
+		 }
+		 keyListeners.get(key).add(listener);
+	 }
 
 }

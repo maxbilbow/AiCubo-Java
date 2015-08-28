@@ -31,6 +31,9 @@ public class Transform extends NodeComponent {
 //	private final Vector3 _lastPosition = new Vector3();
 	
 	
+	public Vector3[] getHistory() {
+		return this.history;
+	}
 	public Vector3 lastPosition() {
 		return this.history[0];
 	}
@@ -368,7 +371,7 @@ public class Transform extends NodeComponent {
 		return scale().z * 2;
 	}
 
-	Vector3[] history = new Vector3[2];
+	Vector3[] history = new Vector3[3];
 //	private int historyCheck = 0;
 	public void updateLastPosition() {
 		for (int i=history.length-1; i>0; --i) {

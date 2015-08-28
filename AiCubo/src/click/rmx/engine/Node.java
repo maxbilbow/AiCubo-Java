@@ -3,12 +3,16 @@ package click.rmx.engine;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.function.Predicate;
 
 import click.rmx.RMXObject;
 import click.rmx.engine.behaviours.Behaviour;
+import click.rmx.engine.behaviours.CameraBehaviour;
 import click.rmx.engine.behaviours.IBehaviour;
 import click.rmx.engine.math.Matrix4;
+import click.rmx.engine.math.Tools;
 import click.rmx.engine.physics.CollisionBody;
 import click.rmx.engine.physics.PhysicsBody;
 
@@ -31,7 +35,7 @@ public class Node extends RMXObject implements Ticker{
 //	}
 	public static Node getCurrent() {
 		if (current == null)
-			current = Node.newCameraNode();
+			current = new Node("Player");
 		return current;
 	}
 	private HashMap<Class<?>,NodeComponent> components = new HashMap<Class<?>,NodeComponent>();
@@ -44,6 +48,12 @@ public class Node extends RMXObject implements Ticker{
 	
 	public void addBehaviour(IBehaviour behaviour) {
 		if (behaviour != null) {
+			for (IBehaviour b : this.behaviours) {
+				if (!b.getName().isEmpty() && b.getName() == behaviour.getName()) {
+					System.err.println("Behaviour: " + b.getName() + " was already added.");
+					return;
+				}
+			}
 			this.behaviours.add(behaviour);
 			behaviour.setNode(this);
 		}
@@ -101,6 +111,7 @@ public class Node extends RMXObject implements Ticker{
 	public static Node newCameraNode() {
 		Node cameraNode = new Node("CameraNode");
 		cameraNode.setCamera(new Camera());
+		cameraNode.addBehaviour(new CameraBehaviour());
 		return cameraNode;
 	}
 	
@@ -136,7 +147,7 @@ public class Node extends RMXObject implements Ticker{
 		
 		for (IBehaviour behaviour : this.behaviours) {
 			if (behaviour.isEnabled())
-				behaviour.update();
+				behaviour.update(time);
 		}
 		for (Node child : this.children)
 			child.updateLogic(time);
@@ -201,15 +212,32 @@ public class Node extends RMXObject implements Ticker{
 	@Override
 	public void broadcastMessage(String message, Object args) {
 		super.broadcastMessage(message, args);
-//		for (NodeComponent c : this.components.values()) {
-//			c.broadcastMessage(message, args);
-//		}
+		for (NodeComponent c : this.components.values()) {
+			c.broadcastMessage(message, args);
+		}
 		for (IBehaviour b : this.behaviours) {
 			b.broadcastMessage(message, args);
 		}
 		for (Node child : this.children) {
 			child.broadcastMessage(message, args);
 		}
+	}
+	
+	public boolean sendMessageToBehaviour(Class<?> theBehaviour, String message) {
+		return this.sendMessageToBehaviour(theBehaviour, message, null);
+	}
+	
+	public boolean sendMessageToBehaviour(Class<?> theBehaviour, String message, Object args) {
+		for (IBehaviour b : this.behaviours) {
+			if (b.getClass().equals(theBehaviour)) {
+				if (args != null)
+					b.broadcastMessage(message, args);
+				else
+					b.broadcastMessage(message);
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public static Node makeCube(float s,PhysicsBody body, Behaviour b) {
@@ -223,6 +251,7 @@ public class Node extends RMXObject implements Ticker{
 		return n;
 	}
 
+	
 	public void addToCurrentScene() {
 		Scene.getCurrent().rootNode.addChild(this);
 	}
@@ -238,5 +267,22 @@ public class Node extends RMXObject implements Ticker{
 	@Override
 	public void updateTick(long newTick) {
 		this.tick = newTick;
+	}
+
+	public static Node randomAiNode() {
+		@SuppressWarnings("unchecked")
+		ArrayList<Node> nodes =  (ArrayList<Node>) Scene.getCurrent().rootNode.getChildren().clone();
+		
+		nodes.removeIf(new Predicate<Node>() {
+
+			@Override
+			public boolean test(Node t) {
+				
+				return t.getValue(Behaviour.GET_AI_STATE) == null;
+			}
+			
+		});
+		
+		return nodes.get((int) Tools.rBounds(0, nodes.size()));
 	}
 }

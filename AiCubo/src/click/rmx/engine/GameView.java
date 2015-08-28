@@ -177,7 +177,7 @@ public class GameView extends RMXObject implements GLView{
             // Poll for window events. The key callback above will only be
             // invoked during this call.
             glfwPollEvents();
-            this.didCauseEvent(END_OF_GAMELOOP);
+//            this.didCauseEvent(END_OF_GAMELOOP);
         }
     }
  
@@ -203,9 +203,14 @@ public class GameView extends RMXObject implements GLView{
 					}
 				}
 				@Override
-				public void update() {
+				public void update(long tick) {
 					// TODO Auto-generated method stub
 
+				}
+				@Override
+				protected void onAwake() {
+					// TODO Auto-generated method stub
+					
 				}
 
 			});
