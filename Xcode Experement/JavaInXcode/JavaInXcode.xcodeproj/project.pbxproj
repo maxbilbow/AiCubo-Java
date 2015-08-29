@@ -1,0 +1,649 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		503ECD871B916B2000492B31 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD861B916B2000492B31 /* main.cpp */; };
+		503ECD8B1B916B3200492B31 /* Bugger.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD2A1B916AD100492B31 /* Bugger.java */; };
+		503ECD8C1B916B3200492B31 /* package-info.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD6D1B916AD100492B31 /* package-info.java */; };
+		503ECD8D1B916B3200492B31 /* RMX.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD6E1B916AD100492B31 /* RMX.java */; };
+		503ECD8E1B916B3200492B31 /* RMXObject.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD6F1B916AD100492B31 /* RMXObject.java */; };
+		503ECD8F1B916B3200492B31 /* StringFormatter.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD701B916AD100492B31 /* StringFormatter.java */; };
+		503ECD901B916B4500492B31 /* Database.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD2C1B916AD100492B31 /* Database.java */; };
+		503ECD911B916B4500492B31 /* package-info.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD2D1B916AD100492B31 /* package-info.java */; };
+		503ECD921B916B4500492B31 /* ASingleton.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD2F1B916AD100492B31 /* ASingleton.java */; };
+		503ECD931B916B4500492B31 /* Camera.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD381B916AD100492B31 /* Camera.java */; };
+		503ECD941B916B4500492B31 /* GameController.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD391B916AD100492B31 /* GameController.java */; };
+		503ECD951B916B4500492B31 /* GameView.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD3A1B916AD100492B31 /* GameView.java */; };
+		503ECD961B916B4500492B31 /* Geometry.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD3B1B916AD100492B31 /* Geometry.java */; };
+		503ECD971B916B4500492B31 /* LightSource.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD481B916AD100492B31 /* LightSource.java */; };
+		503ECD981B916B4500492B31 /* Node.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD531B916AD100492B31 /* Node.java */; };
+		503ECD991B916B4500492B31 /* NodeComponent.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD541B916AD100492B31 /* NodeComponent.java */; };
+		503ECD9A1B916B4500492B31 /* RenderDelegate.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD601B916AD100492B31 /* RenderDelegate.java */; };
+		503ECD9B1B916B4500492B31 /* Scene.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD611B916AD100492B31 /* Scene.java */; };
+		503ECD9C1B916B4500492B31 /* Singletons.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD621B916AD100492B31 /* Singletons.java */; };
+		503ECD9D1B916B4500492B31 /* StructClass.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD631B916AD100492B31 /* StructClass.java */; };
+		503ECD9E1B916B4500492B31 /* Ticker.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD641B916AD100492B31 /* Ticker.java */; };
+		503ECD9F1B916B4500492B31 /* Transform.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD651B916AD100492B31 /* Transform.java */; };
+		503ECDA01B916B4500492B31 /* VertexCube.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD661B916AD100492B31 /* VertexCube.java */; };
+		503ECDA11B916B4500492B31 /* EventStatus.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD681B916AD100492B31 /* EventStatus.java */; };
+		503ECDA21B916B4500492B31 /* IEventListener.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD691B916AD100492B31 /* IEventListener.java */; };
+		503ECDA31B916B4500492B31 /* IMessageable.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD6A1B916AD100492B31 /* IMessageable.java */; };
+		503ECDA41B916B4500492B31 /* KeyValueObserver.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD6B1B916AD100492B31 /* KeyValueObserver.java */; };
+		503ECDA51B916B4500492B31 /* NotificationCenter.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD6C1B916AD100492B31 /* NotificationCenter.java */; };
+		503ECDA61B916B5100492B31 /* Behaviour.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD311B916AD100492B31 /* Behaviour.java */; };
+		503ECDA71B916B5100492B31 /* CameraBehaviour.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD321B916AD100492B31 /* CameraBehaviour.java */; };
+		503ECDA81B916B5100492B31 /* CollisionHandler.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD331B916AD100492B31 /* CollisionHandler.java */; };
+		503ECDA91B916B5100492B31 /* IBehaviour.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD341B916AD100492B31 /* IBehaviour.java */; };
+		503ECDAA1B916B5100492B31 /* ICollisionHandler.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD351B916AD100492B31 /* ICollisionHandler.java */; };
+		503ECDAB1B916B5100492B31 /* SpriteBehaviour.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD361B916AD100492B31 /* SpriteBehaviour.java */; };
+		503ECDAC1B916B5100492B31 /* Warning.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD371B916AD100492B31 /* Warning.java */; };
+		503ECDAD1B916B5500492B31 /* CursorCallback.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD3D1B916AD100492B31 /* CursorCallback.java */; };
+		503ECDAE1B916B5500492B31 /* GL.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD3E1B916AD100492B31 /* GL.java */; };
+		503ECDAF1B916B5500492B31 /* Glu.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD3F1B916AD100492B31 /* Glu.java */; };
+		503ECDB01B916B5500492B31 /* GLView.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD401B916AD100492B31 /* GLView.java */; };
+		503ECDB11B916B5500492B31 /* IKeyCallback.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD411B916AD100492B31 /* IKeyCallback.java */; };
+		503ECDB21B916B5500492B31 /* KeyCallback.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD421B916AD100492B31 /* KeyCallback.java */; };
+		503ECDB31B916B5500492B31 /* KeyStates.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD431B916AD100492B31 /* KeyStates.java */; };
+		503ECDB41B916B5500492B31 /* Mesh.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD441B916AD100492B31 /* Mesh.java */; };
+		503ECDB51B916B5500492B31 /* MobavleObject.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD451B916AD100492B31 /* MobavleObject.java */; };
+		503ECDB61B916B5500492B31 /* SharedLibraryLoader.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD461B916AD100492B31 /* SharedLibraryLoader.java */; };
+		503ECDB71B916B5500492B31 /* Tree.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD471B916AD100492B31 /* Tree.java */; };
+		503ECDB81B916B5A00492B31 /* EulerAngles.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD4A1B916AD100492B31 /* EulerAngles.java */; };
+		503ECDB91B916B5A00492B31 /* Matrix2.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD4B1B916AD100492B31 /* Matrix2.java */; };
+		503ECDBA1B916B5A00492B31 /* Matrix3.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD4C1B916AD100492B31 /* Matrix3.java */; };
+		503ECDBB1B916B5A00492B31 /* Matrix4.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD4D1B916AD100492B31 /* Matrix4.java */; };
+		503ECDBC1B916B5A00492B31 /* Tools.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD4E1B916AD100492B31 /* Tools.java */; };
+		503ECDBD1B916B5A00492B31 /* ToolsTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD4F1B916AD100492B31 /* ToolsTest.java */; };
+		503ECDBE1B916B5A00492B31 /* Vector2.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD501B916AD100492B31 /* Vector2.java */; };
+		503ECDBF1B916B5A00492B31 /* Vector3.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD511B916AD100492B31 /* Vector3.java */; };
+		503ECDC01B916B5A00492B31 /* Vector4.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD521B916AD100492B31 /* Vector4.java */; };
+		503ECDC11B916B5F00492B31 /* BoundingBox.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD561B916AD100492B31 /* BoundingBox.java */; };
+		503ECDC21B916B5F00492B31 /* BoundingSphere.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD571B916AD100492B31 /* BoundingSphere.java */; };
+		503ECDC31B916B5F00492B31 /* CollisionBody.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD581B916AD100492B31 /* CollisionBody.java */; };
+		503ECDC41B916B5F00492B31 /* CollisionBounds.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD591B916AD100492B31 /* CollisionBounds.java */; };
+		503ECDC51B916B5F00492B31 /* CollisionDelegate.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD5A1B916AD100492B31 /* CollisionDelegate.java */; };
+		503ECDC61B916B5F00492B31 /* CollisionEvent.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD5B1B916AD100492B31 /* CollisionEvent.java */; };
+		503ECDC71B916B5F00492B31 /* PhysicsBody.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD5C1B916AD100492B31 /* PhysicsBody.java */; };
+		503ECDC81B916B5F00492B31 /* PhysicsBodyType.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD5D1B916AD100492B31 /* PhysicsBodyType.java */; };
+		503ECDC91B916B5F00492B31 /* PhysicsWorld.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD5E1B916AD100492B31 /* PhysicsWorld.java */; };
+		503ECDCA1B916B5F00492B31 /* PhysicsWorldTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD5F1B916AD100492B31 /* PhysicsWorldTest.java */; };
+		503ECDCB1B916B6E00492B31 /* AiCubo.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD771B916AD100492B31 /* AiCubo.java */; };
+		503ECDCC1B916B6E00492B31 /* AiCuboCollisionTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD781B916AD100492B31 /* AiCuboCollisionTest.java */; };
+		503ECDCD1B916B6E00492B31 /* AxisGenerator.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD7B1B916AD100492B31 /* AxisGenerator.java */; };
+		503ECDCE1B916B6E00492B31 /* EntityGenerator.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD7C1B916AD100492B31 /* EntityGenerator.java */; };
+		503ECDCF1B916B6E00492B31 /* ShaderTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD7D1B916AD100492B31 /* ShaderTest.java */; };
+		503ECDD01B916B6E00492B31 /* VertexBufferTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD7E1B916AD100492B31 /* VertexBufferTest.java */; };
+		503ECDD11B916B7300492B31 /* Strategy.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD751B916AD100492B31 /* Strategy.java */; };
+		503ECDD21B916B7300492B31 /* StrategyEngine.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD761B916AD100492B31 /* StrategyEngine.java */; };
+		503ECDD31B916B7600492B31 /* AntBehaviour.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECD7A1B916AD100492B31 /* AntBehaviour.java */; };
+		503ECDD51B916F0D00492B31 /* Java.java in Sources */ = {isa = PBXBuildFile; fileRef = 503ECDD41B916F0D00492B31 /* Java.java */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		503ECD811B916B2000492B31 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		503ECD2A1B916AD100492B31 /* Bugger.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Bugger.java; sourceTree = "<group>"; };
+		503ECD2C1B916AD100492B31 /* Database.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Database.java; sourceTree = "<group>"; };
+		503ECD2D1B916AD100492B31 /* package-info.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = "package-info.java"; sourceTree = "<group>"; };
+		503ECD2F1B916AD100492B31 /* ASingleton.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = ASingleton.java; sourceTree = "<group>"; };
+		503ECD311B916AD100492B31 /* Behaviour.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Behaviour.java; sourceTree = "<group>"; };
+		503ECD321B916AD100492B31 /* CameraBehaviour.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = CameraBehaviour.java; sourceTree = "<group>"; };
+		503ECD331B916AD100492B31 /* CollisionHandler.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = CollisionHandler.java; sourceTree = "<group>"; };
+		503ECD341B916AD100492B31 /* IBehaviour.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = IBehaviour.java; sourceTree = "<group>"; };
+		503ECD351B916AD100492B31 /* ICollisionHandler.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = ICollisionHandler.java; sourceTree = "<group>"; };
+		503ECD361B916AD100492B31 /* SpriteBehaviour.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = SpriteBehaviour.java; sourceTree = "<group>"; };
+		503ECD371B916AD100492B31 /* Warning.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Warning.java; sourceTree = "<group>"; };
+		503ECD381B916AD100492B31 /* Camera.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Camera.java; sourceTree = "<group>"; };
+		503ECD391B916AD100492B31 /* GameController.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = GameController.java; sourceTree = "<group>"; };
+		503ECD3A1B916AD100492B31 /* GameView.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = GameView.java; sourceTree = "<group>"; };
+		503ECD3B1B916AD100492B31 /* Geometry.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Geometry.java; sourceTree = "<group>"; };
+		503ECD3D1B916AD100492B31 /* CursorCallback.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = CursorCallback.java; sourceTree = "<group>"; };
+		503ECD3E1B916AD100492B31 /* GL.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = GL.java; sourceTree = "<group>"; };
+		503ECD3F1B916AD100492B31 /* Glu.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Glu.java; sourceTree = "<group>"; };
+		503ECD401B916AD100492B31 /* GLView.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = GLView.java; sourceTree = "<group>"; };
+		503ECD411B916AD100492B31 /* IKeyCallback.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = IKeyCallback.java; sourceTree = "<group>"; };
+		503ECD421B916AD100492B31 /* KeyCallback.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = KeyCallback.java; sourceTree = "<group>"; };
+		503ECD431B916AD100492B31 /* KeyStates.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = KeyStates.java; sourceTree = "<group>"; };
+		503ECD441B916AD100492B31 /* Mesh.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Mesh.java; sourceTree = "<group>"; };
+		503ECD451B916AD100492B31 /* MobavleObject.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = MobavleObject.java; sourceTree = "<group>"; };
+		503ECD461B916AD100492B31 /* SharedLibraryLoader.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = SharedLibraryLoader.java; sourceTree = "<group>"; };
+		503ECD471B916AD100492B31 /* Tree.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Tree.java; sourceTree = "<group>"; };
+		503ECD481B916AD100492B31 /* LightSource.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = LightSource.java; sourceTree = "<group>"; };
+		503ECD4A1B916AD100492B31 /* EulerAngles.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = EulerAngles.java; sourceTree = "<group>"; };
+		503ECD4B1B916AD100492B31 /* Matrix2.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Matrix2.java; sourceTree = "<group>"; };
+		503ECD4C1B916AD100492B31 /* Matrix3.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Matrix3.java; sourceTree = "<group>"; };
+		503ECD4D1B916AD100492B31 /* Matrix4.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Matrix4.java; sourceTree = "<group>"; };
+		503ECD4E1B916AD100492B31 /* Tools.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Tools.java; sourceTree = "<group>"; };
+		503ECD4F1B916AD100492B31 /* ToolsTest.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = ToolsTest.java; sourceTree = "<group>"; };
+		503ECD501B916AD100492B31 /* Vector2.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Vector2.java; sourceTree = "<group>"; };
+		503ECD511B916AD100492B31 /* Vector3.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Vector3.java; sourceTree = "<group>"; };
+		503ECD521B916AD100492B31 /* Vector4.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Vector4.java; sourceTree = "<group>"; };
+		503ECD531B916AD100492B31 /* Node.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Node.java; sourceTree = "<group>"; };
+		503ECD541B916AD100492B31 /* NodeComponent.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = NodeComponent.java; sourceTree = "<group>"; };
+		503ECD561B916AD100492B31 /* BoundingBox.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = BoundingBox.java; sourceTree = "<group>"; };
+		503ECD571B916AD100492B31 /* BoundingSphere.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = BoundingSphere.java; sourceTree = "<group>"; };
+		503ECD581B916AD100492B31 /* CollisionBody.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = CollisionBody.java; sourceTree = "<group>"; };
+		503ECD591B916AD100492B31 /* CollisionBounds.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = CollisionBounds.java; sourceTree = "<group>"; };
+		503ECD5A1B916AD100492B31 /* CollisionDelegate.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = CollisionDelegate.java; sourceTree = "<group>"; };
+		503ECD5B1B916AD100492B31 /* CollisionEvent.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = CollisionEvent.java; sourceTree = "<group>"; };
+		503ECD5C1B916AD100492B31 /* PhysicsBody.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = PhysicsBody.java; sourceTree = "<group>"; };
+		503ECD5D1B916AD100492B31 /* PhysicsBodyType.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = PhysicsBodyType.java; sourceTree = "<group>"; };
+		503ECD5E1B916AD100492B31 /* PhysicsWorld.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = PhysicsWorld.java; sourceTree = "<group>"; };
+		503ECD5F1B916AD100492B31 /* PhysicsWorldTest.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = PhysicsWorldTest.java; sourceTree = "<group>"; };
+		503ECD601B916AD100492B31 /* RenderDelegate.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = RenderDelegate.java; sourceTree = "<group>"; };
+		503ECD611B916AD100492B31 /* Scene.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Scene.java; sourceTree = "<group>"; };
+		503ECD621B916AD100492B31 /* Singletons.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Singletons.java; sourceTree = "<group>"; };
+		503ECD631B916AD100492B31 /* StructClass.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = StructClass.java; sourceTree = "<group>"; };
+		503ECD641B916AD100492B31 /* Ticker.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Ticker.java; sourceTree = "<group>"; };
+		503ECD651B916AD100492B31 /* Transform.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Transform.java; sourceTree = "<group>"; };
+		503ECD661B916AD100492B31 /* VertexCube.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = VertexCube.java; sourceTree = "<group>"; };
+		503ECD681B916AD100492B31 /* EventStatus.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = EventStatus.java; sourceTree = "<group>"; };
+		503ECD691B916AD100492B31 /* IEventListener.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = IEventListener.java; sourceTree = "<group>"; };
+		503ECD6A1B916AD100492B31 /* IMessageable.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = IMessageable.java; sourceTree = "<group>"; };
+		503ECD6B1B916AD100492B31 /* KeyValueObserver.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = KeyValueObserver.java; sourceTree = "<group>"; };
+		503ECD6C1B916AD100492B31 /* NotificationCenter.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = NotificationCenter.java; sourceTree = "<group>"; };
+		503ECD6D1B916AD100492B31 /* package-info.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = "package-info.java"; sourceTree = "<group>"; };
+		503ECD6E1B916AD100492B31 /* RMX.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = RMX.java; sourceTree = "<group>"; };
+		503ECD6F1B916AD100492B31 /* RMXObject.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = RMXObject.java; sourceTree = "<group>"; };
+		503ECD701B916AD100492B31 /* StringFormatter.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = StringFormatter.java; sourceTree = "<group>"; };
+		503ECD751B916AD100492B31 /* Strategy.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Strategy.java; sourceTree = "<group>"; };
+		503ECD761B916AD100492B31 /* StrategyEngine.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = StrategyEngine.java; sourceTree = "<group>"; };
+		503ECD771B916AD100492B31 /* AiCubo.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = AiCubo.java; sourceTree = "<group>"; };
+		503ECD781B916AD100492B31 /* AiCuboCollisionTest.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = AiCuboCollisionTest.java; sourceTree = "<group>"; };
+		503ECD7A1B916AD100492B31 /* AntBehaviour.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = AntBehaviour.java; sourceTree = "<group>"; };
+		503ECD7B1B916AD100492B31 /* AxisGenerator.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = AxisGenerator.java; sourceTree = "<group>"; };
+		503ECD7C1B916AD100492B31 /* EntityGenerator.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = EntityGenerator.java; sourceTree = "<group>"; };
+		503ECD7D1B916AD100492B31 /* ShaderTest.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = ShaderTest.java; sourceTree = "<group>"; };
+		503ECD7E1B916AD100492B31 /* VertexBufferTest.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = VertexBufferTest.java; sourceTree = "<group>"; };
+		503ECD831B916B2000492B31 /* Java */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Java; sourceTree = BUILT_PRODUCTS_DIR; };
+		503ECD861B916B2000492B31 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		503ECDD41B916F0D00492B31 /* Java.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Java.java; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		503ECD801B916B2000492B31 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		503ECD211B916AA100492B31 = {
+			isa = PBXGroup;
+			children = (
+				503ECDD41B916F0D00492B31 /* Java.java */,
+				503ECD281B916AD100492B31 /* click */,
+				503ECD711B916AD100492B31 /* com */,
+				503ECD851B916B2000492B31 /* Java */,
+				503ECD841B916B2000492B31 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		503ECD281B916AD100492B31 /* click */ = {
+			isa = PBXGroup;
+			children = (
+				503ECD291B916AD100492B31 /* rmx */,
+			);
+			path = click;
+			sourceTree = "<group>";
+		};
+		503ECD291B916AD100492B31 /* rmx */ = {
+			isa = PBXGroup;
+			children = (
+				503ECD2A1B916AD100492B31 /* Bugger.java */,
+				503ECD2B1B916AD100492B31 /* db */,
+				503ECD2E1B916AD100492B31 /* engine */,
+				503ECD671B916AD100492B31 /* messages */,
+				503ECD6D1B916AD100492B31 /* package-info.java */,
+				503ECD6E1B916AD100492B31 /* RMX.java */,
+				503ECD6F1B916AD100492B31 /* RMXObject.java */,
+				503ECD701B916AD100492B31 /* StringFormatter.java */,
+			);
+			path = rmx;
+			sourceTree = "<group>";
+		};
+		503ECD2B1B916AD100492B31 /* db */ = {
+			isa = PBXGroup;
+			children = (
+				503ECD2C1B916AD100492B31 /* Database.java */,
+				503ECD2D1B916AD100492B31 /* package-info.java */,
+			);
+			path = db;
+			sourceTree = "<group>";
+		};
+		503ECD2E1B916AD100492B31 /* engine */ = {
+			isa = PBXGroup;
+			children = (
+				503ECD2F1B916AD100492B31 /* ASingleton.java */,
+				503ECD301B916AD100492B31 /* behaviours */,
+				503ECD381B916AD100492B31 /* Camera.java */,
+				503ECD391B916AD100492B31 /* GameController.java */,
+				503ECD3A1B916AD100492B31 /* GameView.java */,
+				503ECD3B1B916AD100492B31 /* Geometry.java */,
+				503ECD3C1B916AD100492B31 /* gl */,
+				503ECD481B916AD100492B31 /* LightSource.java */,
+				503ECD491B916AD100492B31 /* math */,
+				503ECD531B916AD100492B31 /* Node.java */,
+				503ECD541B916AD100492B31 /* NodeComponent.java */,
+				503ECD551B916AD100492B31 /* physics */,
+				503ECD601B916AD100492B31 /* RenderDelegate.java */,
+				503ECD611B916AD100492B31 /* Scene.java */,
+				503ECD621B916AD100492B31 /* Singletons.java */,
+				503ECD631B916AD100492B31 /* StructClass.java */,
+				503ECD641B916AD100492B31 /* Ticker.java */,
+				503ECD651B916AD100492B31 /* Transform.java */,
+				503ECD661B916AD100492B31 /* VertexCube.java */,
+			);
+			path = engine;
+			sourceTree = "<group>";
+		};
+		503ECD301B916AD100492B31 /* behaviours */ = {
+			isa = PBXGroup;
+			children = (
+				503ECD311B916AD100492B31 /* Behaviour.java */,
+				503ECD321B916AD100492B31 /* CameraBehaviour.java */,
+				503ECD331B916AD100492B31 /* CollisionHandler.java */,
+				503ECD341B916AD100492B31 /* IBehaviour.java */,
+				503ECD351B916AD100492B31 /* ICollisionHandler.java */,
+				503ECD361B916AD100492B31 /* SpriteBehaviour.java */,
+				503ECD371B916AD100492B31 /* Warning.java */,
+			);
+			path = behaviours;
+			sourceTree = "<group>";
+		};
+		503ECD3C1B916AD100492B31 /* gl */ = {
+			isa = PBXGroup;
+			children = (
+				503ECD3D1B916AD100492B31 /* CursorCallback.java */,
+				503ECD3E1B916AD100492B31 /* GL.java */,
+				503ECD3F1B916AD100492B31 /* Glu.java */,
+				503ECD401B916AD100492B31 /* GLView.java */,
+				503ECD411B916AD100492B31 /* IKeyCallback.java */,
+				503ECD421B916AD100492B31 /* KeyCallback.java */,
+				503ECD431B916AD100492B31 /* KeyStates.java */,
+				503ECD441B916AD100492B31 /* Mesh.java */,
+				503ECD451B916AD100492B31 /* MobavleObject.java */,
+				503ECD461B916AD100492B31 /* SharedLibraryLoader.java */,
+				503ECD471B916AD100492B31 /* Tree.java */,
+			);
+			path = gl;
+			sourceTree = "<group>";
+		};
+		503ECD491B916AD100492B31 /* math */ = {
+			isa = PBXGroup;
+			children = (
+				503ECD4A1B916AD100492B31 /* EulerAngles.java */,
+				503ECD4B1B916AD100492B31 /* Matrix2.java */,
+				503ECD4C1B916AD100492B31 /* Matrix3.java */,
+				503ECD4D1B916AD100492B31 /* Matrix4.java */,
+				503ECD4E1B916AD100492B31 /* Tools.java */,
+				503ECD4F1B916AD100492B31 /* ToolsTest.java */,
+				503ECD501B916AD100492B31 /* Vector2.java */,
+				503ECD511B916AD100492B31 /* Vector3.java */,
+				503ECD521B916AD100492B31 /* Vector4.java */,
+			);
+			path = math;
+			sourceTree = "<group>";
+		};
+		503ECD551B916AD100492B31 /* physics */ = {
+			isa = PBXGroup;
+			children = (
+				503ECD561B916AD100492B31 /* BoundingBox.java */,
+				503ECD571B916AD100492B31 /* BoundingSphere.java */,
+				503ECD581B916AD100492B31 /* CollisionBody.java */,
+				503ECD591B916AD100492B31 /* CollisionBounds.java */,
+				503ECD5A1B916AD100492B31 /* CollisionDelegate.java */,
+				503ECD5B1B916AD100492B31 /* CollisionEvent.java */,
+				503ECD5C1B916AD100492B31 /* PhysicsBody.java */,
+				503ECD5D1B916AD100492B31 /* PhysicsBodyType.java */,
+				503ECD5E1B916AD100492B31 /* PhysicsWorld.java */,
+				503ECD5F1B916AD100492B31 /* PhysicsWorldTest.java */,
+			);
+			path = physics;
+			sourceTree = "<group>";
+		};
+		503ECD671B916AD100492B31 /* messages */ = {
+			isa = PBXGroup;
+			children = (
+				503ECD681B916AD100492B31 /* EventStatus.java */,
+				503ECD691B916AD100492B31 /* IEventListener.java */,
+				503ECD6A1B916AD100492B31 /* IMessageable.java */,
+				503ECD6B1B916AD100492B31 /* KeyValueObserver.java */,
+				503ECD6C1B916AD100492B31 /* NotificationCenter.java */,
+			);
+			path = messages;
+			sourceTree = "<group>";
+		};
+		503ECD711B916AD100492B31 /* com */ = {
+			isa = PBXGroup;
+			children = (
+				503ECD721B916AD100492B31 /* maxbilbow */,
+			);
+			path = com;
+			sourceTree = "<group>";
+		};
+		503ECD721B916AD100492B31 /* maxbilbow */ = {
+			isa = PBXGroup;
+			children = (
+				503ECD731B916AD100492B31 /* aicubo */,
+			);
+			path = maxbilbow;
+			sourceTree = "<group>";
+		};
+		503ECD731B916AD100492B31 /* aicubo */ = {
+			isa = PBXGroup;
+			children = (
+				503ECD741B916AD100492B31 /* ai */,
+				503ECD771B916AD100492B31 /* AiCubo.java */,
+				503ECD781B916AD100492B31 /* AiCuboCollisionTest.java */,
+				503ECD791B916AD100492B31 /* ants */,
+				503ECD7B1B916AD100492B31 /* AxisGenerator.java */,
+				503ECD7C1B916AD100492B31 /* EntityGenerator.java */,
+				503ECD7D1B916AD100492B31 /* ShaderTest.java */,
+				503ECD7E1B916AD100492B31 /* VertexBufferTest.java */,
+			);
+			path = aicubo;
+			sourceTree = "<group>";
+		};
+		503ECD741B916AD100492B31 /* ai */ = {
+			isa = PBXGroup;
+			children = (
+				503ECD751B916AD100492B31 /* Strategy.java */,
+				503ECD761B916AD100492B31 /* StrategyEngine.java */,
+			);
+			path = ai;
+			sourceTree = "<group>";
+		};
+		503ECD791B916AD100492B31 /* ants */ = {
+			isa = PBXGroup;
+			children = (
+				503ECD7A1B916AD100492B31 /* AntBehaviour.java */,
+			);
+			path = ants;
+			sourceTree = "<group>";
+		};
+		503ECD841B916B2000492B31 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				503ECD831B916B2000492B31 /* Java */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		503ECD851B916B2000492B31 /* Java */ = {
+			isa = PBXGroup;
+			children = (
+				503ECD861B916B2000492B31 /* main.cpp */,
+			);
+			path = Java;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		503ECD821B916B2000492B31 /* Java */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 503ECD881B916B2000492B31 /* Build configuration list for PBXNativeTarget "Java" */;
+			buildPhases = (
+				503ECD7F1B916B2000492B31 /* Sources */,
+				503ECD801B916B2000492B31 /* Frameworks */,
+				503ECD811B916B2000492B31 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Java;
+			productName = Java;
+			productReference = 503ECD831B916B2000492B31 /* Java */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		503ECD221B916AA100492B31 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					503ECD821B916B2000492B31 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+				};
+			};
+			buildConfigurationList = 503ECD251B916AA100492B31 /* Build configuration list for PBXProject "JavaInXcode" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 503ECD211B916AA100492B31;
+			productRefGroup = 503ECD841B916B2000492B31 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				503ECD821B916B2000492B31 /* Java */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		503ECD7F1B916B2000492B31 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				503ECD941B916B4500492B31 /* GameController.java in Sources */,
+				503ECD961B916B4500492B31 /* Geometry.java in Sources */,
+				503ECDBE1B916B5A00492B31 /* Vector2.java in Sources */,
+				503ECD8C1B916B3200492B31 /* package-info.java in Sources */,
+				503ECDB81B916B5A00492B31 /* EulerAngles.java in Sources */,
+				503ECDA51B916B4500492B31 /* NotificationCenter.java in Sources */,
+				503ECDBB1B916B5A00492B31 /* Matrix4.java in Sources */,
+				503ECDD01B916B6E00492B31 /* VertexBufferTest.java in Sources */,
+				503ECDA71B916B5100492B31 /* CameraBehaviour.java in Sources */,
+				503ECDB01B916B5500492B31 /* GLView.java in Sources */,
+				503ECD9D1B916B4500492B31 /* StructClass.java in Sources */,
+				503ECDCC1B916B6E00492B31 /* AiCuboCollisionTest.java in Sources */,
+				503ECDAB1B916B5100492B31 /* SpriteBehaviour.java in Sources */,
+				503ECD9F1B916B4500492B31 /* Transform.java in Sources */,
+				503ECDC91B916B5F00492B31 /* PhysicsWorld.java in Sources */,
+				503ECDBD1B916B5A00492B31 /* ToolsTest.java in Sources */,
+				503ECDB61B916B5500492B31 /* SharedLibraryLoader.java in Sources */,
+				503ECD901B916B4500492B31 /* Database.java in Sources */,
+				503ECD931B916B4500492B31 /* Camera.java in Sources */,
+				503ECDC81B916B5F00492B31 /* PhysicsBodyType.java in Sources */,
+				503ECDBF1B916B5A00492B31 /* Vector3.java in Sources */,
+				503ECDAD1B916B5500492B31 /* CursorCallback.java in Sources */,
+				503ECDC21B916B5F00492B31 /* BoundingSphere.java in Sources */,
+				503ECDCF1B916B6E00492B31 /* ShaderTest.java in Sources */,
+				503ECDD21B916B7300492B31 /* StrategyEngine.java in Sources */,
+				503ECDD11B916B7300492B31 /* Strategy.java in Sources */,
+				503ECDAC1B916B5100492B31 /* Warning.java in Sources */,
+				503ECDA31B916B4500492B31 /* IMessageable.java in Sources */,
+				503ECD871B916B2000492B31 /* main.cpp in Sources */,
+				503ECDA01B916B4500492B31 /* VertexCube.java in Sources */,
+				503ECDC41B916B5F00492B31 /* CollisionBounds.java in Sources */,
+				503ECD9B1B916B4500492B31 /* Scene.java in Sources */,
+				503ECDC31B916B5F00492B31 /* CollisionBody.java in Sources */,
+				503ECDA91B916B5100492B31 /* IBehaviour.java in Sources */,
+				503ECD8B1B916B3200492B31 /* Bugger.java in Sources */,
+				503ECDC61B916B5F00492B31 /* CollisionEvent.java in Sources */,
+				503ECDAF1B916B5500492B31 /* Glu.java in Sources */,
+				503ECDCA1B916B5F00492B31 /* PhysicsWorldTest.java in Sources */,
+				503ECD8E1B916B3200492B31 /* RMXObject.java in Sources */,
+				503ECDA21B916B4500492B31 /* IEventListener.java in Sources */,
+				503ECDB71B916B5500492B31 /* Tree.java in Sources */,
+				503ECD921B916B4500492B31 /* ASingleton.java in Sources */,
+				503ECDA41B916B4500492B31 /* KeyValueObserver.java in Sources */,
+				503ECDC11B916B5F00492B31 /* BoundingBox.java in Sources */,
+				503ECD8D1B916B3200492B31 /* RMX.java in Sources */,
+				503ECDB31B916B5500492B31 /* KeyStates.java in Sources */,
+				503ECDA61B916B5100492B31 /* Behaviour.java in Sources */,
+				503ECDB41B916B5500492B31 /* Mesh.java in Sources */,
+				503ECDA11B916B4500492B31 /* EventStatus.java in Sources */,
+				503ECD9E1B916B4500492B31 /* Ticker.java in Sources */,
+				503ECDC51B916B5F00492B31 /* CollisionDelegate.java in Sources */,
+				503ECDCB1B916B6E00492B31 /* AiCubo.java in Sources */,
+				503ECD981B916B4500492B31 /* Node.java in Sources */,
+				503ECDA81B916B5100492B31 /* CollisionHandler.java in Sources */,
+				503ECDCD1B916B6E00492B31 /* AxisGenerator.java in Sources */,
+				503ECDB91B916B5A00492B31 /* Matrix2.java in Sources */,
+				503ECDAA1B916B5100492B31 /* ICollisionHandler.java in Sources */,
+				503ECD991B916B4500492B31 /* NodeComponent.java in Sources */,
+				503ECDB11B916B5500492B31 /* IKeyCallback.java in Sources */,
+				503ECDC71B916B5F00492B31 /* PhysicsBody.java in Sources */,
+				503ECD911B916B4500492B31 /* package-info.java in Sources */,
+				503ECD951B916B4500492B31 /* GameView.java in Sources */,
+				503ECD8F1B916B3200492B31 /* StringFormatter.java in Sources */,
+				503ECD9C1B916B4500492B31 /* Singletons.java in Sources */,
+				503ECDBA1B916B5A00492B31 /* Matrix3.java in Sources */,
+				503ECDBC1B916B5A00492B31 /* Tools.java in Sources */,
+				503ECDAE1B916B5500492B31 /* GL.java in Sources */,
+				503ECDD31B916B7600492B31 /* AntBehaviour.java in Sources */,
+				503ECDCE1B916B6E00492B31 /* EntityGenerator.java in Sources */,
+				503ECD971B916B4500492B31 /* LightSource.java in Sources */,
+				503ECDC01B916B5A00492B31 /* Vector4.java in Sources */,
+				503ECD9A1B916B4500492B31 /* RenderDelegate.java in Sources */,
+				503ECDB21B916B5500492B31 /* KeyCallback.java in Sources */,
+				503ECDD51B916F0D00492B31 /* Java.java in Sources */,
+				503ECDB51B916B5500492B31 /* MobavleObject.java in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		503ECD261B916AA100492B31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		503ECD271B916AA100492B31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		503ECD891B916B2000492B31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		503ECD8A1B916B2000492B31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		503ECD251B916AA100492B31 /* Build configuration list for PBXProject "JavaInXcode" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				503ECD261B916AA100492B31 /* Debug */,
+				503ECD271B916AA100492B31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		503ECD881B916B2000492B31 /* Build configuration list for PBXNativeTarget "Java" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				503ECD891B916B2000492B31 /* Debug */,
+				503ECD8A1B916B2000492B31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 503ECD221B916AA100492B31 /* Project object */;
+}
