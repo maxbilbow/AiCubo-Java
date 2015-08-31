@@ -138,7 +138,7 @@ public final class AiCubo extends GameController {
 		floor.transform.setPosition(0,0,0);
 		scene.rootNode.addChild(floor);
 		float inf = 99999;//Float.POSITIVE_INFINITY;
-		floor.setGeometry(new Geometry(4*3){
+		floor.setGeometry(new Geometry(){
 
 			@Override
 			protected void drawWithScale(float x, float y, float z) {

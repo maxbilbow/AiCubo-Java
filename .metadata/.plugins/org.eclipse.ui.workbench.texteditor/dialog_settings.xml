@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="State" key="selection"/>
+		<item value="f," key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value=","/>
 			<item value="state"/>
 			<item value="point"/>
 			<item value="setPo"/>
@@ -15,9 +16,9 @@
 			<item value="start"/>
 			<item value="makeC"/>
 			<item value="initpov"/>
-			<item value="tick"/>
 		</list>
 		<list key="replacehistory">
+			<item value="f,"/>
 			<item value="Vector4"/>
 			<item value="Vector3"/>
 			<item value="Matrix3"/>
@@ -25,7 +26,6 @@
 			<item value="Vector2"/>
 			<item value="//Util.checkGLError();"/>
 			<item value=", Y,"/>
-			<item value=",-Y,"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

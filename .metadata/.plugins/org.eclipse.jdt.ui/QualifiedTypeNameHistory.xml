@@ -21,7 +21,6 @@
 <fullyQualifiedTypeName name="org.lwjgl.opengl.GL"/>
 <fullyQualifiedTypeName name="click.rmx.engine.LightSource"/>
 <fullyQualifiedTypeName name="org.lwjgl.BufferUtils"/>
-<fullyQualifiedTypeName name="java.nio.FloatBuffer"/>
 <fullyQualifiedTypeName name="click.rmx.engine.physics.CollisionDelegate"/>
 <fullyQualifiedTypeName name="java.lang.Number"/>
 <fullyQualifiedTypeName name="java.lang.Float"/>
@@ -36,7 +35,6 @@
 <fullyQualifiedTypeName name="click.rmx.engine.physics.PhysicsBodyType"/>
 <fullyQualifiedTypeName name="click.rmx.engine.gl.IKeyCallback"/>
 <fullyQualifiedTypeName name="click.rmx.engine.Node"/>
-<fullyQualifiedTypeName name="click.rmx.engine.math.Vector3"/>
 <fullyQualifiedTypeName name="click.rmx.engine.behaviours.SpriteBehaviour"/>
 <fullyQualifiedTypeName name="click.rmx.engine.Scene"/>
 <fullyQualifiedTypeName name="java.lang.Boolean"/>
@@ -60,4 +58,6 @@
 <fullyQualifiedTypeName name="click.rmx.Bugger"/>
 <fullyQualifiedTypeName name="com.maxbilbow.aicubo.ai.Strategy.State"/>
 <fullyQualifiedTypeName name="com.maxbilbow.aicubo.ants.AntBehaviour"/>
+<fullyQualifiedTypeName name="java.nio.FloatBuffer"/>
+<fullyQualifiedTypeName name="click.rmx.engine.math.Vector3"/>
 </qualifiedTypeNameHistroy>

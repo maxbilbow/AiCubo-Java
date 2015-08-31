@@ -78,9 +78,9 @@ public final class CollisionEvent {
 
 		float diff = this.planeDistance;
 		if (A.node.tick() > 0) {
-			if (A.physicsBody().getType() == PhysicsBodyType.Dynamic)
+			if (A.physicsBody().getType() == PhysicsBodyType.Dynamic && !A.physicsBody().getVelocity().isZero())
 				A.rootTransform().stepBack(axis);// -diff * sign);
-			else if (B.physicsBody().getType() == PhysicsBodyType.Dynamic)
+			else if (B.physicsBody().getType() == PhysicsBodyType.Dynamic && !B.physicsBody().getVelocity().isZero())
 				B.rootTransform().stepBack(axis);//diff * sign);
 		}
 		

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;AiCubo&apos;&#x0A;- Original project: &apos;AiCubo&apos;&#x0A;- Original element: &apos;click.rmx.engine.VertexCube.java&apos;" description="Delete element" element1="/src&lt;click.rmx.engine{VertexCube.java" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1441051071646" subPackages="false" version="1.0"/>
+</session>

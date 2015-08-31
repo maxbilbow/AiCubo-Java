@@ -167,7 +167,7 @@ public class Node extends RMXObject implements Ticker{
 	
 	public void draw(Matrix4 modelMatrix) {
 		if (this.geometry() != null) {
-			this.geometry().render(this, modelMatrix);
+			this.geometry().render(this);//, modelMatrix);
 		}
 		LightSource light = (LightSource) this.getComponent(LightSource.class);
 		if (light != null)
