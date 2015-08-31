@@ -2,6 +2,10 @@ package click.rmx.engine.gl;
 import static org.lwjgl.glfw.GLFW.*;
 //import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 import static org.lwjgl.opengl.GL11.GL_TRUE;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.lwjgl.glfw.GLFWKeyCallback;
 
 import click.rmx.engine.GameController;
@@ -21,6 +25,8 @@ public class KeyCallback extends GLFWKeyCallback {
     public static KeyCallback getInstance() {
     	return singleton;
     }
+    
+    public ArrayList<IKeyCallback> callbacks = new ArrayList<>();
 	 @Override
      public void invoke(long window, int key, int scancode, int action, int mods) {
 		if (action == GLFW_PRESS) {
@@ -58,6 +64,25 @@ public class KeyCallback extends GLFWKeyCallback {
 			case GLFW_KEY_SPACE:
 				Node.getCurrent().broadcastMessage("crouch");
 			}
+		
+		for (IKeyCallback callback : this.callbacks) {
+			callback.invoke(window, key, scancode, action, mods);
+		}
+		ArrayList<IKeyCallback> listeners = this.keyListeners.getOrDefault(key,null);
+		if (listeners != null)
+			for (IKeyCallback callback : listeners) {
+				callback.invoke(window, key, scancode, action, mods);
+			} 
      }
+
+
+	 HashMap<Integer,ArrayList<IKeyCallback>> keyListeners = new HashMap<>();
+
+	 public void addKeyListenerForKey(int key, IKeyCallback listener) {
+		 if (!keyListeners.containsKey(key)) {
+			 keyListeners.put(key, new ArrayList<>());
+		 }
+		 keyListeners.get(key).add(listener);
+	 }
 
 }

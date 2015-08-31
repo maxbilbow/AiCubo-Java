@@ -13,7 +13,7 @@ public class Camera extends NodeComponent {
 	public Camera() {
 		super();
 		this.stopListening();
-		this.fovX = this.fovY = 45;
+		this.fovX = this.fovY = 65;
 		this.nearZ = 1;
 		this.farZ = 2000;
 		this.aspect = 1;
@@ -64,32 +64,45 @@ public class Camera extends NodeComponent {
 
         	
 		 Matrix4 m = (Matrix4)this.getNode().transform.worldMatrix().clone();
-//		 Bugger.logAndPrint("\n"+m, false);
+
 		 m.setPosition(0,0,0);
 		 m.invert();
-//		 Bugger.logAndPrint("\n"+m, false);
-//		 m.mul(Scene.getCurrent().rootNode.transform.localMatrix());
-//	        m.set(this.getNode().transform.localMatrix());
-//	        m.negatePosition();
-		 
-//		 m.setIdentity();
-	     glMultMatrixf(m.buffer());
+
+	     glMultMatrixf(m.rowBuffer());
+	     this.modelViewMatrix().resetBuffers();
 	}
 	
 	public Matrix4 modelViewMatrix() {
+		
+		return (Matrix4)this.getNode().transform.worldMatrix().clone();
+	}
+	
+	public Matrix4 makeLookAt() {
+		Matrix4 m = this.modelViewMatrix();
+//		 m.invert();
 
-		Matrix4 m = (Matrix4)this.getNode().transform.worldMatrix().clone();
-//		Bugger.logAndPrint("\n"+m, false);
-		m.negate();
-//		Bugger.logAndPrint("\n"+m, false);
-		return m;
+//		  glMultMatrixf(m.rowBuffer());
+			m.negate();
+			 float x = m.m30, y = m.m31, z = m.m32;
+//	 m.setPosition(0,0,0);
+	
+//	 GL11.glPushMatrix();
+//			 glMultMatrixf(m.rowBuffer());
+	 glTranslatef(
+			 x,
+			 y,
+			 z
+			 );
+	
+
+		  return m;
 	}
 
-	public void onEventDidEnd(String event, Object args) {
-		if (event == END_OF_GAMELOOP) {
-			this.modelViewMatrix().resetBuffers();
-//			System.out.println("Event: " + event);
-		}
-	}
+//	public void onEventDidEnd(String event, Object args) {
+//		if (event == END_OF_GAMELOOP) {
+//			
+////			System.out.println("Event: " + event);
+//		}
+//	}
 
 }

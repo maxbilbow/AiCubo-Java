@@ -1,6 +1,7 @@
 package click.rmx.engine;
 
 
+import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 //import org.lwjgl.util.Display;
@@ -8,11 +9,13 @@ import org.lwjgl.opengl.*;
 
 import click.rmx.Bugger;
 import click.rmx.RMXObject;
+import click.rmx.engine.behaviours.Behaviour;
 import click.rmx.engine.gl.CursorCallback;
 import click.rmx.engine.gl.GLView;
 import click.rmx.engine.gl.KeyCallback;
 
 import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
 
 import static click.rmx.RMX.*;
 import static org.lwjgl.glfw.Callbacks.*;
@@ -43,7 +46,7 @@ public class GameView extends RMXObject implements GLView{
     
     // We need to strongly reference callback instances.
     private GLFWErrorCallback _errorCallback;
-    private GLFWKeyCallback   _keyCallback;
+    private KeyCallback  _keyCallback = KeyCallback.getInstance();
  
     // The window handle
     private long _window;
@@ -72,7 +75,7 @@ public class GameView extends RMXObject implements GLView{
             throw new RuntimeException("Failed to create the GLFW window");
  
         // Setup a key callback. It will be called every time a key is pressed, repeated or released.
-        glfwSetKeyCallback(_window, _keyCallback = KeyCallback.getInstance());
+        glfwSetKeyCallback(_window, _keyCallback);
  
         glfwSetCursorPosCallback(_window, CursorCallback.getInstance());
         // Get the resolution of the primary monitor
@@ -104,7 +107,24 @@ public class GameView extends RMXObject implements GLView{
     }
     private static GLFWWindowSizeCallback windowSizeCallback;
  
-   
+    private static void setUpLighting() {
+        glShadeModel(GL_SMOOTH);
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_LIGHTING);
+        glEnable(GL_LIGHT0);
+        FloatBuffer fb = BufferUtils.createFloatBuffer(4);
+        fb.put(new float[]{0.05f, 0.05f, 0.05f, 1f});
+        fb.flip();
+        glLightModelfv(GL_LIGHT_MODEL_AMBIENT, fb);
+        FloatBuffer fp = BufferUtils.createFloatBuffer(4);
+        fp.put(new float[]{50, 100, 50, 1});
+        fp.flip();
+        glLightfv(GL_LIGHT0, GL_POSITION, fp);
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
+        glEnable(GL_COLOR_MATERIAL);
+        glColorMaterial(GL_FRONT, GL_DIFFUSE);
+    }
     @Override
 	public void enterGameLoop() {
 //    	glfwGenuffers(1, frameBuffer);
@@ -118,6 +138,8 @@ public class GameView extends RMXObject implements GLView{
         GL11.glClearDepth(1.0); 
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         GL11.glDepthFunc(GL11.GL_LEQUAL); 
+        
+        setUpLighting();
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         pointOfView().camera().perspective(this);
@@ -130,7 +152,7 @@ public class GameView extends RMXObject implements GLView{
             
            
             
-        	scene.updateSceneLogic();
+        	scene.updateSceneLogic(System.currentTimeMillis());
         	
         	glMatrixMode(GL_PROJECTION);
             glLoadIdentity();
@@ -155,7 +177,7 @@ public class GameView extends RMXObject implements GLView{
             // Poll for window events. The key callback above will only be
             // invoked during this call.
             glfwPollEvents();
-            this.didCauseEvent(END_OF_GAMELOOP);
+//            this.didCauseEvent(END_OF_GAMELOOP);
         }
     }
  
@@ -165,10 +187,36 @@ public class GameView extends RMXObject implements GLView{
 
 	public boolean setPointOfView(Node pointOfView) {
 		if (pointOfView.camera() == null) {
-			throw new IllegalArgumentException("PointOfView musy have a camera != NULL");
+			pointOfView.setCamera(new Camera());
+			pointOfView.addBehaviour(new Behaviour(){
+
+				//			public void lookUp(String speed) {
+				//				
+				//			}
+
+				@Override
+				public void broadcastMessage(String message, Object args) {
+
+					if (message == "lookUp") {
+						//					Bugger.logAndPrint(message + ": "+ args , false);
+						pointOfView.transform.rotate("pitch", (float) args);
+					}
+				}
+				@Override
+				public void update(long tick) {
+					// TODO Auto-generated method stub
+
+				}
+				@Override
+				protected void onAwake() {
+					// TODO Auto-generated method stub
+					
+				}
+
+			});
 		} else if (_pointOfView == pointOfView) 
 			return false;
-		else if (_pointOfView != null)
+		if (_pointOfView != null)
 			_pointOfView.camera().stopListening();
 		
 		_pointOfView = pointOfView;
@@ -201,7 +249,7 @@ public class GameView extends RMXObject implements GLView{
 	}
 
 	@Override
-	public GLFWKeyCallback keyCallback() {
+	public KeyCallback keyCallback() {
 		// TODO Auto-generated method stub
 		return _keyCallback;
 	}

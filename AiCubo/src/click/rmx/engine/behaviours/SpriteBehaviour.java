@@ -1,14 +1,62 @@
 package click.rmx.engine.behaviours;
 
-import click.rmx.engine.Behaviour;
+import click.rmx.engine.Scene;
 import click.rmx.engine.Transform;
 
 import click.rmx.engine.math.Vector3;
 
 public class SpriteBehaviour extends Behaviour {
 
+	
+	public final static String 
+	KEY_IS_STUCK = "KEY_IS_STUCK";
+	
+	public static final int
+	STUCK_TRUE = 1, STUCK_FALSE = 0, STUCK_MAYBE = 2;
+	
+	protected void setStuck(int state) {
+		this.setValue(KEY_IS_STUCK, state);
+		
+	}
+
+	
+	
+	
+	public int stuckState() {
+		Object result = this.getValue(KEY_IS_STUCK);
+		return result != null ? (int) result : 0;
+	}
+	
+	private Vector3 stuckPosition = new Vector3();
+	private long stuckTime = 0;
+
+	public void setMightBeStuck(long tick) {
+		this.stuckPosition.set(this.transform().position());
+		this.setStuck(STUCK_MAYBE);
+		this.stuckTime = tick;
+	}
+	
+	public void setNotStuck() {
+		this.setStuck(STUCK_FALSE);
+	}
+	
+	public boolean isStuck(long tick) {
+		int state = stuckState();
+		if (state == STUCK_MAYBE && tick - stuckTime > interval() ) {
+			Transform root = this.transform().rootTransform();
+			Vector3 diff = root.position().getVectorTo(stuckPosition);
+				state = diff.x < root.getWidth() &&
+						diff.y < root.getHeight() &&
+						diff.z < root.getLength() ? STUCK_TRUE : STUCK_FALSE;
+				this.setValue(KEY_IS_STUCK, state);
+				
+		} 
+		
+		return state == STUCK_TRUE ? true : false;
+	}
+	
 	@Override
-	public void update() {
+	public void update(long tick) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -27,12 +75,16 @@ public class SpriteBehaviour extends Behaviour {
 				scale.z);
 	}
 	
-	public void jump() {
+	public void jump(float force) {
 		if (crouching) {
 			crouch();
 		}
-		float force = this.getNode().transform.mass() * 20.0f; //TODO: base this on gravity
+		
 		this.getNode().physicsBody().applyForce(force, Vector3.Y, Vector3.Zero);
+	}
+	public void jump() {
+		float force = -this.getNode().transform.mass() * Scene.getCurrent().getPhysicsWorld().getGravity().y; //TODO: base this on gravity
+		this.jump(force);
 	}
 	
 	public void applyForce (String message) {
@@ -75,6 +127,12 @@ public class SpriteBehaviour extends Behaviour {
 			throw new IllegalArgumentException("\"" + direction + "\" not recognised");
 		}
 
+	}
+
+	@Override
+	protected void onAwake() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

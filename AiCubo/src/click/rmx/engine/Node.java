@@ -1,14 +1,23 @@
 package click.rmx.engine;
 
 
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.function.Predicate;
 
 import click.rmx.RMXObject;
+import click.rmx.engine.behaviours.Behaviour;
+import click.rmx.engine.behaviours.CameraBehaviour;
+import click.rmx.engine.behaviours.IBehaviour;
 import click.rmx.engine.math.Matrix4;
+import click.rmx.engine.math.Tools;
+import click.rmx.engine.physics.CollisionBody;
+import click.rmx.engine.physics.PhysicsBody;
 
 
-public class Node extends RMXObject {
+public class Node extends RMXObject implements Ticker{
 
 	private static Node current;
 	
@@ -26,19 +35,25 @@ public class Node extends RMXObject {
 //	}
 	public static Node getCurrent() {
 		if (current == null)
-			current = Node.newCameraNode();
+			current = new Node("Player");
 		return current;
 	}
 	private HashMap<Class<?>,NodeComponent> components = new HashMap<Class<?>,NodeComponent>();
-	private ArrayList<Behaviour> behaviours = new ArrayList<Behaviour>();
+	private ArrayList<IBehaviour> behaviours = new ArrayList<IBehaviour>();
 	
 	public void setComponent(Class<?> type, NodeComponent component) {
 		this.components.put(type, component);
 		component.setNode(this);
 	}
 	
-	public void addBehaviour(Behaviour behaviour) {
+	public void addBehaviour(IBehaviour behaviour) {
 		if (behaviour != null) {
+			for (IBehaviour b : this.behaviours) {
+				if (!b.getName().isEmpty() && b.getName() == behaviour.getName()) {
+					System.err.println("Behaviour: " + b.getName() + " was already added.");
+					return;
+				}
+			}
 			this.behaviours.add(behaviour);
 			behaviour.setNode(this);
 		}
@@ -96,6 +111,7 @@ public class Node extends RMXObject {
 	public static Node newCameraNode() {
 		Node cameraNode = new Node("CameraNode");
 		cameraNode.setCamera(new Camera());
+		cameraNode.addBehaviour(new CameraBehaviour());
 		return cameraNode;
 	}
 	
@@ -127,26 +143,35 @@ public class Node extends RMXObject {
 			return null;
 	}
 	
-	public void updateLogic() {
-		for (Behaviour behaviour : this.behaviours) {
+	public void updateLogic(long time) {
+		
+		for (IBehaviour behaviour : this.behaviours) {
 			if (behaviour.isEnabled())
-				behaviour.update();
+				behaviour.update(time);
 		}
 		for (Node child : this.children)
-			child.updateLogic();
+			child.updateLogic(time);
 		
 	}
-	public void updateAfterPhysics() {
-		for (Behaviour behaviour : this.behaviours) {
+	public void updateAfterPhysics(long time) {
+		for (IBehaviour behaviour : this.behaviours) {
 			if (behaviour.isEnabled())
 				behaviour.lateUpdate();
 		}
+		for (Node child: this.children)
+			child.updateAfterPhysics(time);
+		this.transform.updateLastPosition();
+		this.updateTick(time);
+		///.set(arg0);
 	}
 	
 	public void draw(Matrix4 modelMatrix) {
 		if (this.geometry() != null) {
 			this.geometry().render(this, modelMatrix);
 		}
+		LightSource light = (LightSource) this.getComponent(LightSource.class);
+		if (light != null)
+			light.shine();
 		for (Node child : this.children) {
 			child.draw(modelMatrix);
 		}
@@ -164,13 +189,16 @@ public class Node extends RMXObject {
 		this.parent = parent;
 	}
 	
+	/**
+	 * Sends a message to all behaviours and all children of this node.
+	 */
 	@Override
 	public void broadcastMessage(String message) {
 		super.broadcastMessage(message);
-		for (NodeComponent c : this.components.values()) {
-			c.broadcastMessage(message);
-		}
-		for (Behaviour b : this.behaviours) {
+//		for (NodeComponent c : this.components.values()) {
+//			c.broadcastMessage(message);
+//		}
+		for (IBehaviour b : this.behaviours) {
 			b.broadcastMessage(message);
 		}
 		for (Node child : this.children) {
@@ -178,18 +206,38 @@ public class Node extends RMXObject {
 		}
 	}
 
+	/**
+	 * Sends a message to all behaviours and all children of this node.
+	 */
 	@Override
 	public void broadcastMessage(String message, Object args) {
 		super.broadcastMessage(message, args);
 		for (NodeComponent c : this.components.values()) {
 			c.broadcastMessage(message, args);
 		}
-		for (Behaviour b : this.behaviours) {
+		for (IBehaviour b : this.behaviours) {
 			b.broadcastMessage(message, args);
 		}
 		for (Node child : this.children) {
 			child.broadcastMessage(message, args);
 		}
+	}
+	
+	public boolean sendMessageToBehaviour(Class<?> theBehaviour, String message) {
+		return this.sendMessageToBehaviour(theBehaviour, message, null);
+	}
+	
+	public boolean sendMessageToBehaviour(Class<?> theBehaviour, String message, Object args) {
+		for (IBehaviour b : this.behaviours) {
+			if (b.getClass().equals(theBehaviour)) {
+				if (args != null)
+					b.broadcastMessage(message, args);
+				else
+					b.broadcastMessage(message);
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public static Node makeCube(float s,PhysicsBody body, Behaviour b) {
@@ -199,11 +247,42 @@ public class Node extends RMXObject {
 			n.setPhysicsBody(body);
 		n.transform.setScale(s, s, s);
 		n.addBehaviour(b);
-		n.addToCurrentScene();
+//		n.addToCurrentScene();
 		return n;
 	}
 
-	private void addToCurrentScene() {
+	
+	public void addToCurrentScene() {
 		Scene.getCurrent().rootNode.addChild(this);
+	}
+
+	private long tick = System.currentTimeMillis();
+	
+	@Override
+	public long tick() {
+		// TODO Auto-generated method stub
+		return this.tick;
+	}
+
+	@Override
+	public void updateTick(long newTick) {
+		this.tick = newTick;
+	}
+
+	public static Node randomAiNode() {
+		@SuppressWarnings("unchecked")
+		ArrayList<Node> nodes =  (ArrayList<Node>) Scene.getCurrent().rootNode.getChildren().clone();
+		
+		nodes.removeIf(new Predicate<Node>() {
+
+			@Override
+			public boolean test(Node t) {
+				
+				return t.getValue(Behaviour.GET_AI_STATE) == null;
+			}
+			
+		});
+		
+		return nodes.get((int) Tools.rBounds(0, nodes.size()));
 	}
 }

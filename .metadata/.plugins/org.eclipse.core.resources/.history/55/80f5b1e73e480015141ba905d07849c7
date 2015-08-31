@@ -1,8 +1,0 @@
-package com.maxbilbow.aicubo;
-
-import click.rmx.engine.Scene;
-
-public interface EntityGenerator {
-	
-	public void makeShapesAndAddToScene(int count);
-}

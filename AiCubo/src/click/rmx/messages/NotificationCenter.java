@@ -4,6 +4,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.maxbilbow.aicubo.ants.AntBehaviour;
+
 import click.rmx.Bugger;
 
 
@@ -96,6 +98,7 @@ public final class NotificationCenter {
 		for (IEventListener listener : listeners) {
 			if (listener.implementsMethod("onEventDidEnd", String.class, Object.class))
 				listener.onEventDidEnd(theEvent, o);
+			
 		}
 	}
 

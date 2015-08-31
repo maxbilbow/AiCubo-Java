@@ -2,9 +2,16 @@ package click.rmx.engine;
 
 
 
+import static org.lwjgl.opengl.GL11.glMultMatrixf;
+
+import java.time.LocalTime;
+
+import org.lwjgl.opengl.GL11;
+
 import click.rmx.Bugger;
 import click.rmx.RMXObject;
 import click.rmx.engine.math.Matrix4;
+import click.rmx.engine.physics.PhysicsWorld;
 
 public class Scene extends RMXObject {
 	
@@ -22,7 +29,7 @@ public class Scene extends RMXObject {
 	
 //	private static Scene current;
 	public static Scene getCurrent() {
-		Bugger.log("Get current scene...");
+//		Bugger.log("Get current scene...");
 		if (_current != null)
 			return _current;
 		else
@@ -61,23 +68,30 @@ public class Scene extends RMXObject {
 	public void renderScene(Camera cam) {
 		 if (this.renderDelegate != null) 
      		this.renderDelegate.updateBeforeSceneRender(cam);
-//		cam.look();
-		Matrix4 modelMatrix = cam.modelViewMatrix();
-		//modelMatrix.negate();
+		 
+
+		 Matrix4 m = cam.makeLookAt();
+
+
 		for (Node child : this.rootNode.getChildren()) {
-			child.draw(modelMatrix);
+			child.draw(m);
 		}
+//		GL11.glPopMatrix();
 		
 	}
 
-
-	public void updateSceneLogic() {
+	private long _tick = 0;
+	public long tick() {
+		return _tick;
+	}
+	public void updateSceneLogic(long time) {
+		this._tick = time;
 		 if (this.renderDelegate != null) 
 	     		this.renderDelegate.updateBeforeSceneLogic();
-		this.rootNode.updateLogic();
+		this.rootNode.updateLogic(time);
 		this.physicsWorld.updatePhysics(this.rootNode);
 		this.physicsWorld.updateCollisionEvents(this.rootNode);
-		this.rootNode.updateAfterPhysics();
+		this.rootNode.updateAfterPhysics(time);
 	}
 
 	public RenderDelegate getRenderDelegate() {
@@ -85,8 +99,12 @@ public class Scene extends RMXObject {
 	}
 
 	public void setRenderDelegate(RenderDelegate renderDelegate) {
-		Bugger.log("Setting render delegate: " + renderDelegate);
+//		Bugger.log("Setting render delegate: " + renderDelegate);
 		this.renderDelegate = renderDelegate;
 	}
 
+	
+	public PhysicsWorld getPhysicsWorld() {
+		return this.physicsWorld;
+	}
 }

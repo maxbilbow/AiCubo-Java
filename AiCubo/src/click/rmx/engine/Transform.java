@@ -10,6 +10,8 @@ import click.rmx.Bugger;
 import click.rmx.engine.math.EulerAngles;
 import click.rmx.engine.math.Matrix4;
 import click.rmx.engine.math.Vector3;
+import click.rmx.engine.physics.CollisionBody;
+import click.rmx.engine.physics.PhysicsBody;
 
 
 
@@ -18,18 +20,47 @@ public class Transform extends NodeComponent {
 	public final Node node;
 	
 //	private Matrix4 _rMatrix = new Matrix4();
-	private Matrix4 _worldMatrix;
-	private Matrix4 _axis;
-	private Matrix4 _localMatrix;
-	private Quat4f   _quaternion = new Quat4f();
-	private Vector3 _left = new Vector3();
-	private Vector3 _up = new Vector3();
-	private Vector3 _fwd = new Vector3();
-	private Vector3 _localPosition = new Vector3();
+	private final Matrix4 _worldMatrix;
+	private final Matrix4 _axis;
+	private final Matrix4 _localMatrix;
+	private final Quat4f  _quaternion = new Quat4f();
+	private final Vector3 _left = new Vector3();
+	private final Vector3 _up = new Vector3();
+	private final Vector3 _fwd = new Vector3();
+	private final Vector3 _localPosition = new Vector3();
+//	private final Vector3 _lastPosition = new Vector3();
 	
 	
+	public Vector3[] getHistory() {
+		return this.history;
+	}
+	public Vector3 lastPosition() {
+		return this.history[0];
+	}
+	private int stepsBack = 0;
+	public boolean stepBack(String args) {
+		if (stepsBack >= history.length)
+			return false;
+		if (args.contains("x"))
+			this.localMatrix().m30 = history[stepsBack].x;
+		if (args.contains("y"))
+			this.localMatrix().m31 = history[stepsBack].y;
+		if (args.contains("z"))
+			this.localMatrix().m32 = history[stepsBack].z;
+//		stepsBack++;
+		return !history[stepsBack++].isZero();
+//		this.setPosition(lastPosition());
+	}
 	
 	
+	public void moveAlongAxis(String args, float n) {
+		if (args.contains("x"))
+			this.localMatrix().m30 += n;
+		if (args.contains("y"))
+			this.localMatrix().m31 += n;
+		if (args.contains("z"))
+			this.localMatrix().m32 += n;
+	}
 //	private EulerAngles _eulerAngles = new EulerAngles();
 	private Vector3 _scale = new Vector3(1f,1f,1f);
 	public Transform(Node node) {
@@ -42,6 +73,9 @@ public class Transform extends NodeComponent {
 		
 		this._axis = new Matrix4();
 		this._axis.setIdentity();
+		
+		for (int i = 0; i< history.length; ++i)
+			history[i] = new Vector3();
 	}
 	
 	public Vector3 left() {
@@ -74,20 +108,23 @@ public class Transform extends NodeComponent {
 		_scale.x = x;
 		_scale.y = y;
 		_scale.z = z;
+		
 	}
 	
-
 	
+	private float totalMass; private long _tmTimestamp = -1;
 	/**
 	 * TODO: Test with children
 	 * @return
 	 */
 	public float mass() {
-		float mass = node.physicsBody() != null ? node.physicsBody().getMass() : 0;
+		if (node.tick() == _tmTimestamp)
+			return this.totalMass;
+		totalMass = node.physicsBody() != null ? node.physicsBody().getMass() : 0;
 		for (Node child : node.getChildren()){
-			mass += child.transform.mass();
+			totalMass += child.transform.mass();
 		}
-		return mass;
+		return totalMass;
 	}
 	
 	
@@ -95,15 +132,21 @@ public class Transform extends NodeComponent {
 	 * TODO probably doesnt work. How do you do this maths?
 	 * @return
 	 */
+//	private long _wmTimestamp = -1;//stops this algorithm repeating everytime called.
 	public Matrix4 worldMatrix() {
+//		if (node.tick() == _wmTimestamp)
+//			return _worldMatrix;
 		Transform parent = this.parent();
 		if (parent != null && parent.parent() != null) {
 			_worldMatrix.set(this._localMatrix);//.clone();
 			_worldMatrix.mul(this.parent().worldMatrix());
 			return _worldMatrix;
 		} else {
+			this._worldMatrix.set(_localMatrix);
 			return this._localMatrix;
 		}
+//		_wmTimestamp = this.node.tick();
+//		return _worldMatrix;
 	}
 	
 	public Transform parent() {
@@ -118,17 +161,12 @@ public class Transform extends NodeComponent {
 		return _localPosition;
 	}
 	
-	private Vector3 _position = new Vector3();
+
 	public Vector3 position() {
-		Transform parent = this.parent();
-		if (parent != null && parent.parent() != null) {
-			_position.set(this.localPosition());
-			_position.add(parent.position());
-			return _position;
-		}
-		return this.localPosition();
+		return this.worldMatrix().position();
 	}
 	
+
 	public Transform rootTransform() {
 		Transform parent = this.parent();
 		if (parent != null && parent.parent() != null) {
@@ -147,6 +185,8 @@ public class Transform extends NodeComponent {
 		this._localMatrix.m30 = position.x;
 		this._localMatrix.m31 = position.y;
 		this._localMatrix.m32 = position.z;
+		if (node.tick() <= 0)
+			this.updateLastPosition();
 	}
 	
 	public void setPosition(double d, double e, double f) {
@@ -186,7 +226,7 @@ public class Transform extends NodeComponent {
 		return q;
 	}
 	
-	public Vector3f eulerAngles() {
+	public Vector3 eulerAngles() {
 //		_rotation.set(this.worldMatrix());
 		return this.worldMatrix().eulerAngles();
 	}
@@ -201,7 +241,7 @@ public class Transform extends NodeComponent {
 	public void rotate(float radians, float x, float y, float z) {
 //		Matrix4 rMatrix = new Matrix4();
 		_rMatrix.setIdentity();
-		_rMatrix.setRotation(new AxisAngle4f(x,y,z,radians * 0.2f ));//*  RMX.PI_OVER_180));
+		_rMatrix.setRotation(new AxisAngle4f(x,y,z,radians));//*  RMX.PI_OVER_180));
 //		_rMatrix.transpose();
 		
 //		_quaternion.set(new AxisAngle4f(v.x,v.y,v.z,degrees * 0.1f));
@@ -282,6 +322,18 @@ public class Transform extends NodeComponent {
 //			scale *= -1;
 			v = this.forward();
 			break;
+		case "x":
+//			scale *= -1;
+			v = Vector3.X;
+			break;
+		case "y":
+//			scale *= -1;
+			v = Vector3.Y;
+			break;
+		case "z":
+//			scale *= -1;
+			v = Vector3.Z;
+			break;
 		default:
 			return false;
 		}
@@ -302,6 +354,31 @@ public class Transform extends NodeComponent {
 
 	public float radius() {
 		return (_scale.x + _scale.y + _scale.z) / 3;
+	}
+
+	public float getWidth() {
+		// TODO Auto-generated method stub
+		return scale().x * 2;
+	}
+
+	public float getHeight() {
+		// TODO Auto-generated method stub
+		return scale().y * 2;
+	}
+
+	public float getLength() {
+		// TODO Auto-generated method stub
+		return scale().z * 2;
+	}
+
+	Vector3[] history = new Vector3[3];
+//	private int historyCheck = 0;
+	public void updateLastPosition() {
+		for (int i=history.length-1; i>0; --i) {
+			history[i].set(history[i-1]);
+		}
+		history[0].set(this.localPosition());
+		stepsBack = 0;
 	}
 
 }

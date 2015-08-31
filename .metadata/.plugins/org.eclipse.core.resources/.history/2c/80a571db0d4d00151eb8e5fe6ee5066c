@@ -1,0 +1,108 @@
+package com.maxbilbow.aicubo.ai;
+
+import java.util.HashMap;
+
+
+
+import click.rmx.RMXObject;
+
+public class Strategy {
+	String name;
+	int id;
+	
+	private AiMethod method;
+	public AiMethod getMethod() {
+		return method;
+	}
+
+	public static HashMap<String, StrategyGroup> combined = new HashMap<>();
+	
+	public void setMethod(AiMethod method) {
+		this.method = method;
+	}
+
+	public static final int
+	FAIL = -1, UNCERTAIN = 0, SUCCESS = 1;
+	
+	
+	public enum State {
+		WILL_NOT_WORK, FINISHED, WILL_CONTINUE;
+	}
+	
+	class StrategyGroup {
+		int successes, failures;
+		String name;
+		int id;
+		StrategyGroup(int id, String name) {
+			this.id = id; this.name = name;
+		}
+	}
+	public Strategy(int id, String name) {
+		this.id = id;
+		this.name = name;
+		if (!combined.containsKey(name)) {
+			combined.put(name, new StrategyGroup(id,name));
+		}
+	}
+	
+	private int count = 0;
+	
+	public StrategyGroup group() {
+		return combined.get(this.name);
+	}
+	public void success() {
+		successes++;
+		setCount(getCount() + 1);
+	}
+	
+	public void fail() {
+		failures++;
+		setCount(0);
+	}
+	
+	public void noOutcome() {
+		setCount(getCount() + 1);
+	}
+	
+	public int aggragate() {
+		return successes - failures;
+	}
+	
+	public double successRate() {
+		return successes / (successes + failures);
+	}
+	int maxTurns;
+	public State invoke(Object... args){
+		if (method != null)
+			return method.invoke(this, count, args);
+		
+		System.err.println("Warning: Method not implemented");
+		return State.WILL_NOT_WORK;
+//			throw new NullPointerException();
+		
+	}
+	
+	public interface AiMethod {
+		public State invoke(Strategy ai, int maxTurns, Object... args); 
+	}
+	
+	public static AiMethod DummyMethod() {
+		return new AiMethod() {
+
+			@Override
+			public State invoke(Strategy s, int maxTurns, Object... args) {
+				// TODO Auto-generated method stub
+				return State.WILL_NOT_WORK;
+			}
+			
+		};
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+}

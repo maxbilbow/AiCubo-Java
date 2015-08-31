@@ -15,3 +15,14 @@
 1440264698176	Encapsulate field 'restitution'
 1440277829391	Encapsulate field 'type'
 1440277890225	Encapsulate field 'collisionBody'
+1440344558574	Move compilation units
+1440346149096	Move compilation units
+1440346280176	Move compilation unit
+1440346285187	Delete element
+1440346394164	Rename package 'click.rmx.engine.gl.graphic'
+1440346429206	Move compilation unit
+1440346752287	Move compilation unit
+1440349542144	Move compilation unit
+1440350459302	Move compilation units
+1440355585025	Encapsulate field 'collisionGroup'
+1440358168027	Extract superclass 'CollisonBounds'

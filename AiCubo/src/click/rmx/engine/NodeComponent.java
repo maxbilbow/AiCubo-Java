@@ -7,6 +7,11 @@ public abstract class NodeComponent extends RMXObject {
 	
 //	public abstract void update();
 
+	public NodeComponent() {
+		super();
+		this.setName(this.getClass().getName());
+	}
+	
 	public boolean isEnabled() {
 		return enabled;
 	}

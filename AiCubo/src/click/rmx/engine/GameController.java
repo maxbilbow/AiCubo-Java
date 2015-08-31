@@ -15,6 +15,7 @@ import static org.lwjgl.glfw.GLFW.glfwDestroyWindow;
 import static org.lwjgl.glfw.GLFW.glfwTerminate;
 
 import org.lwjgl.glfw.GLFW;
+import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.opengl.GL11;
 
 import com.maxbilbow.aicubo.AxisGenerator;
@@ -24,7 +25,7 @@ import click.rmx.Bugger;
 import click.rmx.RMXObject;
 import click.rmx.engine.behaviours.SpriteBehaviour;
 import click.rmx.engine.gl.GLView;
-
+import click.rmx.engine.gl.IKeyCallback;
 import click.rmx.engine.gl.KeyStates;
 import click.rmx.engine.gl.SharedLibraryLoader;
 import click.rmx.engine.math.Tools;
@@ -45,10 +46,19 @@ public abstract class GameController extends RMXObject implements RenderDelegate
 		this.setView(new GameView());
 		if (singleton == null)
 			singleton = this;
+		else
+			throw new IllegalArgumentException("Two GameController Instances cannot exist");
+		this.initpov();
+		this.setup();
+		
 	}
 	
 	public GLView getView() {
 		return this.view;
+	}
+	
+	public static boolean isInitialized() {
+		return singleton != null;
 	}
 	
 	public static GameController getInstance() {
@@ -64,12 +74,19 @@ public abstract class GameController extends RMXObject implements RenderDelegate
 	protected abstract void initpov();
 	public abstract void setup();
 
+	public void addKeyCallback(IKeyCallback callback) {
+		this.view.keyCallback().callbacks.add(callback);
+	}
+	
+	public void addKeyListenerForKey(int key, IKeyCallback listener) {
+		this.view.keyCallback().addKeyListenerForKey(key, listener);
+	}
         @Override
 	public void run() {
 //        
        System.out.println("Hello LWJGL " + GLFW.glfwGetVersionString() + "!");
        Bugger.log("Setup GameController");
-       this.setup();
+      
         try {
         	
             Bugger.log("Load Shared Libraries");
@@ -98,10 +115,7 @@ public abstract class GameController extends RMXObject implements RenderDelegate
 		this.repeatedKeys();	
 	}
 
-	@Override
-	public void updateBeforeSceneRender(Object... args) {
-		
-	}
+
 	
 	public final KeyStates keys = new KeyStates();
 	
@@ -156,6 +170,7 @@ public abstract class GameController extends RMXObject implements RenderDelegate
 		if (this.keys.getOrDefault(GLFW_KEY_Z, false)) {
 			player.broadcastMessage("applyTorque","roll:-0.2");
 		}
+//		System.out.println("hello");
 	}
 	
 	

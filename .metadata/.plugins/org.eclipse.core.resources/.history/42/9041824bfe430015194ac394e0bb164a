@@ -1,6 +1,0 @@
-package rmx.gl;
-
-public interface GLView {
-	public void initGL();
-	public void loop();
-}
