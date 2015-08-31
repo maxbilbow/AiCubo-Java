@@ -51,7 +51,7 @@ public final class AiCubo extends GameController {
 		//		body.setCollisionBody(new CollisionBody());
 		Node head = Node.newCameraNode();
 		body.addChild(head);
-		body.transform.setPosition(10f,20f,20f);
+		body.transform.setPosition(-10f,20f,-20f);
 
 
 		this.view.setPointOfView(head);

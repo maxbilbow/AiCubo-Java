@@ -1,8 +1,0 @@
-package com.maxbilbow.aicubo;
-
-abstract class MoveableObject
-{
-  Tree<Mesh> meshTree;
-  public Vector3f pos;
-  public Vector3f rot;
-}

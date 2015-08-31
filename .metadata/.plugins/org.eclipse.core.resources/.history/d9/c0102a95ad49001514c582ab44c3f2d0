@@ -1,9 +1,0 @@
-package com.maxbilbow.aicubo;
-
-import click.rmx.engine.math.Vector3;
-
-public class Mesh {
-	Vector3[] vertices;
-	Vector3[] colors;
-	Vector3[] indices;
-}

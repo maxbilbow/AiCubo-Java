@@ -1,9 +1,0 @@
-package click.rmx.engine.behaviours;
-
-import click.rmx.engine.CollisionEvent;
-
-public abstract class CollisionHandler extends Behaviour {
-
-
-	public abstract void onCollision(final CollisionEvent e);
-}

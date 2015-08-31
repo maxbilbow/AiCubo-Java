@@ -1,7 +1,0 @@
-package click.rmx.engine.math;
-
-import javax.vecmath.Vector4f;
-
-public class Vector4 extends Vector4f {
-
-}

@@ -1,5 +1,0 @@
-package com.maxbilbow.aicubo;
-
-public interface EntityGenerator {
-	public void makeShapesAndAddToScene(Scene scene, int count);
-}

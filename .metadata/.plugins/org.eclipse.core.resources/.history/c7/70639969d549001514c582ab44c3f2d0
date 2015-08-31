@@ -1,5 +1,0 @@
-package click.rmx.engine;
-
-public interface Ticker {
-
-}

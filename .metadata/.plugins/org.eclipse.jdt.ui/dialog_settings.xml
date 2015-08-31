@@ -62,10 +62,12 @@
 	<section name="FatJarPackageWizard">
 		<item value="/Users/rattle/Dropbox/Dropbox Professional/App Archive/AiCubo/Java/AiCubo-Java.xml" key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION"/>
 		<item value="AiCubo - AiCubo" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
-		<item value="/Users/Max/Dropbox/Dropbox Professional/App Archive/AiCubo/Java/AjCubo 0.1.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
-		<item value="true" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
+		<item value="/Users/rattle/Dropbox/Dropbox Professional/App Archive/AiCubo/Java/AjCubo 0.2.1.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
+		<item value="false" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
 		<item value="2" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
 		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="/Users/rattle/Dropbox/Dropbox Professional/App Archive/AiCubo/Java/AjCubo 0.2.1.jar"/>
+			<item value="/Users/rattle/Dropbox/Dropbox Professional/App Archive/AiCubo/Java/AjCubo 0.2.jar"/>
 			<item value="/Users/Max/Dropbox/Dropbox Professional/App Archive/AiCubo/Java/AjCubo 0.1.jar"/>
 			<item value="/Users/rattle/Dropbox/Dropbox Professional/App Archive/AiCubo/Java/AjCubo 0.1.jar"/>
 		</list>
