@@ -1,7 +1,0 @@
-package click.rmx.engine.gl;
-
-
-public interface IKeyCallback {
-
-
-}
