@@ -5,6 +5,7 @@ package click.rmx.engine;
 import static org.lwjgl.opengl.GL11.glMultMatrixf;
 
 import java.time.LocalTime;
+import java.util.stream.Stream;
 
 import org.lwjgl.opengl.GL11;
 
@@ -72,11 +73,10 @@ public class Scene extends RMXObject {
 
 		 Matrix4 m = cam.makeLookAt();
 
+		 Stream<Node> stream = this.rootNode.getChildren().stream();
+		 
+		 stream.forEach(n -> n.draw(m));
 
-		for (Node child : this.rootNode.getChildren()) {
-			child.draw(m);
-		}
-//		GL11.glPopMatrix();
 		
 	}
 
