@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import click.rmx.RMXObject;
 import click.rmx.engine.behaviours.Behaviour;
@@ -17,7 +18,7 @@ import click.rmx.engine.physics.CollisionBody;
 import click.rmx.engine.physics.PhysicsBody;
 
 
-public class Node extends RMXObject implements Ticker{
+public class Node extends RMXObject {
 
 	private static Node current;
 	
@@ -55,7 +56,7 @@ public class Node extends RMXObject implements Ticker{
 				}
 			}
 			this.behaviours.add(behaviour);
-			behaviour.setNode(this);
+			behaviour.broadcastMessage("setNode",this);//.setNode(this);
 		}
 	}
 	
@@ -145,24 +146,30 @@ public class Node extends RMXObject implements Ticker{
 	
 	public void updateLogic(long time) {
 		
-		for (IBehaviour behaviour : this.behaviours) {
+		this.behaviours.stream().forEach(behaviour -> {
 			if (behaviour.isEnabled())
-				behaviour.update(time);
-		}
-		for (Node child : this.children)
+				behaviour.update(this);
+		});
+		
+		this.children.stream().forEach(child -> {
 			child.updateLogic(time);
+		});
+		
 		
 	}
+	private long _timeStamp = -1;
 	public void updateAfterPhysics(long time) {
-		for (IBehaviour behaviour : this.behaviours) {
-			if (behaviour.isEnabled())
-				behaviour.lateUpdate();
-		}
+		this.behaviours.stream().forEach(behaviour -> {
+			if (behaviour.hasLateUpdate())
+				behaviour.broadcastMessage("lateUpdate");
+		});
+		
 		for (Node child: this.children)
 			child.updateAfterPhysics(time);
 		this.transform.updateLastPosition();
-		this.updateTick(time);
+//		this.updateTick(time);
 		///.set(arg0);
+		_timeStamp = time;
 	}
 	
 	public void draw(Matrix4 modelMatrix) {
@@ -240,7 +247,7 @@ public class Node extends RMXObject implements Ticker{
 		return false;
 	}
 	
-	public static Node makeCube(float s,PhysicsBody body, Behaviour b) {
+	public static Node makeCube(float s,PhysicsBody body, IBehaviour b) {
 		Node n = new Node("Cube");
 		n.setGeometry(Geometry.cube());
 		if (body != null)
@@ -256,18 +263,18 @@ public class Node extends RMXObject implements Ticker{
 		Scene.getCurrent().rootNode.addChild(this);
 	}
 
-	private long tick = System.currentTimeMillis();
+//	private long tick = System.currentTimeMillis();
 	
-	@Override
-	public long tick() {
-		// TODO Auto-generated method stub
-		return this.tick;
-	}
+//	@Override
+//	public long tick() {
+//		// TODO Auto-generated method stub
+//		return this.tick;
+//	}
 
-	@Override
-	public void updateTick(long newTick) {
-		this.tick = newTick;
-	}
+//	@Override
+//	public void updateTick(long newTick) {
+//		this.tick = newTick;
+//	}
 
 	public static Node randomAiNode() {
 		@SuppressWarnings("unchecked")

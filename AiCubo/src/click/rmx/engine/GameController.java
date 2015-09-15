@@ -62,10 +62,10 @@ public abstract class GameController extends RMXObject implements RenderDelegate
 	}
 	
 	public static GameController getInstance() {
-		if (singleton != null)
+//		if (singleton != null)
 			return singleton;
-		else
-			throw new IllegalArgumentException("Abstract class GameController must have been initialized first");
+//		else
+//			throw new IllegalArgumentException("Abstract class GameController must have been initialized first");
 		
 	}
 	

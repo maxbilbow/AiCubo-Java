@@ -1,5 +1,6 @@
 package click.rmx.engine.behaviours;
 
+import click.rmx.engine.Node;
 import click.rmx.engine.Scene;
 import click.rmx.engine.Transform;
 
@@ -56,7 +57,7 @@ public class SpriteBehaviour extends Behaviour {
 	}
 	
 	@Override
-	public void update(long tick) {
+	public void update(Node node) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -133,6 +134,15 @@ public class SpriteBehaviour extends Behaviour {
 	protected void onAwake() {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+
+
+	@Override
+	public boolean hasLateUpdate() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

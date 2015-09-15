@@ -65,7 +65,7 @@ public class PhysicsWorld extends RMXObject {
 		this.staticBodies.clear();
 		this.dynamicBodies.clear();
 		this.kinematicBodies.clear();
-		for (Node node : children) {
+		children.forEach(node -> {
 			if (node.collisionBody() != null) {
 				switch (node.physicsBody().getType()) {
 				case Dynamic:
@@ -81,7 +81,8 @@ public class PhysicsWorld extends RMXObject {
 					break;
 				}
 			}
-		}
+		});
+		
 	}
 
 	public void updateCollisionEvents(Node rootNode) {

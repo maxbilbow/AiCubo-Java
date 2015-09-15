@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="click.rmx.engine.gl.Mesh"/>
-<fullyQualifiedTypeName name="click.rmx.engine.gl.Tree"/>
-<fullyQualifiedTypeName name="silvertiger.tutorial.lwjgl.text.Font"/>
-<fullyQualifiedTypeName name="click.rmx.engine.gl.graphic.Texture"/>
-<fullyQualifiedTypeName name="click.rmx.engine.gl.Renderer"/>
-<fullyQualifiedTypeName name="javax.vecmath.Vector2f"/>
-<fullyQualifiedTypeName name="click.rmx.engine.math.Vector2"/>
-<fullyQualifiedTypeName name="click.rmx.engine.Behaviour"/>
-<fullyQualifiedTypeName name="click.rmx.engine.behaviours.CollisionHandler"/>
-<fullyQualifiedTypeName name="click.rmx.engine.behaviours.IBehaviour"/>
-<fullyQualifiedTypeName name="click.rmx.messages.IMessageable"/>
 <fullyQualifiedTypeName name="click.rmx.engine.CollisionEvent"/>
 <fullyQualifiedTypeName name="click.rmx.engine.math.Matrix4"/>
 <fullyQualifiedTypeName name="java.sql.Time"/>
 <fullyQualifiedTypeName name="java.time.LocalTime"/>
-<fullyQualifiedTypeName name="java.time.Instant"/>
 <fullyQualifiedTypeName name="click.rmx.engine.physics.CollisionBody"/>
 <fullyQualifiedTypeName name="click.rmx.engine.math.Vector4"/>
 <fullyQualifiedTypeName name="org.lwjgl.opengl.GL"/>
@@ -27,16 +15,13 @@
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="click.rmx.engine.physics.PhysicsBody"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="click.rmx.engine.GameController"/>
 <fullyQualifiedTypeName name="click.rmx.engine.gl.KeyCallback"/>
 <fullyQualifiedTypeName name="org.lwjgl.glfw.GLFWKeyCallback"/>
 <fullyQualifiedTypeName name="org.lwjgl.opengl.GL11"/>
 <fullyQualifiedTypeName name="com.maxbilbow.aicubo.AiCubo"/>
 <fullyQualifiedTypeName name="click.rmx.engine.physics.PhysicsBodyType"/>
 <fullyQualifiedTypeName name="click.rmx.engine.gl.IKeyCallback"/>
-<fullyQualifiedTypeName name="click.rmx.engine.Node"/>
 <fullyQualifiedTypeName name="click.rmx.engine.behaviours.SpriteBehaviour"/>
-<fullyQualifiedTypeName name="click.rmx.engine.Scene"/>
 <fullyQualifiedTypeName name="java.lang.Boolean"/>
 <fullyQualifiedTypeName name="javax.xml.crypto.dsig.Transform"/>
 <fullyQualifiedTypeName name="click.rmx.engine.Transform"/>
@@ -52,7 +37,6 @@
 <fullyQualifiedTypeName name="com.maxbilbow.aicubo.ai.Strategy"/>
 <fullyQualifiedTypeName name="com.maxbilbow.aicubo.ai.Strategy.AiMethod"/>
 <fullyQualifiedTypeName name="click.rmx.RMX"/>
-<fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="click.rmx.engine.math.Tools"/>
 <fullyQualifiedTypeName name="com.maxbilbow.aicubo.ai.Strategy.StrategyGroup"/>
 <fullyQualifiedTypeName name="click.rmx.Bugger"/>
@@ -60,4 +44,20 @@
 <fullyQualifiedTypeName name="com.maxbilbow.aicubo.ants.AntBehaviour"/>
 <fullyQualifiedTypeName name="java.nio.FloatBuffer"/>
 <fullyQualifiedTypeName name="click.rmx.engine.math.Vector3"/>
+<fullyQualifiedTypeName name="java.io.FileWriter"/>
+<fullyQualifiedTypeName name="java.io.BufferedWriter"/>
+<fullyQualifiedTypeName name="click.rmx.engine.GameController"/>
+<fullyQualifiedTypeName name="java.nio.file.attribute.FileAttribute"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.nio.file.Files"/>
+<fullyQualifiedTypeName name="java.nio.file.Path"/>
+<fullyQualifiedTypeName name="java.nio.file.Paths"/>
+<fullyQualifiedTypeName name="click.rmx.engine.Node"/>
+<fullyQualifiedTypeName name="java.util.stream.Stream"/>
+<fullyQualifiedTypeName name="java.time.Instant"/>
+<fullyQualifiedTypeName name="java.time.Duration"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="click.rmx.engine.Scene"/>
+<fullyQualifiedTypeName name="com.maxbilbow.aicubo.hud.InfoWindowController"/>
+<fullyQualifiedTypeName name="com.maxbilbow.aicubo.hud.InfoWindow"/>
 </qualifiedTypeNameHistroy>

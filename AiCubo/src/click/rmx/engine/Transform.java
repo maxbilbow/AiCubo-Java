@@ -118,7 +118,7 @@ public class Transform extends NodeComponent {
 	 * @return
 	 */
 	public float mass() {
-		if (node.tick() == _tmTimestamp)
+		if (Scene.getCurrent().tick() == _tmTimestamp)
 			return this.totalMass;
 		totalMass = node.physicsBody() != null ? node.physicsBody().getMass() : 0;
 		for (Node child : node.getChildren()){
@@ -185,7 +185,7 @@ public class Transform extends NodeComponent {
 		this._localMatrix.m30 = position.x;
 		this._localMatrix.m31 = position.y;
 		this._localMatrix.m32 = position.z;
-		if (node.tick() <= 0)
+		if (Scene.getCurrent().tick() <= 0)
 			this.updateLastPosition();
 	}
 	

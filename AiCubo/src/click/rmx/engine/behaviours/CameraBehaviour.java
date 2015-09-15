@@ -1,9 +1,11 @@
 package click.rmx.engine.behaviours;
 
+import click.rmx.engine.Node;
+
 public class CameraBehaviour extends Behaviour {
 
 	@Override
-	public void update(long tick) {
+	public void update(Node node) {
 		// TODO Auto-generated method stub
 
 	}
@@ -22,5 +24,11 @@ public class CameraBehaviour extends Behaviour {
 	protected void onAwake() {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public boolean hasLateUpdate() {
+		return false;
 	}
 }

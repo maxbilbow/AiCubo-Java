@@ -15,6 +15,7 @@ import java.util.LinkedList;
 
 import click.rmx.RMX;
 import click.rmx.engine.Node;
+import click.rmx.engine.Scene;
 import click.rmx.engine.behaviours.Behaviour;
 import click.rmx.engine.behaviours.ICollisionHandler;
 import click.rmx.engine.behaviours.SpriteBehaviour;
@@ -199,8 +200,8 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
 
 
 	@Override
-	public void update(long tick) {
-		this.tick = tick;
+	public void update(Node node) {
+		this.tick = Scene.getCurrent().tick();
 		switch (state()) {
 		case Amble:
 			this.applyForce("forward:0.2");

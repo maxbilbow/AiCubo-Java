@@ -20,7 +20,7 @@ public abstract class Behaviour extends NodeComponent implements IBehaviour {
 		this.setValue(GET_AI_STATE, state);		
 	}
 
-
+	public abstract boolean hasLateUpdate();
 	
 //	public Node getNode();
 	public void setDefaultState() {

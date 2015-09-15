@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="82" key="org.eclipse.jdt.debug.ui.jre_preference_page_context.columnWidth2"/>
+	<item value="1" key="org.eclipse.jdt.debug.ui.jre_preference_page_context.sortColumn"/>
+	<item value="191" key="org.eclipse.jdt.debug.ui.jre_preference_page_context.columnWidth1"/>
 	<item value="/Users/rattle/Library/Mobile Documents/com~apple~CloudDocs/RMXLib/JAVA/AiCubo-Java/lwjgl/doc" key="JavaClasspathTab.LAST_PATH_SETTING"/>
+	<item value="118" key="org.eclipse.jdt.debug.ui.jre_preference_page_context.columnWidth0"/>
 	<section name="org.eclipse.jdt.debug.ui.MAIN_METHOD_SELECTION_DIALOG">
 		<item value="true" key="ShowStatusLine"/>
 		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0A;&lt;History&gt;&#x0A;&lt;historyRootNode&gt;&#x0A;&lt;infoNode&gt;=AiCubo/src&amp;lt;click.rmx{RMXObject.java[RMXObject&lt;/infoNode&gt;&#x0A;&lt;/historyRootNode&gt;&#x0A;&lt;/History&gt;" key="History"/>

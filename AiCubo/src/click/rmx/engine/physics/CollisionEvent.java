@@ -3,6 +3,7 @@ package click.rmx.engine.physics;
 import click.rmx.RMX;
 
 import click.rmx.engine.Node;
+import click.rmx.engine.Scene;
 import click.rmx.engine.Transform;
 import click.rmx.engine.math.Vector3;
 
@@ -32,7 +33,6 @@ public final class CollisionEvent {
 			System.err.println(AtoB + " is not a number - " + this);
 		nodeA.broadcastMessage("onCollisionStart",this);
 		nodeB.broadcastMessage("onCollisionStart",this);
-
 	}
 
 	/**
@@ -77,7 +77,7 @@ public final class CollisionEvent {
 		}
 
 		float diff = this.planeDistance;
-		if (A.node.tick() > 0) {
+		if (Scene.getCurrent().tick() > 0) {
 			if (A.physicsBody().getType() == PhysicsBodyType.Dynamic && !A.physicsBody().getVelocity().isZero())
 				A.rootTransform().stepBack(axis);// -diff * sign);
 			else if (B.physicsBody().getType() == PhysicsBodyType.Dynamic && !B.physicsBody().getVelocity().isZero())

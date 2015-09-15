@@ -6,6 +6,8 @@ package com.maxbilbow.aicubo;
 import org.lwjgl.opengl.GL11;
 
 import com.maxbilbow.aicubo.ants.AntBehaviour;
+import com.maxbilbow.aicubo.hud.InfoWindow;
+import com.maxbilbow.aicubo.hud.InfoWindowController;
 
 import static com.maxbilbow.aicubo.ants.AntBehaviour.*;
 
@@ -64,7 +66,7 @@ public final class AiCubo extends GameController {
 	protected AiCubo(){
 		super();
 	}
-	
+
 	EntityGenerator eg;
 	public void initActors() {	
 		Bugger.log("Setting up scene...");
@@ -83,12 +85,12 @@ public final class AiCubo extends GameController {
 				float speed = (float) (Tools.rBounds(30, 100) / 1000);
 				float rotation = (float) (Tools.rBounds(1, (int)speed * 1000) / 1000);
 				Node body = Node.makeCube((float)Tools.rBounds(1, 2), PhysicsBody.newDynamicBody(), new AntBehaviour());
-		
-			
 
 
 
-//				body.addBehaviour(new SpriteBehaviour());
+
+
+				//				body.addBehaviour(new SpriteBehaviour());
 				body.physicsBody().setMass((float) Tools.rBounds(2,8));
 				//				body.physicsBody().setRestitution((float)Tools.rBounds(2,8)/10);
 				//				body.transform.setScale(2, 2, 2);
@@ -96,20 +98,11 @@ public final class AiCubo extends GameController {
 				//				body.physicsBody().setFriction(0f);
 				//				body.physicsBody().setRestitution(0);
 				//				body.setCollisionBody(new CollisionBody());
-				Node head = Node.makeCube(body.transform.radius() / 2, null, new Behaviour() {
-					@Override
-					public void update(long tick) {
-						if (this.getNode() != view.pointOfView()) {
-							this.getNode().transform.move("yaw:0.1");
-							this.getNode().transform.move("pitch:0.1");
-							this.getNode().transform.move("roll:0.1");
-						}
-					}
-
-					@Override
-					protected void onAwake() {
-						// TODO Auto-generated method stub
-						
+				Node head = Node.makeCube(body.transform.radius() / 2, null, node -> {
+					if (node != view.pointOfView()) {
+						node.transform.move("yaw:0.1");
+						node.transform.move("pitch:0.1");
+						node.transform.move("roll:0.1");
 					}
 				});
 
@@ -132,7 +125,7 @@ public final class AiCubo extends GameController {
 		eg.xMin = eg.zMin = -100;
 
 		Bugger.log("Generating...");
-		
+
 		Bugger.log("Success. Creating floor");
 		Node floor = new Node();
 		floor.transform.setPosition(0,0,0);
@@ -201,6 +194,7 @@ public final class AiCubo extends GameController {
 	//	}
 	public static void main(String[] args) {
 		//		try {
+		InfoWindow.open();
 		AiCubo game = new AiCubo();
 		game.initActors();
 		game.Start();
@@ -219,11 +213,11 @@ public final class AiCubo extends GameController {
 			this.tick = Scene.getCurrent().tick();
 			count++;
 		}
-		
+
 	}
-	
-	
-	
+
+
+
 	@Override
 	public void setup() {
 		// TODO Auto-generated method stub
@@ -245,32 +239,32 @@ public final class AiCubo extends GameController {
 							cam = n.getChildWithName("trailingCam");
 						} while (cam == null);
 						n.setValue(Behaviour.GET_AI_STATE, Behaviour.AI_STATE_POSSESSED);//.sendMessageToBehaviour(Behaviour.class,"setState", Behaviour.AI_STATE_POSSESSED);
-						
+
 						Node.setCurrent(n);
 						getView().setPointOfView(cam);
-//						getView().pointOfView().transform.localMatrix().setIdentity();
+						//						getView().pointOfView().transform.localMatrix().setIdentity();
 						break;
 					case GLFW_KEY_ENTER:
 						Transform t = view.pointOfView().transform;//.rootTransform().localMatrix();
 						player.transform.rootTransform().localMatrix().set(t.rootTransform().localMatrix());
 						player.transform.rootTransform().setPosition(t.position());
-//						player.transform.translate(0, player.transform.getHeight(), 0);
+						//						player.transform.translate(0, player.transform.getHeight(), 0);
 						Node.getCurrent().sendMessageToBehaviour(AntBehaviour.class,"setDefaultState");
 						Node.setCurrent(player);
 						getView().setPointOfView(cameraNode);
-						
+
 						break;
 					case GLFW_KEY_I:
 						didCauseEvent(AntBehaviour.CanWalkThroughWalls, mods == GLFW_MOD_SHIFT ? "true" : "false");
 						break;
 					case GLFW_KEY_F:
 						switch (mods) {
-//						case GLFW_MOD_SHIFT:
-//							this.didCauseEvent(FollowTheLeader, "current");
-//							break;
-//						case GLFW_MOD_ALT:
-//							this.didCauseEvent(FollowTheLeader, "random");
-//							break;
+						//						case GLFW_MOD_SHIFT:
+						//							this.didCauseEvent(FollowTheLeader, "current");
+						//							break;
+						//						case GLFW_MOD_ALT:
+						//							this.didCauseEvent(FollowTheLeader, "random");
+						//							break;
 						default:
 							didCauseEvent(GET_AI_STATE, FollowTheLeader);
 							break;	
@@ -299,7 +293,7 @@ public final class AiCubo extends GameController {
 					}
 				if (view.pointOfView().physicsBody() != null)
 					System.err.println(view.pointOfView().getName() + " has physicsBody");
-				
+
 			}
 
 

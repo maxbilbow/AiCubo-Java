@@ -4,6 +4,7 @@ package click.rmx.engine;
 
 import static org.lwjgl.opengl.GL11.glMultMatrixf;
 
+import java.time.Instant;
 import java.time.LocalTime;
 import java.util.stream.Stream;
 
@@ -65,7 +66,7 @@ public class Scene extends RMXObject {
 	
 	private RenderDelegate renderDelegate;
 	
-
+	
 	public void renderScene(Camera cam) {
 		 if (this.renderDelegate != null) 
      		this.renderDelegate.updateBeforeSceneRender(cam);
@@ -84,14 +85,24 @@ public class Scene extends RMXObject {
 	public long tick() {
 		return _tick;
 	}
-	public void updateSceneLogic(long time) {
-		this._tick = time;
+	public void updateSceneLogic() {
+		long time = this._tick = System.currentTimeMillis();
 		 if (this.renderDelegate != null) 
 	     		this.renderDelegate.updateBeforeSceneLogic();
-		this.rootNode.updateLogic(time);
+		 Thread logicThread = new Thread(() -> {
+			 this.rootNode.updateLogic(time);
+		 });
+		 
+		logicThread.start();
 		this.physicsWorld.updatePhysics(this.rootNode);
 		this.physicsWorld.updateCollisionEvents(this.rootNode);
 		this.rootNode.updateAfterPhysics(time);
+		try {
+			logicThread.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public RenderDelegate getRenderDelegate() {
