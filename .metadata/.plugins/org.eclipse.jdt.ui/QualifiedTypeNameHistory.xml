@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="click.rmx.engine.CollisionEvent"/>
 <fullyQualifiedTypeName name="click.rmx.engine.math.Matrix4"/>
 <fullyQualifiedTypeName name="java.sql.Time"/>
 <fullyQualifiedTypeName name="java.time.LocalTime"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="click.rmx.engine.Scene"/>
 <fullyQualifiedTypeName name="com.maxbilbow.aicubo.hud.InfoWindowController"/>
 <fullyQualifiedTypeName name="com.maxbilbow.aicubo.hud.InfoWindow"/>
+<fullyQualifiedTypeName name="click.rmx.Tests"/>
 </qualifiedTypeNameHistroy>
