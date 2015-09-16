@@ -14,11 +14,14 @@ import click.rmx.engine.gl.CursorCallback;
 import click.rmx.engine.gl.GLView;
 import click.rmx.engine.gl.KeyCallback;
 
+import java.lang.management.GarbageCollectorMXBean;
+import java.lang.management.ManagementFactory;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.LinkedList;
+import java.util.List;
 
 import static click.rmx.RMX.*;
 import static org.lwjgl.glfw.Callbacks.*;
@@ -204,7 +207,17 @@ public class GameView extends RMXObject implements GLView{
 				for (Long t : time) {
 					total += t;
 				}
-				Bugger.logAndPrint(total / rollingAverageCount, false);
+				List<GarbageCollectorMXBean> list = ManagementFactory.getGarbageCollectorMXBeans();
+				String s = "Beans:";
+				for (GarbageCollectorMXBean bean : list) {
+					if (!bean.isValid()) 
+						continue;
+					s += "\n" + bean.getName();
+					s += "\n  - Count: " + bean.getCollectionCount();
+					s += "\n  -  Time: " + bean.getCollectionTime();
+				}
+				s += "\n Average time per loop in milliseconds: ";
+				Bugger.logAndPrint(s + total / rollingAverageCount, false);
 				counter = 0;
 			}
 			//            this.didCauseEvent(END_OF_GAMELOOP);

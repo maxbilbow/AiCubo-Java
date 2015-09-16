@@ -373,3 +373,207 @@
 [15:49:42.120x1] click.rmx.engine.GameController::run on line 98: Enter Gameloop
 ====== END OF LOG ======
 
+====== BEGIN LOG ======
+[16:26:40.015x1] click.rmx.engine.Scene::<init> on line 26: Scene initializing...
+[16:26:40.023x1] com.maxbilbow.aicubo.AiCubo::initActors on line 72: Setting up scene...
+[16:26:40.023x1] com.maxbilbow.aicubo.AiCubo::initActors on line 74: SUCCESS
+[16:26:40.023x1] com.maxbilbow.aicubo.AiCubo::initActors on line 76: Setting up actors...
+[16:26:40.023x1] com.maxbilbow.aicubo.AiCubo::initActors on line 78: POV success
+[16:26:40.023x1] com.maxbilbow.aicubo.AiCubo::initActors on line 79: Initializing entity generator
+[16:26:40.023x1] com.maxbilbow.aicubo.AiCubo::initActors on line 122: Entity generator initialized
+[16:26:40.023x1] com.maxbilbow.aicubo.AiCubo::initActors on line 127: Generating...
+[16:26:40.023x1] com.maxbilbow.aicubo.AiCubo::initActors on line 129: Success. Creating floor
+[16:26:40.030x1] com.maxbilbow.aicubo.AiCubo::initActors on line 152: Actors set up successfully...
+[16:26:40.040x1] click.rmx.engine.GameController::run on line 88: Setup GameController
+[16:26:40.040x1] click.rmx.engine.GameController::run on line 92: Load Shared Libraries
+[16:26:40.044x1] click.rmx.engine.GameController::run on line 95: Init GL
+[16:26:40.086x1] click.rmx.engine.GameController::run on line 98: Enter Gameloop
+====== END OF LOG ======
+
+====== BEGIN LOG ======
+[16:44:22.401x1] click.rmx.engine.Scene::<init> on line 26: Scene initializing...
+[16:44:22.406x1] com.maxbilbow.aicubo.AiCubo::initActors on line 72: Setting up scene...
+[16:44:22.406x1] com.maxbilbow.aicubo.AiCubo::initActors on line 74: SUCCESS
+[16:44:22.406x1] com.maxbilbow.aicubo.AiCubo::initActors on line 76: Setting up actors...
+[16:44:22.406x1] com.maxbilbow.aicubo.AiCubo::initActors on line 78: POV success
+[16:44:22.406x1] com.maxbilbow.aicubo.AiCubo::initActors on line 79: Initializing entity generator
+[16:44:22.406x1] com.maxbilbow.aicubo.AiCubo::initActors on line 122: Entity generator initialized
+[16:44:22.406x1] com.maxbilbow.aicubo.AiCubo::initActors on line 127: Generating...
+[16:44:22.406x1] com.maxbilbow.aicubo.AiCubo::initActors on line 129: Success. Creating floor
+[16:44:22.408x1] com.maxbilbow.aicubo.AiCubo::initActors on line 152: Actors set up successfully...
+[16:44:22.415x1] click.rmx.engine.GameController::run on line 88: Setup GameController
+[16:44:22.415x1] click.rmx.engine.GameController::run on line 92: Load Shared Libraries
+[16:44:22.417x1] click.rmx.engine.GameController::run on line 95: Init GL
+[16:44:22.459x1] click.rmx.engine.GameController::run on line 98: Enter Gameloop
+====== END OF LOG ======
+
+====== BEGIN LOG ======
+[16:44:32.613x1] click.rmx.engine.Scene::<init> on line 26: Scene initializing...
+[16:44:32.619x1] com.maxbilbow.aicubo.AiCubo::initActors on line 72: Setting up scene...
+[16:44:32.619x1] com.maxbilbow.aicubo.AiCubo::initActors on line 74: SUCCESS
+[16:44:32.619x1] com.maxbilbow.aicubo.AiCubo::initActors on line 76: Setting up actors...
+[16:44:32.619x1] com.maxbilbow.aicubo.AiCubo::initActors on line 78: POV success
+[16:44:32.619x1] com.maxbilbow.aicubo.AiCubo::initActors on line 79: Initializing entity generator
+[16:44:32.619x1] com.maxbilbow.aicubo.AiCubo::initActors on line 122: Entity generator initialized
+[16:44:32.619x1] com.maxbilbow.aicubo.AiCubo::initActors on line 127: Generating...
+[16:44:32.620x1] com.maxbilbow.aicubo.AiCubo::initActors on line 129: Success. Creating floor
+[16:44:32.621x1] com.maxbilbow.aicubo.AiCubo::initActors on line 152: Actors set up successfully...
+[16:44:32.631x1] click.rmx.engine.GameController::run on line 88: Setup GameController
+[16:44:32.631x1] click.rmx.engine.GameController::run on line 92: Load Shared Libraries
+[16:44:32.633x1] click.rmx.engine.GameController::run on line 95: Init GL
+[16:44:32.674x1] click.rmx.engine.GameController::run on line 98: Enter Gameloop
+====== END OF LOG ======
+
+====== BEGIN LOG ======
+[16:44:53.441x1] click.rmx.engine.Scene::<init> on line 26: Scene initializing...
+[16:44:53.446x1] com.maxbilbow.aicubo.AiCubo::initActors on line 72: Setting up scene...
+[16:44:53.446x1] com.maxbilbow.aicubo.AiCubo::initActors on line 74: SUCCESS
+[16:44:53.446x1] com.maxbilbow.aicubo.AiCubo::initActors on line 76: Setting up actors...
+[16:44:53.446x1] com.maxbilbow.aicubo.AiCubo::initActors on line 78: POV success
+[16:44:53.446x1] com.maxbilbow.aicubo.AiCubo::initActors on line 79: Initializing entity generator
+[16:44:53.446x1] com.maxbilbow.aicubo.AiCubo::initActors on line 122: Entity generator initialized
+[16:44:53.446x1] com.maxbilbow.aicubo.AiCubo::initActors on line 127: Generating...
+[16:44:53.446x1] com.maxbilbow.aicubo.AiCubo::initActors on line 129: Success. Creating floor
+[16:44:53.447x1] com.maxbilbow.aicubo.AiCubo::initActors on line 152: Actors set up successfully...
+[16:44:53.455x1] click.rmx.engine.GameController::run on line 88: Setup GameController
+[16:44:53.455x1] click.rmx.engine.GameController::run on line 92: Load Shared Libraries
+[16:44:53.456x1] click.rmx.engine.GameController::run on line 95: Init GL
+[16:44:53.498x1] click.rmx.engine.GameController::run on line 98: Enter Gameloop
+====== END OF LOG ======
+
+====== BEGIN LOG ======
+[16:50:08.619x1] click.rmx.engine.Scene::<init> on line 26: Scene initializing...
+[16:50:08.624x1] com.maxbilbow.aicubo.AiCubo::initActors on line 72: Setting up scene...
+[16:50:08.624x1] com.maxbilbow.aicubo.AiCubo::initActors on line 74: SUCCESS
+[16:50:08.624x1] com.maxbilbow.aicubo.AiCubo::initActors on line 76: Setting up actors...
+[16:50:08.624x1] com.maxbilbow.aicubo.AiCubo::initActors on line 78: POV success
+[16:50:08.624x1] com.maxbilbow.aicubo.AiCubo::initActors on line 79: Initializing entity generator
+[16:50:08.624x1] com.maxbilbow.aicubo.AiCubo::initActors on line 122: Entity generator initialized
+[16:50:08.625x1] com.maxbilbow.aicubo.AiCubo::initActors on line 127: Generating...
+[16:50:08.625x1] com.maxbilbow.aicubo.AiCubo::initActors on line 129: Success. Creating floor
+[16:50:08.626x1] com.maxbilbow.aicubo.AiCubo::initActors on line 152: Actors set up successfully...
+[16:50:08.634x1] click.rmx.engine.GameController::run on line 88: Setup GameController
+[16:50:08.634x1] click.rmx.engine.GameController::run on line 92: Load Shared Libraries
+[16:50:08.637x1] click.rmx.engine.GameController::run on line 95: Init GL
+[16:50:08.674x1] click.rmx.engine.GameController::run on line 98: Enter Gameloop
+====== END OF LOG ======
+
+====== BEGIN LOG ======
+[16:50:24.703x1] click.rmx.engine.Scene::<init> on line 26: Scene initializing...
+[16:50:24.709x1] com.maxbilbow.aicubo.AiCubo::initActors on line 72: Setting up scene...
+[16:50:24.709x1] com.maxbilbow.aicubo.AiCubo::initActors on line 74: SUCCESS
+[16:50:24.709x1] com.maxbilbow.aicubo.AiCubo::initActors on line 76: Setting up actors...
+[16:50:24.709x1] com.maxbilbow.aicubo.AiCubo::initActors on line 78: POV success
+[16:50:24.709x1] com.maxbilbow.aicubo.AiCubo::initActors on line 79: Initializing entity generator
+[16:50:24.709x1] com.maxbilbow.aicubo.AiCubo::initActors on line 122: Entity generator initialized
+[16:50:24.709x1] com.maxbilbow.aicubo.AiCubo::initActors on line 127: Generating...
+[16:50:24.709x1] com.maxbilbow.aicubo.AiCubo::initActors on line 129: Success. Creating floor
+[16:50:24.710x1] com.maxbilbow.aicubo.AiCubo::initActors on line 152: Actors set up successfully...
+[16:50:24.720x1] click.rmx.engine.GameController::run on line 88: Setup GameController
+[16:50:24.720x1] click.rmx.engine.GameController::run on line 92: Load Shared Libraries
+[16:50:24.721x1] click.rmx.engine.GameController::run on line 95: Init GL
+[16:50:24.758x1] click.rmx.engine.GameController::run on line 98: Enter Gameloop
+====== END OF LOG ======
+
+====== BEGIN LOG ======
+[16:52:28.688x1] click.rmx.engine.Scene::<init> on line 26: Scene initializing...
+[16:52:28.692x1] com.maxbilbow.aicubo.AiCubo::initActors on line 72: Setting up scene...
+[16:52:28.693x1] com.maxbilbow.aicubo.AiCubo::initActors on line 74: SUCCESS
+[16:52:28.693x1] com.maxbilbow.aicubo.AiCubo::initActors on line 76: Setting up actors...
+[16:52:28.693x1] com.maxbilbow.aicubo.AiCubo::initActors on line 78: POV success
+[16:52:28.693x1] com.maxbilbow.aicubo.AiCubo::initActors on line 79: Initializing entity generator
+[16:52:28.693x1] com.maxbilbow.aicubo.AiCubo::initActors on line 122: Entity generator initialized
+[16:52:28.693x1] com.maxbilbow.aicubo.AiCubo::initActors on line 127: Generating...
+[16:52:28.693x1] com.maxbilbow.aicubo.AiCubo::initActors on line 129: Success. Creating floor
+[16:52:28.694x1] com.maxbilbow.aicubo.AiCubo::initActors on line 152: Actors set up successfully...
+[16:52:28.703x1] click.rmx.engine.GameController::run on line 88: Setup GameController
+[16:52:28.703x1] click.rmx.engine.GameController::run on line 92: Load Shared Libraries
+[16:52:28.704x1] click.rmx.engine.GameController::run on line 95: Init GL
+[16:52:28.741x1] click.rmx.engine.GameController::run on line 98: Enter Gameloop
+====== END OF LOG ======
+
+====== BEGIN LOG ======
+[16:54:02.473x1] click.rmx.engine.Scene::<init> on line 26: Scene initializing...
+[16:54:02.477x1] com.maxbilbow.aicubo.AiCubo::initActors on line 72: Setting up scene...
+[16:54:02.478x1] com.maxbilbow.aicubo.AiCubo::initActors on line 74: SUCCESS
+[16:54:02.478x1] com.maxbilbow.aicubo.AiCubo::initActors on line 76: Setting up actors...
+[16:54:02.478x1] com.maxbilbow.aicubo.AiCubo::initActors on line 78: POV success
+[16:54:02.478x1] com.maxbilbow.aicubo.AiCubo::initActors on line 79: Initializing entity generator
+[16:54:02.478x1] com.maxbilbow.aicubo.AiCubo::initActors on line 122: Entity generator initialized
+[16:54:02.478x1] com.maxbilbow.aicubo.AiCubo::initActors on line 127: Generating...
+[16:54:02.478x1] com.maxbilbow.aicubo.AiCubo::initActors on line 129: Success. Creating floor
+[16:54:02.479x1] com.maxbilbow.aicubo.AiCubo::initActors on line 152: Actors set up successfully...
+[16:54:02.487x1] click.rmx.engine.GameController::run on line 88: Setup GameController
+[16:54:02.487x1] click.rmx.engine.GameController::run on line 92: Load Shared Libraries
+[16:54:02.488x1] click.rmx.engine.GameController::run on line 95: Init GL
+[16:54:02.523x1] click.rmx.engine.GameController::run on line 98: Enter Gameloop
+====== END OF LOG ======
+
+====== BEGIN LOG ======
+[16:56:17.085x1] click.rmx.engine.Scene::<init> on line 26: Scene initializing...
+[16:56:17.091x1] com.maxbilbow.aicubo.AiCubo::initActors on line 72: Setting up scene...
+[16:56:17.091x1] com.maxbilbow.aicubo.AiCubo::initActors on line 74: SUCCESS
+[16:56:17.091x1] com.maxbilbow.aicubo.AiCubo::initActors on line 76: Setting up actors...
+[16:56:17.091x1] com.maxbilbow.aicubo.AiCubo::initActors on line 78: POV success
+[16:56:17.091x1] com.maxbilbow.aicubo.AiCubo::initActors on line 79: Initializing entity generator
+[16:56:17.091x1] com.maxbilbow.aicubo.AiCubo::initActors on line 122: Entity generator initialized
+[16:56:17.091x1] com.maxbilbow.aicubo.AiCubo::initActors on line 127: Generating...
+[16:56:17.091x1] com.maxbilbow.aicubo.AiCubo::initActors on line 129: Success. Creating floor
+[16:56:17.093x1] com.maxbilbow.aicubo.AiCubo::initActors on line 152: Actors set up successfully...
+[16:56:17.102x1] click.rmx.engine.GameController::run on line 88: Setup GameController
+[16:56:17.102x1] click.rmx.engine.GameController::run on line 92: Load Shared Libraries
+[16:56:17.103x1] click.rmx.engine.GameController::run on line 95: Init GL
+[16:56:17.143x1] click.rmx.engine.GameController::run on line 98: Enter Gameloop
+====== END OF LOG ======
+
+====== BEGIN LOG ======
+[16:56:45.834x1] click.rmx.engine.Scene::<init> on line 26: Scene initializing...
+[16:56:45.840x1] com.maxbilbow.aicubo.AiCubo::initActors on line 72: Setting up scene...
+[16:56:45.840x1] com.maxbilbow.aicubo.AiCubo::initActors on line 74: SUCCESS
+[16:56:45.840x1] com.maxbilbow.aicubo.AiCubo::initActors on line 76: Setting up actors...
+[16:56:45.840x1] com.maxbilbow.aicubo.AiCubo::initActors on line 78: POV success
+[16:56:45.840x1] com.maxbilbow.aicubo.AiCubo::initActors on line 79: Initializing entity generator
+[16:56:45.840x1] com.maxbilbow.aicubo.AiCubo::initActors on line 122: Entity generator initialized
+[16:56:45.840x1] com.maxbilbow.aicubo.AiCubo::initActors on line 127: Generating...
+[16:56:45.840x1] com.maxbilbow.aicubo.AiCubo::initActors on line 129: Success. Creating floor
+[16:56:45.842x1] com.maxbilbow.aicubo.AiCubo::initActors on line 152: Actors set up successfully...
+[16:56:45.852x1] click.rmx.engine.GameController::run on line 88: Setup GameController
+[16:56:45.853x1] click.rmx.engine.GameController::run on line 92: Load Shared Libraries
+[16:56:45.854x1] click.rmx.engine.GameController::run on line 95: Init GL
+[16:56:45.894x1] click.rmx.engine.GameController::run on line 98: Enter Gameloop
+====== END OF LOG ======
+
+====== BEGIN LOG ======
+[16:57:15.666x1] click.rmx.engine.Scene::<init> on line 26: Scene initializing...
+[16:57:15.671x1] com.maxbilbow.aicubo.AiCubo::initActors on line 72: Setting up scene...
+[16:57:15.671x1] com.maxbilbow.aicubo.AiCubo::initActors on line 74: SUCCESS
+[16:57:15.671x1] com.maxbilbow.aicubo.AiCubo::initActors on line 76: Setting up actors...
+[16:57:15.671x1] com.maxbilbow.aicubo.AiCubo::initActors on line 78: POV success
+[16:57:15.671x1] com.maxbilbow.aicubo.AiCubo::initActors on line 79: Initializing entity generator
+[16:57:15.671x1] com.maxbilbow.aicubo.AiCubo::initActors on line 122: Entity generator initialized
+[16:57:15.671x1] com.maxbilbow.aicubo.AiCubo::initActors on line 127: Generating...
+[16:57:15.671x1] com.maxbilbow.aicubo.AiCubo::initActors on line 129: Success. Creating floor
+[16:57:15.673x1] com.maxbilbow.aicubo.AiCubo::initActors on line 152: Actors set up successfully...
+[16:57:15.681x1] click.rmx.engine.GameController::run on line 88: Setup GameController
+[16:57:15.681x1] click.rmx.engine.GameController::run on line 92: Load Shared Libraries
+[16:57:15.682x1] click.rmx.engine.GameController::run on line 95: Init GL
+[16:57:15.719x1] click.rmx.engine.GameController::run on line 98: Enter Gameloop
+====== END OF LOG ======
+
+====== BEGIN LOG ======
+[16:58:04.408x1] click.rmx.engine.Scene::<init> on line 26: Scene initializing...
+[16:58:04.413x1] com.maxbilbow.aicubo.AiCubo::initActors on line 72: Setting up scene...
+[16:58:04.414x1] com.maxbilbow.aicubo.AiCubo::initActors on line 74: SUCCESS
+[16:58:04.414x1] com.maxbilbow.aicubo.AiCubo::initActors on line 76: Setting up actors...
+[16:58:04.414x1] com.maxbilbow.aicubo.AiCubo::initActors on line 78: POV success
+[16:58:04.414x1] com.maxbilbow.aicubo.AiCubo::initActors on line 79: Initializing entity generator
+[16:58:04.414x1] com.maxbilbow.aicubo.AiCubo::initActors on line 122: Entity generator initialized
+[16:58:04.414x1] com.maxbilbow.aicubo.AiCubo::initActors on line 127: Generating...
+[16:58:04.414x1] com.maxbilbow.aicubo.AiCubo::initActors on line 129: Success. Creating floor
+[16:58:04.415x1] com.maxbilbow.aicubo.AiCubo::initActors on line 152: Actors set up successfully...
+[16:58:04.425x1] click.rmx.engine.GameController::run on line 88: Setup GameController
+[16:58:04.425x1] click.rmx.engine.GameController::run on line 92: Load Shared Libraries
+[16:58:04.426x1] click.rmx.engine.GameController::run on line 95: Init GL
+[16:58:04.464x1] click.rmx.engine.GameController::run on line 98: Enter Gameloop
+====== END OF LOG ======
+

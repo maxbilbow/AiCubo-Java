@@ -3,6 +3,7 @@
  */
 package click.rmx;
 
+import static click.rmx.testsuite.Tests.*;
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -10,13 +11,16 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static click.rmx.Tests.*;
+import org.junit.experimental.categories.Category;
+
+import click.rmx.testsuite.ExcludeCat;
+import click.rmx.testsuite.FoundationTest;
 
 /**
  * @author bilbowm
  *
  */
-public class RMXObjectTest {
+public class RMXObjectTest  {
 
 	RMXObject object;
 	final String name = "Fred";
@@ -53,11 +57,15 @@ public class RMXObjectTest {
 	}
 
 	@Test
+	@Category({FoundationTest.class, ExcludeCat.class})
 	public void test() {
 //		messageWasNotReceived();
+		todo();
+		fail();
 	}
 	
 	@Test
+	@Category(FoundationTest.class)
 	public void messageWasNotReceived() {
 		todo();
 	}

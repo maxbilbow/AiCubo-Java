@@ -1,0 +1,15 @@
+package click.rmx.engine;
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
+
+import click.rmx.engine.physics.PhysicsWorld;
+
+@RunWith(Suite.class)
+@SuiteClasses({
+	PhysicsWorldTest.class
+})
+public class RMXEngineTests {
+
+}
