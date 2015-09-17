@@ -3,7 +3,7 @@
  */
 package click.rmx;
 
-import static click.rmx.testsuite.Tests.*;
+import static click.rmx.Tests.*;
 import static org.junit.Assert.*;
 
 import org.junit.After;

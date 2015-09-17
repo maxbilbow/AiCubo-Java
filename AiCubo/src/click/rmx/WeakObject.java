@@ -1,22 +1,21 @@
 package click.rmx;
 
+import static click.rmx.Tests.todo;
+
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationTargetException;
 
 import click.rmx.messages.KeyValueObserver;
 
-public class WeakObject<E extends RMXObject> extends WeakReference<RMXObject>implements IRMXObject {
+public class WeakObject<E extends IRMXObject> extends WeakReference<E> implements IRMXObject {
 
-	public WeakObject() {
-		super(new RMXObject());
-	}
 	
 	public WeakObject(E referent) {
 		super(referent);
 	}
 
-	public WeakObject(E referent, ReferenceQueue<? super RMXObject> q) {
+	public WeakObject(E referent, ReferenceQueue<? super E> q) {
 		super(referent, q);
 	}
 
@@ -48,7 +47,6 @@ public class WeakObject<E extends RMXObject> extends WeakReference<RMXObject>imp
 	@Override
 	public void removeObserver(KeyValueObserver observer, String forKey) {
 		this.get().removeObserver(observer, forKey);
-
 	}
 
 	@Override
@@ -82,49 +80,50 @@ public class WeakObject<E extends RMXObject> extends WeakReference<RMXObject>imp
 	@Override
 	public void onEventDidStart(String theEvent, Object args) {
 		// TODO Auto-generated method stub
-		
+		todo();
 	}
 
 	@Override
 	public void onEventDidEnd(String theEvent, Object args) {
 		// TODO Auto-generated method stub
-		
+		todo();
 	}
 
 	@Override
 	public void startListening() {
 		// TODO Auto-generated method stub
-		
+		todo();
 	}
 
 	@Override
 	public void stopListening() {
 		// TODO Auto-generated method stub
-		
+		todo();
 	}
 
 	@Override
 	public void sendMessage(String message, Object args) throws NoSuchMethodException, SecurityException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		// TODO Auto-generated method stub
-		
+		todo();
 	}
 
 	@Override
 	public void broadcastMessage(String message) {
 		// TODO Auto-generated method stub
-		
+		todo();
 	}
 
 	@Override
 	public void broadcastMessage(String message, Object args) {
 		// TODO Auto-generated method stub
-		
+		todo();
 	}
 
 	@Override
 	public boolean implementsMethod(String method, Class<?>... args) {
 		// TODO Auto-generated method stub
+		todo();
 		return false;
 	}
 
@@ -137,6 +136,7 @@ public class WeakObject<E extends RMXObject> extends WeakReference<RMXObject>imp
 	@Override
 	public void onValueForKeyDidChange(String key, Object value, IRMXObject sender) {
 		// TODO Auto-generated method stub
+		todo();
 		
 	}
 

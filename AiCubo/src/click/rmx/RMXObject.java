@@ -231,7 +231,7 @@ public class RMXObject  implements IRMXObject {
 			try {
 				this.getClass().getMethod(message, args.getClass()).invoke(this,args);
 			} catch (NoSuchMethodException e) {
-				Bugger.log(e);
+				Bugger.logAndPrint(message, true);
 				e.printStackTrace();
 			}
 		} else {

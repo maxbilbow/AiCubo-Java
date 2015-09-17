@@ -22,7 +22,13 @@ public abstract class NodeComponent extends RMXObject {
 	private Node node;
 	public void setNode(Node node) {
 		this.node = node;
+		this.onAwake();
 	}
+	
+	/**
+	 * Called when node is set. Override for any aditional setup information once assigend to GameNode
+	 */
+	protected void onAwake() {};
 
 	public Node getNode() {
 		return this.node;
@@ -30,6 +36,20 @@ public abstract class NodeComponent extends RMXObject {
 	
 	public Transform transform() {
 		return this.node.transform();
+	}
+	
+	/**
+	 * Overriden so that multiple behaviours can share the same variables
+	 */
+	public Object getValue(String forKey) {
+		return this.getNode().getValue(forKey);
+	}
+	
+	/**
+	 * Overriden so that multiple behaviours can share the same variables
+	 */
+	public Object setValue(String forKey, Object value) {
+		return this.getNode().setValue(forKey, value);
 	}
 	
 	

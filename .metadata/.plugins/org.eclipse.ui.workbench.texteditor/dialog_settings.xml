@@ -2,22 +2,23 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="setVal" key="selection"/>
+		<item value="&#x09;&#x09;this.children.stream().forEach(child -&gt; {" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="setVal"/>
-			<item value="setPoint"/>
-			<item value="Node"/>
-			<item value=" Node"/>
-			<item value="getval"/>
-			<item value="getCh"/>
-			<item value="getch"/>
-			<item value="getc"/>
+			<item value="setValue"/>
+			<item value="addBe"/>
+			<item value="current"/>
+			<item value="tick"/>
+			<item value="INode"/>
+			<item value="makeCube"/>
+			<item value="camer"/>
+			<item value="newc"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Node"/>
 			<item value="INode"/>
 			<item value="transform()."/>
 			<item value="f,"/>
@@ -25,14 +26,13 @@
 			<item value="Vector3"/>
 			<item value="Matrix3"/>
 			<item value=""/>
-			<item value="Vector2"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="257" key="DIALOG_WIDTH"/>
-		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
-		<item value="381" key="DIALOG_HEIGHT"/>
-		<item value="1540" key="DIALOG_X_ORIGIN"/>
+		<item value="265" key="DIALOG_WIDTH"/>
+		<item value="1|.SF NS Text|11.0|0|COCOA|1|.SFNSText-Regular" key="DIALOG_FONT_NAME"/>
+		<item value="399" key="DIALOG_HEIGHT"/>
+		<item value="1159" key="DIALOG_X_ORIGIN"/>
 		<item value="103" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

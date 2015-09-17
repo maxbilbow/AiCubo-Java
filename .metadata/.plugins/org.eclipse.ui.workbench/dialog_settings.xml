@@ -17,12 +17,9 @@
 		</list>
 	</section>
 	<section name="NewWizardAction">
-		<item value="org.eclipse.wst.server.ui.new.server" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<item value="org.eclipse.jdt.ui.wizards.NewClassCreationWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
-			<item value="org.eclipse.jpt.dbws"/>
-			<item value="org.eclipse.wst.server.ui"/>
-			<item value="org.eclipse.wst.web.ui"/>
-			<item value="org.eclipse.jst.ws.ui.new"/>
+			<item value="org.eclipse.jdt.ui.java"/>
 		</list>
 	</section>
 	<section name="ImportExportAction">
@@ -43,6 +40,8 @@
 		<list key="WizardZipFileResourceImportPage1.STORE_SOURCE_NAMES_ID">
 			<item value="/Users/Max/Gits/AiCubo-Java/lwjgl.zip"/>
 		</list>
+	</section>
+	<section name="FileSystemImportWizard">
 	</section>
 	<section name="ZipFileExportWizard">
 		<item value="true" key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID"/>

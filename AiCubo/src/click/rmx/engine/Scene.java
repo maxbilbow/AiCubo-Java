@@ -6,6 +6,7 @@ import static org.lwjgl.opengl.GL11.glMultMatrixf;
 
 import java.time.Instant;
 import java.time.LocalTime;
+import java.util.WeakHashMap;
 import java.util.stream.Stream;
 
 import org.lwjgl.opengl.GL11;
@@ -15,16 +16,16 @@ import click.rmx.RMXObject;
 import click.rmx.engine.math.Matrix4;
 import click.rmx.engine.physics.PhysicsWorld;
 
+
 public class Scene extends RMXObject {
 	
-	
 	private PhysicsWorld physicsWorld = new PhysicsWorld();
-	public final RootNode rootNode;
+	public final Node rootNode;
 	private static Scene _current;// = new node(null,null,null);
 	
 	public Scene() {
 		Bugger.log("Scene initializing...");
-		this.rootNode = new RootNode();
+		this.rootNode = Nodes.newRootNode();
 		if (_current == null)
 			_current = this;
 	}
@@ -74,7 +75,7 @@ public class Scene extends RMXObject {
 
 		 Matrix4 m = cam.makeLookAt();
 
-		 Stream<INode> stream = this.rootNode.getChildren().stream();
+		 Stream<Node> stream = this.rootNode.getChildren().stream();
 		 
 		 stream.forEach(n -> n.draw(m));
 
@@ -96,11 +97,11 @@ public class Scene extends RMXObject {
 		logicThread.start();
 		this.physicsWorld.updatePhysics(this.rootNode);
 		this.physicsWorld.updateCollisionEvents(this.rootNode);
-		this.rootNode.updateAfterPhysics(time);
+//		this.rootNode.updateAfterPhysics(time);
 		try {
 			logicThread.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			Bugger.logAndPrint("Failed to join thread", true);
 			e.printStackTrace();
 		}
 	}

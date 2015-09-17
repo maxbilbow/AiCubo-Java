@@ -41,7 +41,7 @@ import static org.lwjgl.system.MemoryUtil.*;
 
 public class GameView extends RMXObject implements GLView{
 
-	private INode _pointOfView;
+	private Node _pointOfView;
 	//	private int _height = 340, _width = 600;
 	private int _height = 720, _width = 1280;
 
@@ -228,7 +228,7 @@ public class GameView extends RMXObject implements GLView{
 
 
 
-	public boolean setPointOfView(INode pointOfView) {
+	public boolean setPointOfView(Node pointOfView) {
 		if (pointOfView.camera() == null) {
 			pointOfView.setCamera(new Camera());
 			pointOfView.addBehaviour(new Behaviour(){
@@ -246,7 +246,7 @@ public class GameView extends RMXObject implements GLView{
 					}
 				}
 				@Override
-				public void update(INode node) {
+				public void update(Node node) {
 					// TODO Auto-generated method stub
 
 				}
@@ -318,8 +318,8 @@ public class GameView extends RMXObject implements GLView{
 	}
 
 	@Override
-	public INode pointOfView() {
-		if (_pointOfView != null || this.setPointOfView(Node.getCurrent()))
+	public Node pointOfView() {
+		if (_pointOfView != null || this.setPointOfView(Nodes.getCurrent()))
 			return _pointOfView;
 		Bugger.logAndPrint("ERROR: Could Not Set _pointOfView", true);
 		return null;

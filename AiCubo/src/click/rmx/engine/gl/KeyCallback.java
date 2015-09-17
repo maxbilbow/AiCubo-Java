@@ -10,6 +10,7 @@ import org.lwjgl.glfw.GLFWKeyCallback;
 
 import click.rmx.engine.GameController;
 import click.rmx.engine.Node;
+import click.rmx.engine.Nodes;
 
 
 
@@ -56,13 +57,13 @@ public class KeyCallback extends GLFWKeyCallback {
 				}
 				break;
 			case GLFW_KEY_SPACE:
-				Node.getCurrent().broadcastMessage("jump");
+				Nodes.getCurrent().broadcastMessage("jump");
 				break;
 			}
 		else if (action == GLFW_PRESS)
 			switch (key) {
 			case GLFW_KEY_SPACE:
-				Node.getCurrent().broadcastMessage("crouch");
+				Nodes.getCurrent().broadcastMessage("crouch");
 			}
 		
 		for (IKeyCallback callback : this.callbacks) {

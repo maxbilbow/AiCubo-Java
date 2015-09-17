@@ -7,6 +7,7 @@ import org.lwjgl.glfw.GLFWCursorPosCallback;
 import click.rmx.Bugger;
 import click.rmx.engine.GameController;
 import click.rmx.engine.Node;
+import click.rmx.engine.Nodes;
 import click.rmx.engine.Scene;
 import click.rmx.engine.math.Vector3;
 
@@ -41,7 +42,7 @@ public class CursorCallback extends GLFWCursorPosCallback {
 			dx *= 0.05 * 0.2; dy *= 0.01 * 0.2;
 			this.xpos = xpos;
 			this.ypos = ypos;
-			Node.getCurrent().physicsBody().applyTorque((float)dx, "yaw", Vector3.Zero);
+			Nodes.getCurrent().physicsBody().applyTorque((float)dx, "yaw", Vector3.Zero);
 			GameController.getInstance().getView().pointOfView().broadcastMessage("lookUp",(float)dy);
 //			Bugger.logAndPrint(dx + ", " + dy, false);
 		}

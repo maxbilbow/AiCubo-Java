@@ -1,9 +1,10 @@
 package click.rmx.engine.behaviours;
 
-import click.rmx.engine.INode;
+import click.rmx.IRMXObject;
+import click.rmx.engine.Node;
 
 @FunctionalInterface
-public interface IBehaviour {
+public interface IBehaviour  {
 //	public default void lateUpdate() ;
 	
 //	public default void setNode(Node node) {}
@@ -25,5 +26,9 @@ public interface IBehaviour {
 
 	public default void broadcastMessage(String message, Object args) {}
 	
-	void update(INode node);
+	void update(Node node);
+
+	public default void setNode(Node gameNode){};
+	
+//	void setNode(Node node);
 }

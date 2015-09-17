@@ -38,7 +38,7 @@ public class Transform extends NodeComponent {
 		return this.history[0];
 	}
 	private int stepsBack = 0;
-	public boolean stepBack(String args) {
+	public synchronized boolean stepBack(String args) {
 		if (stepsBack >= history.length)
 			return false;
 		if (args.contains("x"))
@@ -53,7 +53,7 @@ public class Transform extends NodeComponent {
 	}
 	
 	
-	public void moveAlongAxis(String args, float n) {
+	public synchronized void moveAlongAxis(String args, float n) {
 		if (args.contains("x"))
 			this.localMatrix().m30 += n;
 		if (args.contains("y"))
@@ -104,7 +104,7 @@ public class Transform extends NodeComponent {
 		return _scale;
 	}
 	
-	public void setScale(float x, float y, float z) {
+	public synchronized void setScale(float x, float y, float z) {
 		_scale.x = x;
 		_scale.y = y;
 		_scale.z = z;
@@ -121,7 +121,7 @@ public class Transform extends NodeComponent {
 		if (Scene.getCurrent().tick() == _tmTimestamp)
 			return this.totalMass;
 		totalMass = node.physicsBody() != null ? node.physicsBody().getMass() : 0;
-		for (INode child : node.getChildren()){
+		for (Node child : node.getChildren()){
 			totalMass += child.transform().mass();
 		}
 		return totalMass;
@@ -150,7 +150,7 @@ public class Transform extends NodeComponent {
 	}
 	
 	public Transform parent() {
-		INode parentNode = this.node.getParent();
+		Node parentNode = this.node.getParent();
 		return parentNode != null ? this.node.getParent().transform() : null;
 	}
 	
@@ -175,7 +175,7 @@ public class Transform extends NodeComponent {
 		return this;
 	}
 	
-	public void translate(Vector3 v) {
+	public synchronized void translate(Vector3 v) {
 		this._localMatrix.m30 += v.x;
 		this._localMatrix.m31 += v.y;
 		this._localMatrix.m32 += v.z;
@@ -295,13 +295,13 @@ public class Transform extends NodeComponent {
 	}
 	
 	
-	public void translate(float x, float y, float z) {
+	public synchronized void translate(float x, float y, float z) {
 		this._localMatrix.m30 += x;
 		this._localMatrix.m31 += y;
 		this._localMatrix.m32 += z;
 	}
 	
-	public void translate(float scale, Vector3 v) {
+	public synchronized void translate(float scale, Vector3 v) {
 		this._localMatrix.m30 += v.x * scale;
 		this._localMatrix.m31 += v.y * scale;
 		this._localMatrix.m32 += v.z * scale;
@@ -373,7 +373,7 @@ public class Transform extends NodeComponent {
 
 	Vector3[] history = new Vector3[3];
 //	private int historyCheck = 0;
-	public void updateLastPosition() {
+	public synchronized void updateLastPosition() {
 		for (int i=history.length-1; i>0; --i) {
 			history[i].set(history[i-1]);
 		}

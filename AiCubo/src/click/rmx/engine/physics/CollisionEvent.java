@@ -1,7 +1,7 @@
 package click.rmx.engine.physics;
 
 import click.rmx.RMX;
-import click.rmx.engine.INode;
+
 import click.rmx.engine.Node;
 import click.rmx.engine.Scene;
 import click.rmx.engine.Transform;
@@ -220,7 +220,7 @@ public final class CollisionEvent {
 		this.isPrevented = isPrevented;
 	}
 
-	public Node getOther(INode node) {
+	public Node getOther(Node node) {
 		return node == nodeA ? nodeB : nodeA;
 	}
 

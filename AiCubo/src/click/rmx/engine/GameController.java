@@ -120,7 +120,7 @@ public abstract class GameController extends RMXObject implements RenderDelegate
 	public final KeyStates keys = new KeyStates();
 	
 	private void repeatedKeys() {
-		INode player = Node.getCurrent();
+		Node player = Nodes.getCurrent();
 	
 		if (this.keys.getOrDefault(GLFW_KEY_W, false)) {
 			player.broadcastMessage("applyForce","forward:-1");

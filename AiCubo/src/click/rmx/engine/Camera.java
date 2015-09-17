@@ -98,6 +98,12 @@ public class Camera extends NodeComponent {
 		  return m;
 	}
 
+	@Override
+	protected void onAwake() {
+		// TODO Auto-generated method stub
+		
+	}
+
 //	public void onEventDidEnd(String event, Object args) {
 //		if (event == END_OF_GAMELOOP) {
 //			

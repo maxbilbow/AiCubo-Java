@@ -9,58 +9,67 @@ public abstract class Behaviour extends NodeComponent implements IBehaviour {
 	public static final String 
 	AI_STATE_NULL = "AI_STATE_NULL",
 	AI_STATE_POSSESSED = "AI_STATE_POSSESSED";
-//	void setNode(Node node);
+	//	void setNode(Node node);
 	public final static String 
 	GET_AI_STATE = "KEY_AI_STATE";
+
+//	@Deprecated
+//	@Warning("Behaviours no longer guarenteed to hold nodes."
+//			+ "\nUse node.getState instead")
+//	public String state() {
+//		return this.state(getNode());
+//	}
+
+	
 	public String state() {
-		Object i = this.getNode().getValue(GET_AI_STATE);
-		return i == null ? AI_STATE_NULL : String.valueOf(i);
+		if (getNode() != null) {
+			Object i = getNode().getValue(GET_AI_STATE);
+			return i == null ? AI_STATE_NULL : String.valueOf(i);
+		}
+		return AI_STATE_NULL;
 	}
-	public void setState(String state) {
-		this.setValue(GET_AI_STATE, state);		
+
+//		@Deprecated
+//	@Warning("Behaviours no longer guarenteed to hold nodes."
+//			+ "\nUse node.setState instead")
+//	public void setState(String state) {
+//		this.setState(getNode(), state);
+//	}
+	public void setState(String state) {//, String state) {
+		this.getNode().setValue(GET_AI_STATE, state);		
 	}
 
 	public abstract boolean hasLateUpdate();
-	
-//	public Node getNode();
+
+	//	public Node getNode();
 	public void setDefaultState() {
 		this.setState(AI_STATE_NULL);
 	}
-	
+
 	protected long interval() {
 		return 800;
 	}
-	
+
 	protected abstract void onAwake();
-	
-	/**
-	 * Overriden so that multiple behaviours can share the same variables
-	 */
-	public Object getValue(String forKey) {
-		return this.getNode().getValue(forKey);
-	}
-	
-	/**
-	 * Overriden so that multiple behaviours can share the same variables
-	 */
-	public Object setValue(String forKey, Object value) {
-		return this.getNode().setValue(forKey, value);
-	}
-	
-//	public abstract void update(long tick);
-	
+
+	//	public abstract void update(long tick);
+
 	public void lateUpdate() {
-		
+
 	};
-	
-	public void setNode(Node node) {
-		super.setNode(node);
-		this.onAwake();
-	}
 
 	public void turnToFace(Vector3 position) {
 		// TODO Auto-generated method stub
 	}
-//	public boolean isEnabled();
+	//	public boolean isEnabled();
+	
+//	public void broadcastMessage(String message){
+//		super.broadcastMessage(message);
+//	}
+//
+//
+//	public void broadcastMessage(String message, Object args) {
+//		super.broadcastMessage(message, args);
+//	}
 }
 

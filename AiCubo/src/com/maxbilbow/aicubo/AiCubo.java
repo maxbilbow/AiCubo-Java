@@ -22,7 +22,7 @@ import click.rmx.engine.Camera;
 import click.rmx.engine.GameController;
 
 import click.rmx.engine.Geometry;
-import click.rmx.engine.INode;
+import click.rmx.engine.Nodes;
 import click.rmx.engine.LightSource;
 import click.rmx.engine.Node;
 import click.rmx.engine.Scene;
@@ -42,7 +42,7 @@ public final class AiCubo extends GameController {
 
 	Node player, cameraNode;
 	protected void initpov() {
-		Node body = (Node) Node.getCurrent();
+		Node body = (Node) Nodes.getCurrent();
 		body.setPhysicsBody(PhysicsBody.newDynamicBody());
 		body.physicsBody().setMass(5.0f);
 		//		body.physicsBody().setFriction(0f);
@@ -52,7 +52,7 @@ public final class AiCubo extends GameController {
 		body.transform().setScale(4f, 4.0f, 4f);	
 		Scene.getCurrent().rootNode.addChild(body);
 		//		body.setCollisionBody(new CollisionBody());
-		Node head = Node.newCameraNode();
+		Node head = Nodes.newCameraNode();
 		body.addChild(head);
 		body.transform().setPosition(10f,20f,20f);
 
@@ -85,7 +85,7 @@ public final class AiCubo extends GameController {
 			public Node makeEntity() {
 				float speed = (float) (Tools.rBounds(30, 100) / 1000);
 				float rotation = (float) (Tools.rBounds(1, (int)speed * 1000) / 1000);
-				Node body = Node.makeCube((float)Tools.rBounds(1, 2), PhysicsBody.newDynamicBody(), new AntBehaviour());
+				Node body = Nodes.makeCube((float)Tools.rBounds(1, 2), PhysicsBody.newDynamicBody(), new AntBehaviour());
 
 
 
@@ -99,7 +99,7 @@ public final class AiCubo extends GameController {
 				//				body.physicsBody().setFriction(0f);
 				//				body.physicsBody().setRestitution(0);
 				//				body.setCollisionBody(new CollisionBody());
-				Node head = Node.makeCube(body.transform().radius() / 2, null, node -> {
+				Node head = Nodes.makeCube(body.transform().radius() / 2, null, node -> {
 					if (node != view.pointOfView()) {
 						node.transform().move("yaw:0.1");
 						node.transform().move("pitch:0.1");
@@ -111,7 +111,7 @@ public final class AiCubo extends GameController {
 				head.transform().setPosition(0, //put head where a head should be
 						body.transform().scale().y + head.transform().scale().y,
 						body.transform().scale().z + head.transform().scale().z);
-				Node trailingCam = Node.newCameraNode();
+				Node trailingCam = Nodes.newCameraNode();
 				body.addChild(trailingCam);
 				trailingCam.setName("trailingCam");
 				trailingCam.transform().translate(0, 20, 50);
@@ -128,7 +128,7 @@ public final class AiCubo extends GameController {
 		Bugger.log("Generating...");
 
 		Bugger.log("Success. Creating floor");
-		Node floor = new Node();
+		Node floor = Nodes.newGameNode();
 		floor.transform().setPosition(0,0,0);
 		scene.rootNode.addChild(floor);
 		float inf = 99999;//Float.POSITIVE_INFINITY;
@@ -152,29 +152,29 @@ public final class AiCubo extends GameController {
 		ag.makeShapesAndAddToScene(scene, 1);
 		Bugger.log("Actors set up successfully...");
 
-		Node box = Node.makeCube(10, PhysicsBody.newStaticBody(), null);
+		Node box = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
 		//		box.physicsBody().setMass(100);
 		box.physicsBody().setRestitution(0.9f);
 		box.transform().setPosition(bounds,5,30);
 
-		Node wallA = Node.makeCube(10, PhysicsBody.newStaticBody(), null);
+		Node wallA = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
 		wallA.transform().setScale(bounds, 10, 10);
 		wallA.transform().setPosition(0,0,bounds+10);
 		wallA.addToCurrentScene();
-		Node wallB = Node.makeCube(10, PhysicsBody.newStaticBody(), null);
+		Node wallB = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
 		wallB.transform().setScale(bounds, 10, 10);
 		wallB.transform().setPosition(0,0,-bounds-10);
 		wallB.addToCurrentScene();
-		Node wallC = Node.makeCube(10, PhysicsBody.newStaticBody(), null);
+		Node wallC = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
 		wallC.transform().setScale(10, 10, bounds);
 		wallC.transform().setPosition(bounds+10,0,0);
 		wallC.addToCurrentScene();
-		Node wallD = Node.makeCube(10, PhysicsBody.newStaticBody(), null);
+		Node wallD = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
 		wallD.transform().setScale(10, 10, bounds);
 		wallD.transform().setPosition(-bounds-10,0,0);
 		wallD.addToCurrentScene();
 
-		Node light = Node.makeCube(10, PhysicsBody.newStaticBody(), null);
+		Node light = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
 		light.transform().setPosition(100,50,100);
 		light.setComponent(LightSource.class, new LightSource());
 		light.addToCurrentScene();
@@ -233,15 +233,15 @@ public final class AiCubo extends GameController {
 					switch (key) {
 					case GLFW_KEY_TAB:
 						int max = Scene.getCurrent().rootNode.getChildren().size() - 1;
-						INode n, cam;
-						Node.getCurrent().sendMessageToBehaviour(AntBehaviour.class,"setDefaultState");
+						Node n, cam;
+						Nodes.getCurrent().sendMessageToBehaviour(AntBehaviour.class,"setDefaultState");
 						do {
 							n = Scene.getCurrent().rootNode.getChildren().get((int)Tools.rBounds(0, max));
 							cam = n.getChildWithName("trailingCam");
 						} while (cam == null);
 						n.setValue(Behaviour.GET_AI_STATE, Behaviour.AI_STATE_POSSESSED);//.sendMessageToBehaviour(Behaviour.class,"setState", Behaviour.AI_STATE_POSSESSED);
 
-						Node.setCurrent(n);
+						Nodes.setCurrent(n);
 						getView().setPointOfView(cam);
 						//						getView().pointOfView().transform().localMatrix().setIdentity();
 						break;
@@ -250,8 +250,8 @@ public final class AiCubo extends GameController {
 						player.transform().rootTransform().localMatrix().set(t.rootTransform().localMatrix());
 						player.transform().rootTransform().setPosition(t.position());
 						//						player.transform().translate(0, player.transform().getHeight(), 0);
-						Node.getCurrent().sendMessageToBehaviour(AntBehaviour.class,"setDefaultState");
-						Node.setCurrent(player);
+						Nodes.getCurrent().sendMessageToBehaviour(AntBehaviour.class,"setDefaultState");
+						Nodes.setCurrent(player);
 						getView().setPointOfView(cameraNode);
 
 						break;
@@ -272,7 +272,7 @@ public final class AiCubo extends GameController {
 						}
 						break;
 					case GLFW_KEY_G:
-						Node.getCurrent().broadcastMessage("setEffectedByGravity",mods == GLFW_MOD_SHIFT ? false : true);
+						Nodes.getCurrent().broadcastMessage("setEffectedByGravity",mods == GLFW_MOD_SHIFT ? false : true);
 						break;
 					case GLFW_KEY_A:
 						if (mods == GLFW_MOD_SHIFT) 
@@ -280,14 +280,14 @@ public final class AiCubo extends GameController {
 						break;
 					case GLFW_KEY_L:
 						if (mods == GLFW_MOD_SHIFT) 
-							didCauseEvent(TheLeader, Node.getCurrent());
+							didCauseEvent(TheLeader, Nodes.getCurrent());
 						else if (mods == GLFW_MOD_CONTROL) 
-							didCauseEvent(TheLeader, Node.randomAiNode());
+							didCauseEvent(TheLeader, Nodes.randomAiNode());
 						else if (mods == GLFW_MOD_ALT)
 							Leader = null;
 						else {
 							if (Leader == null)
-								Leader = Node.getCurrent();
+								Leader = Nodes.getCurrent();
 							didCauseEvent(FollowTheLeader);
 						}
 						break;
