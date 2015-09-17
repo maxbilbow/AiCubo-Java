@@ -62,10 +62,10 @@ public abstract class GameController extends RMXObject implements RenderDelegate
 	}
 	
 	public static GameController getInstance() {
-		if (singleton != null)
+//		if (singleton != null)
 			return singleton;
-		else
-			throw new IllegalArgumentException("Abstract class GameController must have been initialized first");
+//		else
+//			throw new IllegalArgumentException("Abstract class GameController must have been initialized first");
 		
 	}
 	
@@ -120,7 +120,7 @@ public abstract class GameController extends RMXObject implements RenderDelegate
 	public final KeyStates keys = new KeyStates();
 	
 	private void repeatedKeys() {
-		Node player = Node.getCurrent();
+		Node player = Nodes.getCurrent();
 	
 		if (this.keys.getOrDefault(GLFW_KEY_W, false)) {
 			player.broadcastMessage("applyForce","forward:-1");

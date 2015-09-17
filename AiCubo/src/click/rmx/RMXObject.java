@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 import java.util.EventListener;
 import java.util.HashMap;
 
-public class RMXObject  implements IEventListener, KeyValueObserver {
+public class RMXObject  implements IRMXObject {
 	private HashMap<String, Object> values = new HashMap<String, Object> ();
 	private HashMap<String, LinkedList<KeyValueObserver>> observers = new HashMap<String, LinkedList<KeyValueObserver>>  ();
 	//	protected String name = "Unnamed RMXObject";
@@ -21,6 +21,10 @@ public class RMXObject  implements IEventListener, KeyValueObserver {
 	private static int _count = 0;
 	private int id = _count++;
 
+	/* (non-Javadoc)
+	 * @see click.rmx.IRMXObject#uniqueID()
+	 */
+	@Override
 	public int uniqueID() {
 		return this.id;
 	}
@@ -88,14 +92,26 @@ public class RMXObject  implements IEventListener, KeyValueObserver {
 			}
 	}
 
+	/* (non-Javadoc)
+	 * @see click.rmx.IRMXObject#setValue(java.lang.String, java.lang.Object)
+	 */
+	@Override
 	public Object setValue(String forKey, Object value) {
 		return this.values.put(forKey, value);
 	}
 
+	/* (non-Javadoc)
+	 * @see click.rmx.IRMXObject#getValue(java.lang.String)
+	 */
+	@Override
 	public Object getValue(String forKey) {
 		return this.values.getOrDefault(forKey, null);//.get(forKey);
 	}
 
+	/* (non-Javadoc)
+	 * @see click.rmx.IRMXObject#getValueOrSetDefault(java.lang.String, java.lang.Object)
+	 */
+	@Override
 	public Object getValueOrSetDefault(String forKey, Object value) {
 		if (this.values.containsKey(forKey))
 			return this.values.get(forKey);
@@ -104,6 +120,10 @@ public class RMXObject  implements IEventListener, KeyValueObserver {
 		return value;
 	}
 
+	/* (non-Javadoc)
+	 * @see click.rmx.IRMXObject#AddObserver(click.rmx.messages.KeyValueObserver, java.lang.String)
+	 */
+	@Override
 	public void AddObserver(KeyValueObserver observer, String forKey) {
 		if (!this.observers.containsKey(forKey))
 			this.observers.put(forKey, new LinkedList<KeyValueObserver>());
@@ -111,12 +131,20 @@ public class RMXObject  implements IEventListener, KeyValueObserver {
 			this.observers.get(forKey).add(observer);
 	}
 
+	/* (non-Javadoc)
+	 * @see click.rmx.IRMXObject#removeObserver(click.rmx.messages.KeyValueObserver, java.lang.String)
+	 */
+	@Override
 	public void removeObserver(KeyValueObserver observer, String forKey) {
 		if (this.observers.containsKey(forKey))
 			if (this.observers.get(forKey).contains(observer))
 				this.observers.get(forKey).remove(observer);
 	}
 
+	/* (non-Javadoc)
+	 * @see click.rmx.IRMXObject#removeObserver(click.rmx.messages.KeyValueObserver)
+	 */
+	@Override
 	public void removeObserver(KeyValueObserver observer) {
 		Set<String> keys = this.observers.keySet();
 		if (keys.size() > 0)
@@ -203,7 +231,7 @@ public class RMXObject  implements IEventListener, KeyValueObserver {
 			try {
 				this.getClass().getMethod(message, args.getClass()).invoke(this,args);
 			} catch (NoSuchMethodException e) {
-				Bugger.log(e);
+				Bugger.logAndPrint(message, true);
 				e.printStackTrace();
 			}
 		} else {
@@ -211,6 +239,10 @@ public class RMXObject  implements IEventListener, KeyValueObserver {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see click.rmx.IRMXObject#sendMessage(java.lang.String)
+	 */
+	@Override
 	public void sendMessage(String message) throws SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		if (this.implementsMethod(message)) {
 			try {
@@ -241,12 +273,20 @@ public class RMXObject  implements IEventListener, KeyValueObserver {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see click.rmx.IRMXObject#uniqueName()
+	 */
+	@Override
 	public String uniqueName() {
 		// TODO Auto-generated method stub
 		return this.getName() + " (" + this.id + ")";
 	}
 
 	private String name = "";
+	/* (non-Javadoc)
+	 * @see click.rmx.IRMXObject#getName()
+	 */
+	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
 		return name;//(String) this.getValue("name");
@@ -254,6 +294,10 @@ public class RMXObject  implements IEventListener, KeyValueObserver {
 
 
 
+	/* (non-Javadoc)
+	 * @see click.rmx.IRMXObject#setName(java.lang.String)
+	 */
+	@Override
 	public void setName(String name) {
 		//		this.willChangeValueForKey("name");
 		this.name = name;
@@ -262,12 +306,12 @@ public class RMXObject  implements IEventListener, KeyValueObserver {
 	}
 
 	@Override
-	public void onValueForKeyWillChange(String key, Object value, RMXObject sender) {
+	public void onValueForKeyWillChange(String key, Object value, IRMXObject sender) {
 		Bugger.log(this.uniqueName() + " >> " + sender.uniqueName() + " will change: " + key + ", from old value: " + value);
 	}
 
 	@Override
-	public void onValueForKeyDidChange(String key, Object value, RMXObject sender) {
+	public void onValueForKeyDidChange(String key, Object value, IRMXObject sender) {
 		Bugger.log(this.uniqueName() + " >> " + sender.uniqueName() + " did change: " + key + ", to new value: " + value);
 	}
 
@@ -324,7 +368,7 @@ public class RMXObject  implements IEventListener, KeyValueObserver {
 				if (e.getValue() == null)
 					s += " == NULL";
 				else if (e.getValue() instanceof RMXObject)
-					s += " == " + e.getClass().getSimpleName() + ": " + ((RMXObject) e.getValue()).uniqueName();
+					s += " == " + e.getClass().getSimpleName() + ": " + ((IRMXObject) e.getValue()).uniqueName();
 				else
 					s += " == " + e;
 			}

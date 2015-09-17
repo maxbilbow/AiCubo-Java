@@ -4,7 +4,10 @@ package click.rmx.engine;
 
 import static org.lwjgl.opengl.GL11.glMultMatrixf;
 
+import java.time.Instant;
 import java.time.LocalTime;
+import java.util.WeakHashMap;
+import java.util.stream.Stream;
 
 import org.lwjgl.opengl.GL11;
 
@@ -13,8 +16,8 @@ import click.rmx.RMXObject;
 import click.rmx.engine.math.Matrix4;
 import click.rmx.engine.physics.PhysicsWorld;
 
+
 public class Scene extends RMXObject {
-	
 	
 	private PhysicsWorld physicsWorld = new PhysicsWorld();
 	public final Node rootNode;
@@ -22,7 +25,7 @@ public class Scene extends RMXObject {
 	
 	public Scene() {
 		Bugger.log("Scene initializing...");
-		this.rootNode = new Node();
+		this.rootNode = Nodes.newRootNode();
 		if (_current == null)
 			_current = this;
 	}
@@ -64,7 +67,7 @@ public class Scene extends RMXObject {
 	
 	private RenderDelegate renderDelegate;
 	
-
+	
 	public void renderScene(Camera cam) {
 		 if (this.renderDelegate != null) 
      		this.renderDelegate.updateBeforeSceneRender(cam);
@@ -72,11 +75,10 @@ public class Scene extends RMXObject {
 
 		 Matrix4 m = cam.makeLookAt();
 
+		 Stream<Node> stream = this.rootNode.getChildren().stream();
+		 
+		 stream.forEach(n -> n.draw(m));
 
-		for (Node child : this.rootNode.getChildren()) {
-			child.draw(m);
-		}
-//		GL11.glPopMatrix();
 		
 	}
 
@@ -84,14 +86,24 @@ public class Scene extends RMXObject {
 	public long tick() {
 		return _tick;
 	}
-	public void updateSceneLogic(long time) {
-		this._tick = time;
+	public void updateSceneLogic() {
+		long time = this._tick = System.currentTimeMillis();
 		 if (this.renderDelegate != null) 
 	     		this.renderDelegate.updateBeforeSceneLogic();
-		this.rootNode.updateLogic(time);
+		 Thread logicThread = new Thread(() -> {
+			 this.rootNode.updateLogic(time);
+		 });
+		 
+		logicThread.start();
 		this.physicsWorld.updatePhysics(this.rootNode);
 		this.physicsWorld.updateCollisionEvents(this.rootNode);
-		this.rootNode.updateAfterPhysics(time);
+//		this.rootNode.updateAfterPhysics(time);
+		try {
+			logicThread.join();
+		} catch (InterruptedException e) {
+			Bugger.logAndPrint("Failed to join thread", true);
+			e.printStackTrace();
+		}
 	}
 
 	public RenderDelegate getRenderDelegate() {

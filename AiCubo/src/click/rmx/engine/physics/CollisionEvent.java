@@ -3,6 +3,7 @@ package click.rmx.engine.physics;
 import click.rmx.RMX;
 
 import click.rmx.engine.Node;
+import click.rmx.engine.Scene;
 import click.rmx.engine.Transform;
 import click.rmx.engine.math.Vector3;
 
@@ -26,13 +27,12 @@ public final class CollisionEvent {
 		this.hitPointB = Vector3.Zero;
 		this.planeDistance = this.getPlaneDistance();
 
-		AtoB = nodeA.transform.position().getVectorTo(nodeB.transform.position());
+		AtoB = nodeA.transform().position().getVectorTo(nodeB.transform().position());
 		startingDistance = this.getDistance(); // A.localPosition().getDistanceTo(B.localPosition());
 		if (Float.isNaN(startingDistance))
 			System.err.println(AtoB + " is not a number - " + this);
 		nodeA.broadcastMessage("onCollisionStart",this);
 		nodeB.broadcastMessage("onCollisionStart",this);
-
 	}
 
 	/**
@@ -45,8 +45,8 @@ public final class CollisionEvent {
 		if (this.key != key)
 			throw new IllegalArgumentException("key mismatch: " + key + " += " + this.key);
 
-		this.seperateBodies(nodeA.transform,nodeB.transform);
-		this.processMomentum(nodeA.transform,nodeB.transform);
+		this.seperateBodies(nodeA.transform(),nodeB.transform());
+		this.processMomentum(nodeA.transform(),nodeB.transform());
 		nodeA.broadcastMessage("onCollisionEnd", this);
 		nodeB.broadcastMessage("onCollisionEnd", this);
 	}
@@ -77,7 +77,7 @@ public final class CollisionEvent {
 		}
 
 		float diff = this.planeDistance;
-		if (A.node.tick() > 0) {
+		if (Scene.getCurrent().tick() > 0) {
 			if (A.physicsBody().getType() == PhysicsBodyType.Dynamic && !A.physicsBody().getVelocity().isZero())
 				A.rootTransform().stepBack(axis);// -diff * sign);
 			else if (B.physicsBody().getType() == PhysicsBodyType.Dynamic && !B.physicsBody().getVelocity().isZero())
@@ -113,7 +113,7 @@ public final class CollisionEvent {
 
 	public float getPlaneDistance() {
 		BoundingBox boxA = nodeA.collisionBody().boundingBox; BoundingBox boxB = nodeB.collisionBody().boundingBox;
-		Vector3 posA = nodeA.transform.localPosition(); Vector3 posB = nodeB.transform.localPosition();
+		Vector3 posA = nodeA.transform().localPosition(); Vector3 posB = nodeB.transform().localPosition();
 
 
 		float dx = boxA.xMax() + posA.x - boxB.xMin() - posB.x; //left
@@ -209,7 +209,7 @@ public final class CollisionEvent {
 
 	public float getDistance() {
 
-		return Vector3.makeSubtraction(nodeA.transform.position(), nodeB.transform.position()).length();
+		return Vector3.makeSubtraction(nodeA.transform().position(), nodeB.transform().position()).length();
 	}
 
 	public boolean isPrevented() {

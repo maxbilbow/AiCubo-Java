@@ -1,0 +1,19 @@
+package click.rmx.testsuite;
+
+import org.junit.experimental.categories.Category;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
+
+import click.rmx.RMXObjectTest;
+import click.rmx.messages.NotificationCenterTest;
+
+@RunWith(Suite.class)
+@SuiteClasses({ 
+	RMXObjectTest.class, 
+	NotificationCenterTest.class
+	})
+@Category(FoundationTest.class)
+public class RMXKitTests {
+
+}

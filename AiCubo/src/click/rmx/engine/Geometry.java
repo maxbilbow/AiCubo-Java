@@ -88,17 +88,17 @@ public abstract class Geometry extends RMXObject {
 
 		glPushMatrix();
 
-		Vector3 pos = node.transform.position();
+		Vector3 pos = node.transform().position();
 		glTranslatef(pos.x,pos.y,pos.z);                // move to bottom-left corner
 
-		Vector3 a = node.transform.eulerAngles();
+		Vector3 a = node.transform().eulerAngles();
 
 		a.scale(1 / click.rmx.RMX.PI_OVER_180);
 		glRotatef(a.x, 1,0,0);
 		glRotatef(a.y, 0,1,0);
 		glRotatef(a.z, 0,0,1);
 
-		Vector3 scale = node.transform.scale();
+		Vector3 scale = node.transform().scale();
 		glScalef(scale.x, scale.y, scale.z);
 
 		if (iBuffer != null)
@@ -118,9 +118,9 @@ public abstract class Geometry extends RMXObject {
 			drawArrays(node);
 			return;
 		}
-		_modelView.set(node.transform.worldMatrix());
+		_modelView.set(node.transform().worldMatrix());
 
-		Vector3 modelA = node.transform.eulerAngles();
+		Vector3 modelA = node.transform().eulerAngles();
 		//		EulerAngles modelB = base.eulerAngles();
 		modelA.scale(1 / click.rmx.RMX.PI_OVER_180);
 
@@ -142,9 +142,9 @@ public abstract class Geometry extends RMXObject {
 		glRotatef(modelA.z, 0,0,1);
 
 		float 
-		X = node.transform.scale().x,
-		Y = node.transform.scale().y,
-		Z = node.transform.scale().z;
+		X = node.transform().scale().x,
+		Y = node.transform().scale().y,
+		Z = node.transform().scale().z;
 		drawWithScale(X, Y, Z);
 
 		GL11.glPopMatrix();

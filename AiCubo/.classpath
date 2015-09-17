@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+	<classpathentry kind="var" path="rattle_air_lib">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/rattle/Gits/AiCubo-Java/AiCubo/lib/lwjgl/native"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/Max/Gits/AiCubo-Java/AiCubo/lib/lwjgl/native"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/rattle/Gits/AiCubo-Java/AiCubo/lib/lwjgl/jar/lwjgl.jar" sourcepath="/Users/rattle/Gits/AiCubo-Java/AiCubo/lib/lwjgl/src.zip"/>
-	<classpathentry kind="lib" path="/Users/rattle/Gits/AiCubo-Java/AiCubo/lib/lwjgl/src.zip"/>
-	<classpathentry kind="lib" path="/Users/rattle/Gits/AiCubo-Java/AiCubo/lib/lwjgl/doc/javadoc.zip"/>
-	<classpathentry kind="lib" path="/Users/rattle/Gits/AiCubo-Java/AiCubo/lib/vecmath-1.5.1.jar" sourcepath="/Users/Max/Gits/AiCubo-Java/vecmath"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 8 [1.8.0_60]"/>
+	<classpathentry kind="lib" path="lib/lwjgl/jar/lwjgl.jar"/>
+	<classpathentry kind="lib" path="lib/vecmath-1.5.1.jar"/>
+	<classpathentry kind="lib" path="lib/lwjgl/src.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

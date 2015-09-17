@@ -63,7 +63,7 @@ public class Camera extends NodeComponent {
        
 
         	
-		 Matrix4 m = (Matrix4)this.getNode().transform.worldMatrix().clone();
+		 Matrix4 m = (Matrix4)this.getNode().transform().worldMatrix().clone();
 
 		 m.setPosition(0,0,0);
 		 m.invert();
@@ -74,7 +74,7 @@ public class Camera extends NodeComponent {
 	
 	public Matrix4 modelViewMatrix() {
 		
-		return (Matrix4)this.getNode().transform.worldMatrix().clone();
+		return (Matrix4)this.getNode().transform().worldMatrix().clone();
 	}
 	
 	public Matrix4 makeLookAt() {
@@ -96,6 +96,12 @@ public class Camera extends NodeComponent {
 	
 
 		  return m;
+	}
+
+	@Override
+	protected void onAwake() {
+		// TODO Auto-generated method stub
+		
 	}
 
 //	public void onEventDidEnd(String event, Object args) {

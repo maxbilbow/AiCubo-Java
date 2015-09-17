@@ -101,7 +101,7 @@ public class PhysicsBody extends NodeComponent {
 
 
 	public Vector3 getVelocity() {
-		//		this.velocity.set(this.getNode().transform.position());
+		//		this.velocity.set(this.getNode().transform().position());
 		//		this.velocity.sub(this.lastPosition);
 		return this.velocity;
 	}
@@ -110,7 +110,7 @@ public class PhysicsBody extends NodeComponent {
 	}
 
 	public float TotalMass() {
-		return this.getNode().transform.mass();
+		return this.getNode().transform().mass();
 	}
 
 
@@ -217,10 +217,10 @@ public class PhysicsBody extends NodeComponent {
 
 
 		//apply velocities to translation
-		node.transform.translate(this.velocity);
-		node.transform.rotate(this.rotationalVelocity.x, 1, 0, 0);
-		node.transform.rotate(this.rotationalVelocity.y, 0, 1, 0);
-		node.transform.rotate(this.rotationalVelocity.z, 0, 0, 1);
+		node.transform().translate(this.velocity);
+		node.transform().rotate(this.rotationalVelocity.x, 1, 0, 0);
+		node.transform().rotate(this.rotationalVelocity.y, 0, 1, 0);
+		node.transform().rotate(this.rotationalVelocity.z, 0, 0, 1);
 
 		//lose energy
 		this.velocity.scale(1 / (1 + this.friction));

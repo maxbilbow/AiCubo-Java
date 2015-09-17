@@ -1,0 +1,31 @@
+package click.rmx.engine;
+
+public final class Nodes {
+	public static Node newWeakNode() {
+		return WeakNode.newInstnance();
+	}
+	
+	public static Node newWeakNode(String name) {
+		WeakNode node = WeakNode.newInstnance();
+		node.setName(name);
+		return node;
+	}
+	
+	public static Node newGameNode() {
+		return GameNode.newInstance();
+	}
+	
+	public static Node newGameNode(String name) {
+		GameNode node = GameNode.newInstance();
+		node.setName(name);
+		return node;
+	}
+	
+	public static Node current() {
+		return GameNode.getCurrent();
+	}
+	
+	public static Node newRootNode() {
+		return new RootNode();//.newRootNode();
+	}
+}

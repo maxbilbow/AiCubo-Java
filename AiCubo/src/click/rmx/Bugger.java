@@ -1,7 +1,18 @@
 package click.rmx;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import static java.nio.file.Files.*;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.FileAttribute;
 import java.util.Iterator;
 import java.util.LinkedList;
+
+import click.rmx.engine.GameController;
 
 
 public class Bugger {
@@ -16,7 +27,7 @@ public class Bugger {
                     @Override
 		    public void run() {
 		        if (singleton != null)
-		        	singleton.printAll();
+		        	singleton.printAll(debug);
 		    }
 		});
 	}
@@ -87,22 +98,45 @@ public class Bugger {
 	}
 	
 
-	public void printAll() {
-		System.out.println("====== BEGIN LOG ======");
+	public void printAll(boolean toConsole) {
+		String systemLog = "====== BEGIN LOG ======\n";
 		Iterator<String> i = getInstance().logs.iterator();
-		String systemLog = "";
+//		String systemLog = "";
 		while (i.hasNext()) { 
 			systemLog +=  i.next() + "\n";
 		}
-		systemLog += "====== END OF LOG ======"; //= systemLog.substring(0, systemLog.length()) +
-		if (debug)
+		systemLog += "====== END OF LOG ======\n\n"; //= systemLog.substring(0, systemLog.length()) +
+		if (toConsole)
 			System.out.println(systemLog);
 		if (logging) {
-			//TODO Print to file
+			FileWriter writer = null;
+			try {
+				createDirectories(Paths.get("bugger"));
+				writer = new FileWriter("bugger/" + scope() + ".log", true);
+				systemLog = systemLog.replace("\n", "\r\n");
+				writer.write(systemLog);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				if (writer != null)
+					try {
+						writer.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			}
 		}
 	}
 	
-	
+	String scope() {
+		GameController gc = GameController.getInstance(); 
+		if (gc != null)
+			return gc.getClass().getSimpleName();
+		else
+			return "bugger-generic";
+	}
 	
 	public static void test (String[] args) {
 //		Bugger b = Bugger.getInstance();

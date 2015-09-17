@@ -1,0 +1,177 @@
+package click.rmx.engine;
+
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.WeakReference;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+
+import click.rmx.IRMXObject;
+import click.rmx.WeakObject;
+import click.rmx.engine.behaviours.IBehaviour;
+import click.rmx.engine.math.Matrix4;
+import click.rmx.engine.physics.CollisionBody;
+import click.rmx.engine.physics.PhysicsBody;
+import click.rmx.messages.KeyValueObserver;
+
+public class WeakNode extends WeakObject<Node> implements Node {
+
+	WeakNode() {
+		super(new GameNode());
+	}
+	
+	public WeakNode(Node node) {
+		super(node);
+	}
+
+	public WeakNode(Node node, ReferenceQueue<? super Node> q) {
+		super(node, q);
+	}
+
+	
+	@Override
+	public void setComponent(Class<?> type, NodeComponent component) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addBehaviour(IBehaviour behaviour) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public NodeComponent getComponent(Class<?> type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Node> getChildren() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addChild(Node child) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean removeChildNode(Node node) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Node getChildWithName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Camera camera() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setCamera(Camera camera) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Geometry geometry() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setGeometry(Geometry geometry) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public PhysicsBody physicsBody() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setPhysicsBody(PhysicsBody body) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public CollisionBody collisionBody() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateLogic(long time) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateAfterPhysics(long time) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void draw(Matrix4 modelMatrix) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Node getParent() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setParent(Node parent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean sendMessageToBehaviour(Class<?> theBehaviour, String message) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean sendMessageToBehaviour(Class<?> theBehaviour, String message, Object args) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void addToCurrentScene() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Transform transform() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static WeakNode newInstnance() {
+		// TODO Auto-generated method stub
+		return new WeakNode();
+	}
+
+	
+	
+
+}
