@@ -29,7 +29,7 @@ public abstract class NodeComponent extends RMXObject {
 	}
 	
 	public Transform transform() {
-		return this.node.transform;
+		return this.node.transform();
 	}
 	
 	

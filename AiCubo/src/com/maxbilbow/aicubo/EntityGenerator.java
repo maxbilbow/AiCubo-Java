@@ -16,12 +16,12 @@ public abstract class EntityGenerator {
 	
 	
 	private Node initPositionOf(Node node) {
-		node.transform.setPosition(
+		node.transform().setPosition(
 				Tools.rBounds(xMin, xMax),
 				Tools.rBounds(yMin, yMax),
 				Tools.rBounds(zMin, zMax)
 				);
-		node.transform.rotate("yaw", (float)Tools.rBounds(0, 360));
+		node.transform().rotate("yaw", (float)Tools.rBounds(0, 360));
 		return node;
 	}
 	public void makeShapesAndAddToScene(Scene scene, int quantity) {

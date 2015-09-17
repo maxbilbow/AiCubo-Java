@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="click.rmx.engine.gl.KeyCallback"/>
-<fullyQualifiedTypeName name="org.lwjgl.glfw.GLFWKeyCallback"/>
-<fullyQualifiedTypeName name="org.lwjgl.opengl.GL11"/>
-<fullyQualifiedTypeName name="com.maxbilbow.aicubo.AiCubo"/>
 <fullyQualifiedTypeName name="click.rmx.engine.physics.PhysicsBodyType"/>
 <fullyQualifiedTypeName name="click.rmx.engine.gl.IKeyCallback"/>
 <fullyQualifiedTypeName name="click.rmx.engine.behaviours.SpriteBehaviour"/>
@@ -37,7 +32,6 @@
 <fullyQualifiedTypeName name="java.nio.file.Files"/>
 <fullyQualifiedTypeName name="java.nio.file.Path"/>
 <fullyQualifiedTypeName name="java.nio.file.Paths"/>
-<fullyQualifiedTypeName name="click.rmx.engine.Node"/>
 <fullyQualifiedTypeName name="java.util.stream.Stream"/>
 <fullyQualifiedTypeName name="java.time.Instant"/>
 <fullyQualifiedTypeName name="java.time.Duration"/>
@@ -58,6 +52,12 @@
 <fullyQualifiedTypeName name="org.junit.experimental.categories.Categories.ExcludeCategory"/>
 <fullyQualifiedTypeName name="click.rmx.testsuite.ExcludeCat"/>
 <fullyQualifiedTypeName name="java.lang.management.ManagementFactory"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.lang.management.GarbageCollectorMXBean"/>
+<fullyQualifiedTypeName name="java.util.WeakHashMap"/>
+<fullyQualifiedTypeName name="java.util.Collection"/>
+<fullyQualifiedTypeName name="click.rmx.engine.Node"/>
+<fullyQualifiedTypeName name="click.rmx.IRMXObject"/>
+<fullyQualifiedTypeName name="click.rmx.engine.INode"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.lang.ref.WeakReference"/>
 </qualifiedTypeNameHistroy>

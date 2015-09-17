@@ -5,11 +5,13 @@ package click.rmx.engine.physics;
 import static click.rmx.RMX.getCurrentFramerate;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 
 import click.rmx.RMXObject;
+import click.rmx.engine.INode;
 import click.rmx.engine.Node;
 import click.rmx.engine.math.Vector3;
 import static click.rmx.engine.physics.CollisionBody.*;
@@ -31,8 +33,8 @@ public class PhysicsWorld extends RMXObject {
 		this.gravity.z = z;
 	}
 
-	public void updatePhysics(Node rootNode) {
-		for (Node node : rootNode.getChildren()) {
+	public void updatePhysics(INode rootNode) {
+		for (INode node : rootNode.getChildren()) {
 			if (node.physicsBody() != null) {
 				this.applyGravityToNode(node);
 				node.physicsBody().updatePhysics(this);
@@ -40,13 +42,13 @@ public class PhysicsWorld extends RMXObject {
 		}
 	}
 
-	private void applyGravityToNode(Node node) {
+	private void applyGravityToNode(INode node) {
 		if (this.gravity.isZero() || !node.physicsBody().isEffectedByGravity())
 			return;
-		float ground = node.transform.getHeight() / 2;//.scale().y / 2;
-		float mass = node.transform.mass();
+		float ground = node.transform().getHeight() / 2;//.scale().y / 2;
+		float mass = node.transform().mass();
 		float framerate = getCurrentFramerate();
-		float height = node.transform.worldMatrix().m31;
+		float height = node.transform().worldMatrix().m31;
 		if (height > ground) {
 			//			System.out.println(node.getName() + " >> BEFORE: " + m.position());
 			node.physicsBody().applyForce(framerate * mass, this.gravity, Vector3.Zero);
@@ -54,18 +56,18 @@ public class PhysicsWorld extends RMXObject {
 			//			this.forces.y += g.y * framerate * mass;
 			//			this.forces.z += g.z * framerate * mass;
 		} else if (node.getParent().getParent() == null) {
-			node.transform.localMatrix().m31 = ground;
+			node.transform().localMatrix().m31 = ground;
 		}
 
 	}
 	LinkedList<CollisionBody> staticBodies = new LinkedList<>();
 	LinkedList<CollisionBody> dynamicBodies = new LinkedList<>();
 	LinkedList<CollisionBody> kinematicBodies = new LinkedList<>();
-	void buildCollisionList(ArrayList<Node> children) {
+	void buildCollisionList(Collection<INode> collection) {
 		this.staticBodies.clear();
 		this.dynamicBodies.clear();
 		this.kinematicBodies.clear();
-		children.forEach(node -> {
+		collection.forEach(node -> {
 			if (node.collisionBody() != null) {
 				switch (node.physicsBody().getType()) {
 				case Dynamic:
@@ -85,7 +87,7 @@ public class PhysicsWorld extends RMXObject {
 		
 	}
 
-	public void updateCollisionEvents(Node rootNode) {
+	public void updateCollisionEvents(INode rootNode) {
 
 
 			this.buildCollisionList(rootNode.getChildren());

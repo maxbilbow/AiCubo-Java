@@ -577,3 +577,20 @@
 [16:58:04.464x1] click.rmx.engine.GameController::run on line 98: Enter Gameloop
 ====== END OF LOG ======
 
+====== BEGIN LOG ======
+[09:54:31.731x1] click.rmx.engine.Scene::<init> on line 26: Scene initializing...
+[09:54:31.737x1] com.maxbilbow.aicubo.AiCubo::initActors on line 73: Setting up scene...
+[09:54:31.737x1] com.maxbilbow.aicubo.AiCubo::initActors on line 75: SUCCESS
+[09:54:31.737x1] com.maxbilbow.aicubo.AiCubo::initActors on line 77: Setting up actors...
+[09:54:31.737x1] com.maxbilbow.aicubo.AiCubo::initActors on line 79: POV success
+[09:54:31.737x1] com.maxbilbow.aicubo.AiCubo::initActors on line 80: Initializing entity generator
+[09:54:31.737x1] com.maxbilbow.aicubo.AiCubo::initActors on line 123: Entity generator initialized
+[09:54:31.737x1] com.maxbilbow.aicubo.AiCubo::initActors on line 128: Generating...
+[09:54:31.738x1] com.maxbilbow.aicubo.AiCubo::initActors on line 130: Success. Creating floor
+[09:54:31.739x1] com.maxbilbow.aicubo.AiCubo::initActors on line 153: Actors set up successfully...
+[09:54:31.748x1] click.rmx.engine.GameController::run on line 88: Setup GameController
+[09:54:31.748x1] click.rmx.engine.GameController::run on line 92: Load Shared Libraries
+[09:54:31.750x1] click.rmx.engine.GameController::run on line 95: Init GL
+[09:54:31.813x1] click.rmx.engine.GameController::run on line 98: Enter Gameloop
+====== END OF LOG ======
+

@@ -9,7 +9,7 @@ public abstract class CollisionBounds {
 	public final Transform transform;
 
 	public CollisionBounds(Node node) {
-		this.transform = node.transform;
+		this.transform = node.transform();
 	}
 
 	/**

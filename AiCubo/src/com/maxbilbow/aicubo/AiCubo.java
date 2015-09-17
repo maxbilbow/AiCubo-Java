@@ -22,6 +22,7 @@ import click.rmx.engine.Camera;
 import click.rmx.engine.GameController;
 
 import click.rmx.engine.Geometry;
+import click.rmx.engine.INode;
 import click.rmx.engine.LightSource;
 import click.rmx.engine.Node;
 import click.rmx.engine.Scene;
@@ -41,19 +42,19 @@ public final class AiCubo extends GameController {
 
 	Node player, cameraNode;
 	protected void initpov() {
-		Node body = Node.getCurrent();
+		Node body = (Node) Node.getCurrent();
 		body.setPhysicsBody(PhysicsBody.newDynamicBody());
 		body.physicsBody().setMass(5.0f);
 		//		body.physicsBody().setFriction(0f);
 		//		body.physicsBody().setRestitution(0);
 		//		body.physicsBody().setDamping(0);
 		body.addBehaviour(new SpriteBehaviour());
-		body.transform.setScale(4f, 4.0f, 4f);	
+		body.transform().setScale(4f, 4.0f, 4f);	
 		Scene.getCurrent().rootNode.addChild(body);
 		//		body.setCollisionBody(new CollisionBody());
 		Node head = Node.newCameraNode();
 		body.addChild(head);
-		body.transform.setPosition(10f,20f,20f);
+		body.transform().setPosition(10f,20f,20f);
 
 
 		this.view.setPointOfView(head);
@@ -93,27 +94,27 @@ public final class AiCubo extends GameController {
 				//				body.addBehaviour(new SpriteBehaviour());
 				body.physicsBody().setMass((float) Tools.rBounds(2,8));
 				//				body.physicsBody().setRestitution((float)Tools.rBounds(2,8)/10);
-				//				body.transform.setScale(2, 2, 2);
+				//				body.transform().setScale(2, 2, 2);
 				//				body.physicsBody().setDamping(0f);
 				//				body.physicsBody().setFriction(0f);
 				//				body.physicsBody().setRestitution(0);
 				//				body.setCollisionBody(new CollisionBody());
-				Node head = Node.makeCube(body.transform.radius() / 2, null, node -> {
+				Node head = Node.makeCube(body.transform().radius() / 2, null, node -> {
 					if (node != view.pointOfView()) {
-						node.transform.move("yaw:0.1");
-						node.transform.move("pitch:0.1");
-						node.transform.move("roll:0.1");
+						node.transform().move("yaw:0.1");
+						node.transform().move("pitch:0.1");
+						node.transform().move("roll:0.1");
 					}
 				});
 
 				body.addChild(head);
-				head.transform.setPosition(0, //put head where a head should be
-						body.transform.scale().y + head.transform.scale().y,
-						body.transform.scale().z + head.transform.scale().z);
+				head.transform().setPosition(0, //put head where a head should be
+						body.transform().scale().y + head.transform().scale().y,
+						body.transform().scale().z + head.transform().scale().z);
 				Node trailingCam = Node.newCameraNode();
 				body.addChild(trailingCam);
 				trailingCam.setName("trailingCam");
-				trailingCam.transform.translate(0, 20, 50);
+				trailingCam.transform().translate(0, 20, 50);
 				return body;
 			}
 
@@ -128,7 +129,7 @@ public final class AiCubo extends GameController {
 
 		Bugger.log("Success. Creating floor");
 		Node floor = new Node();
-		floor.transform.setPosition(0,0,0);
+		floor.transform().setPosition(0,0,0);
 		scene.rootNode.addChild(floor);
 		float inf = 99999;//Float.POSITIVE_INFINITY;
 		floor.setGeometry(new Geometry(){
@@ -154,27 +155,27 @@ public final class AiCubo extends GameController {
 		Node box = Node.makeCube(10, PhysicsBody.newStaticBody(), null);
 		//		box.physicsBody().setMass(100);
 		box.physicsBody().setRestitution(0.9f);
-		box.transform.setPosition(bounds,5,30);
+		box.transform().setPosition(bounds,5,30);
 
 		Node wallA = Node.makeCube(10, PhysicsBody.newStaticBody(), null);
-		wallA.transform.setScale(bounds, 10, 10);
-		wallA.transform.setPosition(0,0,bounds+10);
+		wallA.transform().setScale(bounds, 10, 10);
+		wallA.transform().setPosition(0,0,bounds+10);
 		wallA.addToCurrentScene();
 		Node wallB = Node.makeCube(10, PhysicsBody.newStaticBody(), null);
-		wallB.transform.setScale(bounds, 10, 10);
-		wallB.transform.setPosition(0,0,-bounds-10);
+		wallB.transform().setScale(bounds, 10, 10);
+		wallB.transform().setPosition(0,0,-bounds-10);
 		wallB.addToCurrentScene();
 		Node wallC = Node.makeCube(10, PhysicsBody.newStaticBody(), null);
-		wallC.transform.setScale(10, 10, bounds);
-		wallC.transform.setPosition(bounds+10,0,0);
+		wallC.transform().setScale(10, 10, bounds);
+		wallC.transform().setPosition(bounds+10,0,0);
 		wallC.addToCurrentScene();
 		Node wallD = Node.makeCube(10, PhysicsBody.newStaticBody(), null);
-		wallD.transform.setScale(10, 10, bounds);
-		wallD.transform.setPosition(-bounds-10,0,0);
+		wallD.transform().setScale(10, 10, bounds);
+		wallD.transform().setPosition(-bounds-10,0,0);
 		wallD.addToCurrentScene();
 
 		Node light = Node.makeCube(10, PhysicsBody.newStaticBody(), null);
-		light.transform.setPosition(100,50,100);
+		light.transform().setPosition(100,50,100);
 		light.setComponent(LightSource.class, new LightSource());
 		light.addToCurrentScene();
 
@@ -232,7 +233,7 @@ public final class AiCubo extends GameController {
 					switch (key) {
 					case GLFW_KEY_TAB:
 						int max = Scene.getCurrent().rootNode.getChildren().size() - 1;
-						Node n, cam;
+						INode n, cam;
 						Node.getCurrent().sendMessageToBehaviour(AntBehaviour.class,"setDefaultState");
 						do {
 							n = Scene.getCurrent().rootNode.getChildren().get((int)Tools.rBounds(0, max));
@@ -242,13 +243,13 @@ public final class AiCubo extends GameController {
 
 						Node.setCurrent(n);
 						getView().setPointOfView(cam);
-						//						getView().pointOfView().transform.localMatrix().setIdentity();
+						//						getView().pointOfView().transform().localMatrix().setIdentity();
 						break;
 					case GLFW_KEY_ENTER:
-						Transform t = view.pointOfView().transform;//.rootTransform().localMatrix();
-						player.transform.rootTransform().localMatrix().set(t.rootTransform().localMatrix());
-						player.transform.rootTransform().setPosition(t.position());
-						//						player.transform.translate(0, player.transform.getHeight(), 0);
+						Transform t = view.pointOfView().transform();//.rootTransform().localMatrix();
+						player.transform().rootTransform().localMatrix().set(t.rootTransform().localMatrix());
+						player.transform().rootTransform().setPosition(t.position());
+						//						player.transform().translate(0, player.transform().getHeight(), 0);
 						Node.getCurrent().sendMessageToBehaviour(AntBehaviour.class,"setDefaultState");
 						Node.setCurrent(player);
 						getView().setPointOfView(cameraNode);

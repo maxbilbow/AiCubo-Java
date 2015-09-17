@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import click.rmx.RMX;
+import click.rmx.engine.INode;
 import click.rmx.engine.Node;
 import click.rmx.engine.Scene;
 import click.rmx.engine.behaviours.Behaviour;
@@ -96,7 +97,7 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
 			public Strategy.State invoke(Strategy ai, int maxTurns, Object... args) {
 				Node n = (Node) args[0];
 				if (ai.getCount() == 0)
-					n.transform.rootTransform().rotate("yaw", 180 * RMX.PI_OVER_180);
+					n.transform().rootTransform().rotate("yaw", 180 * RMX.PI_OVER_180);
 
 				return ai.getCount() > maxTurns ? Strategy.State.FINISHED : Strategy.State.WILL_CONTINUE;
 			}
@@ -107,7 +108,7 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
 
 			@Override
 			public State invoke(Strategy ai, int maxTurns, Object... args) {
-				Node n = (Node) args[0];
+				INode n = (INode) args[0];
 				if (ai.getCount() == 0)
 					n.broadcastMessage("Jump");
 				return ai.getCount() > maxTurns ? Strategy.State.FINISHED : Strategy.State.WILL_CONTINUE;
@@ -119,7 +120,7 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
 
 			@Override
 			public State invoke(Strategy ai, int maxTurns, Object... args) {
-				Node n = (Node) args[0];
+				INode n = (INode) args[0];
 				if (ai.getCount() < maxTurns)
 					n.broadcastMessage("applyForce", "forward:-0.2");
 				return ai.getCount() > maxTurns ? Strategy.State.FINISHED : Strategy.State.WILL_CONTINUE;
@@ -200,7 +201,7 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
 
 
 	@Override
-	public void update(Node node) {
+	public void update(INode node) {
 		this.tick = Scene.getCurrent().tick();
 		switch (state()) {
 		case Amble:
@@ -216,9 +217,9 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
 		case FollowTheLeader:
 			Node leader = this.leader();
 			if (leader != null) {
-				this.turnToFace(leader.transform.position());
+				this.turnToFace(leader.transform().position());
 				this.getNode().physicsBody().applyForce(0.2f, 
-						Vector3.makeSubtraction(leader.transform.position(), this.transform().position()).getNormalized(), 
+						Vector3.makeSubtraction(leader.transform().position(), this.transform().position()).getNormalized(), 
 						Vector3.Zero);
 
 			}
@@ -286,7 +287,7 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
 		return outOfBounds;
 	}
 
-	public static Node Leader;
+	public static INode Leader;
 	public void onEventDidEnd(String theEvent, Object args) {
 		if (this.state() == Possessed) {
 			System.out.println("I Am Possessed: " + theEvent + ", " + args);

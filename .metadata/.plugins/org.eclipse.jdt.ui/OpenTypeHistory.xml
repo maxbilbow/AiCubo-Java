@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-<typeInfo handle="=AiCubo/src&lt;com.maxbilbow.aicubo{EntityGenerator.java[EntityGenerator" modifiers="1025" timestamp="1442246864770"/>
+<typeInfo handle="=AiCubo/src&lt;com.maxbilbow.aicubo{EntityGenerator.java[EntityGenerator" modifiers="1025" timestamp="1442478128673"/>
 <typeInfo handle="=AiCubo/src&lt;click.rmx.engine.physics{CollisionBody.java[CollisionBody" modifiers="1" timestamp="1442246864764"/>
-<typeInfo handle="=AiCubo/src&lt;click.rmx.engine{NodeComponent.java[NodeComponent" modifiers="1025" timestamp="1442246864752"/>
+<typeInfo handle="=AiCubo/src&lt;click.rmx.engine{NodeComponent.java[NodeComponent" modifiers="1025" timestamp="1442478009960"/>
+<typeInfo handle="=AiCubo/src&lt;click.rmx.engine{INode.java[INode" modifiers="513" timestamp="1442479899616"/>
+<typeInfo handle="=AiCubo/C:\/ide\/java\/jdk1.8.0_66\/jre\/lib\/rt.jar&lt;java.lang.ref(WeakReference.class[WeakReference" modifiers="33" timestamp="1442321827158"/>
+<typeInfo handle="=AiCubo/src&lt;click.rmx{IRMXObject.java[IRMXObject" modifiers="513" timestamp="1442479066613"/>
 </typeInfoHistroy>

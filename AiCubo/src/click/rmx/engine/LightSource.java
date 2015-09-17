@@ -16,7 +16,7 @@ public class LightSource extends NodeComponent {
 		glMaterialfv(GL_FRONT, GL_SPECULAR, material.getBuffer());				// sets specular material color
 		glMaterialf(GL_FRONT, GL_SHININESS, 50.0f);					// sets shininess
 		
-		glLightfv(GL_LIGHT0, GL_POSITION, getNode().transform.position().getBuffer());				// sets light position
+		glLightfv(GL_LIGHT0, GL_POSITION, getNode().transform().position().getBuffer());				// sets light position
 		glLightfv(GL_LIGHT0, GL_SPECULAR, specular.getBuffer());				// sets specular light to white
 		glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse.getBuffer());					// sets diffuse light to white
 		glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient.getBuffer());		// global ambient light 

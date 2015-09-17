@@ -19,12 +19,12 @@ public class Scene extends RMXObject {
 	
 	
 	private PhysicsWorld physicsWorld = new PhysicsWorld();
-	public final Node rootNode;
+	public final RootNode rootNode;
 	private static Scene _current;// = new node(null,null,null);
 	
 	public Scene() {
 		Bugger.log("Scene initializing...");
-		this.rootNode = new Node();
+		this.rootNode = new RootNode();
 		if (_current == null)
 			_current = this;
 	}
@@ -74,7 +74,7 @@ public class Scene extends RMXObject {
 
 		 Matrix4 m = cam.makeLookAt();
 
-		 Stream<Node> stream = this.rootNode.getChildren().stream();
+		 Stream<INode> stream = this.rootNode.getChildren().stream();
 		 
 		 stream.forEach(n -> n.draw(m));
 

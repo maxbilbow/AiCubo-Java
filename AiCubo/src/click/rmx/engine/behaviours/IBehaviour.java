@@ -1,6 +1,6 @@
 package click.rmx.engine.behaviours;
 
-import click.rmx.engine.Node;
+import click.rmx.engine.INode;
 
 @FunctionalInterface
 public interface IBehaviour {
@@ -25,5 +25,5 @@ public interface IBehaviour {
 
 	public default void broadcastMessage(String message, Object args) {}
 	
-	void update(Node node);
+	void update(INode node);
 }

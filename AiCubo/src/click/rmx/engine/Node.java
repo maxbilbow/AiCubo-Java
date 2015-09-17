@@ -3,8 +3,10 @@ package click.rmx.engine;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -18,13 +20,13 @@ import click.rmx.engine.physics.CollisionBody;
 import click.rmx.engine.physics.PhysicsBody;
 
 
-public class Node extends RMXObject {
+public class Node extends RMXObject implements INode {
 
-	private static Node current;
+	private static INode current;
 	
 	private Node parent;
-	public static void setCurrent(Node node) {
-		current = node;
+	public static void setCurrent(INode n) {
+		current = n;
 	}
 	
 //	public static Node getPointOfView() {
@@ -34,7 +36,7 @@ public class Node extends RMXObject {
 //			this.pointOfView = Node.newCameraNode();
 //		return this.pointOfView;
 //	}
-	public static Node getCurrent() {
+	public static INode getCurrent() {
 		if (current == null)
 			current = new Node("Player");
 		return current;
@@ -42,11 +44,19 @@ public class Node extends RMXObject {
 	private HashMap<Class<?>,NodeComponent> components = new HashMap<Class<?>,NodeComponent>();
 	private ArrayList<IBehaviour> behaviours = new ArrayList<IBehaviour>();
 	
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#setComponent(java.lang.Class, click.rmx.engine.NodeComponent)
+	 */
+	@Override
 	public void setComponent(Class<?> type, NodeComponent component) {
 		this.components.put(type, component);
 		component.setNode(this);
 	}
 	
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#addBehaviour(click.rmx.engine.behaviours.IBehaviour)
+	 */
+	@Override
 	public void addBehaviour(IBehaviour behaviour) {
 		if (behaviour != null) {
 			for (IBehaviour b : this.behaviours) {
@@ -60,17 +70,29 @@ public class Node extends RMXObject {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#getComponent(java.lang.Class)
+	 */
+	@Override
 	public NodeComponent getComponent(Class<?> type) {
 		return components.getOrDefault(type,null);
 	}
 	
-	public final Transform transform;
+	private final Transform transform;
 
-	private ArrayList<Node> children = new ArrayList<Node>();
-	public ArrayList<Node> getChildren() {
+	private ArrayList<INode> children = new ArrayList<INode>();
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#getChildren()
+	 */
+	@Override
+	public List<INode> getChildren() {
 		return this.children;
 	}
 	
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#addChild(click.rmx.engine.Node)
+	 */
+	@Override
 	public void addChild(Node child) {
 		if (!this.children.contains(child)) {
 			this.children.add(child);
@@ -78,12 +100,20 @@ public class Node extends RMXObject {
 		}
 	}
 	
-	public boolean removeChildNode(Node node) {
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#removeChildNode(click.rmx.engine.INode)
+	 */
+	@Override
+	public boolean removeChildNode(INode node) {
 		return this.children.remove(node);
 	}
 	
-	public Node getChildWithName(String name) {
-		for (Node child : this.children) {
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#getChildWithName(java.lang.String)
+	 */
+	@Override
+	public INode getChildWithName(String name) {
+		for (INode child : this.children) {
 			if (child.getName() == name)
 				return child;
 		}
@@ -101,10 +131,18 @@ public class Node extends RMXObject {
 		this.setName(name);
 	}
 
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#camera()
+	 */
+	@Override
 	public Camera camera() {
 		return (Camera) this.getComponent(Camera.class);
 	}
 
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#setCamera(click.rmx.engine.Camera)
+	 */
+	@Override
 	public void setCamera(Camera camera) {
 		this.setComponent(Camera.class, camera);
 	}
@@ -118,24 +156,44 @@ public class Node extends RMXObject {
 	
 	
 
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#geometry()
+	 */
+	@Override
 	public Geometry geometry() {
 		return _geometry;// (Geometry) this.getComponent(Geometry.class);
 	}
 
 	private Geometry _geometry;
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#setGeometry(click.rmx.engine.Geometry)
+	 */
+	@Override
 	public void setGeometry(Geometry geometry) {
 		_geometry = geometry;
 //		this.setComponent(Geometry.class, geometry);
 	}
 	
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#physicsBody()
+	 */
+	@Override
 	public PhysicsBody physicsBody(){
 		return (PhysicsBody) this.getComponent(PhysicsBody.class);
 	}
 	
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#setPhysicsBody(click.rmx.engine.physics.PhysicsBody)
+	 */
+	@Override
 	public void setPhysicsBody(PhysicsBody body) {
 		this.setComponent(PhysicsBody.class, body);
 	}
 	
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#collisionBody()
+	 */
+	@Override
 	public CollisionBody collisionBody() {
 		PhysicsBody body = this.physicsBody();
 		if (body != null)
@@ -144,6 +202,10 @@ public class Node extends RMXObject {
 			return null;
 	}
 	
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#updateLogic(long)
+	 */
+	@Override
 	public void updateLogic(long time) {
 		
 		this.behaviours.stream().forEach(behaviour -> {
@@ -158,13 +220,17 @@ public class Node extends RMXObject {
 		
 	}
 	private long _timeStamp = -1;
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#updateAfterPhysics(long)
+	 */
+	@Override
 	public void updateAfterPhysics(long time) {
 		this.behaviours.stream().forEach(behaviour -> {
 			if (behaviour.hasLateUpdate())
 				behaviour.broadcastMessage("lateUpdate");
 		});
 		
-		for (Node child: this.children)
+		for (INode child: this.children)
 			child.updateAfterPhysics(time);
 		this.transform.updateLastPosition();
 //		this.updateTick(time);
@@ -172,6 +238,10 @@ public class Node extends RMXObject {
 		_timeStamp = time;
 	}
 	
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#draw(click.rmx.engine.math.Matrix4)
+	 */
+	@Override
 	public void draw(Matrix4 modelMatrix) {
 		if (this.geometry() != null) {
 			this.geometry().render(this);//, modelMatrix);
@@ -179,16 +249,24 @@ public class Node extends RMXObject {
 		LightSource light = (LightSource) this.getComponent(LightSource.class);
 		if (light != null)
 			light.shine();
-		for (Node child : this.children) {
+		for (INode child : this.children) {
 			child.draw(modelMatrix);
 		}
 	}
 		
 	
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#getParent()
+	 */
+	@Override
 	public Node getParent() {
 		return parent;
 	}
 
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#setParent(click.rmx.engine.Node)
+	 */
+	@Override
 	public void setParent(Node parent) {
 		if (this.parent != null && parent != this.parent) {
 			this.parent.removeChildNode(this);
@@ -196,8 +274,8 @@ public class Node extends RMXObject {
 		this.parent = parent;
 	}
 	
-	/**
-	 * Sends a message to all behaviours and all children of this node.
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#broadcastMessage(java.lang.String)
 	 */
 	@Override
 	public void broadcastMessage(String message) {
@@ -208,13 +286,13 @@ public class Node extends RMXObject {
 		for (IBehaviour b : this.behaviours) {
 			b.broadcastMessage(message);
 		}
-		for (Node child : this.children) {
+		for (INode child : this.children) {
 			child.broadcastMessage(message);
 		}
 	}
 
-	/**
-	 * Sends a message to all behaviours and all children of this node.
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#broadcastMessage(java.lang.String, java.lang.Object)
 	 */
 	@Override
 	public void broadcastMessage(String message, Object args) {
@@ -225,15 +303,23 @@ public class Node extends RMXObject {
 		for (IBehaviour b : this.behaviours) {
 			b.broadcastMessage(message, args);
 		}
-		for (Node child : this.children) {
+		for (INode child : this.children) {
 			child.broadcastMessage(message, args);
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#sendMessageToBehaviour(java.lang.Class, java.lang.String)
+	 */
+	@Override
 	public boolean sendMessageToBehaviour(Class<?> theBehaviour, String message) {
 		return this.sendMessageToBehaviour(theBehaviour, message, null);
 	}
 	
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#sendMessageToBehaviour(java.lang.Class, java.lang.String, java.lang.Object)
+	 */
+	@Override
 	public boolean sendMessageToBehaviour(Class<?> theBehaviour, String message, Object args) {
 		for (IBehaviour b : this.behaviours) {
 			if (b.getClass().equals(theBehaviour)) {
@@ -259,6 +345,10 @@ public class Node extends RMXObject {
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.INode#addToCurrentScene()
+	 */
+	@Override
 	public void addToCurrentScene() {
 		Scene.getCurrent().rootNode.addChild(this);
 	}
@@ -276,20 +366,32 @@ public class Node extends RMXObject {
 //		this.tick = newTick;
 //	}
 
-	public static Node randomAiNode() {
-		@SuppressWarnings("unchecked")
-		ArrayList<Node> nodes =  (ArrayList<Node>) Scene.getCurrent().rootNode.getChildren().clone();
-		
-		nodes.removeIf(new Predicate<Node>() {
+	public static INode randomAiNode() {
+		Stream stream;
+		{
+			@SuppressWarnings("unchecked")
+			Collection<INode> nodes =  (Collection<INode>) Scene.getCurrent().rootNode.getChildren();//.clone();
 
-			@Override
-			public boolean test(Node t) {
-				
-				return t.getValue(Behaviour.GET_AI_STATE) == null;
-			}
-			
-		});
-		
-		return nodes.get((int) Tools.rBounds(0, nodes.size()));
+			stream = nodes.stream().filter(n -> {
+				return n.getValue(Behaviour.GET_AI_STATE) == null;
+			});
+		}
+//		nodes.stream()
+//		nodes.removeIf(new Predicate<Node>() {
+//
+//			@Override
+//			public boolean test(Node t) {
+//				
+//				return t.getValue(Behaviour.GET_AI_STATE) == null;
+//			}
+//			
+//		});
+		INode[] nodes = (INode[]) stream.toArray();
+		return nodes[(int) Tools.rBounds(0, nodes.length)];
+	}
+
+	@Override
+	public Transform transform() {
+		return this.transform;
 	}
 }

@@ -1,8 +1,8 @@
 package click.rmx.messages;
 
-import click.rmx.RMXObject;
+import click.rmx.IRMXObject;
 
 public interface KeyValueObserver {
-	void onValueForKeyWillChange(String key, Object value, RMXObject sender);
-	void onValueForKeyDidChange(String key, Object value, RMXObject sender);
+	void onValueForKeyWillChange(String key, Object value, IRMXObject sender);
+	void onValueForKeyDidChange(String key, Object value, IRMXObject sender);
 }

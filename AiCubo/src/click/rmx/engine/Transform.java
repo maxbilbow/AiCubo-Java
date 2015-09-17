@@ -121,8 +121,8 @@ public class Transform extends NodeComponent {
 		if (Scene.getCurrent().tick() == _tmTimestamp)
 			return this.totalMass;
 		totalMass = node.physicsBody() != null ? node.physicsBody().getMass() : 0;
-		for (Node child : node.getChildren()){
-			totalMass += child.transform.mass();
+		for (INode child : node.getChildren()){
+			totalMass += child.transform().mass();
 		}
 		return totalMass;
 	}
@@ -150,8 +150,8 @@ public class Transform extends NodeComponent {
 	}
 	
 	public Transform parent() {
-		Node parentNode = this.node.getParent();
-		return parentNode != null ? this.node.getParent().transform : null;
+		INode parentNode = this.node.getParent();
+		return parentNode != null ? this.node.getParent().transform() : null;
 	}
 	
 	public Vector3 localPosition() {

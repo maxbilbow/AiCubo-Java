@@ -1,22 +1,22 @@
 package click.rmx.engine.behaviours;
 
-import click.rmx.engine.Node;
+import click.rmx.engine.INode;
 
 public class CameraBehaviour extends Behaviour {
 
 	@Override
-	public void update(Node node) {
+	public void update(INode node) {
 		// TODO Auto-generated method stub
 
 	}
 
 	
 	public void lookUp(Float r) {
-		this.getNode().transform.rotate("pitch", r);
+		this.getNode().transform().rotate("pitch", r);
 	}
 	
 	public void lookLeft(Float r) {
-		this.getNode().transform.rotate("yaw", r);
+		this.getNode().transform().rotate("yaw", r);
 	}
 
 

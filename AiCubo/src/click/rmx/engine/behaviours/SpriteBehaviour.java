@@ -1,6 +1,6 @@
 package click.rmx.engine.behaviours;
 
-import click.rmx.engine.Node;
+import click.rmx.engine.INode;
 import click.rmx.engine.Scene;
 import click.rmx.engine.Transform;
 
@@ -57,21 +57,21 @@ public class SpriteBehaviour extends Behaviour {
 	}
 	
 	@Override
-	public void update(Node node) {
+	public void update(INode node) {
 		// TODO Auto-generated method stub
 		
 	}
 	
 	@Override
 	public void lateUpdate() {
-//		this.getNode().transform.localMatrix().setRo
+//		this.getNode().transform().localMatrix().setRo
 	}
 	
 	private boolean crouching = false;
 	public void crouch() {
-		Vector3 scale = this.getNode().transform.scale();
+		Vector3 scale = this.getNode().transform().scale();
 		crouching = !crouching;
-		this.getNode().transform.setScale(scale.x, 
+		this.getNode().transform().setScale(scale.x, 
 				scale.y * (crouching ? 0.9f : 1/0.9f), 
 				scale.z);
 	}
@@ -84,12 +84,12 @@ public class SpriteBehaviour extends Behaviour {
 		this.getNode().physicsBody().applyForce(force, Vector3.Y, Vector3.Zero);
 	}
 	public void jump() {
-		float force = -this.getNode().transform.mass() * Scene.getCurrent().getPhysicsWorld().getGravity().y; //TODO: base this on gravity
+		float force = -this.getNode().transform().mass() * Scene.getCurrent().getPhysicsWorld().getGravity().y; //TODO: base this on gravity
 		this.jump(force);
 	}
 	
 	public void applyForce (String message) {
-		Transform m = this.getNode().transform;//..localMatrix();
+		Transform m = this.getNode().transform();//..localMatrix();
 		String[] args = message.split(":");
 		String direction = args[0];
 		float force = Float.parseFloat(args[1]);
@@ -110,7 +110,7 @@ public class SpriteBehaviour extends Behaviour {
 	}
 	
 	public void applyTorque (String message) {
-		Transform m = this.getNode().transform;//.localMatrix();
+		Transform m = this.getNode().transform();//.localMatrix();
 		String[] args = message.split(":");
 		String direction = args[0];
 		float force = Float.parseFloat(args[1]);

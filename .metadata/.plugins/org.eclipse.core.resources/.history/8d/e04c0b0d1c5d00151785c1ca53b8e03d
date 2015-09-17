@@ -1,0 +1,31 @@
+package click.rmx;
+
+import java.lang.ref.WeakReference;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+
+import click.rmx.engine.Camera;
+import click.rmx.engine.Geometry;
+import click.rmx.engine.INode;
+import click.rmx.engine.Node;
+import click.rmx.engine.NodeComponent;
+import click.rmx.engine.Transform;
+import click.rmx.engine.behaviours.IBehaviour;
+import click.rmx.engine.math.Matrix4;
+import click.rmx.engine.physics.CollisionBody;
+import click.rmx.engine.physics.PhysicsBody;
+import click.rmx.messages.KeyValueObserver;
+
+public class WeakNode extends WeakObject<Node> implements INode {
+
+	public WeakNode() {
+		super(new Node());
+	}
+	
+	public WeakNode(Node node) {
+		super(node);
+	}
+
+	
+
+}
