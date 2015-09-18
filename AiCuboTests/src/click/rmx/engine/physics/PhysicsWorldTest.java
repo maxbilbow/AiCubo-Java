@@ -11,6 +11,7 @@ import org.junit.Test;
 import com.maxbilbow.aicubo.EntityGenerator;
 
 import click.rmx.engine.Node;
+import click.rmx.engine.Nodes;
 import click.rmx.engine.Scene;
 
 /**
@@ -28,7 +29,7 @@ public class PhysicsWorldTest {
 
 			@Override
 			public Node makeEntity() {
-				Node n = new Node();
+				Node n = Nodes.newGameNode();
 				n.setPhysicsBody(PhysicsBody.newDynamicBody());
 				return n;
 			}
@@ -39,7 +40,7 @@ public class PhysicsWorldTest {
 		this.rootNode = s.rootNode;
 		
 	}
-	Node rootNode = new Node();
+	Node rootNode = Nodes.newRootNode();
 	@Test
 	public void test() {
 		PhysicsWorld physics = new PhysicsWorld();

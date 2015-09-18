@@ -90,20 +90,13 @@ public class Scene extends RMXObject {
 		long time = this._tick = System.currentTimeMillis();
 		 if (this.renderDelegate != null) 
 	     		this.renderDelegate.updateBeforeSceneLogic();
-		 Thread logicThread = new Thread(() -> {
-			 this.rootNode.updateLogic(time);
-		 });
-		 
-		logicThread.start();
+//		 Thread logicThread = new Thread(() -> {
+		this.rootNode.updateLogic(time);
 		this.physicsWorld.updatePhysics(this.rootNode);
 		this.physicsWorld.updateCollisionEvents(this.rootNode);
-//		this.rootNode.updateAfterPhysics(time);
-		try {
-			logicThread.join();
-		} catch (InterruptedException e) {
-			Bugger.logAndPrint("Failed to join thread", true);
-			e.printStackTrace();
-		}
+		
+		this.rootNode.updateAfterPhysics(time);
+		
 	}
 
 	public RenderDelegate getRenderDelegate() {

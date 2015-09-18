@@ -163,9 +163,9 @@ public class GameView extends RMXObject implements GLView{
 			Scene scene = Scene.getCurrent();
 			Camera camera = pointOfView().camera();
 //TODO: Add timer element to Bugger
-			Thread sceneLogic = new Thread(() -> Scene.getCurrent().updateSceneLogic());
-			sceneLogic.start();
-//			scene.updateSceneLogic();
+//			Thread sceneLogic = new Thread(() -> Scene.getCurrent().updateSceneLogic());
+//			sceneLogic.start();
+			scene.updateSceneLogic();
 
 			glMatrixMode(GL_PROJECTION);
 			glLoadIdentity();
@@ -190,12 +190,12 @@ public class GameView extends RMXObject implements GLView{
 			// Poll for window events. The key callback above will only be
 			// invoked during this call.
 			glfwPollEvents();
-			try {
-				sceneLogic.join();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
+//			try {
+//				sceneLogic.join();
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} 
 			
 			Instant end = Instant.now();
 			Duration duration = Duration.between(start, end);

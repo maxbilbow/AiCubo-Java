@@ -56,8 +56,8 @@
 <fullyQualifiedTypeName name="click.rmx.engine.INode"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.lang.ref.WeakReference"/>
-<fullyQualifiedTypeName name="click.rmx.engine.Nodes"/>
 <fullyQualifiedTypeName name="click.rmx.Tests"/>
 <fullyQualifiedTypeName name="click.rmx.IRMXObject"/>
 <fullyQualifiedTypeName name="java.util.stream.Stream"/>
+<fullyQualifiedTypeName name="click.rmx.engine.Nodes"/>
 </qualifiedTypeNameHistroy>

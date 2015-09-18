@@ -33,6 +33,6 @@ public class InfoWindow extends Application {
 
 
 	public static void open() {
-		new Thread(InfoWindow::launch).start();
+//		new Thread(InfoWindow::launch).start();
 	}
 }
