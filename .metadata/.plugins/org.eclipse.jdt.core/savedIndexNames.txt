@@ -1,22 +1,8 @@
-INDEX VERSION 1.127+/Users/Max/Gits/AiCubo-Java/.metadata/.plugins/org.eclipse.jdt.core
-1613355477.index
-2783081082.index
-1921315319.index
-2123209889.index
-2678521682.index
-3638759233.index
-2540607589.index
-2337468814.index
-1937382768.index
-3077440633.index
-3494619248.index
-257892957.index
-1462576478.index
-3856011051.index
-4236265088.index
-2760002075.index
-3310743309.index
-3925981911.index
-1710459378.index
-3156421207.index
-3935624324.index
+INDEX VERSION 1.127+C:\Users\bilbowm\Documents\GitHub\AiCubo-Java\.metadata\.plugins\org.eclipse.jdt.core
+1430538180.index
+2173642040.index
+10824237.index
+3088341956.index
+2019735756.index
+4138733994.index
+2335661125.index

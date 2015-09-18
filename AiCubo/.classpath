@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="var" path="rattle_air_lib">
+	<classpathentry excluding="silvertiger/tutorial/lwjgl/|silvertiger/tutorial/lwjgl/core/|silvertiger/tutorial/lwjgl/game/|silvertiger/tutorial/lwjgl/graphic/|silvertiger/tutorial/lwjgl/state/|silvertiger/tutorial/lwjgl/text/|silvertiger/tutorial/|silvertiger/" kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_66">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/Max/Gits/AiCubo-Java/AiCubo/lib/lwjgl/native"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="AiCubo/lib/lwjgl/native"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 8 [1.8.0_60]"/>
 	<classpathentry kind="lib" path="lib/lwjgl/jar/lwjgl.jar"/>
 	<classpathentry kind="lib" path="lib/vecmath-1.5.1.jar"/>
 	<classpathentry kind="lib" path="lib/lwjgl/src.zip"/>

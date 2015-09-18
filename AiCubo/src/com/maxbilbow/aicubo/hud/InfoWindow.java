@@ -30,12 +30,9 @@ public class InfoWindow extends Application {
         }
     }
 
-    public static void main(String[] args) {
 
-        launch();
-    }
 
 	public static void open() {
-		//new Thread(InfoWindow::launch).start();
+		new Thread(InfoWindow::launch).start();
 	}
 }
