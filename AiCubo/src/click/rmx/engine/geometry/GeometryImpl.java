@@ -16,6 +16,7 @@ import click.rmx.engine.gl.Mesh;
 import click.rmx.engine.math.Matrix4;
 import click.rmx.engine.math.Vector3;
 import click.rmx.engine.math.Vector4;
+import click.rmx.messages.NotificationCenter;
 
 //@Categorizable(category = Categories.GEOMETRY)
 public class GeometryImpl extends ANodeComponent implements Geometry {
@@ -145,6 +146,13 @@ public class GeometryImpl extends ANodeComponent implements Geometry {
 	public String getCategoryName() {
 		return Geometry.super.getCategoryName();
 	}
+	
+	public static final String GEOMETRY_WAS_DESTROYED = "GEOMETRY_WAS_DESTROYED";
+	public void finalize() throws Throwable {
+		NotificationCenter.getInstance().BroadcastMessage(GEOMETRY_WAS_DESTROYED, null);
+		super.finalize();
+	}
+	
 
 	
 }

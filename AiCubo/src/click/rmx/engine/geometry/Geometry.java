@@ -10,6 +10,7 @@ import click.rmx.engine.NodeComponent;
 import click.rmx.engine.math.Matrix4;
 import click.rmx.engine.math.Vector3;
 import click.rmx.engine.math.Vector4;
+import click.rmx.messages.NotificationCenter;
 
 //@Categorizable(category = Categories.GEOMETRY)
 public interface Geometry extends NodeComponent, Categorizable {
@@ -55,5 +56,10 @@ public interface Geometry extends NodeComponent, Categorizable {
 	{
 		return Categories.GEOMETRY;
 	}
+	
+	
+//	{
+//		NotificationCenter.getInstance().BroadcastMessage(GEOMETRY_WAS_DESTROYED, null);
+//	}
 	
 }

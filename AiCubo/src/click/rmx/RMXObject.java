@@ -54,7 +54,7 @@ public class RMXObject  implements IRMXObject {
 		rmxDecrimentObjectCount(this);
 		super.finalize();
 	}
-	//	protected void onAwake(){}
+	
 
 	@Override
 	public void startListening(){

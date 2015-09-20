@@ -40,7 +40,7 @@ public abstract class ANodeComponent extends RMXObject implements NodeComponent 
 	/**
 	 * Called when node is set. Override for any aditional setup information once assigend to GameNode
 	 */
-	protected void onAwake() {};
+	protected void onAwake(){};
 
 	/* (non-Javadoc)
 	 * @see click.rmx.engine.NodeComponent#getNode()
