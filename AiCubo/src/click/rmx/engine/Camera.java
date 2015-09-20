@@ -1,12 +1,11 @@
 package click.rmx.engine;
 
-import static click.rmx.RMX.*;
 import static org.lwjgl.opengl.GL11.*;
 
 import click.rmx.engine.gl.GLView;
 import click.rmx.engine.math.Matrix4;
 
-public class Camera extends NodeComponent {
+public class Camera extends ANodeComponent {
 	private float fovX, fovY, nearZ, farZ, aspect;
 	private Matrix4 _projectionMatrix = new Matrix4();
 	
@@ -63,7 +62,7 @@ public class Camera extends NodeComponent {
        
 
         	
-		 Matrix4 m = (Matrix4)this.getNode().transform().worldMatrix().clone();
+		 Matrix4 m = this.getNode().transform().worldMatrix().clone();
 
 		 m.setPosition(0,0,0);
 		 m.invert();
@@ -74,7 +73,7 @@ public class Camera extends NodeComponent {
 	
 	public Matrix4 modelViewMatrix() {
 		
-		return (Matrix4)this.getNode().transform().worldMatrix().clone();
+		return this.getNode().transform().worldMatrix().clone();
 	}
 	
 	public Matrix4 makeLookAt() {

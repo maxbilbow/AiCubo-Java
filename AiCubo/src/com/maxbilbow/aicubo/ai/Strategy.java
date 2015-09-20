@@ -1,11 +1,5 @@
 package com.maxbilbow.aicubo.ai;
 
-import java.util.HashMap;
-
-import com.maxbilbow.aicubo.ai.Strategy.State;
-
-import click.rmx.RMXObject;
-
 public class Strategy {
 	String name;
 	int id;
@@ -57,6 +51,7 @@ public class Strategy {
 			
 			return total > 0? successes / total : 0;
 		}
+		@Override
 		public String toString() {
 			return this.name + " => SuccessRate: " + this.successRate() + ", Agg Score: " + this.aggregate();
 		}

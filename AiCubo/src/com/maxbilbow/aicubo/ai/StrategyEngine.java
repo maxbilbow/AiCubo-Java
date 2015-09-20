@@ -5,8 +5,6 @@ import java.util.LinkedList;
 
 import com.maxbilbow.aicubo.ai.Strategy.AiMethod;
 import com.maxbilbow.aicubo.ai.Strategy.State;
-import com.maxbilbow.aicubo.ants.AntBehaviour.Crowd;
-
 import click.rmx.Bugger;
 import click.rmx.engine.math.Tools;
 
@@ -21,6 +19,7 @@ public class StrategyEngine extends HashMap<String, Strategy> {
 	public interface IMethods {
 
 		public String[] Strings();
+		@Override
 		public String toString();
 		public int length();
 	}

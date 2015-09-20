@@ -32,6 +32,7 @@ public class BoundingBox extends CollisionBounds {
 		return + this.transform.getLength() / 2;
 	}
 
+	@Override
 	public boolean intersects(CollisionBounds bounds) {
 		BoundingBox other = (BoundingBox) bounds;
 		Vector3 a = this.transform.position();

@@ -9,20 +9,14 @@ import org.lwjgl.opengl.*;
 import org.lwjgl.system.MemoryUtil;
 
 
-import click.rmx.engine.GameController;
-import click.rmx.engine.Scene;
 import click.rmx.engine.gl.CursorCallback;
 import click.rmx.engine.gl.KeyCallback;
-import click.rmx.engine.gl.SharedLibraryLoader;
-
-
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
-import static click.rmx.RMX.END_OF_GAMELOOP;
 import static org.lwjgl.glfw.Callbacks.errorCallbackPrint;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
@@ -175,7 +169,8 @@ public class VertexBufferTest {
         	
 			@Override
 			public void invoke(long arg0, int width, int height) {
-				GameController.getInstance().getView().setSize(width,height);
+//				GameController.getInstance().getView().setSize(width,height);
+				
 			}
         	
         });

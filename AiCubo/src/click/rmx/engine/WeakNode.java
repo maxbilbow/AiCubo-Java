@@ -1,18 +1,16 @@
 package click.rmx.engine;
 
 import java.lang.ref.ReferenceQueue;
-import java.lang.ref.WeakReference;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-import click.rmx.IRMXObject;
 import static click.rmx.Tests.*;
 import click.rmx.WeakObject;
 import click.rmx.engine.behaviours.IBehaviour;
+import click.rmx.engine.geometry.Geometry;
+import click.rmx.engine.geometry.Shape;
 import click.rmx.engine.math.Matrix4;
 import click.rmx.engine.physics.CollisionBody;
 import click.rmx.engine.physics.PhysicsBody;
-import click.rmx.messages.KeyValueObserver;
 
 public class WeakNode extends WeakObject<Node> implements Node {
 
@@ -83,44 +81,7 @@ public class WeakNode extends WeakObject<Node> implements Node {
 		return null;
 	}
 
-	@Override
-	public void setCamera(Camera camera) {
-		// TODO Auto-generated method stub
-		todo();
-	}
-
-	@Override
-	public Geometry geometry() {
-		// TODO Auto-generated method stub
-		todo();
-		return null;
-	}
-
-	@Override
-	public void setGeometry(Geometry geometry) {
-		// TODO Auto-generated method stub
-		todo();
-	}
-
-	@Override
-	public PhysicsBody physicsBody() {
-		// TODO Auto-generated method stub
-		todo();
-		return null;
-	}
-
-	@Override
-	public void setPhysicsBody(PhysicsBody body) {
-		// TODO Auto-generated method stub
-		todo();
-	}
-
-	@Override
-	public CollisionBody collisionBody() {
-		// TODO Auto-generated method stub
-		todo();
-		return null;
-	}
+	
 
 	@Override
 	public void updateLogic(long time) {

@@ -1,14 +1,10 @@
 package click.rmx;
 
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import static java.nio.file.Files.*;
 
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.attribute.FileAttribute;
 import java.util.Iterator;
 import java.util.LinkedList;
 

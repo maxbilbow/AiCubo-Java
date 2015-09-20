@@ -29,7 +29,6 @@ import javax.vecmath.Vector4f;
  */
 
 
-import java.nio.FloatBuffer;
 import org.lwjgl.BufferUtils;
 
 /**
@@ -39,7 +38,8 @@ import org.lwjgl.BufferUtils;
  */
 public class Vector4 extends Vector4f {
 
-    public float x;
+    public static final Vector4 Zero = new Vector4();
+	public float x;
     public float y;
     public float z;
     public float w;

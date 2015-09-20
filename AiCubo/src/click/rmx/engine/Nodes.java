@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 import click.rmx.engine.behaviours.Behaviour;
 import click.rmx.engine.behaviours.CameraBehaviour;
 import click.rmx.engine.behaviours.IBehaviour;
+import click.rmx.engine.geometry.Shapes;
 import click.rmx.engine.math.Tools;
 import click.rmx.engine.physics.PhysicsBody;
 
@@ -30,8 +31,8 @@ public final class Nodes {
 		return node;
 	}
 	
-	public static Node newRootNode() {
-		return RootNode.newInstance();
+	public static RootNode newRootNode() {
+		return GameNode.newRootNode();
 	}
 	
 	private static Node current;
@@ -54,7 +55,7 @@ public final class Nodes {
 	
 	public static Node makeCube(float s, PhysicsBody body, IBehaviour b) {
 		Node n = Nodes.newGameNode("Cube");
-		n.setGeometry(Geometry.cube());
+		n.setGeometry(Shapes.Cube);
 		if (body != null)
 			n.setPhysicsBody(body);
 		n.transform().setScale(s, s, s);
@@ -65,14 +66,14 @@ public final class Nodes {
 	
 	public static Node randomAiNode() {
 		Stream stream;
-		{
+		
 			@SuppressWarnings("unchecked")
-			Collection<Node> nodes =  (Collection<Node>) Scene.getCurrent().rootNode.getChildren();//.clone();
+			Collection<Node> nodes =  Scene.getCurrent().rootNode().getChildren();//.clone();
 
 			stream = nodes.stream().filter(n -> {
 				return n.getValue(Behaviour.GET_AI_STATE) == null;
 			});
-		}
+		
 //		nodes.stream()
 //		nodes.removeIf(new Predicate<Node>() {
 //
@@ -83,7 +84,9 @@ public final class Nodes {
 //			}
 //			
 //		});
-		Node[] nodes = (Node[]) stream.toArray();
-		return nodes[(int) Tools.rBounds(0, nodes.length)];
+		Object[] arr = stream.toArray();
+		return (Node) arr[(int) Tools.rBounds(0, arr.length)];
 	}
+	
+	
 }

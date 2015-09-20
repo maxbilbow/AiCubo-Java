@@ -1,0 +1,88 @@
+/**
+ * 
+ */
+package click.rmx.engine.geometry;
+
+import static org.junit.Assert.*;
+
+import java.nio.ByteBuffer;
+import java.nio.ShortBuffer;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.lwjgl.BufferUtils;
+
+import click.rmx.Tests;
+
+/**
+ * @author Max
+ *
+ */
+public class ShapesTest {
+
+	Shape shape;
+	ShortBuffer byteToShortBuffer;
+	ShortBuffer newShortBuffer;
+	ByteBuffer byteBuffer;
+	@BeforeClass
+	public static void beforeClass() {
+		Tests.setColWidth(ShapesTest.class);
+	}
+	
+	@Before
+	public void setUp() {
+		shape = Shapes.Cube;
+		byteToShortBuffer = shape.getIndexBuffer().asShortBuffer();
+		newShortBuffer = BufferUtils.createShortBuffer(shape.indexSize());
+		newShortBuffer.put(shape.indices());
+		byteBuffer = shape.getIndexBuffer();
+		
+		assertTrue(byteBuffer == shape.getIndexBuffer());
+	}
+	
+	@After
+	public void tearDown() {
+		shape = null;
+		byteToShortBuffer = null;
+		newShortBuffer = null;
+		byteBuffer = null;
+	}
+	
+	@Test
+	public void CubeVertexCountIs4x4x6() {
+		assertTrue(shape.vertexSize() == 4 * 4 * 6);
+	}
+
+	@Test
+	public void indexVsByteBufferLength() {
+		int bbCap = byteBuffer.capacity();
+		int bToSbCap = byteToShortBuffer.capacity();
+		int newSbCap = newShortBuffer.capacity();
+		int indexLen = shape.indices().length;
+		Tests.note("ByteBuff Capacity: " + bbCap);
+		Tests.note("ByteToShortBuff Capacity: " + bToSbCap);
+		Tests.note("NewShortBuff Capacity: " + newSbCap);
+		Tests.note("Index Lenght: " + indexLen);
+		assertTrue(bbCap == indexLen);
+	}
+	
+	@Test
+	public void indexVsByteBufferValues() {	
+		short [] newShortArr = newShortBuffer.array();
+		short [] byteToShortArr = byteToShortBuffer.array();
+		byte [] byteArr = byteBuffer.array();
+		for (int i = 0; i < shape.indexSize(); ++i) {
+			System.out.println(""
+					+ "byteToShort: " 
+					+ byteToShortArr[i]
+					+ ", short: " 
+					+ newShortArr[i]
+					+ ", Byte: "
+					+ byteArr[i]);
+		}
+		
+//		assertTrue(byteBuffer.asShortBuffer().compareTo(shortBuffer) == 0);
+	}
+}

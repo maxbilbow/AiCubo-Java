@@ -4,10 +4,10 @@ package click.rmx.engine.physics;
 
 
 import click.rmx.engine.Node;
-import click.rmx.engine.NodeComponent;
+import click.rmx.engine.ANodeComponent;
 import click.rmx.engine.math.Vector3;
 import static click.rmx.engine.physics.CollisionBody.*;
-public class PhysicsBody extends NodeComponent {
+public class PhysicsBody extends ANodeComponent {
 
 	private float mass = 1.0f; 
 	private float friction = 0.1f; 

@@ -15,7 +15,7 @@ import click.rmx.engine.physics.PhysicsBody;
 
 
 
-public class Transform extends NodeComponent {
+public class Transform extends ANodeComponent {
 	
 	public final Node node;
 	
@@ -346,6 +346,7 @@ public class Transform extends NodeComponent {
 	}
 	
 	
+	@Override
 	public void setNode(Node node) {
 		if (this.node != node)
 			throw new IllegalArgumentException("Transform can only be assigned once");

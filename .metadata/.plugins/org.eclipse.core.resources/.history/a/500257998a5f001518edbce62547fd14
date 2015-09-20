@@ -1,0 +1,46 @@
+/**
+ * 
+ */
+package click.rmx.engine.geometry;
+
+/**
+ * @author Max
+ * Essentialy a delegate for Shapes.Cube
+ */
+public class Cube extends ShapeObject {
+
+	
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.geometry.Shape#vertices()
+	 */
+	@Override
+	public float[] vertices() {
+		return getInstance().vertices();
+	}
+
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.geometry.Shape#normals()
+	 */
+	@Override
+	public float[] normals() {
+		return getInstance().normals();
+	}
+
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.geometry.Shape#indices()
+	 */
+	@Override
+	public short[] indices() {
+		return getInstance().indices();
+	}
+	
+	public static Shape getInstance() {
+		return Shapes.Cube;
+	}
+
+	@Override
+	protected void setInstance(Shape shape) {
+//		_cube = Shapes.Cube;
+	}
+
+}

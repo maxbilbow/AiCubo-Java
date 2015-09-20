@@ -4,11 +4,8 @@ package click.rmx.engine.gl;
 
 import org.lwjgl.glfw.GLFWCursorPosCallback;
 
-import click.rmx.Bugger;
 import click.rmx.engine.GameController;
-import click.rmx.engine.Node;
 import click.rmx.engine.Nodes;
-import click.rmx.engine.Scene;
 import click.rmx.engine.math.Vector3;
 
 public class CursorCallback extends GLFWCursorPosCallback {

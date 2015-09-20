@@ -1,6 +1,5 @@
 package click.rmx.engine.behaviours;
 
-import click.rmx.IRMXObject;
 import click.rmx.engine.Node;
 
 @FunctionalInterface

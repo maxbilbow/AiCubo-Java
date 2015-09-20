@@ -16,19 +16,22 @@ public static int colWidth = 40;
 	}
 	
 	public static void todo() {
-		_note(null);
+		_note(null,0);
 	}
 	
 	public static void note() {
-		_note("testing");
+		_note("testing",0);
 	}
 	
 	public static void note(String s) {
-		_note(s);
+		_note(s,0);
 	}
 	
-	private static void _note(String s) {
-		int depth = 3;
+	public static void note(String s, int depth) {
+		_note(s,depth);
+	}
+	private static void _note(String s, int depth) {
+		depth += 3;
 		if (s == null) {
 			s = "not yet implemented";
 		}
@@ -48,6 +51,6 @@ public static int colWidth = 40;
 	}
 	
 	public static void success() {
-		_note("Success!");
+		_note("Success!",0);
 	}
 }

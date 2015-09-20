@@ -3,7 +3,6 @@ package click.rmx.engine.math;
 
 import java.nio.FloatBuffer;
 
-import javax.vecmath.AxisAngle4f;
 import javax.vecmath.Matrix4f;
 
 import javax.vecmath.Vector4f;
@@ -283,6 +282,7 @@ public class Matrix4 extends Matrix4f{
 	}
 	
 	
+	@Override
 	public Matrix4 clone() {
 		Matrix4 clone = new Matrix4();
 		clone.set(this);

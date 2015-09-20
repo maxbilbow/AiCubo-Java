@@ -1,0 +1,68 @@
+package click.rmx.engine.gl;
+
+import static org.lwjgl.glfw.GLFW.glfwCreateWindow;
+import static org.lwjgl.glfw.GLFW.glfwDestroyWindow;
+import static org.lwjgl.glfw.GLFW.glfwInit;
+import static org.lwjgl.glfw.GLFW.glfwTerminate;
+import static org.lwjgl.system.MemoryUtil.NULL;
+
+import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.glfw.GLFWWindowSizeCallback;
+import org.lwjgl.opengl.GL11;
+
+import click.rmx.Bugger;
+import click.rmx.engine.Node;
+
+public interface GLView {
+	void setWindowSizeCallback(GLFWWindowSizeCallback cbfun);
+	void onAwake();
+	void initGL(long window);
+	void enterGameLoop(long window);
+	long window();
+	GLFWErrorCallback errorCallback();
+	KeyCallback keyCallback();
+//	void setDelegate(RenderDelegate delegate);
+	int height();
+	int width();
+	void setSize(int width, int height);
+	boolean setPointOfView(Node cam);
+	Node pointOfView();
+	default void run() {
+
+		try {
+
+			Bugger.log("Load Shared Libraries");
+			SharedLibraryLoader.load();
+
+			// Initialize GLFW. Most GLFW functions will not work before doing this.
+			if ( glfwInit() != GL11.GL_TRUE )
+				throw new IllegalStateException("Unable to initialize GLFW");
+			long window;
+			this.setWindow(window = glfwCreateWindow(width(), height(), "Hello World!", NULL, NULL));
+
+			this.initGLCallbacks(window);
+
+			Bugger.log("Init GL");
+			this.initGL(window);
+
+			Bugger.log("Enter Gameloop");
+			this.enterGameLoop(window);
+
+			// Release window and window callbacks
+			glfwDestroyWindow(window);
+			keyCallback().release();
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally {
+			// Terminate GLFW and release the GLFWerrorfun
+			glfwTerminate();
+			errorCallback().release();
+		}
+	}
+	void setWindow(long window);
+	void initGLCallbacks(long window);
+
+	//	default void windowSizeCallback(long window, int width, int height) {
+	//		GameController.getInstance().getView().setSize(width,height);
+	//	}
+}

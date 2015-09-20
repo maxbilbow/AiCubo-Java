@@ -37,7 +37,7 @@ public class PhysicsWorldTest {
 		};
 		Scene s = new Scene();
 		eg.makeShapesAndAddToScene(s, 10);
-		this.rootNode = s.rootNode;
+		this.rootNode = s.rootNode();
 		
 	}
 	Node rootNode = Nodes.newRootNode();

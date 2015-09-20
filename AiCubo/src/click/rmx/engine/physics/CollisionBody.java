@@ -1,10 +1,8 @@
 package click.rmx.engine.physics;
 
-import java.util.LinkedList;
+import click.rmx.engine.ANodeComponent;
 
-import click.rmx.engine.NodeComponent;
-
-public class CollisionBody extends NodeComponent {
+public class CollisionBody extends ANodeComponent {
 
 	public static final int 
 	NO_COLLISIONS = -1,

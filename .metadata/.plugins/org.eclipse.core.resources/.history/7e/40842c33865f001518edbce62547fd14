@@ -1,0 +1,39 @@
+/**
+ * 
+ */
+package click.rmx.engine.geometry;
+
+/**
+ * @author Max
+ *
+ */
+public class Cube extends ShapeData {
+
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.geometry.Shape#vertices()
+	 */
+	@Override
+	public float[] vertices() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.geometry.Shape#normals()
+	 */
+	@Override
+	public float[] normals() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see click.rmx.engine.geometry.Shape#indices()
+	 */
+	@Override
+	public short[] indices() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -2,14 +2,7 @@ package click.rmx.engine;
 
 
 
-import static org.lwjgl.opengl.GL11.glMultMatrixf;
-
-import java.time.Instant;
-import java.time.LocalTime;
-import java.util.WeakHashMap;
 import java.util.stream.Stream;
-
-import org.lwjgl.opengl.GL11;
 
 import click.rmx.Bugger;
 import click.rmx.RMXObject;
@@ -20,7 +13,7 @@ import click.rmx.engine.physics.PhysicsWorld;
 public class Scene extends RMXObject {
 	
 	private PhysicsWorld physicsWorld = new PhysicsWorld();
-	public final Node rootNode;
+	private final RootNode rootNode;
 	private static Scene _current;// = new node(null,null,null);
 	
 	public Scene() {
@@ -28,6 +21,10 @@ public class Scene extends RMXObject {
 		this.rootNode = Nodes.newRootNode();
 		if (_current == null)
 			_current = this;
+	}
+	
+	public RootNode rootNode() {
+		return this.rootNode;
 	}
 	
 //	private static Scene current;
@@ -68,16 +65,16 @@ public class Scene extends RMXObject {
 	private RenderDelegate renderDelegate;
 	
 	
-	public void renderScene(Camera cam) {
-		 if (this.renderDelegate != null) 
-     		this.renderDelegate.updateBeforeSceneRender(cam);
-		 
-
-		 Matrix4 m = cam.makeLookAt();
+	
+	public void renderScene(Matrix4 viewMatrix) {
 
 		 Stream<Node> stream = this.rootNode.getChildren().stream();
-		 
-		 stream.forEach(n -> n.draw(m));
+	
+		 stream.forEach(n -> {
+			 n.shine();
+			 if (viewMatrix != null) 
+				 n.draw(viewMatrix);
+		 });
 
 		
 	}
@@ -96,6 +93,8 @@ public class Scene extends RMXObject {
 		this.physicsWorld.updateCollisionEvents(this.rootNode);
 		
 		this.rootNode.updateAfterPhysics(time);
+		if (this.renderDelegate != null) 
+     		this.renderDelegate.updateBeforeSceneRender();
 		
 	}
 

@@ -31,6 +31,7 @@ public class Vector3 extends Vector3f {
 	public static final Vector3 Z = new Vector3(0,0,1);
 	
 	
+	@Override
 	public Vector3 clone() {
 		return (Vector3)super.clone();	
 	}

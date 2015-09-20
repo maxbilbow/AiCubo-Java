@@ -2,22 +2,23 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="&#x09;&#x09;this.children.stream().forEach(child -&gt; {" key="selection"/>
+		<item value="draw" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="setValue"/>
-			<item value="addBe"/>
-			<item value="current"/>
-			<item value="tick"/>
-			<item value="INode"/>
-			<item value="makeCube"/>
-			<item value="camer"/>
-			<item value="newc"/>
+			<item value="draw"/>
+			<item value="geom"/>
+			<item value="setGeom"/>
+			<item value="setGe"/>
+			<item value="cube"/>
+			<item value="finalize"/>
+			<item value="Object()"/>
+			<item value="Object)"/>
 		</list>
 		<list key="replacehistory">
+			<item value="0f,"/>
 			<item value="Node"/>
 			<item value="INode"/>
 			<item value="transform()."/>
@@ -25,7 +26,6 @@
 			<item value="Vector4"/>
 			<item value="Vector3"/>
 			<item value="Matrix3"/>
-			<item value=""/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

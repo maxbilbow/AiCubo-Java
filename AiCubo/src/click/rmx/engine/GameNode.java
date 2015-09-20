@@ -1,22 +1,22 @@
 package click.rmx.engine;
 
 
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.WeakHashMap;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+import static click.rmx.RMX.rmxTodo;
 import click.rmx.RMXObject;
-import click.rmx.engine.behaviours.Behaviour;
-import click.rmx.engine.behaviours.CameraBehaviour;
 import click.rmx.engine.behaviours.IBehaviour;
+import click.rmx.engine.geometry.Geometry;
+import click.rmx.engine.geometry.Shape;
+import click.rmx.engine.geometry.Shapes;
 import click.rmx.engine.math.Matrix4;
-import click.rmx.engine.math.Tools;
 import click.rmx.engine.physics.CollisionBody;
 import click.rmx.engine.physics.PhysicsBody;
 
@@ -25,18 +25,10 @@ public class GameNode extends RMXObject implements Node {
 
 	
 	private Node parent;
+
 	
-	
-//	public static Node getPointOfView() {
-//		if (this.pointOfView != null)
-//			return this.pointOfView;
-//		else
-//			this.pointOfView = Node.newCameraNode();
-//		return this.pointOfView;
-//	}
-	
-	private HashMap<Class<?>,NodeComponent> components = new HashMap<Class<?>,NodeComponent>();
-	private ArrayList<IBehaviour> behaviours = new ArrayList<IBehaviour>();
+	private final HashMap<Class<?>,NodeComponent> components = new HashMap<>();
+	private final Set<IBehaviour> behaviours = new HashSet<>();
 	
 	/* (non-Javadoc)
 	 * @see click.rmx.engine.Node#setComponent(java.lang.Class, click.rmx.engine.NodeComponent)
@@ -120,70 +112,6 @@ public class GameNode extends RMXObject implements Node {
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see click.rmx.engine.Node#camera()
-	 */
-	@Override
-	public Camera camera() {
-		return (Camera) this.getComponent(Camera.class);
-	}
-
-	/* (non-Javadoc)
-	 * @see click.rmx.engine.Node#setCamera(click.rmx.engine.Camera)
-	 */
-	@Override
-	public void setCamera(Camera camera) {
-		this.setComponent(Camera.class, camera);
-	}
-	
-	
-	
-
-	/* (non-Javadoc)
-	 * @see click.rmx.engine.Node#geometry()
-	 */
-	@Override
-	public Geometry geometry() {
-		return _geometry;// (Geometry) this.getComponent(Geometry.class);
-	}
-
-	private Geometry _geometry;
-	/* (non-Javadoc)
-	 * @see click.rmx.engine.Node#setGeometry(click.rmx.engine.Geometry)
-	 */
-	@Override
-	public void setGeometry(Geometry geometry) {
-		_geometry = geometry;
-//		this.setComponent(Geometry.class, geometry);
-	}
-	
-	/* (non-Javadoc)
-	 * @see click.rmx.engine.Node#physicsBody()
-	 */
-	@Override
-	public PhysicsBody physicsBody(){
-		return (PhysicsBody) this.getComponent(PhysicsBody.class);
-	}
-	
-	/* (non-Javadoc)
-	 * @see click.rmx.engine.Node#setPhysicsBody(click.rmx.engine.physics.PhysicsBody)
-	 */
-	@Override
-	public void setPhysicsBody(PhysicsBody body) {
-		this.setComponent(PhysicsBody.class, body);
-	}
-	
-	/* (non-Javadoc)
-	 * @see click.rmx.engine.Node#collisionBody()
-	 */
-	@Override
-	public CollisionBody collisionBody() {
-		PhysicsBody body = this.physicsBody();
-		if (body != null)
-			return body.getCollisionBody();
-		else
-			return null;
-	}
 	
 	/* (non-Javadoc)
 	 * @see click.rmx.engine.Node#updateLogic(long)
@@ -203,13 +131,9 @@ public class GameNode extends RMXObject implements Node {
 			child.updateLogic(time);
 		});
 		
-
-//		children.close();
-		
-		
-		
-		
+	
 	}
+
 	private long _timeStamp = -1;
 	
 	/* (non-Javadoc)
@@ -234,17 +158,14 @@ public class GameNode extends RMXObject implements Node {
 	 * @see click.rmx.engine.Node#draw(click.rmx.engine.math.Matrix4)
 	 */
 	@Override
-	public void draw(Matrix4 modelMatrix) {
-		if (this.geometry() != null) {
-			this.geometry().render(this);//, modelMatrix);
-		}
-		LightSource light = (LightSource) this.getComponent(LightSource.class);
-		if (light != null)
-			light.shine();
-		for (Node child : this.children) {
-			child.draw(modelMatrix);
-		}
+	public void draw(Matrix4 viewMatrix) {
+		if (this.geometry() != null) 
+			this.geometry().render();//, modelMatrix);
+		for (Node child : this.children) 
+			child.draw(viewMatrix);
 	}
+	
+	
 		
 	
 	/* (non-Javadoc)
@@ -333,7 +254,7 @@ public class GameNode extends RMXObject implements Node {
 	 */
 	@Override
 	public void addToCurrentScene() {
-		Scene.getCurrent().rootNode.addChild(this);
+		Scene.getCurrent().rootNode().addChild(this);
 	}
 
 //	private long tick = System.currentTimeMillis();
@@ -362,21 +283,13 @@ public class GameNode extends RMXObject implements Node {
 	}
 	
 
+	public static RootNode newRootNode() {
+		return RootNodeImpl.newInstance();
+	}
+	
 	
 	
 }
 
-class RootNode extends GameNode {
 
-	private WeakHashMap<String, Node> children = null;
-	private RootNode(){
-		super();
-		this.setName("rootNode");
-	}
-	
-	static Node newRootNode() {
-		return new RootNode();
-	}
-	
-}
 

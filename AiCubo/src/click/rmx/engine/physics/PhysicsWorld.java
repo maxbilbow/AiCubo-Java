@@ -2,16 +2,14 @@ package click.rmx.engine.physics;
 
 
 
-import static click.rmx.RMX.getCurrentFramerate;
+import static click.rmx.RMX.rmxGetCurrentFramerate;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.stream.Stream;
 
 import click.rmx.RMXObject;
-import click.rmx.engine.Node;
 import click.rmx.engine.Node;
 import click.rmx.engine.math.Vector3;
 import static click.rmx.engine.physics.CollisionBody.*;
@@ -52,7 +50,7 @@ public class PhysicsWorld extends RMXObject {
 			return;
 		float ground = node.transform().getHeight() / 2;//.scale().y / 2;
 		float mass = node.transform().mass();
-		float framerate = getCurrentFramerate();
+		float framerate = rmxGetCurrentFramerate();
 		float height = node.transform().worldMatrix().m31;
 		if (height > ground) {
 			//			System.out.println(node.getName() + " >> BEFORE: " + m.position());

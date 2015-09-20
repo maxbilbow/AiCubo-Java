@@ -7,42 +7,30 @@ import org.lwjgl.opengl.GL11;
 
 import com.maxbilbow.aicubo.ants.AntBehaviour;
 import com.maxbilbow.aicubo.hud.InfoWindow;
-import com.maxbilbow.aicubo.hud.InfoWindowController;
-
 import static com.maxbilbow.aicubo.ants.AntBehaviour.*;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-
 import click.rmx.Bugger;
-import click.rmx.engine.Camera;
 import click.rmx.engine.GameController;
-
-import click.rmx.engine.Geometry;
 import click.rmx.engine.Nodes;
 import click.rmx.engine.LightSource;
 import click.rmx.engine.Node;
 import click.rmx.engine.Scene;
 import click.rmx.engine.Transform;
 import click.rmx.engine.behaviours.Behaviour;
-import click.rmx.engine.behaviours.CameraBehaviour;
-import click.rmx.engine.behaviours.CollisionHandler;
 import click.rmx.engine.behaviours.SpriteBehaviour;
+import click.rmx.engine.geometry.GeometryImpl;
+import click.rmx.engine.geometry.Shapes;
 import click.rmx.engine.gl.IKeyCallback;
-import click.rmx.engine.math.Matrix4;
 import click.rmx.engine.math.Tools;
-import click.rmx.engine.math.Vector3;
-
-import click.rmx.engine.physics.CollisionEvent;
 import click.rmx.engine.physics.PhysicsBody;
 public final class AiCubo extends GameController {	
 
 	Node player, cameraNode;
+	@Override
 	protected void initpov() {
-		Node body = (Node) Nodes.getCurrent();
+		Node body = Nodes.getCurrent();
 		body.setPhysicsBody(PhysicsBody.newDynamicBody());
 		body.physicsBody().setMass(5.0f);
 		//		body.physicsBody().setFriction(0f);
@@ -50,7 +38,7 @@ public final class AiCubo extends GameController {
 		//		body.physicsBody().setDamping(0);
 		body.addBehaviour(new SpriteBehaviour());
 		body.transform().setScale(4f, 4.0f, 4f);	
-		Scene.getCurrent().rootNode.addChild(body);
+		Scene.getCurrent().rootNode().addChild(body);
 		//		body.setCollisionBody(new CollisionBody());
 		Node head = Nodes.newCameraNode();
 		body.addChild(head);
@@ -78,121 +66,107 @@ public final class AiCubo extends GameController {
 
 		Bugger.log("POV success");
 		Bugger.log("Initializing entity generator");
+		{
+			eg = new EntityGenerator() {
 
-		eg = new EntityGenerator() {
+				@Override
+				public Node makeEntity() {
+					float speed = (float) (Tools.rBounds(30, 100) / 1000);
+					float rotation = (float) (Tools.rBounds(1, (int)speed * 1000) / 1000);
+					Node body = Nodes.makeCube((float)Tools.rBounds(1, 2), PhysicsBody.newDynamicBody(), new AntBehaviour());
 
-			@Override
-			public Node makeEntity() {
-				float speed = (float) (Tools.rBounds(30, 100) / 1000);
-				float rotation = (float) (Tools.rBounds(1, (int)speed * 1000) / 1000);
-				Node body = Nodes.makeCube((float)Tools.rBounds(1, 2), PhysicsBody.newDynamicBody(), new AntBehaviour());
+					//				body.addBehaviour(new SpriteBehaviour());
+					body.physicsBody().setMass((float) Tools.rBounds(2,8));
+					//				body.physicsBody().setRestitution((float)Tools.rBounds(2,8)/10);
+					//				body.transform().setScale(2, 2, 2);
+					//				body.physicsBody().setDamping(0f);
+					//				body.physicsBody().setFriction(0f);
+					//				body.physicsBody().setRestitution(0);
+					//				body.setCollisionBody(new CollisionBody());
+					Node head = Nodes.makeCube(body.transform().radius() / 2, null, node -> {
+						if (node != view.pointOfView()) {
+							node.transform().move("yaw:0.1");
+							node.transform().move("pitch:0.1");
+							node.transform().move("roll:0.1");
+						}
+					});
 
+					body.addChild(head);
+					head.transform().setPosition(0, //put head where a head should be
+							body.transform().scale().y + head.transform().scale().y,
+							body.transform().scale().z + head.transform().scale().z);
+					Node trailingCam = Nodes.newCameraNode();
+					body.addChild(trailingCam);
+					trailingCam.setName("trailingCam");
+					trailingCam.transform().translate(0, 20, 50);
+					return body;
+				}
 
+			};
 
-
-
-				//				body.addBehaviour(new SpriteBehaviour());
-				body.physicsBody().setMass((float) Tools.rBounds(2,8));
-				//				body.physicsBody().setRestitution((float)Tools.rBounds(2,8)/10);
-				//				body.transform().setScale(2, 2, 2);
-				//				body.physicsBody().setDamping(0f);
-				//				body.physicsBody().setFriction(0f);
-				//				body.physicsBody().setRestitution(0);
-				//				body.setCollisionBody(new CollisionBody());
-				Node head = Nodes.makeCube(body.transform().radius() / 2, null, node -> {
-					if (node != view.pointOfView()) {
-						node.transform().move("yaw:0.1");
-						node.transform().move("pitch:0.1");
-						node.transform().move("roll:0.1");
-					}
-				});
-
-				body.addChild(head);
-				head.transform().setPosition(0, //put head where a head should be
-						body.transform().scale().y + head.transform().scale().y,
-						body.transform().scale().z + head.transform().scale().z);
-				Node trailingCam = Nodes.newCameraNode();
-				body.addChild(trailingCam);
-				trailingCam.setName("trailingCam");
-				trailingCam.transform().translate(0, 20, 50);
-				return body;
-			}
-
-		};
-
-		Bugger.log("Entity generator initialized");
-		eg.yMin = 0; eg.yMax = 50;
-		eg.xMax = eg.zMax = 100;
-		eg.xMin = eg.zMin = -100;
-
+			Bugger.log("Entity generator initialized");
+			eg.yMin = 0; eg.yMax = 50;
+			eg.xMax = eg.zMax = 100;
+			eg.xMin = eg.zMin = -100;
+		}
 		Bugger.log("Generating...");
 
-		Bugger.log("Success. Creating floor");
-		Node floor = Nodes.newGameNode();
-		floor.transform().setPosition(0,0,0);
-		scene.rootNode.addChild(floor);
-		float inf = 99999;//Float.POSITIVE_INFINITY;
-		floor.setGeometry(new Geometry(){
 
-			@Override
-			protected void drawWithScale(float x, float y, float z) {
-
-				GL11.glBegin(GL11.GL_POLYGON);    
-				GL11.glColor3f(0.8f,0.8f,0.8f);           
-				GL11.glVertex3f( inf, -y,-inf);        
-				GL11.glVertex3f(-inf, -y,-inf);        
-				GL11.glVertex3f(-inf, -y, inf);
-				GL11.glVertex3f( inf, -y, inf);  	
-				GL11.glEnd(); 
-			}
-
-		});
-
-		AxisGenerator ag = new AxisGenerator(inf);
-		ag.makeShapesAndAddToScene(scene, 1);
+		float inf = 99999;
+		{
+			Bugger.log("Success. Creating floor");
+			Node floor = Nodes.newGameNode();
+			floor.transform().setPosition(0,-10,0);
+			scene.rootNode().addChild(floor);
+			//Float.POSITIVE_INFINITY;
+			floor.transform().setScale(inf, 10, inf);
+			floor.setGeometry(Shapes.Cube);
+		}
+		{
+			AxisGenerator ag = new AxisGenerator(inf);
+			ag.makeShapesAndAddToScene(scene, 1);
+		}
 		Bugger.log("Actors set up successfully...");
+		{
+			Node box = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
+			//		box.physicsBody().setMass(100);
+			box.physicsBody().setRestitution(0.9f);
+			box.transform().setPosition(bounds,5,30);
+		}
+		{
+			Node wallA = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
+			wallA.transform().setScale(bounds, 10, 10);
+			wallA.transform().setPosition(0,0,bounds+10);
+			wallA.addToCurrentScene();
+		}
+		{
+			Node wallB = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
+			wallB.transform().setScale(bounds, 10, 10);
+			wallB.transform().setPosition(0,0,-bounds-10);
+			wallB.addToCurrentScene();
+		}
+		{
+			Node wallC = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
+			wallC.transform().setScale(10, 10, bounds);
+			wallC.transform().setPosition(bounds+10,0,0);
+			wallC.addToCurrentScene();
+		}
+		{
+			Node wallD = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
 
-		Node box = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
-		//		box.physicsBody().setMass(100);
-		box.physicsBody().setRestitution(0.9f);
-		box.transform().setPosition(bounds,5,30);
-
-		Node wallA = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
-		wallA.transform().setScale(bounds, 10, 10);
-		wallA.transform().setPosition(0,0,bounds+10);
-		wallA.addToCurrentScene();
-		Node wallB = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
-		wallB.transform().setScale(bounds, 10, 10);
-		wallB.transform().setPosition(0,0,-bounds-10);
-		wallB.addToCurrentScene();
-		Node wallC = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
-		wallC.transform().setScale(10, 10, bounds);
-		wallC.transform().setPosition(bounds+10,0,0);
-		wallC.addToCurrentScene();
-		Node wallD = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
-		wallD.transform().setScale(10, 10, bounds);
-		wallD.transform().setPosition(-bounds-10,0,0);
-		wallD.addToCurrentScene();
-
-		Node light = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
-		light.transform().setPosition(100,50,100);
-		light.setComponent(LightSource.class, new LightSource());
-		light.addToCurrentScene();
-
+			wallD.transform().setScale(10, 10, bounds);
+			wallD.transform().setPosition(-bounds-10,0,0);
+			wallD.addToCurrentScene();
+		}
+		{
+			Node light = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
+			light.transform().setPosition(100,50,100);
+			light.setComponent(LightSource.class, new LightSource());
+			light.addToCurrentScene();
+		}
 	}
 
 
-	//	public static AiCubo getInstance() {
-	//		if(singleton == null) {
-	//			synchronized(GameController.class) {
-	//				if(singleton == null) {
-	//					singleton = new AiCubo();
-	//					singleton.setView(new GameView());
-	//				}
-	//			}
-	//		}
-	//		return (AiCubo) singleton;
-	//	}
 	public static void main(String[] args) {
 		//		try {
 		InfoWindow.open();
@@ -209,7 +183,7 @@ public final class AiCubo extends GameController {
 	@Override
 	public void updateBeforeSceneRender(Object... args) {
 		long timePassed = Scene.getCurrent().tick() -  tick;
-		if (count < 500 && timePassed > 500) {
+		if (count < 500 && timePassed > 50) {
 			eg.makeShapesAndAddToScene(Scene.getCurrent(), 1);
 			this.tick = Scene.getCurrent().tick();
 			count++;
@@ -232,11 +206,11 @@ public final class AiCubo extends GameController {
 				if (action == GLFW_RELEASE)
 					switch (key) {
 					case GLFW_KEY_TAB:
-						int max = Scene.getCurrent().rootNode.getChildren().size() - 1;
+						int max = Scene.getCurrent().rootNode().getChildren().size() - 1;
 						Node n, cam;
 						Nodes.getCurrent().sendMessageToBehaviour(AntBehaviour.class,"setDefaultState");
 						do {
-							n = Scene.getCurrent().rootNode.getChildren().get((int)Tools.rBounds(0, max));
+							n = Scene.getCurrent().rootNode().getChildren().get((int)Tools.rBounds(0, max));
 							cam = n.getChildWithName("trailingCam");
 						} while (cam == null);
 						n.setValue(Behaviour.GET_AI_STATE, Behaviour.AI_STATE_POSSESSED);//.sendMessageToBehaviour(Behaviour.class,"setState", Behaviour.AI_STATE_POSSESSED);

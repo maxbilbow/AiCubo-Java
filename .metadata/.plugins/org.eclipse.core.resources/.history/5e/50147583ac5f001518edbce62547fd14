@@ -1,0 +1,11 @@
+package click.rmx.engine;
+
+import static click.rmx.RMX.rmxTodo;
+
+import java.util.stream.Stream;
+
+import click.rmx.engine.geometry.Shape;
+
+public interface RootNode extends Node {
+	public Stream<Shape> getGeometries();
+}

@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import click.rmx.messages.IEventListener;
 import click.rmx.messages.KeyValueObserver;
 
-public interface IRMXObject extends IEventListener, KeyValueObserver  {
+public interface IRMXObject extends IEventListener, KeyValueObserver, Categorizable  {
 
 	int uniqueID();
 
@@ -29,5 +29,5 @@ public interface IRMXObject extends IEventListener, KeyValueObserver  {
 	String getName();
 
 	void setName(String name);
-
+	
 }

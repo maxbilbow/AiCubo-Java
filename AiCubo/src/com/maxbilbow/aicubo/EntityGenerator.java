@@ -28,7 +28,7 @@ public abstract class EntityGenerator {
 		for (int i = 0; i<quantity; ++i) {
 			Node entity = this.makeEntity();
 			if (entity != null)
-				scene.rootNode.addChild(this.initPositionOf(entity));
+				scene.rootNode().addChild(this.initPositionOf(entity));
 		}
 	}
 }

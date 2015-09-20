@@ -891,3 +891,9 @@ org.eclipse.jdt.core.JavaModelException: AiCubo does not exist
 2015-09-18 20:54:03,501 [Worker-103] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Max/Gits/AiCubo-Java/amav/src/main/resources
 2015-09-18 20:54:03,502 [Worker-103] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2015-09-18 20:54:03,502 [Worker-103] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Max/Gits/AiCubo-Java/amav/src/test/resources
+2015-09-20 09:12:59,204 [Worker-7] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.test:demo:0.0.1-SNAPSHOT @ /Users/Max/Gits/AiCubo-Java/demo/pom.xml.
+2015-09-20 09:12:59,868 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-09-20 09:12:59,874 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2015-09-20 09:12:59,898 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-09-20 09:12:59,901 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-09-20 09:12:59,902 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Max/Gits/AiCubo-Java/demo/src/test/resources

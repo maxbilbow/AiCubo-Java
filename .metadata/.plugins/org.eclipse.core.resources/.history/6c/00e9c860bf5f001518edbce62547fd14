@@ -1,0 +1,39 @@
+package click.rmx.engine;
+
+import static click.rmx.RMX.rmxTodo;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Stream;
+
+import click.rmx.engine.geometry.Shape;
+
+public class RootNodeImpl extends GameNode implements RootNode {
+
+	Set<Geometry> geometries;// = new ArrayList<>();
+	int count = 0;
+	@Override
+	public Map<Shape, Stream<Geometry>> getGeometries() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	private HashMap<Shape, Stream<Geometry>> children = null;
+	private RootNodeImpl(){
+		super();
+		this.setName("rootNode");
+	}
+
+
+
+	public static RootNodeImpl newInstance() {
+		return new RootNodeImpl();
+	}
+
+
+
+}

@@ -8,15 +8,11 @@ import com.maxbilbow.aicubo.ai.StrategyEngine;
 
 import com.maxbilbow.aicubo.ai.StrategyEngine.IMethods;
 
-import static org.lwjgl.glfw.GLFW.*;
-
-import java.util.HashMap;
 import java.util.LinkedList;
 
 import click.rmx.RMX;
 import click.rmx.engine.Node;
 import click.rmx.engine.Nodes;
-import click.rmx.engine.Node;
 import click.rmx.engine.Scene;
 import click.rmx.engine.behaviours.Behaviour;
 import click.rmx.engine.behaviours.ICollisionHandler;
@@ -66,6 +62,7 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
 			return text;
 		}
 
+		@Override
 		public int length() {
 			return Crowd.values().length;
 		}
@@ -182,6 +179,7 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
 	}
 
 
+	@Override
 	public void setDefaultState() {
 		this.setState(FollowTheLeader);
 		System.out.println("Amble");
@@ -289,6 +287,7 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
 	}
 
 	public static Node Leader;
+	@Override
 	public void onEventDidEnd(String theEvent, Object args) {
 		if (this.state() == Possessed) {
 			System.out.println("I Am Possessed: " + theEvent + ", " + args);
