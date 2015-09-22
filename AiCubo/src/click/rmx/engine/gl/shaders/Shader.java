@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
 
+import click.rmx.Bugger;
 import org.lwjgl.opengl.ARBShaderObjects;
 import org.lwjgl.opengl.ARBVertexProgram;
 
@@ -19,11 +20,15 @@ public class Shader {
 	
 	
 	private final int defaultVertexShader() throws Exception {
-		return createShader("src/" + rmxGetPackageUrl(this) + "/Shader.vsh", GL_VERTEX_SHADER_ARB);
+		String url = "AiCubo/src/" + rmxGetPackageUrl(this) + "/Shader.vsh";
+		Bugger.log(url);
+		return createShader(url, GL_VERTEX_SHADER_ARB);
 	}
 	
 	private final int defaultFragmentShader() throws Exception {
-		return createShader("src/" + rmxGetPackageUrl(this) + "/Shader.fsh", GL_FRAGMENT_SHADER_ARB);
+		String url = "AiCubo/src/" + rmxGetPackageUrl(this) + "/Shader.fsh";
+		Bugger.log(url);
+		return createShader(url, GL_FRAGMENT_SHADER_ARB);
 	}
 	
 	public static final int DEFAULT = 0;
