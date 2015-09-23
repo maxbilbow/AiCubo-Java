@@ -12,7 +12,7 @@ import org.lwjgl.BufferUtils;
 import click.rmx.RMX;
 import click.rmx.Tests;
 import click.rmx.engine.gl.GameView;
-import click.rmx.engine.gl.shaders.Shader;
+import click.rmx.engine.gl.Shader;
 import click.rmx.engine.geometry.Geometry;
 import click.rmx.engine.geometry.Shape;
 import click.rmx.engine.geometry.Shapes;

@@ -13,26 +13,24 @@
     <output url="file://$MODULE_DIR$/bin" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/shaders" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/.metadata" />
       <excludeFolder url="file://$MODULE_DIR$/ToSortAndDelete" />
-      <excludeFolder url="file://$MODULE_DIR$/src/silvertiger/tutorial/lwjgl" />
+      <excludeFolder url="file://$MODULE_DIR$/bugger" />
+      <excludeFolder url="file://$MODULE_DIR$/resources" />
+      <excludeFolder url="file://$MODULE_DIR$/resources/silvertiger" />
+      <excludeFolder url="file://$MODULE_DIR$/resources/silvertiger/tutorial" />
+      <excludeFolder url="file://$MODULE_DIR$/resources/silvertiger/tutorial/lwjgl" />
+      <excludeFolder url="file://$MODULE_DIR$/stuff" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="module-library">
       <library name="vecmath-1.5.1.jar">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/vecmath-1.5.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="src.zip">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/lwjgl/src.zip!/" />
+          <root url="jar://$MODULE_DIR$/src/main/resources/lib/vecmath-1.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -41,14 +39,29 @@
     <orderEntry type="module-library">
       <library name="lwjgl.jar">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/lwjgl/jar/lwjgl.jar!/" />
+          <root url="jar://$MODULE_DIR$/src/main/resources/lib/lwjgl/jar/lwjgl.jar!/" />
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC>
+          <root url="jar://$MODULE_DIR$/src/main/resources/lib/lwjgl/doc/javadoc.zip!/" />
+        </JAVADOC>
+        <NATIVE>
+          <root url="file://$MODULE_DIR$/src/main/resources/lib/lwjgl/native" />
+        </NATIVE>
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/lib/lwjgl/src.zip!/" />
+          <root url="jar://$MODULE_DIR$/src/main/resources/lib/lwjgl/src.zip!/" />
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="library" name="native" level="project" />
+    <orderEntry type="module-library" scope="TEST">
+      <library name="JUnit4">
+        <CLASSES>
+          <root url="jar://$APPLICATION_HOME_DIR$/lib/junit-4.11.jar!/" />
+          <root url="jar://$APPLICATION_HOME_DIR$/lib/hamcrest-core-1.3.jar!/" />
+          <root url="jar://$APPLICATION_HOME_DIR$/lib/hamcrest-library-1.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
