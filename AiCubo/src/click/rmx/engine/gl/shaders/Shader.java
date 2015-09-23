@@ -20,13 +20,13 @@ public class Shader {
 	
 	
 	private final int defaultVertexShader() throws Exception {
-		String url = "AiCubo/src/" + rmxGetPackageUrl(this) + "/Shader.vsh";
+		String url = "src/" + rmxGetPackageUrl(this) + "/Shader.vsh";
 		Bugger.log(url);
 		return createShader(url, GL_VERTEX_SHADER_ARB);
 	}
 	
 	private final int defaultFragmentShader() throws Exception {
-		String url = "AiCubo/src/" + rmxGetPackageUrl(this) + "/Shader.fsh";
+		String url = "src/" + rmxGetPackageUrl(this) + "/Shader.fsh";
 		Bugger.log(url);
 		return createShader(url, GL_FRAGMENT_SHADER_ARB);
 	}

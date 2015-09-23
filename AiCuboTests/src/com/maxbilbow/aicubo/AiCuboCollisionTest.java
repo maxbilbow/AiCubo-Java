@@ -7,6 +7,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import click.rmx.engine.GameNode;
+import click.rmx.engine.geometry.Shapes;
 import org.junit.Before;
 import org.junit.Test;
 //import org.lwjgl.glfw.GLFWKeyCallback;
@@ -38,7 +40,7 @@ public class AiCuboCollisionTest implements CollisionDelegate {
 		cameraNode = game.cameraNode;
 		scene.getPhysicsWorld().setCollisionDelegate(this);
 		player.setName("Player");
-		player.transform.setPosition(0, scale, -scale / 2);
+		player.transform().setPosition(0, scale, -scale / 2);
 
 		front = buildEntity("z+");
 		back = buildEntity("z-");
@@ -48,16 +50,17 @@ public class AiCuboCollisionTest implements CollisionDelegate {
 		bottom = buildEntity("y-");
 
 
-		front.transform.setPosition( 0,    0,	 scale);
-		back.transform.setPosition(  0,	   0,	-scale);
-		left.transform.setPosition(  scale,0,	 0);
-		right.transform.setPosition(-scale,0,	 0);
-		top.transform.setPosition(	 0,	   scale,0);
-		bottom.transform.setPosition(0,   -scale,0);
+		front.transform().setPosition(0, 0, scale);
+		back.transform().setPosition(0, 0, -scale);
+		left.transform().setPosition(scale, 0, 0);
+		right.transform().setPosition(-scale, 0, 0);
+		top.transform().setPosition(0, scale, 0);
+		bottom.transform().setPosition(0,   -scale,0);
 
-		box = Node.makeCube(scale / 10, PhysicsBody.newStaticBody(), null);
+		box = GameNode.newInstance();//.makeCube(scale / 10, PhysicsBody.newStaticBody(), null);
+		box.setGeometry(Shapes.Cube);
 		box.setName("Box");
-		scene.rootNode.addChild(box);
+		scene.rootNode().addChild(box);
 		scene.getPhysicsWorld().setGravity(0, 0, 0);
 
 		actor = front;
@@ -74,23 +77,23 @@ public class AiCuboCollisionTest implements CollisionDelegate {
 					case GLFW_KEY_EQUAL:
 						actor.physicsBody().applyForce(
 								0.5f, 
-								Vector3.makeSubtraction(box.transform.position(), actor.transform.position()).getNormalized(),
+								Vector3.makeSubtraction(box.transform().position(), actor.transform().position()).getNormalized(),
 								Vector3.Zero);
 						break;
 					case GLFW_KEY_MINUS:
 						actor.physicsBody().applyForce(
 								-0.5f, 
-								Vector3.makeSubtraction(box.transform.position(), actor.transform.position()).getNormalized(),
+								Vector3.makeSubtraction(box.transform().position(), actor.transform().position()).getNormalized(),
 								Vector3.Zero);
 						break;
 					case GLFW_KEY_R:
-						actor.transform.rotate("z",90 * PI_OVER_180);
+						actor.transform().rotate("z", 90 * PI_OVER_180);
 						break;
 					case GLFW_KEY_T:
-						actor.transform.rotate("x",90 * PI_OVER_180);
+						actor.transform().rotate("x", 90 * PI_OVER_180);
 						break;
 					case GLFW_KEY_Y:
-						actor.transform.rotate("y",90 * PI_OVER_180);
+						actor.transform().rotate("y", 90 * PI_OVER_180);
 						break;
 					}
 //					System.out.println(actor.getName() + " At Angle: " + actor.transform.eulerAngles());
