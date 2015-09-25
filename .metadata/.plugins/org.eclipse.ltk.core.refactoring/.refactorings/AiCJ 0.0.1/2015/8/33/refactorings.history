@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Move 3 elements to &apos;AiCubo&apos;&#x0A;- Original project: &apos;AiCJ 0.0.1&apos;&#x0A;- Destination element: &apos;AiCubo&apos;&#x0A;- Original elements:&#x0A;     rattleGL.Glu.java&#x0A;     rattleGL.IKeyProcessor.java&#x0A;     rattleGL.IMouseProcessor.java&#x0A;- Update references to refactored element" description="Move compilation units" destination="=AiCubo" element1="/&lt;rattleGL{Glu.java" element2="/&lt;rattleGL{IKeyProcessor.java" element3="/&lt;rattleGL{IMouseProcessor.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1439582610103" units="3" version="1.0"/>
-</session>

@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy 2 packages to &apos;AiCubo/src&apos;&#x0A;- Original project: &apos;RMXKit&apos;&#x0A;- Destination element: &apos;AiCubo/src&apos;&#x0A;- Original elements:&#x0A;     RMXKit/src/rmx.db&#x0A;     RMXKit/src/rmx" description="Copy packages" destination="=AiCubo/src" element1="/src&lt;rmx.db" element2="/src&lt;rmx" flags="589830" fragments="2" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1439584321881" version="1.0"/>
-</session>

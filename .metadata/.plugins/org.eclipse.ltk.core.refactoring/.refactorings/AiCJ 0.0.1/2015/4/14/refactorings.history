@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename package &apos;RattleGL&apos; to &apos;rattleGL&apos;&#x0A;- Original project: &apos;AiCJ 0.0.1&apos;&#x0A;- Original element: &apos;AiCJ 0.0.1/RattleGL&apos;&#x0A;- Renamed element: &apos;AiCJ 0.0.1/rattleGL&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;RattleGL&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/&lt;RattleGL" name="rattleGL" qualified="false" references="true" stamp="1428160254589" textual="false" version="1.0"/>
-</session>

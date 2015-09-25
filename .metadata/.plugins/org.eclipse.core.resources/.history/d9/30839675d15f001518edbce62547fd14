@@ -1,6 +1,0 @@
-package click.rmx;
-
-
-public interface Categorizable {
-	String getCategory();// default "None";
-}

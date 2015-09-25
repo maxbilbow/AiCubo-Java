@@ -1,8 +1,0 @@
-package click.rmx;
-
-
-public interface Categorizable {
-	default String getCategoryName() {
-		this.getClass().getSimpleName();
-	}
-}
