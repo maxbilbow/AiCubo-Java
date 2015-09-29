@@ -5,7 +5,6 @@
       <element id="module-output" name="AiCubo" />
       <element id="extracted-dir" path="$PROJECT_DIR$/src/main/resources/lib/vecmath-1.5.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/src/main/resources/lib/lwjgl/jar/lwjgl.jar" path-in-jar="/" />
-      <element id="library" level="project" name="AiCubo-Java" />
     </root>
   </artifact>
 </component>

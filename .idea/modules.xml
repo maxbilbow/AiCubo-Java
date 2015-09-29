@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AiCubo.iml" filepath="$PROJECT_DIR$/AiCubo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aicubo/aicubo.iml" filepath="$PROJECT_DIR$/aicubo/aicubo.iml" group="AiCubo-Java" />
     </modules>
   </component>
 </project>
