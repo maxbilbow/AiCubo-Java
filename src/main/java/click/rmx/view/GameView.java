@@ -1,39 +1,33 @@
-package click.rmx.engine.gl;
+package click.rmx.view;
 
-import static org.lwjgl.glfw.Callbacks.errorCallbackPrint;
-import static org.lwjgl.glfw.GLFW.glfwPollEvents;
-import static org.lwjgl.glfw.GLFW.glfwSetCursorPosCallback;
-import static org.lwjgl.glfw.GLFW.glfwSetErrorCallback;
-import static org.lwjgl.glfw.GLFW.glfwSetKeyCallback;
-import static org.lwjgl.glfw.GLFW.glfwSetWindowSizeCallback;
-import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
-import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
-import static org.lwjgl.opengl.GL11.GL_FALSE;
-import static org.lwjgl.opengl.GL11.glClearColor;
-import static org.lwjgl.system.MemoryUtil.NULL;
+import click.rmx.Bugger;
+import click.rmx.control.GameController;
+import click.rmx.engine.*;
+import click.rmx.engine.behaviours.Behaviour;
+import click.rmx.engine.gl.CursorCallback;
+import click.rmx.engine.gl.GLView;
+import click.rmx.engine.gl.KeyCallback;
+import click.rmx.engine.math.Vector4;
+import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.glfw.GLFWWindowSizeCallback;
 
+import javax.annotation.PostConstruct;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.LinkedList;
 
-import org.lwjgl.glfw.GLFWErrorCallback;
-import org.lwjgl.glfw.GLFWWindowSizeCallback;
+import static org.lwjgl.glfw.Callbacks.errorCallbackPrint;
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.GL_FALSE;
+import static org.lwjgl.opengl.GL11.glClearColor;
+import static org.lwjgl.system.MemoryUtil.NULL;
 
-import click.rmx.Bugger;
-import click.rmx.RMXObject;
-import click.rmx.engine.Camera;
-import click.rmx.engine.GLShaderView;
-import click.rmx.engine.GLViewPerFrameLog;
-import click.rmx.engine.GameView1;
-import click.rmx.engine.Node;
-import click.rmx.engine.Nodes;
-import click.rmx.engine.Scene;
-import click.rmx.engine.behaviours.Behaviour;
-import click.rmx.engine.math.Vector4;
-
-public abstract class GameView extends RMXObject implements GLView {
+public abstract class GameView implements GLView
+{
 
 	private GLFWWindowSizeCallback windowSizeCallback;
+
+	private GameController mGameController;
 
 	private final Vector4 clearColor = new Vector4();
 	
@@ -41,10 +35,15 @@ public abstract class GameView extends RMXObject implements GLView {
 	private int height = 720, width = 1280;
 
 	// We need to strongly reference callback instances.
+
 	private GLFWErrorCallback errorCallback;
-	private KeyCallback  keyCallback;
+
+//	@Resource
+	private KeyCallback mKeyCallback;
 	// The window handle
-	private long window;
+	private long        window;
+
+//	@Resource
 	private CursorCallback cursorCallback;
 
 //	protected Scene scene;
@@ -54,9 +53,15 @@ public abstract class GameView extends RMXObject implements GLView {
 	private int framesPerUpdate = 60;
 
 	private GLViewPerFrameLog perFramDebugInfo = () -> "";
+	public GameView(GameController aGameController)
+	{
+		mGameController = aGameController;
+		init();
+	}
 
-	protected GameView() {
-		this.init();
+	@PostConstruct
+	public void init() {
+		this.initCallbacks();
 		this.onAwake();
 	}
 
@@ -139,9 +144,11 @@ public abstract class GameView extends RMXObject implements GLView {
 		return this.height;
 	}
 
-	protected void init() {
-		keyCallback = KeyCallback.getInstance();
+	protected void initCallbacks() {
+		mKeyCallback = KeyCallback.getInstance();
+		mKeyCallback.setGameController(mGameController);
 		cursorCallback = CursorCallback.getInstance();
+		cursorCallback.setGameController(mGameController);
 		this.windowSizeCallback = new GLFWWindowSizeCallback() {
 
 			@Override
@@ -156,7 +163,7 @@ public abstract class GameView extends RMXObject implements GLView {
 	@Override
 	public void initGLCallbacks(long window) {
 		glfwSetErrorCallback(errorCallback = errorCallbackPrint(System.err));
-		glfwSetKeyCallback(window, keyCallback);
+		glfwSetKeyCallback(window, mKeyCallback);
 		glfwSetCursorPosCallback(window, cursorCallback);
 		glfwSetWindowSizeCallback(window, this.windowSizeCallback);
 	}
@@ -167,7 +174,7 @@ public abstract class GameView extends RMXObject implements GLView {
 
 	@Override
 	public KeyCallback keyCallback() {
-		return keyCallback;
+		return mKeyCallback;
 	}
 
 	protected abstract void onAwake();
@@ -274,20 +281,32 @@ public abstract class GameView extends RMXObject implements GLView {
 	}
 	
 	public static final int DEFAULT = 0, OLD = 1, SHADER = 2;
-	
-	public static GLView newInstance() {
-		return newInstance(DEFAULT);
+
+	@Deprecated
+	public static GLView newInstance(GameController aGameController) {
+		return newInstance(DEFAULT,aGameController);
 	}
-	
-	@SuppressWarnings("deprecation")
-	public static GLView newInstance(int type) {
+
+	@Deprecated
+	public static GLView newInstance(int type,GameController aGameController) {
+		GLView view;
 		switch (type) {
 		case OLD:
-			return new GameView1();
+//			return new GameView1();
 		case SHADER:
 		case DEFAULT:
 		default:
-			return new GLShaderView();
+			return new GLViewImpl(aGameController);
 		}
+	}
+
+	public GameController getGameController()
+	{
+		return mGameController;
+	}
+
+	public void setGameController(GameController aGameController)
+	{
+		mGameController = aGameController;
 	}
 }

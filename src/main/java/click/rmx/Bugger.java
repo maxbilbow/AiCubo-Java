@@ -1,23 +1,27 @@
 package click.rmx;
 
+import click.rmx.control.GameController;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 import java.io.FileWriter;
 import java.io.IOException;
-import static java.nio.file.Files.*;
-
 import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import click.rmx.engine.GameController;
+import static java.nio.file.Files.createDirectories;
 
-
+@Component
 public class Bugger {
 	public static  boolean logging = true;
 	public static  boolean debug = true;
 	
 	private final LinkedList<String> logs = new LinkedList<>();
 
-	private static Bugger singleton;
+	@Resource
+	private        GameController mGameController;
+	private static Bugger         singleton;
 	private Bugger(){ 
 		Runtime.getRuntime().addShutdownHook(new Thread() {
                     @Override
@@ -127,7 +131,7 @@ public class Bugger {
 	}
 	
 	String scope() {
-		GameController gc = GameController.getInstance(); 
+		GameController gc = mGameController; //GameController.getInstance();
 		if (gc != null)
 			return gc.getClass().getSimpleName();
 		else

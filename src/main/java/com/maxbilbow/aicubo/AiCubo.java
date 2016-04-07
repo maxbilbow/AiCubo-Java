@@ -2,8 +2,8 @@
 package com.maxbilbow.aicubo;
 
 
-
 import click.rmx.Bugger;
+import click.rmx.control.GameController;
 import click.rmx.engine.*;
 import click.rmx.engine.behaviours.Behaviour;
 import click.rmx.engine.behaviours.SpriteBehaviour;
@@ -19,8 +19,9 @@ import javax.annotation.PostConstruct;
 import static com.maxbilbow.aicubo.ants.AntBehaviour.*;
 import static org.lwjgl.glfw.GLFW.*;
 
-@Component
-public final class AiCubo extends GameController {	
+@Component("GameController")
+public class AiCubo extends GameController
+{
 
 	Node player, cameraNode;
 	@Override
@@ -40,14 +41,14 @@ public final class AiCubo extends GameController {
 		body.transform().setPosition(10f,20f,20f);
 
 
-		this.view.setPointOfView(head);
+		this.mView.setPointOfView(head);
 		this.player = body;
 		this.cameraNode = head;
 
 	}
 	public static final int bounds = 200;
 
-	protected AiCubo(){
+	public AiCubo(){
 		super();
 	}
 
@@ -80,7 +81,7 @@ public final class AiCubo extends GameController {
 					//				body.physicsBody().setRestitution(0);
 					//				body.setCollisionBody(new CollisionBody());
 					Node head = Nodes.makeCube(body.transform().radius() / 2, null, node -> {
-						if (node != view.pointOfView()) {
+						if (node != mView.pointOfView()) {
 							node.transform().move("yaw:0.1");
 							node.transform().move("pitch:0.1");
 							node.transform().move("roll:0.1");
@@ -166,7 +167,7 @@ public final class AiCubo extends GameController {
 	@PostConstruct
 	public void init() {
 		//		try {
-
+		super.init();
 
 		initActors();
 		Start();
@@ -217,7 +218,7 @@ public final class AiCubo extends GameController {
 						//						getView().pointOfView().transform().localMatrix().setIdentity();
 						break;
 					case GLFW_KEY_ENTER:
-						Transform t = view.pointOfView().transform();//.rootTransform().localMatrix();
+						Transform t = mView.pointOfView().transform();//.rootTransform().localMatrix();
 						player.transform().rootTransform().localMatrix().set(t.rootTransform().localMatrix());
 						player.transform().rootTransform().setPosition(t.position());
 						//						player.transform().translate(0, player.transform().getHeight(), 0);
@@ -263,8 +264,8 @@ public final class AiCubo extends GameController {
 						}
 						break;
 					}
-				if (view.pointOfView().physicsBody() != null)
-					System.err.println(view.pointOfView().getName() + " has physicsBody");
+				if (mView.pointOfView().physicsBody() != null)
+					System.err.println(mView.pointOfView().getName() + " has physicsBody");
 
 			}
 

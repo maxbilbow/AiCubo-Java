@@ -1,73 +1,74 @@
-package click.rmx.engine;
-
-
-
-
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_W;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_S;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_A;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_D;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_Q;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_E;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_X;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_Z;
-import org.lwjgl.glfw.GLFW;
+package click.rmx.control;
 
 
 import click.rmx.Bugger;
 import click.rmx.RMXObject;
+import click.rmx.engine.Node;
+import click.rmx.engine.Nodes;
+import click.rmx.engine.RenderDelegate;
 import click.rmx.engine.gl.GLView;
-import click.rmx.engine.gl.GameView;
 import click.rmx.engine.gl.IKeyCallback;
 import click.rmx.engine.gl.KeyStates;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_RIGHT;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_LEFT;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_UP;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_DOWN;
+import click.rmx.view.GameView;
+import org.lwjgl.glfw.GLFW;
+
+import javax.annotation.PostConstruct;
+
+import static org.lwjgl.glfw.GLFW.*;
 
 
 
 public abstract class GameController extends RMXObject implements RenderDelegate, Runnable  {
-	protected GLView view;
 
-	protected GameController() {	
-		this.setView(GameView.newInstance());
-		if (singleton == null)
-			singleton = this;
-		else
-			throw new IllegalArgumentException("Two GameController Instances cannot exist");
+//  @Resource
+//  @Qualifier("GLView")
+  protected GLView mView;
+
+
+//	private static GameController singleton;// = new GameController();
+
+  public GameController()
+  {
+    this.setView(GameView.newInstance(this));
+  }
+
+	@PostConstruct
+	public void init() {
+
+//		if (singleton == null)
+//			singleton = this;
+//		else
+//			throw new IllegalArgumentException("Two GameController Instances cannot exist");
 		this.initpov();
 		this.setup();
 		
 	}
 	
 	public GLView getView() {
-		return this.view;
+		return this.mView;
 	}
 	
-	public static boolean isInitialized() {
-		return singleton != null;
-	}
+//	public static boolean isInitialized() {
+//		return singleton != null;
+//	}
 	
-	public static GameController getInstance() {
-//		if (singleton != null)
-			return singleton;
-//		else
-//			throw new IllegalArgumentException("Abstract class GameController must have been initialized first");
-		
-	}
-	
-	protected static GameController singleton;// = new GameController();
-	
+//	public static GameController getInstance() {
+////		if (singleton != null)
+//			return singleton;
+////		else
+////			throw new IllegalArgumentException("Abstract class GameController must have been initialized first");
+//
+//	}
+
 	protected abstract void initpov();
 	public abstract void setup();
 
 	public void addKeyCallback(IKeyCallback callback) {
-		this.view.keyCallback().callbacks.add(callback);
+		this.mView.keyCallback().callbacks.add(callback);
 	}
 	
 	public void addKeyListenerForKey(int key, IKeyCallback listener) {
-		this.view.keyCallback().addKeyListenerForKey(key, listener);
+		this.mView.keyCallback().addKeyListenerForKey(key, listener);
 	}
         @Override
 	public void run() {
@@ -75,7 +76,7 @@ public abstract class GameController extends RMXObject implements RenderDelegate
        System.out.println("Hello LWJGL " + GLFW.glfwGetVersionString() + "!");
        Bugger.log("Setup GameController");
       
-       this.view.run();
+       this.mView.run();
     }
 
 	@Override
@@ -143,7 +144,7 @@ public abstract class GameController extends RMXObject implements RenderDelegate
 	
 	
 	public void setView(GLView view) {
-		this.view = view;
+		this.mView = view;
 //		this.view.setDelegate(this);
 	}
 //	private Thread thread;

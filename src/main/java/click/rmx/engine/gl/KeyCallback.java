@@ -1,39 +1,52 @@
 package click.rmx.engine.gl;
-import static org.lwjgl.glfw.GLFW.*;
-//import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
-import static org.lwjgl.opengl.GL11.GL_TRUE;
+
+import click.rmx.control.GameController;
+import click.rmx.engine.Nodes;
+import org.lwjgl.glfw.GLFWKeyCallback;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.lwjgl.glfw.GLFWKeyCallback;
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.GL_TRUE;
 
-import click.rmx.engine.GameController;
-import click.rmx.engine.Nodes;
-
-
+//import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 
 
+//@Component
 public class KeyCallback extends GLFWKeyCallback {
 	public static char forward = 'w', back = 's', left = 'a', right = 'd', up = 'e', down = 'q', stop = 'c', jump = ' ';
 //	public static boolean update = true;
     //, keySpecialStates[] = new boolean[246];
-	
-    private static final KeyCallback singleton = new KeyCallback();
-    private KeyCallback() {    }
+
+	@Deprecated
+    private static KeyCallback singleton;// = new KeyCallback();
+
+
+
+//	@Resource
+	private GameController mGameController;
+
+	public KeyCallback( ) {
+		if (singleton == null)
+		{
+			singleton = this;
+		}
+//		mGameController = aGameController;
+	}
 //    boolean mouseLocked = false;
     public static KeyCallback getInstance() {
-    	return singleton;
+    	return singleton != null ? singleton : (singleton = new KeyCallback());
     }
     
     public ArrayList<IKeyCallback> callbacks = new ArrayList<>();
 	 @Override
      public void invoke(long window, int key, int scancode, int action, int mods) {
 		if (action == GLFW_PRESS) {
-			GameController.getInstance().keys.put(key, true);
+			mGameController.keys.put(key, true);
 //			System.out.println("Key Down: " + (char) key + " "+ scancode + " "+ action + " "+ mods);
 		} else if (action == GLFW_RELEASE) {
-			GameController.getInstance().keys.put(key, false);
+			mGameController.keys.put(key, false);
 //			System.out.println("  Key Up: " + (char) key + " "+ scancode + " "+ action + " "+ mods);
 		}
 		
@@ -85,4 +98,8 @@ public class KeyCallback extends GLFWKeyCallback {
 		 keyListeners.get(key).add(listener);
 	 }
 
+	public void setGameController(GameController aGameController)
+	{
+		mGameController = aGameController;
+	}
 }
