@@ -5,11 +5,8 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="file://$PROJECT_DIR$/ToSortAndDelete/AiGlubo-android/app/src/androidTest/java" />
-      <root url="file://$PROJECT_DIR$/ToSortAndDelete/AiGlubo-android/app/src/main/java" />
       <root url="file://$PROJECT_DIR$/src/main/java" />
       <root url="file://$PROJECT_DIR$/src/test/java" />
-      <root url="file://$PROJECT_DIR$/stuff/lib/vecmath/src" />
     </SOURCES>
     <jarDirectory url="file://$PROJECT_DIR$" recursive="false" />
   </library>

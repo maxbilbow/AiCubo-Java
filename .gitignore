@@ -1,1 +1,19 @@
-/bin/
+#IntelliJ Idea
+*.iml
+*.idea
+
+#Eclipse
+.classpath
+.project
+.settings
+
+#Application Logs
+config/logs
+logs/*.log
+
+#Maven
+target
+
+#WebApp Artifacts
+src/main/webapp/WEB-INF/lib
+src/main/webapp/WEB-INF/classes

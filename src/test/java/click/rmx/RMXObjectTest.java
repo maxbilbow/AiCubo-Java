@@ -13,8 +13,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-import click.rmx.testsuite.ExcludeCat;
-import click.rmx.testsuite.FoundationTest;
 
 /**
  * @author bilbowm
@@ -56,19 +54,19 @@ public class RMXObjectTest  {
 		object = null;
 	}
 
-	@Test
-	@Category({FoundationTest.class, ExcludeCat.class})
-	public void test() {
-//		messageWasNotReceived();
-		todo();
-		fail();
-	}
-	
-	@Test
-	@Category(FoundationTest.class)
-	public void messageWasNotReceived() {
-		todo();
-	}
+//	@Test
+//	@Category({FoundationTest.class, ExcludeCat.class})
+//	public void test() {
+////		messageWasNotReceived();
+//		todo();
+//		fail();
+//	}
+//
+//	@Test
+//	@Category(FoundationTest.class)
+//	public void messageWasNotReceived() {
+//		todo();
+//	}
 
 	
 }

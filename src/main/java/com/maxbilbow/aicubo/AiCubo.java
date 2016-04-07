@@ -3,25 +3,23 @@ package com.maxbilbow.aicubo;
 
 
 
-import com.maxbilbow.aicubo.ants.AntBehaviour;
-import com.maxbilbow.aicubo.hud.InfoWindow;
-import static com.maxbilbow.aicubo.ants.AntBehaviour.*;
-
-import static org.lwjgl.glfw.GLFW.*;
-
 import click.rmx.Bugger;
-import click.rmx.engine.GameController;
-import click.rmx.engine.Nodes;
-import click.rmx.engine.LightSource;
-import click.rmx.engine.Node;
-import click.rmx.engine.Scene;
-import click.rmx.engine.Transform;
+import click.rmx.engine.*;
 import click.rmx.engine.behaviours.Behaviour;
 import click.rmx.engine.behaviours.SpriteBehaviour;
 import click.rmx.engine.geometry.Shapes;
 import click.rmx.engine.gl.IKeyCallback;
 import click.rmx.engine.math.Tools;
 import click.rmx.engine.physics.PhysicsBody;
+import com.maxbilbow.aicubo.ants.AntBehaviour;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+
+import static com.maxbilbow.aicubo.ants.AntBehaviour.*;
+import static org.lwjgl.glfw.GLFW.*;
+
+@Component
 public final class AiCubo extends GameController {	
 
 	Node player, cameraNode;
@@ -54,6 +52,7 @@ public final class AiCubo extends GameController {
 	}
 
 	EntityGenerator eg;
+
 	public void initActors() {	
 		Bugger.log("Setting up scene...");
 		Scene scene = Scene.getCurrent();
@@ -164,12 +163,13 @@ public final class AiCubo extends GameController {
 	}
 
 
-	public static void main(String[] args) {
+	@PostConstruct
+	public void init() {
 		//		try {
-		InfoWindow.open();
-		AiCubo game = new AiCubo();
-		game.initActors();
-		game.Start();
+
+
+		initActors();
+		Start();
 		//		} catch (Exception e) {
 		//			e.printStackTrace();
 		//			System.exit(1);

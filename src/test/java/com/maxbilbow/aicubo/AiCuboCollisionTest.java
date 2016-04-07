@@ -1,28 +1,27 @@
 package com.maxbilbow.aicubo;
 
-import static org.junit.Assert.*;
-import static click.rmx.RMX.*;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map.Entry;
-
-import click.rmx.engine.GameNode;
-import click.rmx.engine.geometry.Shapes;
-import org.junit.Before;
-import org.junit.Test;
-//import org.lwjgl.glfw.GLFWKeyCallback;
-//import static org.lwjgl.glfw.GLFW.*;
-
 import click.rmx.Bugger;
 import click.rmx.engine.GameController;
+import click.rmx.engine.GameNode;
 import click.rmx.engine.Node;
 import click.rmx.engine.Scene;
+import click.rmx.engine.geometry.Shapes;
 import click.rmx.engine.gl.IKeyCallback;
 import click.rmx.engine.math.Vector3;
 import click.rmx.engine.physics.CollisionDelegate;
 import click.rmx.engine.physics.CollisionEvent;
 import click.rmx.engine.physics.PhysicsBody;
+import org.junit.Before;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+
+import static click.rmx.RMX.PI_OVER_180;
+import static org.lwjgl.glfw.GLFW.*;
+
+//import org.lwjgl.glfw.GLFWKeyCallback;
+//import static org.lwjgl.glfw.GLFW.*;
 
 public class AiCuboCollisionTest implements CollisionDelegate {
 	AiCubo game;
