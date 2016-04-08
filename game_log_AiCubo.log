@@ -1,5 +1,5 @@
 ====== BEGIN LOG ======
-[22:36:33.229x1] click.rmx.engine.Scene::<init> on line 20: Scene initializing...
+[22:36:33.229x1] Scene::<init> on line 20: Scene initializing...
 [22:36:33.244x1] com.maxbilbow.aicubo.AiCubo::initActors on line 58: Setting up scene...
 [22:36:33.244x1] com.maxbilbow.aicubo.AiCubo::initActors on line 60: SUCCESS
 [22:36:33.244x1] com.maxbilbow.aicubo.AiCubo::initActors on line 62: Setting up actors...
@@ -12,13 +12,13 @@
 [22:36:33.274x1] click.rmx.engine.GameController::run on line 76: Setup GameController
 [22:36:33.275x1] click.rmx.engine.gl.GLView::run on line 49: Load Shared Libraries
 [22:36:33.398x1] click.rmx.engine.gl.GLView::run on line 60: Init GL
-[22:36:33.675x1] click.rmx.engine.gl.Shader::defaultVertexShader on line 24: src/main/resources/shaders/Shader.vsh
-[22:36:33.678x1] click.rmx.engine.gl.Shader::defaultFragmentShader on line 30: src/main/resources/shaders/Shader.fsh
+[22:36:33.675x1] Shader::defaultVertexShader on line 24: src/main/resources/shaders/Shader.vsh
+[22:36:33.678x1] Shader::defaultFragmentShader on line 30: src/main/resources/shaders/Shader.fsh
 [22:36:33.685x1] click.rmx.engine.gl.GLView::run on line 65: Enter Gameloop
 ====== END OF LOG ======
 
 ====== BEGIN LOG ======
-[22:43:02.260x1] click.rmx.engine.Scene::<init> on line 20: Scene initializing...
+[22:43:02.260x1] Scene::<init> on line 20: Scene initializing...
 [22:43:02.283x1] com.maxbilbow.aicubo.AiCubo::initActors on line 57: Setting up scene...
 [22:43:02.283x1] com.maxbilbow.aicubo.AiCubo::initActors on line 59: SUCCESS
 [22:43:02.283x1] com.maxbilbow.aicubo.AiCubo::initActors on line 61: Setting up actors...
@@ -31,8 +31,8 @@
 [22:43:02.305x1] click.rmx.engine.GameController::run on line 76: Setup GameController
 [22:43:02.305x1] click.rmx.engine.gl.GLView::run on line 49: Load Shared Libraries
 [22:43:02.432x1] click.rmx.engine.gl.GLView::run on line 60: Init GL
-[22:43:02.656x1] click.rmx.engine.gl.Shader::defaultVertexShader on line 24: src/main/resources/shaders/Shader.vsh
-[22:43:02.661x1] click.rmx.engine.gl.Shader::defaultFragmentShader on line 30: src/main/resources/shaders/Shader.fsh
+[22:43:02.656x1] Shader::defaultVertexShader on line 24: src/main/resources/shaders/Shader.vsh
+[22:43:02.661x1] Shader::defaultFragmentShader on line 30: src/main/resources/shaders/Shader.fsh
 [22:43:02.668x1] click.rmx.engine.gl.GLView::run on line 65: Enter Gameloop
 ====== END OF LOG ======
 

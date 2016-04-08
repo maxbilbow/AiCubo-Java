@@ -1,23 +1,26 @@
 package com.maxbilbow.aicubo;
 
 import click.rmx.Bugger;
-import click.rmx.engine.GameController;
-import click.rmx.engine.GameNode;
-import click.rmx.engine.Node;
-import click.rmx.engine.Scene;
-import click.rmx.engine.geometry.Shapes;
-import click.rmx.engine.gl.IKeyCallback;
-import click.rmx.engine.math.Vector3;
-import click.rmx.engine.physics.CollisionDelegate;
-import click.rmx.engine.physics.CollisionEvent;
-import click.rmx.engine.physics.PhysicsBody;
+import com.maxbilbow.aicubo.control.GameController;
+import com.maxbilbow.aicubo.engine.GameNode;
+import com.maxbilbow.aicubo.engine.Node;
+import com.maxbilbow.aicubo.engine.Nodes;
+import com.maxbilbow.aicubo.engine.Scene;
+import com.maxbilbow.aicubo.engine.geometry.Shapes;
+import com.maxbilbow.aicubo.engine.gl.IKeyCallback;
+import com.maxbilbow.aicubo.engine.math.Vector3;
+import com.maxbilbow.aicubo.engine.physics.CollisionDelegate;
+import com.maxbilbow.aicubo.engine.physics.CollisionEvent;
+import com.maxbilbow.aicubo.engine.physics.PhysicsBody;
 import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
-import static click.rmx.RMX.PI_OVER_180;
+import static com.maxbilbow.aicubo.config.RMX.PI_OVER_180;
+import static org.junit.Assert.assertTrue;
 import static org.lwjgl.glfw.GLFW.*;
 
 //import org.lwjgl.glfw.GLFWKeyCallback;
@@ -120,7 +123,7 @@ public class AiCuboCollisionTest implements CollisionDelegate {
 	}
 
 	Node buildEntity(String name) {
-		Node n = Node.makeCube(2, PhysicsBody.newDynamicBody(), null);
+		Node n = Nodes.makeCube(2, PhysicsBody.newDynamicBody(), null);
 		n.setName(name);
 		n.physicsBody().setFriction(0.05f);
 		n.physicsBody().setDamping(0);
@@ -139,7 +142,7 @@ public class AiCuboCollisionTest implements CollisionDelegate {
 
 		assertTrue(cameraNode == game.getView().pointOfView());
 		assertTrue(scene == Scene.getCurrent());
-		assertTrue(player == Node.getCurrent());
+		assertTrue(player == Nodes.getCurrent());
 		game.run();
 		//		fail("Not yet implemented");
 

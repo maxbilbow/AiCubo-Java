@@ -2,19 +2,114 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c7461f1-fd08-4925-9a91-4cdb4c646fec" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/click/rmx/view/GLViewImpl.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/GLShaderView.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/GameView1.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/Singletons.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/GameController.java" afterPath="$PROJECT_DIR$/src/main/java/click/rmx/control/GameController.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/GLView.java" afterPath="$PROJECT_DIR$/src/main/java/click/rmx/view/GLView.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/GameView.java" afterPath="$PROJECT_DIR$/src/main/java/click/rmx/view/GameView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/runtime/README.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/runtime/run.bat" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/runtime/start.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/core/RMXObject.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/RootNode.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/GL.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__slick_slick_274.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/Bugger.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/RMXObject.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/Tests.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/WeakObject.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/db/Database.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/db/package-info.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/RootNode.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/WeakNode.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/GL.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/package-info.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/lib/vecmath-1.5.1.jar" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/Categories.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/config/Categories.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/Categorizable.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/core/Categorizable.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/IRMXObject.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/core/IRMXObject.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/RMX.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/config/RMX.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/StringFormatter.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/util/StringFormatter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/control/GameController.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/control/GameController.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/ANodeComponent.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ANodeComponent.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/ASingleton.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ASingleton.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/Camera.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Camera.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/GLViewPerFrameLog.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/GLViewPerFrameLog.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/GameNode.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/GameNode.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/LightSource.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/LightSource.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/Node.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Node.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/NodeComponent.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/NodeComponent.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/Nodes.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Nodes.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/RenderDelegate.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/RenderDelegate.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/RootNodeImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/RootNodeImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/Scene.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Scene.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/StructClass.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/StructClass.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/Ticker.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Ticker.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/Transform.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Transform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/behaviours/Behaviour.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/behaviours/Behaviour.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/behaviours/CameraBehaviour.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/behaviours/CameraBehaviour.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/behaviours/CollisionHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/behaviours/CollisionHandler.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/behaviours/IBehaviour.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/behaviours/IBehaviour.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/behaviours/ICollisionHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/behaviours/ICollisionHandler.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/behaviours/SpriteBehaviour.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/behaviours/SpriteBehaviour.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/behaviours/Warning.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/behaviours/Warning.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/geometry/Geometry.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/geometry/Geometry.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/geometry/GeometryImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/geometry/GeometryImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/geometry/Shape.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/geometry/Shape.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/geometry/ShapeObject.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/geometry/ShapeObject.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/geometry/Shapes.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/geometry/Shapes.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/CursorCallback.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/CursorCallback.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/Glu.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/Glu.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/IKeyCallback.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/IKeyCallback.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/KeyCallback.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/KeyCallback.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/KeyStates.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/KeyStates.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/Mesh.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/Mesh.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/MobavleObject.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/MobavleObject.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/Shader.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/Shader.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/SharedLibraryLoader.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/SharedLibraryLoader.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/Tree.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/Tree.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/math/EulerAngles.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/math/EulerAngles.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/math/Matrix2.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/math/Matrix2.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/math/Matrix3.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/math/Matrix3.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/math/Matrix4.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/math/Matrix4.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/math/Tools.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/math/Tools.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/math/Vector2.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/math/Vector2.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/math/Vector3.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/math/Vector3.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/math/Vector4.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/math/Vector4.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/BoundingBox.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/BoundingBox.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/BoundingSphere.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/BoundingSphere.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/CollisionBody.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/CollisionBody.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/CollisionBounds.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/CollisionBounds.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/CollisionDelegate.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/CollisionDelegate.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/CollisionEvent.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/CollisionEvent.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/PhysicsBody.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/PhysicsBody.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/PhysicsBodyType.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/PhysicsBodyType.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/PhysicsWorld.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/PhysicsWorld.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/messages/EventStatus.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/messages/EventStatus.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/messages/IEventListener.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/messages/IEventListener.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/messages/IMessageable.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/messages/IMessageable.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/messages/KeyValueObserver.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/messages/KeyValueObserver.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/messages/NotificationCenter.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/messages/NotificationCenter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/view/GLView.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/view/GLView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/view/GLViewImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/view/GLViewImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/view/GameView.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/view/GameView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ai/Strategy.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ai/Strategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ai/StrategyEngine.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ai/StrategyEngine.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ants/AntBehaviour.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ai/ants/AntBehaviour.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/findbugs-idea.xml" afterPath="$PROJECT_DIR$/.idea/findbugs-idea.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/Bugger.java" afterPath="$PROJECT_DIR$/src/main/java/click/rmx/Bugger.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/CursorCallback.java" afterPath="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/CursorCallback.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/KeyCallback.java" afterPath="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/KeyCallback.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AiCubo.iml" afterPath="$PROJECT_DIR$/AiCubo.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game_log_AiCubo.log" afterPath="$PROJECT_DIR$/game_log_AiCubo.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assemble-zip.xml" afterPath="$PROJECT_DIR$/src/assemble-zip.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/AiCubo.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/AiCubo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/Application.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/Application.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/AxisGenerator.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/AxisGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/EntityGenerator.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/EntityGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ShaderTest.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ShaderTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/VertexBufferTest.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/VertexBufferTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/hud/InfoWindow.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/hud/InfoWindow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/hud/InfoWindowController.java" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/hud/InfoWindowController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/hud/ihm.fxml" afterPath="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/hud/ihm.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/logback.xml" afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/maxbilbow/aicubo/AiCuboCollisionTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/maxbilbow/aicubo/AiCuboCollisionTest.java" />
     </list>
     <ignored path="AiCubo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -165,120 +260,120 @@
         <favorite_root url="file://$PROJECT_DIR$/src/com/maxbilbow/aicubo/EntityGenerator.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
         <favorite_root url="file://$PROJECT_DIR$/src/com/maxbilbow/aicubo/VertexBufferTest.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
       </favorite_root>
-      <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
-        <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/db" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/db/Database.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/db/package-info.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+      <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/config" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
+        <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/db" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/db/Database.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/db/package-info.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
         </favorite_root>
-        <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/control" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
+        <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/control" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
           <favorite_root url="file://$PROJECT_DIR$/src/main" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/GL.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/GL.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
             <favorite_root url="file://$PROJECT_DIR$/src/main" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
               <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/shaders/Shader.fsh" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
               <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/shaders/Shader.vsh" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-              <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/Shader.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+              <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/Shader.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
             </favorite_root>
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/Glu.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/Mesh.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/Tree.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/view/GLView.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/view/GameView.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/KeyStates.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/KeyCallback.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/IKeyCallback.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/MobavleObject.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/CursorCallback.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/SharedLibraryLoader.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/Glu.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/Mesh.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/Tree.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/view/GLView.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/view/GameView.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/KeyStates.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/KeyCallback.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/IKeyCallback.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/MobavleObject.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/CursorCallback.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/SharedLibraryLoader.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
           </favorite_root>
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/math" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/math/Tools.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/math/Matrix2.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/math/Matrix3.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/math/Matrix4.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/math/Vector2.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/math/Vector3.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/math/Vector4.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/math/EulerAngles.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/math" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/math/Tools.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/math/Matrix2.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/math/Matrix3.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/math/Matrix4.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/math/Vector2.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/math/Vector3.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/math/Vector4.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/math/EulerAngles.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
           </favorite_root>
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/physics" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/BoundingBox.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/PhysicsBody.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/PhysicsWorld.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/CollisionBody.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/BoundingSphere.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/CollisionEvent.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/CollisionBounds.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/PhysicsBodyType.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/CollisionDelegate.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/BoundingBox.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/PhysicsBody.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/PhysicsWorld.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/CollisionBody.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/BoundingSphere.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/CollisionEvent.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/CollisionBounds.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/PhysicsBodyType.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/CollisionDelegate.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
           </favorite_root>
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/geometry" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/geometry/Shape.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/geometry/Shapes.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/geometry/Geometry.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/geometry/ShapeObject.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/geometry/GeometryImpl.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/geometry" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/geometry/Shape.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/geometry/Shapes.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/geometry/Geometry.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/geometry/ShapeObject.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/geometry/GeometryImpl.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
           </favorite_root>
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/Node.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/behaviours" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/behaviours/Warning.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/behaviours/Behaviour.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/behaviours/IBehaviour.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/behaviours/CameraBehaviour.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/behaviours/SpriteBehaviour.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/behaviours/CollisionHandler.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/behaviours/ICollisionHandler.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Node.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/behaviours" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/behaviours/Warning.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/behaviours/Behaviour.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/behaviours/IBehaviour.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/behaviours/CameraBehaviour.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/behaviours/SpriteBehaviour.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/behaviours/CollisionHandler.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/behaviours/ICollisionHandler.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
           </favorite_root>
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/Nodes.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/Scene.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/Camera.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/Ticker.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/GameNode.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/RootNode.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Nodes.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Scene.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Camera.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Ticker.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/GameNode.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/RootNode.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
           <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/WeakNode.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
           <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/GameView1.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/Transform.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/ASingleton.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Transform.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ASingleton.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
           <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/Singletons.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/LightSource.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/StructClass.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/view/GLViewImpl.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/RootNodeImpl.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/NodeComponent.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/ANodeComponent.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/control/GameController.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/RenderDelegate.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/GLViewPerFrameLog.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/LightSource.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/StructClass.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/view/GLViewImpl.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/RootNodeImpl.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/NodeComponent.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ANodeComponent.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/control/GameController.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/RenderDelegate.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/GLViewPerFrameLog.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
         </favorite_root>
-        <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/messages" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/messages/EventStatus.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/messages/IMessageable.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/messages/IEventListener.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/messages/KeyValueObserver.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/messages/NotificationCenter.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+        <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/messages" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/messages/EventStatus.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/messages/IMessageable.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/messages/IEventListener.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/messages/KeyValueObserver.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/messages/NotificationCenter.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
         </favorite_root>
-        <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/RMX.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+        <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/config/RMX.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
         <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/Tests.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-        <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/Bugger.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-        <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/RMXObject.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-        <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/Categories.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-        <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/IRMXObject.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-        <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/WeakObject.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+        <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/config/Bugger.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+        <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/core/RMXObject.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+        <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/config/Categories.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+        <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/core/IRMXObject.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+        <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/core/WeakObject.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
         <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/package-info.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-        <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/Categorizable.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-        <favorite_root url="file://$PROJECT_DIR$/src/main/java/click/rmx/StringFormatter.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+        <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/core/Categorizable.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+        <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/util/StringFormatter.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
       </favorite_root>
       <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
-        <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ai" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ai/Strategy.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ai/StrategyEngine.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+        <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ai" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ai/Strategy.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ai/StrategyEngine.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
         </favorite_root>
         <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/hud" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
           <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/hud/ihm.fxml" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
           <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/hud/InfoWindow.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
           <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/hud/InfoWindowController.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
         </favorite_root>
-        <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ants" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
-          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ants/AntBehaviour.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+        <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ai/ants" module="AiCubo" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
+          <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ai/ants/AntBehaviour.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
         </favorite_root>
         <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/AiCubo.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
         <favorite_root url="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ShaderTest.java" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
@@ -290,87 +385,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="StrategyEngine.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ai/StrategyEngine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1200">
+              <caret line="100" column="36" selection-start-line="100" selection-start-column="36" selection-end-line="100" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="GameController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/control/GameController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/control/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="91" column="11" selection-start-line="91" selection-start-column="11" selection-end-line="91" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#699#700#0" expanded="true" />
-                <element signature="e#749#750#0" expanded="true" />
-                <element signature="e#1459#1460#0" expanded="true" />
-                <element signature="e#1514#1515#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="KeyCallback.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/KeyCallback.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#938#939#0" expanded="true" />
-                <element signature="e#1021#1022#0" expanded="true" />
-                <element signature="e#2983#2984#0" expanded="true" />
-                <element signature="e#3023#3024#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AxisGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/AxisGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GLViewImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/view/GLViewImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1920">
-              <caret line="128" column="30" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1013#1014#0" expanded="true" />
-                <element signature="e#1045#1046#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/view/GameView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="298" column="28" selection-start-line="298" selection-start-column="28" selection-end-line="298" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3961#3962#0" expanded="true" />
-                <element signature="e#3987#3988#0" expanded="true" />
-                <element signature="e#6411#6412#0" expanded="true" />
-                <element signature="e#6461#6462#0" expanded="true" />
-                <element signature="e#6765#6766#0" expanded="true" />
-                <element signature="e#6794#6795#0" expanded="true" />
-                <element signature="e#6861#6862#0" expanded="true" />
-                <element signature="e#6901#6902#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AiCubo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/AiCubo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="-759">
+              <caret line="80" column="60" selection-start-line="80" selection-start-column="60" selection-end-line="80" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -378,52 +407,84 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PhysicsWorld.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/PhysicsWorld.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Behaviour.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/behaviours/Behaviour.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-225">
-              <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CursorCallback.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/CursorCallback.java">
+      <file leaf-file-name="Categories.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/config/Categories.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NodeComponent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/NodeComponent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Node.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Node.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="20" column="44" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#611#612#0" expanded="true" />
-                <element signature="e#637#638#0" expanded="true" />
-                <element signature="e#1636#1637#0" expanded="true" />
-                <element signature="e#1679#1680#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Bugger.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/Bugger.java">
+      <file leaf-file-name="LightSource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/LightSource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="60">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RMX.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/config/RMX.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ANodeComponent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ANodeComponent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EntityGenerator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/EntityGenerator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-149">
+              <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShaderTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ShaderTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -457,31 +518,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/click/rmx/engine/gl/shaders/Shader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/shaders/Shader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/Shader.java" />
-        <option value="$PROJECT_DIR$/log.txt" />
-        <option value="$PROJECT_DIR$/src/test/java/click/rmx/engine/math/ToolsTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/maxbilbow/aicubo/AiCuboCollisionTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/VertexBufferTest.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/test/java/click/rmx/RMXObjectTest.java" />
-        <option value="$PROJECT_DIR$/src/assemble-zip.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/GameView1.java" />
-        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/GLShaderView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/Application.java" />
-        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/GameController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/GLViewImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/GameView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/KeyCallback.java" />
-        <option value="$PROJECT_DIR$/src/main/java/click/rmx/control/GameController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/click/rmx/view/GameView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/click/rmx/view/GLViewImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/CursorCallback.java" />
         <option value="$PROJECT_DIR$/src/main/java/click/rmx/Bugger.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/RootNode.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/maxbilbow/aicubo/AiCuboCollisionTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/Application.java" />
+        <option value="$PROJECT_DIR$/src/assemble-zip.xml" />
+        <option value="$PROJECT_DIR$/runtime/start.sh" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/view/GLView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/Camera.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/view/GameView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/view/GLViewImpl.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/config/Bugger.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/config/RMXObject.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/core/IRMXObject.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/messages/KeyValueObserver.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/core/Categorizable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/WeakObject.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/core/WeakObject.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/config/RMX.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/control/GameController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/core/RMXObject.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/ANodeComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/ASingleton.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/Node.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/GameNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/RootNodeImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/PhysicsWorld.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/Shader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/geometry/Geometry.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/Scene.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/WeakNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/CollisionEvent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/click/rmx/engine/geometry/GeometryImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ants/AntBehaviour.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ai/ants/AntBehaviour.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/util/StringFormatter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/PhysicsBody.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/PhysicsWorld.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/AiCubo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/Shader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Transform.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/view/GLView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/view/GameView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Scene.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/messages/NotificationCenter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ai/StrategyEngine.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/config/Bugger.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/control/GameController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ANodeComponent.java" />
       </list>
     </option>
   </component>
@@ -503,7 +590,11 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
+  </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="1" />
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="873" />
@@ -533,7 +624,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -541,15 +631,9 @@
               <option name="myItemId" value="AiCubo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="AiCubo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AiCubo-Java-1_0" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -561,10 +645,6 @@
               <option name="myItemId" value="AiCubo-Java-1_0" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -576,15 +656,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
+              <option name="myItemId" value="target" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -599,82 +671,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rmx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AiCubo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AiCubo-Java-1_0" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rmx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AiCubo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AiCubo-Java-1_0" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rmx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="physics" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -770,7 +766,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="rmx" />
+              <option name="myItemId" value="aicubo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="messages" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -796,16 +796,105 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="rmx" />
+              <option name="myItemId" value="aicubo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="control" />
+              <option name="myItemId" value="engine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AiCubo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AiCubo-Java-1_0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aicubo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AiCubo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AiCubo-Java-1_0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aicubo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AiCubo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AiCubo-Java-1_0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AiCubo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AiCubo-Java-1_0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="logs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="PackagesPane">
         <subPane>
@@ -838,7 +927,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="web.server" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
@@ -848,7 +937,6 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.20804597" />
     <property name="dynamic.classpath" value="false" />
-    <property name="FullScreen" value="false" />
     <property name="GenerateAntBuildDialog.generateSingleFile" value="false" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
@@ -857,18 +945,38 @@
     <property name="GenerateAntBuildDialog.generateIdeaHomeProperty" value="false" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="aicubo" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="140" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="142" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="146" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="940" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="140" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="142" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="146" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="940" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/click/rmx" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/click/rmx/config" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="C:\Users\bilbowm\GitHub\AiCubo-Java\stuff" />
       <recent name="C:\Users\bilbowm\GitHub\AiCubo-Java\src\main\resources\lib" />
       <recent name="C:\Users\bilbowm\GitHub\AiCubo-Java\src\main\assets" />
-      <recent name="C:\Users\bilbowm\GitHub\AiCubo-Java\src\main" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="click.rmx.config" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.Unnamed">
@@ -1037,6 +1145,17 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <module name="" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="BatchConfigurationType" factoryName="Batch">
@@ -1261,12 +1380,45 @@
       </MavenSettings>
       <method />
     </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Specs2RunConfiguration" factoryName="Specs2">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -1364,10 +1516,38 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
     <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
       <method />
     </configuration>
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
+      <method />
+    </configuration>
+    <configuration default="true" type="uTestRunConfiguration" factoryName="utest">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
       <method />
     </configuration>
     <configuration default="false" name="AiCubo (Win)" type="Application" factoryName="Application" singleton="true">
@@ -1449,7 +1629,8 @@
       <workItem from="1443180519190" duration="2674000" />
       <workItem from="1443183211575" duration="3000" />
       <workItem from="1443253260514" duration="101000" />
-      <workItem from="1460063939585" duration="5347000" />
+      <workItem from="1460063939585" duration="5417000" />
+      <workItem from="1460070674653" duration="7299000" />
     </task>
     <task id="LOCAL-00001" summary="something">
       <created>1443022176539</created>
@@ -1486,31 +1667,38 @@
       <option name="project" value="LOCAL" />
       <updated>1460065419182</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Should try to get data stored for ai">
+      <created>1460069325349</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1460069325349</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12202000" />
+    <option name="totallyTimeSpent" value="19571000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="873" extended-state="6" />
-    <editor active="false" />
+    <frame x="1" y="23" width="1440" height="873" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5021322" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3277849" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277849" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24964234" sideWeight="0.50476193" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24964234" sideWeight="0.50476193" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.49441788" order="1" side_tool="false" content_ui="tabs" />
@@ -1544,7 +1732,8 @@
     <MESSAGE value="s" />
     <MESSAGE value="tidied up but how do i build?" />
     <MESSAGE value="Launched as spring boot" />
-    <option name="LAST_COMMIT_MESSAGE" value="Launched as spring boot" />
+    <MESSAGE value="Should try to get data stored for ai" />
+    <option name="LAST_COMMIT_MESSAGE" value="Should try to get data stored for ai" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1557,420 +1746,286 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/Bugger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="110" column="50" selection-start-line="110" selection-start-column="50" selection-end-line="110" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/StringFormatter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/RMX.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ai/Strategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/click/rmx/engine/RMXEngineTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/maxbilbow/aicubo/AiCuboCollisionTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="63" column="52" selection-start-line="63" selection-start-column="52" selection-end-line="63" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/Shader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/Shader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/Shader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/click/rmx/engine/math/ToolsTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/click/rmx/engine/geometry/ShapesTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="13" selection-end-column="22" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/Shader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/RMX.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ai/Strategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/maxbilbow/aicubo/AiCuboCollisionTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-105">
-          <caret line="31" column="7" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ShaderTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6147">
-          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AiCubo.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/click/rmx/RMXObjectTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-192">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/click/rmx/engine/physics/PhysicsWorldTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/click/rmx/engine/RMXEngineTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assemble-zip.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="44" column="15" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/VertexBufferTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2817">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
+    <entry file="file://$PROJECT_DIR$/runtime/start.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="2" column="45" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="82" column="24" selection-start-line="82" selection-start-column="24" selection-end-line="82" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/StringFormatter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/RMXObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/BoundingBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/GameNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/LightSource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/StructClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/Ticker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/Transform.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/geometry/GeometryImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/Singletons.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/Scene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/src/main/resources/lib/lwjgl/src.zip!/org/lwjgl/glfw/GLFWErrorCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-150">
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/src/main/resources/lib/lwjgl/src.zip!/org/lwjgl/glfw/GLFWWindowSizeCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/GameView1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/view/GLView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="68" column="18" selection-start-line="68" selection-start-column="16" selection-end-line="68" selection-end-column="18" />
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+        <state relative-caret-position="257">
+          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="23" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/lib/lwjgl/build.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/AxisGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/view/GLViewImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+        <state relative-caret-position="105">
+          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/KeyCallback.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ai/Strategy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="-645">
+          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/asn.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/app.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/system.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/package-info.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/src.zip!/java/lang/Class.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="1972" column="18" selection-start-line="1972" selection-start-column="18" selection-end-line="1972" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/messages/KeyValueObserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/src.zip!/java/lang/Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="521">
+          <caret line="211" column="21" selection-start-line="211" selection-start-column="21" selection-end-line="211" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/Tests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/core/WeakObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/core/IRMXObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Camera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#938#939#0" expanded="true" />
-            <element signature="e#1021#1022#0" expanded="true" />
-            <element signature="e#2983#2984#0" expanded="true" />
-            <element signature="e#3023#3024#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/control/GameController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ASingleton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="91" column="11" selection-start-line="91" selection-start-column="11" selection-end-line="91" selection-end-column="11" />
+        <state relative-caret-position="180">
+          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/GLViewPerFrameLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/GameNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/RootNodeImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#699#700#0" expanded="true" />
-            <element signature="e#749#750#0" expanded="true" />
-            <element signature="e#1459#1460#0" expanded="true" />
-            <element signature="e#1514#1515#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/view/GLViewImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/geometry/Geometry.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1920">
-          <caret line="128" column="30" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="30" />
+        <state relative-caret-position="690">
+          <caret line="52" column="19" selection-start-line="52" selection-start-column="19" selection-end-line="52" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1013#1014#0" expanded="true" />
-            <element signature="e#1045#1046#0" expanded="true" />
+            <element signature="e#1092#1093#0" expanded="true" />
+            <element signature="e#1128#1129#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/view/GameView.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/WeakNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="298" column="28" selection-start-line="298" selection-start-column="28" selection-end-line="298" selection-end-column="28" />
+        <state relative-caret-position="120">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/CollisionEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="94" column="34" selection-start-line="94" selection-start-column="34" selection-end-line="94" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3961#3962#0" expanded="true" />
-            <element signature="e#3987#3988#0" expanded="true" />
-            <element signature="e#6411#6412#0" expanded="true" />
-            <element signature="e#6461#6462#0" expanded="true" />
-            <element signature="e#6765#6766#0" expanded="true" />
-            <element signature="e#6794#6795#0" expanded="true" />
-            <element signature="e#6861#6862#0" expanded="true" />
-            <element signature="e#6901#6902#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/gl/CursorCallback.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/geometry/GeometryImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="42" column="36" selection-start-line="42" selection-start-column="36" selection-end-line="42" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3386#3387#0" expanded="true" />
+            <element signature="e#3435#3436#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ai/ants/AntBehaviour.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/util/StringFormatter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/PhysicsBody.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="39" column="61" selection-start-line="39" selection-start-column="61" selection-end-line="39" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/physics/PhysicsWorld.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="155" column="53" selection-start-line="155" selection-start-column="53" selection-end-line="155" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#611#612#0" expanded="true" />
-            <element signature="e#637#638#0" expanded="true" />
-            <element signature="e#1636#1637#0" expanded="true" />
-            <element signature="e#1679#1680#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/Bugger.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/db/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="-705">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/core/Categorizable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/core/RMXObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6388">
+          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1979,29 +2034,164 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/AiCubo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="-319">
+          <caret line="27" column="63" selection-start-line="27" selection-start-column="63" selection-end-line="27" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/physics/PhysicsWorld.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/gl/Shader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="19" column="63" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Transform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="273" column="64" selection-start-line="273" selection-start-column="64" selection-end-line="273" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/view/GLView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="71" column="13" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/view/GameView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="247" column="45" selection-start-line="247" selection-start-column="40" selection-end-line="247" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Scene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/messages/NotificationCenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-465">
+          <caret line="28" column="21" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
+          <folding>
+            <element signature="e#417#418#0" expanded="true" />
+            <element signature="e#443#444#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ai/StrategyEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1200">
+          <caret line="100" column="36" selection-start-line="100" selection-start-column="36" selection-end-line="100" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/config/Bugger.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/control/GameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-759">
+          <caret line="80" column="60" selection-start-line="80" selection-start-column="60" selection-end-line="80" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/click/rmx/engine/behaviours/Behaviour.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/config/RMX.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-225">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        <state relative-caret-position="60">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/ANodeComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/ShaderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/EntityGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-149">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/config/Categories.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/LightSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/NodeComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maxbilbow/aicubo/engine/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="20" column="44" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2102,5 +2292,12 @@
         </settings>
       </state>
     </states>
+  </component>
+  <component name="mavenExecuteGoalHistory">
+    <option value="$PROJECT_DIR$" />
+    <option value="clean compile" />
+    <option value="clean package -DskipTests" />
+    <option value="clean package" />
+    <option value="clean package install" />
   </component>
 </project>

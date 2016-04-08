@@ -18,7 +18,11 @@ public class Application
   public static void main(String[] args)
   {
 
-    SpringApplication.run(Application.class,args);
+//    if (click.rmx.util.OSValidator.isMac())
+//    {
+//      System.setProperty("startOnFirstThread","true");
+//    }
+    SpringApplication.run(Application.class, args);
 
     InfoWindow.open();
 

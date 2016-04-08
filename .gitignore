@@ -8,7 +8,7 @@
 .settings
 
 #Application Logs
-config/logs
+src/main/java/com/maxbilbow/aicubo/config/logs
 logs/*.log
 
 #Maven

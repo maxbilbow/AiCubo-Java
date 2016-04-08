@@ -10,7 +10,7 @@
     <fileSets>
         <fileSet>
             <directory>${basedir}/runtime</directory>
-            <outputDirectory>/</outputDirectory>
+            <outputDirectory>\</outputDirectory>
 
             <!--<includes>-->
             <!--<include>*/**</include>-->
@@ -19,7 +19,7 @@
         <!-- include war/jar/exe files-->
         <fileSet>
             <directory>${project.build.directory}</directory>
-            <outputDirectory>/</outputDirectory>
+            <outputDirectory>\</outputDirectory>
             <includes>
                 <include>${project.artifactId}-${project.version}.jar</include>
             </includes>
@@ -29,18 +29,29 @@
     <files>
         <file>
             <source>${basedir}/runtime/README.txt</source>
-            <outputDirectory>/</outputDirectory>
+            <outputDirectory>\</outputDirectory>
             <filtered>true</filtered>
         </file>
         <file>
             <source>${basedir}/runtime/run.bat</source>
-            <outputDirectory>/</outputDirectory>
+            <outputDirectory>\</outputDirectory>
             <filtered>true</filtered>
         </file>
 
         <file>
+            <source>${basedir}/runtime/start.sh</source>
+            <outputDirectory>\</outputDirectory>
+            <filtered>true</filtered>
+        </file>
+        <file>
             <source>${basedir}/src/main/resources/application.properties</source>
-            <outputDirectory>/config</outputDirectory>
+            <outputDirectory>\config</outputDirectory>
+            <filtered>true</filtered>
+        </file>
+
+        <file>
+            <source>${basedir}/src/main/resources/logback.xml</source>
+            <outputDirectory>\config</outputDirectory>
             <filtered>true</filtered>
         </file>
     </files>

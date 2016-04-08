@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
    <configuration scan="true">
-   <property name="configDir" value="./config" />
+   <!--<property name="configDir" value="./config" />-->
 
     <!-- logging to console -->
    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
@@ -22,15 +22,15 @@
       <pattern>%d{dd-MM-yyyy HH:mm:ss} - %c [%t] %-5p - %m%n</pattern>
     </encoder>
        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-           <level>INFO</level>
+           <level>WARN</level>
        </filter>
    </appender>
 
     <!-- logging to asn log file -->
-    <appender name="asn-log" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>./logs/asn.log</file>
+    <appender name="app-log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/main.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>./logs/asn.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>./logs/main.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>500MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
