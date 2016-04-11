@@ -1,6 +1,8 @@
-package com.maxbilbow.aicubo.engine.physics;
+package com.maxbilbow.aicubo.engine.collision.type;
 
-import com.maxbilbow.aicubo.engine.ANodeComponent;
+import com.maxbilbow.aicubo.engine.math.Vector3;
+import com.maxbilbow.aicubo.model.ANodeComponent;
+import com.maxbilbow.aicubo.engine.physics.PhysicsBody;
 
 public class CollisionBody extends ANodeComponent
 {
@@ -41,6 +43,18 @@ public class CollisionBody extends ANodeComponent
     return this.boundingBox.intersects(other.boundingBox);
   }
 
+  /**
+   *
+   * @return A clone of this body's velocity.
+   */
+  public Vector3 getVelocity()
+  {
+    return physicsBody.getVelocity().clone();
+  }
 
+  public Vector3 getCenterOfGravity()
+  {
+    return transform().position();
+  }
 }
 

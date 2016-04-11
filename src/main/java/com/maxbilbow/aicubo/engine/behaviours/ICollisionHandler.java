@@ -1,10 +1,11 @@
 package com.maxbilbow.aicubo.engine.behaviours;
 
-import com.maxbilbow.aicubo.engine.physics.CollisionEvent;
+
+import com.maxbilbow.aicubo.model.collision.CollisionEvent;
 
 public interface ICollisionHandler
 {
-  public void onCollisionStart(CollisionEvent event);
+  void onCollisionStart(CollisionEvent event);
 
-  public void onCollisionEnd(CollisionEvent event);
+  void onCollisionEnd(CollisionEvent event);
 }

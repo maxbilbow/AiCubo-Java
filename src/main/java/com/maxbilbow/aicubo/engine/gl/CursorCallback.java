@@ -2,8 +2,8 @@ package com.maxbilbow.aicubo.engine.gl;
 
 
 import com.maxbilbow.aicubo.control.GameController;
-import com.maxbilbow.aicubo.engine.Nodes;
 import com.maxbilbow.aicubo.engine.math.Vector3;
+import com.maxbilbow.aicubo.model.Nodes;
 import org.lwjgl.glfw.GLFWCursorPosCallback;
 
 //@Component

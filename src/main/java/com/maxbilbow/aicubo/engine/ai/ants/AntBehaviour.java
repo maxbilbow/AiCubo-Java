@@ -2,9 +2,6 @@ package com.maxbilbow.aicubo.engine.ai.ants;
 
 import com.maxbilbow.aicubo.AiCubo;
 import com.maxbilbow.aicubo.config.RMX;
-import com.maxbilbow.aicubo.engine.Node;
-import com.maxbilbow.aicubo.engine.Nodes;
-import com.maxbilbow.aicubo.engine.Scene;
 import com.maxbilbow.aicubo.engine.ai.Strategy;
 import com.maxbilbow.aicubo.engine.ai.Strategy.AiMethod;
 import com.maxbilbow.aicubo.engine.ai.Strategy.State;
@@ -16,7 +13,10 @@ import com.maxbilbow.aicubo.engine.gl.IKeyCallback;
 import com.maxbilbow.aicubo.engine.math.Matrix4;
 import com.maxbilbow.aicubo.engine.math.Tools;
 import com.maxbilbow.aicubo.engine.math.Vector3;
-import com.maxbilbow.aicubo.engine.physics.CollisionEvent;
+import com.maxbilbow.aicubo.model.Node;
+import com.maxbilbow.aicubo.model.Nodes;
+import com.maxbilbow.aicubo.model.Scene;
+import com.maxbilbow.aicubo.model.collision.CollisionEvent;
 
 import java.util.LinkedList;
 
@@ -443,7 +443,7 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
   {
     // TODO Auto-generated method stub
 
-    if (stuckState() == STUCK_FALSE && event.getPlaneDistance() > 0)
+    if (stuckState() == STUCK_FALSE && event.getDistanceBetweenPlanes() > 0)
     {
       this.setMightBeStuck(Scene.getCurrent().tick());
     }

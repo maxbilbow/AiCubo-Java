@@ -1,7 +1,7 @@
-package com.maxbilbow.aicubo.engine.physics;
+package com.maxbilbow.aicubo.engine.collision.type;
 
-import com.maxbilbow.aicubo.engine.Node;
-import com.maxbilbow.aicubo.engine.Transform;
+import com.maxbilbow.aicubo.model.Node;
+import com.maxbilbow.aicubo.model.Transform;
 
 public abstract class CollisionBounds
 {

@@ -1,6 +1,6 @@
 package com.maxbilbow.aicubo.view;
 
-import com.maxbilbow.aicubo.engine.Node;
+import com.maxbilbow.aicubo.model.Node;
 import com.maxbilbow.aicubo.engine.gl.KeyCallback;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;

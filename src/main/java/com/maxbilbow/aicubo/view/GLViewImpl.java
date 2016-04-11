@@ -2,12 +2,12 @@ package com.maxbilbow.aicubo.view;
 
 
 import com.maxbilbow.aicubo.control.GameController;
-import com.maxbilbow.aicubo.engine.Scene;
 import com.maxbilbow.aicubo.engine.geometry.Geometry;
 import com.maxbilbow.aicubo.engine.geometry.Shape;
 import com.maxbilbow.aicubo.engine.geometry.Shapes;
 import com.maxbilbow.aicubo.engine.gl.Shader;
 import com.maxbilbow.aicubo.engine.math.Matrix4;
+import com.maxbilbow.aicubo.model.Scene;
 import org.lwjgl.BufferUtils;
 
 import java.nio.FloatBuffer;

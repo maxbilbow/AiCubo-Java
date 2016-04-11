@@ -1,6 +1,6 @@
 package com.maxbilbow.aicubo.engine.behaviours;
 
-import com.maxbilbow.aicubo.engine.Node;
+import com.maxbilbow.aicubo.model.Node;
 
 public class CameraBehaviour extends Behaviour
 {

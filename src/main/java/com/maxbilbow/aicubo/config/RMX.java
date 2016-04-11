@@ -1,6 +1,6 @@
 package com.maxbilbow.aicubo.config;
 
-import com.maxbilbow.aicubo.core.Categorizable;
+import com.maxbilbow.aicubo.model.core.Categorizable;
 import com.maxbilbow.aicubo.engine.math.Matrix4;
 
 import java.lang.management.GarbageCollectorMXBean;

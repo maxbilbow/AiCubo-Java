@@ -1,8 +1,8 @@
 package com.maxbilbow.aicubo.engine.geometry;
 
 import com.maxbilbow.aicubo.config.RMX;
-import com.maxbilbow.aicubo.engine.ANodeComponent;
-import com.maxbilbow.aicubo.engine.Node;
+import com.maxbilbow.aicubo.model.ANodeComponent;
+import com.maxbilbow.aicubo.model.Node;
 import com.maxbilbow.aicubo.engine.math.Matrix4;
 import com.maxbilbow.aicubo.engine.math.Vector3;
 import com.maxbilbow.aicubo.engine.math.Vector4;

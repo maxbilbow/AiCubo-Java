@@ -1,11 +1,12 @@
 package com.maxbilbow.aicubo.engine.physics;
 
 
-import com.maxbilbow.aicubo.engine.ANodeComponent;
-import com.maxbilbow.aicubo.engine.Node;
+import com.maxbilbow.aicubo.model.ANodeComponent;
+import com.maxbilbow.aicubo.model.Node;
+import com.maxbilbow.aicubo.engine.collision.type.CollisionBody;
 import com.maxbilbow.aicubo.engine.math.Vector3;
 
-import static com.maxbilbow.aicubo.engine.physics.CollisionBody.*;
+import static com.maxbilbow.aicubo.engine.collision.type.CollisionBody.*;
 
 public class PhysicsBody extends ANodeComponent
 {

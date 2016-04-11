@@ -1,6 +1,6 @@
 package com.maxbilbow.aicubo.engine.behaviours;
 
-import com.maxbilbow.aicubo.engine.ANodeComponent;
+import com.maxbilbow.aicubo.model.ANodeComponent;
 import com.maxbilbow.aicubo.engine.math.Vector3;
 
 public abstract class Behaviour extends ANodeComponent implements IBehaviour

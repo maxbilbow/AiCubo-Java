@@ -1,11 +1,11 @@
-package com.maxbilbow.aicubo.engine;
+package com.maxbilbow.aicubo.model;
 
-import com.maxbilbow.aicubo.core.IRMXObject;
+import com.maxbilbow.aicubo.model.core.IRMXObject;
 import com.maxbilbow.aicubo.engine.behaviours.IBehaviour;
 import com.maxbilbow.aicubo.engine.geometry.Geometry;
 import com.maxbilbow.aicubo.engine.geometry.Shape;
 import com.maxbilbow.aicubo.engine.math.Matrix4;
-import com.maxbilbow.aicubo.engine.physics.CollisionBody;
+import com.maxbilbow.aicubo.engine.collision.type.CollisionBody;
 import com.maxbilbow.aicubo.engine.physics.PhysicsBody;
 
 import java.util.List;
@@ -130,5 +130,19 @@ public interface Node extends IRMXObject
       geometries.add(this.geometry());
     }
     this.getChildren().stream().forEach(child -> child.addGeometryToList(geometries));
+  }
+
+  /**
+   *
+   * @return Most senior node in the tree.
+   */
+  default Node getControlNode()
+  {
+    Node parent = getParent();
+    if (parent == null || parent instanceof RootNode)
+    {
+      return this;
+    }
+    return getParent();
   }
 }

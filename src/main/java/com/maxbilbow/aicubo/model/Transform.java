@@ -1,10 +1,10 @@
-package com.maxbilbow.aicubo.engine;
+package com.maxbilbow.aicubo.model;
 
 
 import com.maxbilbow.aicubo.engine.math.EulerAngles;
 import com.maxbilbow.aicubo.engine.math.Matrix4;
 import com.maxbilbow.aicubo.engine.math.Vector3;
-import com.maxbilbow.aicubo.engine.physics.CollisionBody;
+import com.maxbilbow.aicubo.engine.collision.type.CollisionBody;
 import com.maxbilbow.aicubo.engine.physics.PhysicsBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -464,6 +464,11 @@ public class Transform extends ANodeComponent
     }
     history[0].set(this.localPosition());
     stepsBack = 0;
+  }
+
+  public Float distanceTo(Transform aTransform)
+  {
+    return Vector3.makeSubtraction(position(), aTransform.position()).length();
   }
 
 }

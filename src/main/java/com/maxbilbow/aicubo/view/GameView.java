@@ -1,12 +1,16 @@
 package com.maxbilbow.aicubo.view;
 
 import com.maxbilbow.aicubo.control.GameController;
-import com.maxbilbow.aicubo.engine.*;
+import com.maxbilbow.aicubo.engine.GLViewPerFrameLog;
 import com.maxbilbow.aicubo.engine.behaviours.Behaviour;
 import com.maxbilbow.aicubo.engine.gl.CursorCallback;
 import com.maxbilbow.aicubo.engine.gl.KeyCallback;
 import com.maxbilbow.aicubo.engine.gl.SharedLibraryLoader;
 import com.maxbilbow.aicubo.engine.math.Vector4;
+import com.maxbilbow.aicubo.model.Camera;
+import com.maxbilbow.aicubo.model.Node;
+import com.maxbilbow.aicubo.model.Nodes;
+import com.maxbilbow.aicubo.model.Scene;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.opengl.GL11;
@@ -154,7 +158,7 @@ public abstract class GameView implements GLView
 
   public Scene getScene()
   {
-    return Scene.getCurrent();
+    return mGameController.getScene();
   }
 
 

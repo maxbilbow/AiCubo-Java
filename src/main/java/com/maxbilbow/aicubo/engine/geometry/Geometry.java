@@ -4,7 +4,7 @@ package com.maxbilbow.aicubo.engine.geometry;
 
 
 import com.maxbilbow.aicubo.config.Categories;
-import com.maxbilbow.aicubo.engine.NodeComponent;
+import com.maxbilbow.aicubo.model.NodeComponent;
 import com.maxbilbow.aicubo.engine.math.Matrix4;
 import com.maxbilbow.aicubo.engine.math.Vector3;
 import com.maxbilbow.aicubo.engine.math.Vector4;

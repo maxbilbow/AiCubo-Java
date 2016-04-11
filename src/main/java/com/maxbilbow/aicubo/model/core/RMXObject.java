@@ -1,4 +1,4 @@
-package com.maxbilbow.aicubo.core;
+package com.maxbilbow.aicubo.model.core;
 
 import com.maxbilbow.aicubo.messages.IEventListener;
 import com.maxbilbow.aicubo.messages.KeyValueObserver;

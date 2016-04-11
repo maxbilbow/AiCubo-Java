@@ -1,9 +1,9 @@
 package com.maxbilbow.aicubo;
 
 
-import com.maxbilbow.aicubo.engine.Node;
-import com.maxbilbow.aicubo.engine.Nodes;
 import com.maxbilbow.aicubo.engine.physics.PhysicsBody;
+import com.maxbilbow.aicubo.model.Node;
+import com.maxbilbow.aicubo.model.Nodes;
 
 public class AxisGenerator extends EntityGenerator
 {

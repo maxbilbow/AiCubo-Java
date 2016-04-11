@@ -2,7 +2,7 @@ package com.maxbilbow.aicubo.engine;
 
 public interface Ticker
 {
-  public long tick();
+  long tick();
 
-  public void updateTick(long newTick);
+  void updateTick(long newTick);
 }

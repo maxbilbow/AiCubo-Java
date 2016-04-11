@@ -1,7 +1,7 @@
 package com.maxbilbow.aicubo.messages;
 
 
-import com.maxbilbow.aicubo.core.IRMXObject;
+import com.maxbilbow.aicubo.model.core.IRMXObject;
 
 public interface KeyValueObserver
 {

@@ -1,8 +1,8 @@
 package com.maxbilbow.aicubo;
 
-import com.maxbilbow.aicubo.engine.Node;
-import com.maxbilbow.aicubo.engine.Scene;
 import com.maxbilbow.aicubo.engine.math.Tools;
+import com.maxbilbow.aicubo.model.Node;
+import com.maxbilbow.aicubo.model.Scene;
 
 public abstract class EntityGenerator
 {

@@ -1,6 +1,6 @@
-package com.maxbilbow.aicubo.engine.physics;
+package com.maxbilbow.aicubo.engine.collision.type;
 
-import com.maxbilbow.aicubo.engine.Node;
+import com.maxbilbow.aicubo.model.Node;
 import com.maxbilbow.aicubo.engine.math.Vector3;
 
 public class BoundingBox extends CollisionBounds

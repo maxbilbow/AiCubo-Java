@@ -4,7 +4,7 @@
 package com.maxbilbow.aicubo.engine;
 
 
-import com.maxbilbow.aicubo.core.RMXObject;
+import com.maxbilbow.aicubo.model.core.RMXObject;
 
 /**
  * @author Max

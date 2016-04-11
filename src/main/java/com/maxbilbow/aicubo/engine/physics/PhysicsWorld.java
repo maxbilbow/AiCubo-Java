@@ -1,39 +1,47 @@
 package com.maxbilbow.aicubo.engine.physics;
 
 
-import com.maxbilbow.aicubo.core.RMXObject;
-import com.maxbilbow.aicubo.engine.Node;
+import com.maxbilbow.aicubo.engine.collision.CollisionDelegate;
+import com.maxbilbow.aicubo.engine.collision.CollisionManager;
+import com.maxbilbow.aicubo.engine.collision.type.CollisionBody;
 import com.maxbilbow.aicubo.engine.math.Vector3;
+import com.maxbilbow.aicubo.engine.physics.type.PhysicsWorldConstants;
+import com.maxbilbow.aicubo.model.Node;
+import com.maxbilbow.aicubo.model.core.RMXObject;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.stream.Stream;
 
 import static com.maxbilbow.aicubo.config.RMX.rmxGetCurrentFramerate;
-import static com.maxbilbow.aicubo.engine.physics.CollisionBody.EXCLUSIVE_COLLISION_GROUP;
-import static com.maxbilbow.aicubo.engine.physics.CollisionBody.NO_COLLISIONS;
 
+@Component
 public class PhysicsWorld extends RMXObject
 {
-  private Vector3 gravity  = new Vector3(0f, -9.8f, 0f);
-  private float   friction = 0.3f;
+
+  @Resource
+  private CollisionManager mCollisionManager;
+
+  private PhysicsWorldConstants mConstants = PhysicsWorldConstants.defaultConstants();
+
+
 
   public Vector3 getGravity()
   {
-	  return gravity;
+	  return mConstants.getGravity();
   }
 
   public void setGravity(Vector3 gravity)
   {
-    this.gravity.set(gravity);
+    this.mConstants.getGravity().set(gravity);
   }
 
   public void setGravity(float x, float y, float z)
   {
-    this.gravity.x = x;
-    this.gravity.y = y;
-    this.gravity.z = z;
+    mConstants.setGravity(x,y,z);
   }
 
   public void updatePhysics(Node rootNode)
@@ -54,7 +62,7 @@ public class PhysicsWorld extends RMXObject
 
   private void applyGravityToNode(Node node)
   {
-	  if (this.gravity.isZero() || !node.physicsBody().isEffectedByGravity())
+	  if (this.getGravity().isZero() || !node.physicsBody().isEffectedByGravity())
 	  {
 		  return;
 	  }
@@ -65,7 +73,7 @@ public class PhysicsWorld extends RMXObject
     if (height > ground)
     {
       //			System.out.println(node.getName() + " >> BEFORE: " + m.position());
-      node.physicsBody().applyForce(framerate * mass, this.gravity, Vector3.Zero);
+      node.physicsBody().applyForce(framerate * mass, this.getGravity(), Vector3.Zero);
       //			node.forces.x += g.x * framerate * mass;
       //			this.forces.y += g.y * framerate * mass;
       //			this.forces.z += g.z * framerate * mass;
@@ -140,7 +148,7 @@ public class PhysicsWorld extends RMXObject
       {
         CollisionBody dynamicBody = di.next();
         checks++;
-        if (this.checkForCollision(staticBody, dynamicBody))
+        if (mCollisionManager.detectCollision(staticBody, dynamicBody))
         {
           count++;
         }
@@ -159,7 +167,7 @@ public class PhysicsWorld extends RMXObject
     {
       CollisionBody B = i.next();
       checks++;
-      if (this.checkForCollision(A, B))
+      if (mCollisionManager.detectCollision(A, B))
       {
         count++;
         //					if (unchecked.remove(A))
@@ -184,46 +192,46 @@ public class PhysicsWorld extends RMXObject
   Vector3 collisionDistance = new Vector3();
   public static boolean UseBoundingBox = true;
 
-  private synchronized boolean checkForCollision(CollisionBody A, CollisionBody B)
-  {
-	  if (A == B)
-	  {
-		  return false;
-	  }
-	  if (A.getCollisionGroup() != B.getCollisionGroup())
-	  {
-		  if (A.getCollisionGroup() != EXCLUSIVE_COLLISION_GROUP &&
-			  B.getCollisionGroup() != EXCLUSIVE_COLLISION_GROUP)
-		  {
-			  return false;
-		  }
-	  }
-
-    switch (A.getCollisionGroup())
-    {
-      case NO_COLLISIONS:
-      case EXCLUSIVE_COLLISION_GROUP:
-        return false;
-    }
-
-    boolean isHit = A.intersects(B);
-    if (isHit)
-    {
-      CollisionEvent e = new CollisionEvent(A.getNode(), B.getNode(), securityKey);
-		if (collisionDelegate != null)
-		{
-			collisionDelegate.doBeforeCollision(A.getNode(), B.getNode(), e);
-		}
-      e.processCollision(securityKey);
-		if (collisionDelegate != null)
-		{
-			collisionDelegate.doAfterCollision(A.getNode(), B.getNode(), e);
-		}
-
-    }
-    return isHit;
-
-  }
+//  private boolean checkForCollision(CollisionBody A, CollisionBody B)
+//  {
+//	  if (A == B)
+//	  {
+//		  return false;
+//	  }
+//	  if (A.getCollisionGroup() != B.getCollisionGroup())
+//	  {
+//		  if (A.getCollisionGroup() != EXCLUSIVE_COLLISION_GROUP &&
+//			  B.getCollisionGroup() != EXCLUSIVE_COLLISION_GROUP)
+//		  {
+//			  return false;
+//		  }
+//	  }
+//
+//    switch (A.getCollisionGroup())
+//    {
+//      case NO_COLLISIONS:
+//      case EXCLUSIVE_COLLISION_GROUP:
+//        return false;
+//    }
+//
+//    boolean isHit = A.intersects(B);
+//    if (isHit)
+//    {
+//      CollisionEvent e = new CollisionEvent(A.getNode(), B.getNode(), securityKey);
+//		if (collisionDelegate != null)
+//		{
+//			collisionDelegate.doBeforeCollision(A.getNode(), B.getNode(), e);
+//		}
+//      e.processCollision(securityKey);
+//		if (collisionDelegate != null)
+//		{
+//			collisionDelegate.doAfterCollision(A.getNode(), B.getNode(), e);
+//		}
+//
+//    }
+//    return isHit;
+//
+//  }
 
   private static final int securityKey = (int) (Math.random() * 100);
   private CollisionDelegate collisionDelegate;
@@ -231,12 +239,12 @@ public class PhysicsWorld extends RMXObject
 
   public float getFriction()
   {
-    return friction;
+    return mConstants.getFriction();
   }
 
-  public void setFriction(float friction)
+  public void setFriction(float aFriction)
   {
-    this.friction = friction;
+    mConstants.setFriction(aFriction);
   }
 
   public CollisionDelegate getCollisionDelegate()

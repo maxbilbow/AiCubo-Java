@@ -2,7 +2,6 @@ package com.maxbilbow.aicubo;
 
 
 import com.maxbilbow.aicubo.control.GameController;
-import com.maxbilbow.aicubo.engine.*;
 import com.maxbilbow.aicubo.engine.ai.ants.AntBehaviour;
 import com.maxbilbow.aicubo.engine.behaviours.Behaviour;
 import com.maxbilbow.aicubo.engine.behaviours.SpriteBehaviour;
@@ -10,11 +9,13 @@ import com.maxbilbow.aicubo.engine.geometry.Shapes;
 import com.maxbilbow.aicubo.engine.gl.IKeyCallback;
 import com.maxbilbow.aicubo.engine.math.Tools;
 import com.maxbilbow.aicubo.engine.physics.PhysicsBody;
+import com.maxbilbow.aicubo.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
 import static com.maxbilbow.aicubo.engine.ai.ants.AntBehaviour.*;
 import static com.maxbilbow.aicubo.engine.behaviours.Behaviour.GET_AI_STATE;
@@ -27,6 +28,9 @@ public class AiCubo extends GameController
   Node player, cameraNode;
   private Logger mLogger = LoggerFactory.getLogger(AiCubo.class);
 
+  @Resource
+  private Scene mScene;
+
   @Override
   protected void initpov()
   {
@@ -38,7 +42,7 @@ public class AiCubo extends GameController
     //		body.physicsBody().setDamping(0);
     body.addBehaviour(new SpriteBehaviour());
     body.transform().setScale(4f, 4.0f, 4f);
-    Scene.getCurrent().rootNode().addChild(body);
+    mScene.rootNode().addChild(body);
     //		body.setCollisionBody(new CollisionBody());
     Node head = Nodes.newCameraNode();
     body.addChild(head);
@@ -63,7 +67,7 @@ public class AiCubo extends GameController
   public void initActors()
   {
     mLogger.debug("Setting up scene...");
-    Scene scene = Scene.getCurrent();
+    Scene scene = mScene;
     mLogger.debug("SUCCESS");
 
     mLogger.debug("Setting up actors...");
@@ -196,11 +200,11 @@ public class AiCubo extends GameController
   @Override
   public void updateBeforeSceneRender(Object... args)
   {
-    long timePassed = Scene.getCurrent().tick() - tick;
+    long timePassed = mScene.tick() - tick;
     if (count < 500 && timePassed > 50)
     {
-      eg.makeShapesAndAddToScene(Scene.getCurrent(), 1);
-      this.tick = Scene.getCurrent().tick();
+      eg.makeShapesAndAddToScene(mScene, 1);
+      this.tick = mScene.tick();
       count++;
     }
 
@@ -212,7 +216,7 @@ public class AiCubo extends GameController
   {
     // TODO Auto-generated method stub
     //		initActors();
-    Scene.getCurrent().setRenderDelegate(this);
+    mScene.setRenderDelegate(this);
 
     this.addKeyCallback(new IKeyCallback()
     {
@@ -225,12 +229,12 @@ public class AiCubo extends GameController
           switch (key)
           {
             case GLFW_KEY_TAB:
-              int max = Scene.getCurrent().rootNode().getChildren().size() - 1;
+              int max = mScene.rootNode().getChildren().size() - 1;
               Node n, cam;
               Nodes.getCurrent().sendMessageToBehaviour(AntBehaviour.class, "setDefaultState");
               do
               {
-                n = Scene.getCurrent().rootNode().getChildren().get((int) Tools.rBounds(0, max));
+                n = mScene.rootNode().getChildren().get((int) Tools.rBounds(0, max));
                 cam = n.getChildWithName("trailingCam");
               } while (cam == null);
               n.setValue(GET_AI_STATE,
@@ -311,6 +315,12 @@ public class AiCubo extends GameController
 
 
     });
+  }
+
+  @Override
+  public Scene getScene()
+  {
+    return mScene;
   }
 }
 

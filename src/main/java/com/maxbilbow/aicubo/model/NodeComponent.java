@@ -1,4 +1,4 @@
-package com.maxbilbow.aicubo.engine;
+package com.maxbilbow.aicubo.model;
 
 import com.maxbilbow.aicubo.messages.IMessageable;
 

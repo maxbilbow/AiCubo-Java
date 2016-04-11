@@ -1,7 +1,7 @@
-package com.maxbilbow.aicubo.engine;
+package com.maxbilbow.aicubo.model;
 
 
-import com.maxbilbow.aicubo.core.RMXObject;
+import com.maxbilbow.aicubo.model.core.RMXObject;
 
 public abstract class ANodeComponent extends RMXObject implements NodeComponent
 {

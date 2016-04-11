@@ -1,9 +1,10 @@
 package com.maxbilbow.aicubo.control;
 
 
-import com.maxbilbow.aicubo.core.RMXObject;
-import com.maxbilbow.aicubo.engine.Node;
-import com.maxbilbow.aicubo.engine.Nodes;
+import com.maxbilbow.aicubo.model.Scene;
+import com.maxbilbow.aicubo.model.core.RMXObject;
+import com.maxbilbow.aicubo.model.Node;
+import com.maxbilbow.aicubo.model.Nodes;
 import com.maxbilbow.aicubo.engine.RenderDelegate;
 import com.maxbilbow.aicubo.engine.gl.IKeyCallback;
 import com.maxbilbow.aicubo.engine.gl.KeyStates;
@@ -185,5 +186,6 @@ public abstract class GameController extends RMXObject implements RenderDelegate
   }
 
 
+  public abstract Scene getScene();
 }
 

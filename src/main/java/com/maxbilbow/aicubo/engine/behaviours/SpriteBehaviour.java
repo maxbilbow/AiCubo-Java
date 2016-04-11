@@ -1,9 +1,9 @@
 package com.maxbilbow.aicubo.engine.behaviours;
 
-import com.maxbilbow.aicubo.engine.Node;
-import com.maxbilbow.aicubo.engine.Scene;
-import com.maxbilbow.aicubo.engine.Transform;
 import com.maxbilbow.aicubo.engine.math.Vector3;
+import com.maxbilbow.aicubo.model.Node;
+import com.maxbilbow.aicubo.model.Scene;
+import com.maxbilbow.aicubo.model.Transform;
 
 public class SpriteBehaviour extends Behaviour
 {

@@ -1,21 +1,27 @@
-package com.maxbilbow.aicubo.engine;
+package com.maxbilbow.aicubo.model;
 
 
-import com.maxbilbow.aicubo.core.RMXObject;
+import com.maxbilbow.aicubo.engine.RenderDelegate;
 import com.maxbilbow.aicubo.engine.math.Matrix4;
 import com.maxbilbow.aicubo.engine.physics.PhysicsWorld;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.stream.Stream;
 
-
-public class Scene extends RMXObject
+@Component
+public class Scene //extends RMXObject
 {
 
   private final Logger       mLogger      = LoggerFactory.getLogger(Scene.class);
-  private       PhysicsWorld physicsWorld = new PhysicsWorld();
+
+  @Resource
+  private        PhysicsWorld physicsWorld;
+
   public final   RootNode rootNode;
+
   private static Scene    _current;// = new node(null,null,null);
 
   public Scene()
@@ -34,17 +40,18 @@ public class Scene extends RMXObject
   }
 
   //	private static Scene current;
+  @Deprecated
   public static Scene getCurrent()
   {
 //		mLogger.debug("Get current scene...");
-    if (_current != null)
-    {
-      return _current;
-    }
-    else
-    {
-      _current = new Scene();
-    }
+//    if (_current != null)
+//    {
+//      return _current;
+//    }
+//    else
+//    {
+//      _current = new Scene();
+//    }
     return _current;
   }
 
