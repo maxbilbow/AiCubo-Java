@@ -21,12 +21,12 @@ public class StrategyEngine extends HashMap<String, Strategy>
   public interface IMethods
   {
 
-    public String[] Strings();
+    String[] Strings();
 
     @Override
-    public String toString();
+    String toString();
 
-    public int length();
+    int length();
   }
 
   int maxTurns;

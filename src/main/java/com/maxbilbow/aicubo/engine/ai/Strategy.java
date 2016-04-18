@@ -5,18 +5,6 @@ public class Strategy
   String name;
   int    id;
 
-//	static {
-//		Runtime.getRuntime().addShutdownHook(new Thread() {
-//			@Override
-//			public void run() {
-//				System.out.println("\nRESULTS:::");
-//				for (StrategyGroup g: combined.values()) {
-//					System.out.println(g);
-//				}
-//			}
-//		});
-//	}
-
   private AiMethod method;
 
   public AiMethod getMethod()

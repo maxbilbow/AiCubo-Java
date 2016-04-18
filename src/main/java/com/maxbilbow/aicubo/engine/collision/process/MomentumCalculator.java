@@ -16,8 +16,8 @@ public class MomentumCalculator
     final Transform B = aCollisionEvent.getTransformB();
 //    log += "\n\nCollision Momentum Report: " + nodeA.uniqueName() + " vs. " + nodeB.uniqueName();
 
-    Vector3 Va = A.node.physicsBody().getVelocity();
-    Vector3 Vb = B.node.physicsBody().getVelocity();
+    Vector3 Va = aCollisionEvent.getData().getVelocityOfBodyA();
+    Vector3 Vb = aCollisionEvent.getData().getVelocityOfBodyB();
     Vector3 direction = Vector3.makeSubtraction(Va, Vb);
     if (direction.isZero())
     {
