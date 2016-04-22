@@ -1,10 +1,10 @@
 package com.maxbilbow.aicubo.model;
 
 
+import com.maxbilbow.aicubo.engine.collision.type.CollisionBody;
 import com.maxbilbow.aicubo.engine.math.EulerAngles;
 import com.maxbilbow.aicubo.engine.math.Matrix4;
 import com.maxbilbow.aicubo.engine.math.Vector3;
-import com.maxbilbow.aicubo.engine.collision.type.CollisionBody;
 import com.maxbilbow.aicubo.engine.physics.PhysicsBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -126,7 +126,6 @@ public class Transform extends ANodeComponent
     _fwd.x = _localMatrix.m20;
     _fwd.y = _localMatrix.m21;
     _fwd.z = _localMatrix.m22;
-
     return _fwd;
   }
 

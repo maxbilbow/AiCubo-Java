@@ -25,16 +25,23 @@ import static org.lwjgl.glfw.GLFW.*;
 public class AiCubo extends GameController
 {
 
+
   Node player, cameraNode;
   private Logger mLogger = LoggerFactory.getLogger(AiCubo.class);
 
   @Resource
   private Scene mScene;
 
+  @Resource
+  private Nodes mNodes;
+
+  @Resource
+  private AxisGenerator mAxisGenerator;
+
   @Override
   protected void initpov()
   {
-    Node body = Nodes.getCurrent();
+    Node body = mNodes.getCurrent();
     body.setPhysicsBody(PhysicsBody.newDynamicBody());
     body.physicsBody().setMass(5.0f);
     //		body.physicsBody().setFriction(0f);
@@ -44,7 +51,7 @@ public class AiCubo extends GameController
     body.transform().setScale(4f, 4.0f, 4f);
     mScene.rootNode().addChild(body);
     //		body.setCollisionBody(new CollisionBody());
-    Node head = Nodes.newCameraNode();
+    Node head = mNodes.newCameraNode();
     body.addChild(head);
     body.transform().setPosition(10f, 20f, 20f);
 
@@ -83,7 +90,7 @@ public class AiCubo extends GameController
         {
           float speed = (float) (Tools.rBounds(30, 100) / 1000);
           float rotation = (float) (Tools.rBounds(1, (int) speed * 1000) / 1000);
-          Node body = Nodes.makeCube((float) Tools.rBounds(1, 2), PhysicsBody.newDynamicBody(), new AntBehaviour());
+          Node body = mNodes.makeCube((float) Tools.rBounds(1, 2), PhysicsBody.newDynamicBody(), new AntBehaviour());
 
           //				body.addBehaviour(new SpriteBehaviour());
           body.physicsBody().setMass((float) Tools.rBounds(2, 8));
@@ -93,7 +100,7 @@ public class AiCubo extends GameController
           //				body.physicsBody().setFriction(0f);
           //				body.physicsBody().setRestitution(0);
           //				body.setCollisionBody(new CollisionBody());
-          Node head = Nodes.makeCube(body.transform().radius() / 2, null, node -> {
+          Node head = mNodes.makeCube(body.transform().radius() / 2, null, node -> {
             if (node != mView.pointOfView())
             {
               node.transform().move("yaw:0.1");
@@ -107,7 +114,7 @@ public class AiCubo extends GameController
                                        body.transform().scale().y + head.transform().scale().y,
                                        body.transform().scale().z + head.transform().scale().z
           );
-          Node trailingCam = Nodes.newCameraNode();
+          Node trailingCam = mNodes.newCameraNode();
           body.addChild(trailingCam);
           trailingCam.setName("trailingCam");
           trailingCam.transform().translate(0, 20, 50);
@@ -128,7 +135,7 @@ public class AiCubo extends GameController
     float inf = 99999;
     {
       mLogger.debug("Success. Creating floor");
-      Node floor = Nodes.newGameNode();
+      Node floor = mNodes.newGameNode();
       floor.transform().setPosition(0, -10, 0);
       scene.rootNode().addChild(floor);
       //Float.POSITIVE_INFINITY;
@@ -136,43 +143,43 @@ public class AiCubo extends GameController
       floor.setGeometry(Shapes.Cube);
     }
     {
-      AxisGenerator ag = new AxisGenerator(inf);
-      ag.makeShapesAndAddToScene(scene, 1);
+      mAxisGenerator.setSize(inf);
+      mAxisGenerator.makeShapesAndAddToScene(scene, 1);
     }
     mLogger.debug("Actors set up successfully...");
     {
-      Node box = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
+      Node box = mNodes.makeCube(10, PhysicsBody.newStaticBody(), null);
       //		box.physicsBody().setMass(100);
       box.physicsBody().setRestitution(0.9f);
       box.transform().setPosition(bounds, 5, 30);
     }
     {
-      Node wallA = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
+      Node wallA = mNodes.makeCube(10, PhysicsBody.newStaticBody(), null);
       wallA.transform().setScale(bounds, 10, 10);
       wallA.transform().setPosition(0, 0, bounds + 10);
       wallA.addToCurrentScene();
     }
     {
-      Node wallB = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
+      Node wallB = mNodes.makeCube(10, PhysicsBody.newStaticBody(), null);
       wallB.transform().setScale(bounds, 10, 10);
       wallB.transform().setPosition(0, 0, -bounds - 10);
       wallB.addToCurrentScene();
     }
     {
-      Node wallC = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
+      Node wallC = mNodes.makeCube(10, PhysicsBody.newStaticBody(), null);
       wallC.transform().setScale(10, 10, bounds);
       wallC.transform().setPosition(bounds + 10, 0, 0);
       wallC.addToCurrentScene();
     }
     {
-      Node wallD = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
+      Node wallD = mNodes.makeCube(10, PhysicsBody.newStaticBody(), null);
 
       wallD.transform().setScale(10, 10, bounds);
       wallD.transform().setPosition(-bounds - 10, 0, 0);
       wallD.addToCurrentScene();
     }
     {
-      Node light = Nodes.makeCube(10, PhysicsBody.newStaticBody(), null);
+      Node light = mNodes.makeCube(10, PhysicsBody.newStaticBody(), null);
       light.transform().setPosition(100, 50, 100);
       light.setComponent(LightSource.class, new LightSource());
       light.addToCurrentScene();
@@ -231,7 +238,7 @@ public class AiCubo extends GameController
             case GLFW_KEY_TAB:
               int max = mScene.rootNode().getChildren().size() - 1;
               Node n, cam;
-              Nodes.getCurrent().sendMessageToBehaviour(AntBehaviour.class, "setDefaultState");
+              mNodes.getCurrent().sendMessageToBehaviour(AntBehaviour.class, "setDefaultState");
               do
               {
                 n = mScene.rootNode().getChildren().get((int) Tools.rBounds(0, max));
@@ -241,7 +248,7 @@ public class AiCubo extends GameController
                          Behaviour.AI_STATE_POSSESSED
               );//.sendMessageToBehaviour(Behaviour.class,"setState", Behaviour.AI_STATE_POSSESSED);
 
-              Nodes.setCurrent(n);
+              mNodes.setCurrent(n);
               getView().setPointOfView(cam);
               //						getView().pointOfView().transform().localMatrix().setIdentity();
               break;
@@ -250,8 +257,8 @@ public class AiCubo extends GameController
               player.transform().rootTransform().localMatrix().set(t.rootTransform().localMatrix());
               player.transform().rootTransform().setPosition(t.position());
               //						player.transform().translate(0, player.transform().getHeight(), 0);
-              Nodes.getCurrent().sendMessageToBehaviour(AntBehaviour.class, "setDefaultState");
-              Nodes.setCurrent(player);
+              mNodes.getCurrent().sendMessageToBehaviour(AntBehaviour.class, "setDefaultState");
+              mNodes.setCurrent(player);
               getView().setPointOfView(cameraNode);
 
               break;
@@ -273,7 +280,7 @@ public class AiCubo extends GameController
               }
               break;
             case GLFW_KEY_G:
-              Nodes.getCurrent()
+              mNodes.getCurrent()
                       .broadcastMessage("setEffectedByGravity", mods == GLFW_MOD_SHIFT ? false : true);
               break;
             case GLFW_KEY_A:
@@ -285,11 +292,11 @@ public class AiCubo extends GameController
             case GLFW_KEY_L:
               if (mods == GLFW_MOD_SHIFT)
               {
-                didCauseEvent(TheLeader, Nodes.getCurrent());
+                didCauseEvent(TheLeader, mNodes.getCurrent());
               }
               else if (mods == GLFW_MOD_CONTROL)
               {
-                didCauseEvent(TheLeader, Nodes.randomAiNode());
+                didCauseEvent(TheLeader, mNodes.randomAiNode());
               }
               else if (mods == GLFW_MOD_ALT)
               {
@@ -299,7 +306,7 @@ public class AiCubo extends GameController
               {
                 if (Leader == null)
                 {
-                  Leader = Nodes.getCurrent();
+                  Leader = mNodes.getCurrent();
                 }
                 didCauseEvent(FollowTheLeader);
               }

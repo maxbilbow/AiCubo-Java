@@ -81,4 +81,7 @@ public abstract class GenericDomain<IdType extends Number> implements Serializab
   }
 
 
+  public void onSave()
+  {}
+
 }

@@ -7,6 +7,7 @@ import com.maxbilbow.aicubo.engine.geometry.Shape;
 import com.maxbilbow.aicubo.engine.math.Matrix4;
 import com.maxbilbow.aicubo.engine.collision.type.CollisionBody;
 import com.maxbilbow.aicubo.engine.physics.PhysicsBody;
+import com.maxbilbow.aicubo.model.node.GameNode;
 
 import java.util.List;
 import java.util.Set;
@@ -145,4 +146,6 @@ public interface Node extends IRMXObject
     }
     return getParent();
   }
+
+  GameNode getGameNode();
 }

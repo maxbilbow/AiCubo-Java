@@ -5,6 +5,7 @@ import com.maxbilbow.aicubo.config.Categories;
 import com.maxbilbow.aicubo.engine.geometry.Geometry;
 import com.maxbilbow.aicubo.engine.geometry.GeometryImpl;
 import com.maxbilbow.aicubo.engine.geometry.Shape;
+import com.maxbilbow.aicubo.model.node.GameNode;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,7 +15,7 @@ import java.util.Set;
 import static com.maxbilbow.aicubo.config.RMX.rmxObjectCount;
 
 
-public class RootNodeImpl extends GameNode implements RootNode
+public class RootNodeImpl extends com.maxbilbow.aicubo.model.NodeEngine implements RootNode
 {
 
 
@@ -67,16 +68,16 @@ public class RootNodeImpl extends GameNode implements RootNode
     return shapeMap;
   }
 
-  private RootNodeImpl()
+  private RootNodeImpl(GameNode aGameNode)
   {
-    super();
+    super(aGameNode);
     this.setName("rootNode");
   }
 
 
   public static RootNodeImpl newInstance()
   {
-    return new RootNodeImpl();
+    return new RootNodeImpl(null);
   }
 
 

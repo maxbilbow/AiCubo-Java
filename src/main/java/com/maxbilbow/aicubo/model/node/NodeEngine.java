@@ -4,15 +4,17 @@ package com.maxbilbow.aicubo.model;
 import com.maxbilbow.aicubo.model.core.RMXObject;
 import com.maxbilbow.aicubo.engine.behaviours.IBehaviour;
 import com.maxbilbow.aicubo.engine.math.Matrix4;
+import com.maxbilbow.aicubo.model.node.GameNode;
 
 import java.util.*;
 import java.util.stream.Stream;
 
 
-public class GameNode extends RMXObject implements Node
+public class NodeEngine extends RMXObject implements Node
 {
 
 
+  private final GameNode mGameNode;
   private Node parent;
 
 
@@ -111,9 +113,10 @@ public class GameNode extends RMXObject implements Node
     return null;
   }
 
-  protected GameNode()
+  public NodeEngine(GameNode aGameNode)
   {
-    this.transform = new Transform(this);
+    mGameNode = aGameNode;
+    transform = new Transform(this);
 
   }
 
@@ -312,10 +315,10 @@ public class GameNode extends RMXObject implements Node
   }
 
 
-  public static GameNode newInstance()
-  {
-    return new GameNode();
-  }
+//  public static NodeEngine newInstance()
+//  {
+//    return new NodeEngine();
+//  }
 
 
   public static RootNode newRootNode()
@@ -324,6 +327,11 @@ public class GameNode extends RMXObject implements Node
   }
 
 
+  @Override
+  public GameNode getGameNode()
+  {
+    return mGameNode;
+  }
 }
 
 

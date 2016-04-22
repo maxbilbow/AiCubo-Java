@@ -50,7 +50,7 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
     /**
      * @param text
      */
-    private Crowd(final String text)
+    Crowd(final String text)
     {
       this.text = text;
     }

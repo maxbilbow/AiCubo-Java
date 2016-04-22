@@ -2,7 +2,7 @@ package com.maxbilbow.aicubo;
 
 import click.rmx.Bugger;
 import com.maxbilbow.aicubo.control.GameController;
-import com.maxbilbow.aicubo.model.GameNode;
+import com.maxbilbow.aicubo.model.NodeEngine;
 import com.maxbilbow.aicubo.model.Node;
 import com.maxbilbow.aicubo.engine.Nodes;
 import com.maxbilbow.aicubo.engine.Scene;
@@ -59,7 +59,7 @@ public class AiCuboCollisionTest implements CollisionDelegate {
 		top.transform().setPosition(0, scale, 0);
 		bottom.transform().setPosition(0,   -scale,0);
 
-		box = GameNode.newInstance();//.makeCube(scale / 10, PhysicsBody.newStaticBody(), null);
+		box = NodeEngine.newInstance();//.makeCube(scale / 10, PhysicsBody.newStaticBody(), null);
 		box.setGeometry(Shapes.Cube);
 		box.setName("Box");
 		scene.rootNode().addChild(box);

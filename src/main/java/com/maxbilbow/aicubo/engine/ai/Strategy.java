@@ -1,5 +1,6 @@
 package com.maxbilbow.aicubo.engine.ai;
 
+@Deprecated
 public class Strategy
 {
   String name;
@@ -123,7 +124,7 @@ public class Strategy
 
   public interface AiMethod
   {
-    public State invoke(Strategy ai, int maxTurns, Object... args);
+    State invoke(Strategy ai, int maxTurns, Object... args);
   }
 
   public static AiMethod DummyMethod()
