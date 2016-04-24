@@ -7,50 +7,50 @@ import com.maxbilbow.aicubo.engine.geometry.Shapes;
 import com.maxbilbow.aicubo.engine.math.Tools;
 import com.maxbilbow.aicubo.engine.physics.PhysicsBody;
 import com.maxbilbow.aicubo.model.node.GameNode;
-import com.maxbilbow.aicubo.model.node.type.NodeRole;
-import com.maxbilbow.aicubo.service.node.GameNodeService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 @Component
-public final class Nodes
+public class Nodes
 {
 
-  @Resource
-  private GameNodeService mNodeService;
+  private static Nodes INSTANCE;
+//  @Resource
+//  private GameNodeService mNodeService;
 
   private List<GameNode> mExistingNodes;
 
+  public Nodes()
+  {
+    INSTANCE = this;
+  }
   @PostConstruct
   private void init()
   {
-    mExistingNodes = new ArrayList<>();//mNodeService.getAll();
-    Optional<GameNode> player = mExistingNodes.stream()
-            .filter(aGameNode -> aGameNode.getName()
-                    .equalsIgnoreCase("Player")).findFirst();
-    if (player.isPresent())
-    {
-      current = player.get().getEngine();
-    }
-    else
-    {
-      current = newGameNode("Player");
-      current.getGameNode().setRole(NodeRole.Player);
-    }
+
+
+//    GameNode player = mNodeService.findWithName("Player");
+//    if (player != null)
+//    {
+//      current = player.getEngine();
+//    }
+//    else
+//    {
+//      current = newGameNode("Player");
+//      current.getGameNode().setRole(NodeRole.Player);
+//      mNodeService.save(current.getGameNode());
+//    }
   }
 
   public Node newGameNode()
   {
-    if (mExistingNodes.isEmpty())
+    if (mExistingNodes == null || mExistingNodes.isEmpty())
     {
-      return mNodeService.newEntity().getEngine();
+      return new GameNode().getEngine(); //mNodeService.newEntity().getEngine();
     }
     return mExistingNodes.remove(0).getEngine();
   }
@@ -67,20 +67,21 @@ public final class Nodes
     return com.maxbilbow.aicubo.model.NodeEngine.newRootNode();
   }
 
-  private static Node current;
+  private Node current;
 
-  public static void setCurrent(Node n)
+  public void setCurrent(Node n)
   {
     current = n;
   }
 
   public static Node getCurrent()
   {
-//    if (current == null)
-//    {
-//      current = newGameNode("Player");
-//    }
-    return current;
+    if (INSTANCE.current == null)
+    {
+      INSTANCE.current = INSTANCE.newGameNode("Player");
+//      INSTANCE.mNodeService.save(INSTANCE.current.getGameNode());
+    }
+    return INSTANCE.current;
   }
 
   public Node newCameraNode()

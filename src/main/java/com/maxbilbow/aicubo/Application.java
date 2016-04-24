@@ -1,6 +1,6 @@
 package com.maxbilbow.aicubo;
 
-import com.maxbilbow.aicubo.hud.InfoWindow;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,9 +22,15 @@ public class Application
 //    {
 //      System.setProperty("startOnFirstThread","true");
 //    }
-    SpringApplication.run(Application.class, args);
-
-    InfoWindow.open();
+    try
+    {
+      SpringApplication.run(Application.class, args);
+    }
+    catch (Exception e)
+    {
+      LoggerFactory.getLogger(Application.class).error("Big Fat Error!",e);
+    }
+//    InfoWindow.open();
 
   }
 }

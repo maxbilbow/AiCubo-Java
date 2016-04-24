@@ -80,7 +80,7 @@ public abstract class GenericDomain<IdType extends Number> implements Serializab
     mLastUpdated = aLastUpdated;
   }
 
-
+  @Transient
   public void onSave()
   {}
 
