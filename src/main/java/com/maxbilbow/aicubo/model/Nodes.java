@@ -1,5 +1,6 @@
 package com.maxbilbow.aicubo.model;
 
+import com.maxbilbow.aicubo.control.PlayerController;
 import com.maxbilbow.aicubo.control.SceneController;
 import com.maxbilbow.aicubo.engine.behaviours.Behaviour;
 import com.maxbilbow.aicubo.engine.behaviours.CameraBehaviour;
@@ -21,7 +22,10 @@ import java.util.stream.Stream;
 public class Nodes
 {
 
-  private static Nodes INSTANCE;
+  private static Nodes            INSTANCE;
+
+  @Resource
+  private PlayerController mPlayerController;
 
 //  @Resource
 //  private GameNodeService mNodeService;
@@ -70,22 +74,6 @@ public class Nodes
     return com.maxbilbow.aicubo.model.NodeEngine.newRootNode();
   }
 
-  private Node current;
-
-  public void setCurrent(Node n)
-  {
-    current = n;
-  }
-
-  public static Node getCurrent()
-  {
-    if (INSTANCE.current == null)
-    {
-      INSTANCE.current = INSTANCE.newGameNode("Player");
-//      INSTANCE.mNodeService.save(INSTANCE.current.getGameNode());
-    }
-    return INSTANCE.current;
-  }
 
   public Node newCameraNode()
   {

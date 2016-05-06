@@ -98,17 +98,6 @@ public class RootNodeImpl extends RMXObject implements RootNode
     return mChildren;
   }
 
-  @Override
-  public void updateLogic()
-  {
-    mChildren.stream().forEach(Node::updateLogic);
-  }
-
-  @Override
-  public void updateAfterPhysics()
-  {
-    mChildren.stream().forEach(Node::updateAfterPhysics);
-  }
 
   @Override
   public boolean removeChild(Node aChild)

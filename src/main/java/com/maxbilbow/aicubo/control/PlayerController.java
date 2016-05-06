@@ -29,18 +29,18 @@ public class PlayerController implements RenderDelegate
   private KeyCallback mKeyCallback;
   private Node mPlayer;
 
+  private static PlayerController INSTANCE;
   @PostConstruct
   private void init()
   {
+    INSTANCE = this;
     mRenderer.addDelegate(this);
   }
-
-
 
   @Override
   public void updateBeforeSceneLogic(Object... args)
   {
-    final Node player = mNodes.getCurrent();
+    final Node player = getPlayer();
 
     if (mKeyCallback.isDown(GLFW_KEY_W))
     {
@@ -118,5 +118,14 @@ public class PlayerController implements RenderDelegate
   public Node getPlayer()
   {
     return mPlayer;
+  }
+
+  public static Node current()
+  {
+    if (INSTANCE != null)
+    {
+      return INSTANCE.getPlayer();
+    }
+    return null;
   }
 }

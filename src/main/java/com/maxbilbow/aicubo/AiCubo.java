@@ -73,7 +73,7 @@ public class AiCubo extends RMXObject implements RenderDelegate, AppLauncher
 
   protected void initpov()
   {
-    Node body = mNodes.getCurrent();
+    Node body = mNodes.newGameNode("Player");
     body.setPhysicsBody(PhysicsBody.newDynamicBody());
     body.physicsBody().setMass(5.0f);
     //		body.physicsBody().setFriction(0f);
@@ -81,16 +81,16 @@ public class AiCubo extends RMXObject implements RenderDelegate, AppLauncher
     //		body.physicsBody().setDamping(0);
     body.addBehaviour(new SpriteBehaviour());
     body.transform().setScale(4f, 4.0f, 4f);
-    mSceneController.getScene().addToScene(body);
+
 //    mSceneController.getScene().getRootNode().addChild(body);
     //		body.setCollisionBody(new CollisionBody());
     Node head = mNodes.newCameraNode();
     body.addChild(head);
     body.transform().setPosition(10f, 20f, 20f);
 
-
     mPointOfView.set(head);
     mPlayerController.setPlayer(body);
+    mSceneController.getScene().addToScene(body);
 
   }
 
@@ -252,7 +252,7 @@ public class AiCubo extends RMXObject implements RenderDelegate, AppLauncher
           case GLFW_KEY_TAB:
             int max = scene.getRootNode().getChildren().size() - 1;
             Node n, cam;
-            mNodes.getCurrent().sendMessageToBehaviour(AntBehaviour.class, "setDefaultState");
+            player.sendMessageToBehaviour(AntBehaviour.class, "setDefaultState");
             do
             {
               n = scene.getRootNode().getChildren().get((int) Tools.rBounds(0, max));
@@ -262,7 +262,7 @@ public class AiCubo extends RMXObject implements RenderDelegate, AppLauncher
                        Behaviour.AI_STATE_POSSESSED
             );//.sendMessageToBehaviour(Behaviour.class,"setState", Behaviour.AI_STATE_POSSESSED);
 
-            mNodes.setCurrent(n);
+            mPlayerController.setPlayer(n);
             mPointOfView.set(cam);
             //						getView().pointOfView().transform().localMatrix().setIdentity();
             break;
@@ -271,8 +271,8 @@ public class AiCubo extends RMXObject implements RenderDelegate, AppLauncher
             player.transform().rootTransform().localMatrix().set(t.rootTransform().localMatrix());
             player.transform().rootTransform().setPosition(t.position());
             //						player.transform().translate(0, player.transform().getHeight(), 0);
-            mNodes.getCurrent().sendMessageToBehaviour(AntBehaviour.class, "setDefaultState");
-            mNodes.setCurrent(player);
+            player.sendMessageToBehaviour(AntBehaviour.class, "setDefaultState");
+            mPlayerController.setPlayer(player);
             mPointOfView.set(player.camera().getNode());
 
             break;
@@ -294,8 +294,7 @@ public class AiCubo extends RMXObject implements RenderDelegate, AppLauncher
             }
             break;
           case GLFW_KEY_G:
-            mNodes.getCurrent()
-                    .broadcastMessage("setEffectedByGravity", mods == GLFW_MOD_SHIFT ? false : true);
+            player.broadcastMessage("setEffectedByGravity", mods == GLFW_MOD_SHIFT ? false : true);
             break;
           case GLFW_KEY_A:
             if (mods == GLFW_MOD_SHIFT)
@@ -306,7 +305,7 @@ public class AiCubo extends RMXObject implements RenderDelegate, AppLauncher
           case GLFW_KEY_L:
             if (mods == GLFW_MOD_SHIFT)
             {
-              didCauseEvent(TheLeader, mNodes.getCurrent());
+              didCauseEvent(TheLeader, player);
             }
             else if (mods == GLFW_MOD_CONTROL)
             {
@@ -320,7 +319,7 @@ public class AiCubo extends RMXObject implements RenderDelegate, AppLauncher
             {
               if (Leader == null)
               {
-                Leader = mNodes.getCurrent();
+                Leader = player;
               }
               didCauseEvent(FollowTheLeader);
             }

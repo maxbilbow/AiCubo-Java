@@ -25,6 +25,16 @@ public class Scene //extends RMXObject
     return this.mRootNode;
   }
 
+  public void updateAfterPhysics()
+  {
+    mRootNode.getChildren().stream().forEach(Node::updateAfterPhysics);
+  }
+
+  public void updateLogic()
+  {
+    mRootNode.getChildren().stream().forEach(Node::updateLogic);
+  }
+
 
 //  protected static class node
 //  {

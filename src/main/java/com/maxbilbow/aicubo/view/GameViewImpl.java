@@ -87,8 +87,6 @@ public class GameViewImpl implements GameView
   @Override
   public void enterGameLoop(long window)
   {
-
-
     LinkedList<Long> frameTime = null;
     int counter = 0;
     if (debugging)

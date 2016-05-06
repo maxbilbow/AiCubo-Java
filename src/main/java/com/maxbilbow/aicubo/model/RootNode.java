@@ -14,8 +14,5 @@ public interface RootNode extends Hierarchy<Node>
   Map<Shape, Set<Geometry>> getGeometries();
 
   List<Node> getChildren();
-  
-  void updateLogic();
-  
-  void updateAfterPhysics();
+
 }

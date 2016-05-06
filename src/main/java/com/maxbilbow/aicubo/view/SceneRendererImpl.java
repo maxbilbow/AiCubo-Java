@@ -9,6 +9,7 @@ import com.maxbilbow.aicubo.engine.physics.CollisionManager;
 import com.maxbilbow.aicubo.engine.physics.PhysicsWorld;
 import com.maxbilbow.aicubo.model.Camera;
 import com.maxbilbow.aicubo.model.RootNode;
+import com.maxbilbow.aicubo.model.Scene;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -58,13 +59,14 @@ public class SceneRendererImpl implements SceneRenderer
 
     final Camera aCamera = mPointOfView.get().camera();
 
+    final Scene scene = mSceneController.getScene();
     mRenderDelegates.forEach(RenderDelegate::updateBeforeSceneLogic);
 
     final RootNode rootNode = mSceneController.getScene().getRootNode();
-    rootNode.updateLogic();
+    scene.updateLogic();
     mPhysicsWorld.updatePhysics(rootNode);
     mCollisionManager.updateCollisionEvents(rootNode);
-    rootNode.updateAfterPhysics();
+    scene.updateAfterPhysics();
 
     mRenderDelegates.forEach(RenderDelegate::updateBeforeSceneRender);
 
@@ -83,7 +85,7 @@ public class SceneRendererImpl implements SceneRenderer
     glLoadIdentity();
 
 
-    mSceneController.getScene().renderScene(null);
+    scene.renderScene(null);
     Matrix4 m = aCamera.makeLookAt();
     shapes.forEach((shape, geometries) -> {
       geometries.forEach(geo -> {

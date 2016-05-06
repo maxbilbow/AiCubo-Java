@@ -1,5 +1,6 @@
 package com.maxbilbow.aicubo.engine.gl;
 
+import com.maxbilbow.aicubo.control.PlayerController;
 import com.maxbilbow.aicubo.model.Nodes;
 import org.lwjgl.glfw.GLFWKeyCallback;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,9 @@ public class KeyCallback extends GLFWKeyCallback
 
   @Resource
   private CursorCallback mCursor;
+
+  @Resource
+  private PlayerController mPlayerController;
 
   public final KeyStates mKeys = new KeyStates();
 
@@ -67,7 +71,7 @@ public class KeyCallback extends GLFWKeyCallback
           }
           break;
         case GLFW_KEY_SPACE:
-          Nodes.getCurrent().broadcastMessage("jump");
+          mPlayerController.getPlayer().broadcastMessage("jump");
           break;
       }
     }
@@ -76,7 +80,7 @@ public class KeyCallback extends GLFWKeyCallback
       switch (key)
       {
         case GLFW_KEY_SPACE:
-          Nodes.getCurrent().broadcastMessage("crouch");
+          mPlayerController.getPlayer().broadcastMessage("crouch");
       }
     }
 

@@ -2,6 +2,7 @@ package com.maxbilbow.aicubo.engine.ai.ants;
 
 import com.maxbilbow.aicubo.AiCubo;
 import com.maxbilbow.aicubo.config.RMX;
+import com.maxbilbow.aicubo.control.PlayerController;
 import com.maxbilbow.aicubo.engine.ai.Strategy;
 import com.maxbilbow.aicubo.engine.ai.Strategy.AiMethod;
 import com.maxbilbow.aicubo.engine.ai.Strategy.State;
@@ -383,7 +384,7 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
 		  {
 			  if (args == "current")
 			  {
-				  this.setValue(TheLeader, Nodes.getCurrent());
+				  this.setValue(TheLeader, PlayerController.current());
 			  }
 			  else if (args == "random")
 			  {

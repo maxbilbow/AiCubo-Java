@@ -26,7 +26,10 @@ public class Application
     try
     {
       final ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+
       context.getBean(AppLauncher.class).launch();
+      ShaderTest.start();
+
     }
     catch (Exception e)
     {

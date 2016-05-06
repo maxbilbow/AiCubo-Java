@@ -5,12 +5,13 @@ import com.maxbilbow.aicubo.engine.math.Vector3;
 import com.maxbilbow.aicubo.engine.physics.type.PhysicsWorldConstants;
 import com.maxbilbow.aicubo.model.Node;
 import com.maxbilbow.aicubo.model.RootNode;
+import org.springframework.stereotype.Component;
 
 import java.util.stream.Stream;
 
 import static com.maxbilbow.aicubo.config.RMX.rmxGetCurrentFramerate;
 
-
+@Component
 public class PhysicsWorld //extends RMXObject
 {
 
@@ -69,7 +70,7 @@ public class PhysicsWorld //extends RMXObject
       //			this.forces.y += g.y * framerate * mass;
       //			this.forces.z += g.z * framerate * mass;
     }
-    else if (node.getParent().getParent() == null)
+    else if (node.getParent() == null)
     {
       node.transform().localMatrix().m31 = ground;
     }

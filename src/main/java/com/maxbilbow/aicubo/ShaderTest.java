@@ -496,7 +496,7 @@ public class ShaderTest
   {
   }
 
-  public static void main(String[] args)
+  public static void start()
   {
     ShaderTest main = null;
     try
