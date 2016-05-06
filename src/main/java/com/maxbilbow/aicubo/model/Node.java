@@ -7,12 +7,12 @@ import com.maxbilbow.aicubo.engine.geometry.Shape;
 import com.maxbilbow.aicubo.engine.math.Matrix4;
 import com.maxbilbow.aicubo.engine.collision.type.CollisionBody;
 import com.maxbilbow.aicubo.engine.physics.PhysicsBody;
-import com.maxbilbow.aicubo.model.node.GameNode;
+import com.maxbilbow.aicubo.model.node.NodeLocation;
 
 import java.util.List;
 import java.util.Set;
 
-public interface Node extends IRMXObject
+public interface Node extends IRMXObject, Hierarchy<Node>
 {
 
   void setComponent(Class<?> type, NodeComponent component);
@@ -22,10 +22,6 @@ public interface Node extends IRMXObject
   NodeComponent getComponent(Class<?> type);
 
   List<Node> getChildren();
-
-  void addChild(Node child);
-
-  boolean removeChildNode(Node node);
 
   Node getChildWithName(String name);
 
@@ -85,15 +81,15 @@ public interface Node extends IRMXObject
     this.setComponent(LightSource.class, light);
   }
 
-  void updateLogic(long time);
+  void updateLogic();
 
-  void updateAfterPhysics(long time);
+  void updateAfterPhysics();
 
   void draw(Matrix4 viewMatrix);
 
   Node getParent();
 
-  void setParent(Node parent);
+  void setParent(Hierarchy<Node> parent);
 
   default void shine()
   {
@@ -104,6 +100,20 @@ public interface Node extends IRMXObject
     }
   }
 
+  default void setNodeLocation(NodeLocation aNodeLocation)
+  {
+    setValue("NodeLocation", aNodeLocation);
+  }
+
+  default NodeLocation getNodeLocation()
+  {
+    final Object location = getValue("NodeLocation");
+    if (location != null)
+    {
+      return (NodeLocation) location;
+    }
+    return null;
+  }
   /**
    * Sends a message to all behaviours and all children of this node.
    */
@@ -120,18 +130,12 @@ public interface Node extends IRMXObject
 
   boolean sendMessageToBehaviour(Class<?> theBehaviour, String message, Object args);
 
-  void addToCurrentScene();
+
+//  void addToScene(Scene aScene);
 
   Transform transform();
 
-  default void addGeometryToList(Set<Geometry> geometries)
-  {
-    if (this.geometry() != null && this.geometry().isVisible())
-    {
-      geometries.add(this.geometry());
-    }
-    this.getChildren().stream().forEach(child -> child.addGeometryToList(geometries));
-  }
+  void addGeometryToList(Set<Geometry> geometries);
 
   /**
    *
@@ -147,5 +151,7 @@ public interface Node extends IRMXObject
     return getParent();
   }
 
-  GameNode getGameNode();
+  Scene getScene();
+
+  void setScene(Scene aScene);
 }

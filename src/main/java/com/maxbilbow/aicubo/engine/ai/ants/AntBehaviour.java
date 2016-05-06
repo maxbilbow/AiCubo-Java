@@ -15,13 +15,13 @@ import com.maxbilbow.aicubo.engine.math.Tools;
 import com.maxbilbow.aicubo.engine.math.Vector3;
 import com.maxbilbow.aicubo.model.Node;
 import com.maxbilbow.aicubo.model.Nodes;
-import com.maxbilbow.aicubo.model.Scene;
 import com.maxbilbow.aicubo.model.collision.CollisionEvent;
 
 import java.util.LinkedList;
 
 public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, IKeyCallback
 {
+
   public static final String
 				  Possessed       = Behaviour.AI_STATE_POSSESSED, //0
           Amble           = "AI_STATE_AMBLE",
@@ -166,9 +166,9 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
 
   private boolean _ready = false;
 
-  void tryToAvoidCrowding(long tick)
+  void tryToAvoidCrowding()
   {
-
+    final long tick = System.currentTimeMillis();
     if (bumpCount == 0)
     {
       Strategy ai = crowdStrategies.current();
@@ -242,7 +242,7 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
   @Override
   public void update(Node node)
   {
-    long tick = Scene.getCurrent().tick();
+    final long tick = System.currentTimeMillis();
     switch (state())
     {
       case Amble:
@@ -251,7 +251,7 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
         this.limit(AiCubo.bounds * 2);
         break;
       case Possessed:
-		  if (isStuck(tick))
+		  if (isStuck())
 		  {
 			  this.setNotStuck();
 		  }
@@ -298,8 +298,8 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
     }
     if (state() != AI_STATE_POSSESSED)
     {
-      this.tryToAvoidCrowding(tick);
-      if (isStuck(tick))
+      this.tryToAvoidCrowding();
+      if (isStuck())
       {
         jump();
         this.setNotStuck();
@@ -445,7 +445,7 @@ public class AntBehaviour extends SpriteBehaviour implements ICollisionHandler, 
 
     if (stuckState() == STUCK_FALSE && event.getDistanceBetweenPlanes() > 0)
     {
-      this.setMightBeStuck(Scene.getCurrent().tick());
+      this.setMightBeStuck();
     }
 
 

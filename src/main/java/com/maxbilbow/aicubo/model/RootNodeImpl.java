@@ -5,26 +5,24 @@ import com.maxbilbow.aicubo.config.Categories;
 import com.maxbilbow.aicubo.engine.geometry.Geometry;
 import com.maxbilbow.aicubo.engine.geometry.GeometryImpl;
 import com.maxbilbow.aicubo.engine.geometry.Shape;
-import com.maxbilbow.aicubo.model.node.GameNode;
+import com.maxbilbow.aicubo.model.core.RMXObject;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static com.maxbilbow.aicubo.config.RMX.rmxObjectCount;
 
 
-public class RootNodeImpl extends com.maxbilbow.aicubo.model.NodeEngine implements RootNode
+public class RootNodeImpl extends RMXObject implements RootNode
 {
 
 
-  private Set<Geometry> geometries;//new HashSet<>();
+  private Set<Geometry> geometries = new HashSet<>();
 
 
   private Map<Shape, Set<Geometry>> shapeMap;// = new HashMap<>();
 
   int count = -1;
+  private ArrayList<Node> mChildren = new ArrayList<>();
 
   @Override
   public void onEventDidEnd(String theEvent, Object args)
@@ -52,7 +50,7 @@ public class RootNodeImpl extends com.maxbilbow.aicubo.model.NodeEngine implemen
 
     if (this.count != count)
     {
-      this.addGeometryToList(geometries);
+      mChildren.stream().forEach(child -> child.addGeometryToList(geometries));
       this.count = count;
     }
 
@@ -68,17 +66,53 @@ public class RootNodeImpl extends com.maxbilbow.aicubo.model.NodeEngine implemen
     return shapeMap;
   }
 
-  private RootNodeImpl(GameNode aGameNode)
+  private RootNodeImpl()
   {
-    super(aGameNode);
-    this.setName("rootNode");
+    super();
+    this.setName("mRootNode");
   }
 
 
   public static RootNodeImpl newInstance()
   {
-    return new RootNodeImpl(null);
+    return new RootNodeImpl();
   }
 
 
+  /* (non-Javadoc)
+   * @see Node#addChild(Node)
+   */
+  @Override
+  public void addChild(Node child)
+  {
+    if (!this.mChildren.contains(child))
+    {
+      this.mChildren.add(child);
+      child.setParent(this);
+    }
+  }
+
+  @Override
+  public List<Node> getChildren()
+  {
+    return mChildren;
+  }
+
+  @Override
+  public void updateLogic()
+  {
+    mChildren.stream().forEach(Node::updateLogic);
+  }
+
+  @Override
+  public void updateAfterPhysics()
+  {
+    mChildren.stream().forEach(Node::updateAfterPhysics);
+  }
+
+  @Override
+  public boolean removeChild(Node aChild)
+  {
+    return mChildren.remove(aChild);
+  }
 }

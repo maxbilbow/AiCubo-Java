@@ -1,25 +1,20 @@
 package com.maxbilbow.aicubo.view;
 
 
-import com.maxbilbow.aicubo.control.GameController;
-import com.maxbilbow.aicubo.engine.geometry.Geometry;
 import com.maxbilbow.aicubo.engine.geometry.Shape;
 import com.maxbilbow.aicubo.engine.geometry.Shapes;
 import com.maxbilbow.aicubo.engine.gl.Shader;
-import com.maxbilbow.aicubo.engine.math.Matrix4;
-import com.maxbilbow.aicubo.model.Scene;
 import org.lwjgl.BufferUtils;
+import org.springframework.stereotype.Component;
 
 import java.nio.FloatBuffer;
-import java.util.Map;
-import java.util.Set;
 
 import static org.lwjgl.opengl.GL11.*;
 
 
 //import org.lwjgl.util.glu.GLU;
-//@Component("GLView")
-public class GLViewImpl extends GameView implements GLView
+@Component
+public class GLInitializerImpl implements GLInitializer
 {
 
   Shader shader;
@@ -34,22 +29,11 @@ public class GLViewImpl extends GameView implements GLView
 
   int vertexArray;
 
-  public GLViewImpl(GameController aGameController)
-  {
-    super(aGameController);
-  }
-
 //  public GLViewImpl()
 //  {
 //
 //  }
 
-  @Override
-  protected void onAwake()
-  {
-    this.setDebugging(true, 60);
-    this.setClearColor(0.3f, 0.3f, 0.8f, 1.0f);
-  }
 
   public static final int
           ERR_SHADER_LOAD      = 1,
@@ -104,7 +88,7 @@ public class GLViewImpl extends GameView implements GLView
   }
 
 
-  protected void setUpLighting()
+  private void setUpLighting()
   {
     glShadeModel(GL_SMOOTH);
     glEnable(GL_DEPTH_TEST);
@@ -124,49 +108,7 @@ public class GLViewImpl extends GameView implements GLView
     glColorMaterial(GL_FRONT, GL_DIFFUSE);
   }
 
-  @Override
-  protected void renderFrame(Scene scene)
-  {
-    scene.updateSceneLogic();
-    Map<Shape, Set<Geometry>> shapes = scene.rootNode().getGeometries();
-    try
-    {
-      this.bindAttributes();
 
-    }
-    catch (Exception e)
-    {
-      e.printStackTrace();
-      System.exit(ERR_RENDER);
-    }
-    finally
-    {
-      glMatrixMode(GL_PROJECTION);
-      glLoadIdentity();
-      pointOfView().camera().perspective(this);
-
-
-      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
-
-
-      glMatrixMode(GL_MODELVIEW);
-      glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-      glLoadIdentity();
-
-      scene.renderScene(null);
-      Matrix4 m = pointOfView().camera().makeLookAt();
-      shapes.forEach((shape, geometries) -> {
-        geometries.forEach(geo -> {
-//					GL11.glDrawElements(
-//							GL_TRIANGLES,
-//							shape.indexSize(), 
-//							GL_UNSIGNED_SHORT, 
-//							shape.getIndexBuffer());
-          geo.render();
-        });
-      });
-    }
-  }
 
 
 }

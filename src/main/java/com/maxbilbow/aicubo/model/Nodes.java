@@ -1,15 +1,18 @@
 package com.maxbilbow.aicubo.model;
 
+import com.maxbilbow.aicubo.control.SceneController;
 import com.maxbilbow.aicubo.engine.behaviours.Behaviour;
 import com.maxbilbow.aicubo.engine.behaviours.CameraBehaviour;
 import com.maxbilbow.aicubo.engine.behaviours.IBehaviour;
 import com.maxbilbow.aicubo.engine.geometry.Shapes;
 import com.maxbilbow.aicubo.engine.math.Tools;
 import com.maxbilbow.aicubo.engine.physics.PhysicsBody;
-import com.maxbilbow.aicubo.model.node.GameNode;
+import com.maxbilbow.aicubo.model.node.NodeLocation;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
@@ -19,20 +22,21 @@ public class Nodes
 {
 
   private static Nodes INSTANCE;
+
 //  @Resource
 //  private GameNodeService mNodeService;
 
-  private List<GameNode> mExistingNodes;
+  private List<NodeLocation> mExistingNodes;
 
-  public Nodes()
-  {
-    INSTANCE = this;
-  }
+
+
+  @Resource
+  private SceneController mSceneController;
+
   @PostConstruct
   private void init()
   {
-
-
+    INSTANCE = this;
 //    GameNode player = mNodeService.findWithName("Player");
 //    if (player != null)
 //    {
@@ -48,18 +52,17 @@ public class Nodes
 
   public Node newGameNode()
   {
-    if (mExistingNodes == null || mExistingNodes.isEmpty())
-    {
-      return new GameNode().getEngine(); //mNodeService.newEntity().getEngine();
-    }
-    return mExistingNodes.remove(0).getEngine();
+    return new com.maxbilbow.aicubo.model.NodeEngine();
   }
 
-  public Node newGameNode(String name)
+  public Node newGameNode(String aName)
   {
-    GameNode node = new GameNode();//.getEngine();
-    node.setName(name);
-    return node.getEngine();
+    Node node = newGameNode();
+    node.setName(aName);
+//    NodeLocation node = new NodeLocation();//.getEngine();
+//    node.setName(name);
+
+    return node;//.getEngine();
   }
 
   public static RootNode newRootNode()
@@ -108,14 +111,18 @@ public class Nodes
 
   public static Node randomAiNode()
   {
+    if (INSTANCE == null)
+    {
+      LoggerFactory.getLogger(Nodes.class).warn("Nodes not set up");
+      return null;
+    }
+
     Stream stream;
 
     @SuppressWarnings("unchecked")
-    Collection<Node> nodes = Scene.getCurrent().rootNode().getChildren();//.clone();
+    final Collection<Node> nodes = INSTANCE.mSceneController.getScene().getRootNode().getChildren();//.clone();
 
-    stream = nodes.stream().filter(n -> {
-      return n.getValue(Behaviour.GET_AI_STATE) == null;
-    });
+    stream = nodes.stream().filter(n -> n.getValue(Behaviour.GET_AI_STATE) == null);
 
 //		nodes.stream()
 //		nodes.removeIf(new Predicate<Node>() {

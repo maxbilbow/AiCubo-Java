@@ -1,6 +1,7 @@
 package com.maxbilbow.aicubo.model;
 
 
+import com.maxbilbow.aicubo.engine.annotation.UpdateAfterGameLoop;
 import com.maxbilbow.aicubo.engine.collision.type.CollisionBody;
 import com.maxbilbow.aicubo.engine.math.EulerAngles;
 import com.maxbilbow.aicubo.engine.math.Matrix4;
@@ -12,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import javax.vecmath.AxisAngle4f;
 import javax.vecmath.Quat4f;
 import javax.vecmath.Vector3f;
+import java.util.Stack;
 
 
 public class Transform extends ANodeComponent
@@ -32,39 +34,37 @@ public class Transform extends ANodeComponent
 //	private final Vector3 _lastPosition = new Vector3();
 
 
-  public Vector3[] getHistory()
+
+  public Stack<Float>[] getHistory()
   {
-    return this.history;
+    return mHistory;
   }
 
-  public Vector3 lastPosition()
-  {
-    return this.history[0];
-  }
+//  public Vector3 lastPosition()
+//  {
+//    return history.peek();
+//  }
 
-  private int stepsBack = 0;
 
   public synchronized boolean stepBack(String args)
   {
-    if (stepsBack >= history.length)
+    boolean stepsTaken = false;
+    if (args.contains("x") && mHistory[0].size() > 0)
     {
-      return false;
+      this.localMatrix().m30 = mHistory[0].pop();
+      stepsTaken = true;
     }
-    if (args.contains("x"))
+    if (args.contains("y") && mHistory[1].size() > 0)
     {
-      this.localMatrix().m30 = history[stepsBack].x;
+      this.localMatrix().m31 = mHistory[1].pop();
+      stepsTaken = true;
     }
-    if (args.contains("y"))
+    if (args.contains("z") && mHistory[2].size() > 0)
     {
-      this.localMatrix().m31 = history[stepsBack].y;
+      this.localMatrix().m32 = mHistory[2].pop();
+      stepsTaken = true;
     }
-    if (args.contains("z"))
-    {
-      this.localMatrix().m32 = history[stepsBack].z;
-    }
-//		stepsBack++;
-    return !history[stepsBack++].isZero();
-//		this.setPosition(lastPosition());
+    return stepsTaken;
   }
 
 
@@ -87,6 +87,10 @@ public class Transform extends ANodeComponent
   //	private EulerAngles _eulerAngles = new EulerAngles();
   private Vector3 _scale = new Vector3(1f, 1f, 1f);
 
+  private Stack<Float>[] mHistory = new Stack[]{
+    new Stack<>(),new Stack<>(), new Stack<>()
+  };
+
   public Transform(Node node)
   {
     this.node = node;
@@ -99,10 +103,7 @@ public class Transform extends ANodeComponent
     this._axis = new Matrix4();
     this._axis.setIdentity();
 
-    for (int i = 0; i < history.length; ++i)
-    {
-      history[i] = new Vector3();
-    }
+
   }
 
   public Vector3 left()
@@ -143,8 +144,7 @@ public class Transform extends ANodeComponent
   }
 
 
-  private float totalMass;
-  private long _tmTimestamp = -1;
+  private Float mTotalMass;
 
   /**
    * TODO: Test with children
@@ -153,16 +153,16 @@ public class Transform extends ANodeComponent
    */
   public float mass()
   {
-    if (Scene.getCurrent().tick() == _tmTimestamp)
+    if (mTotalMass != null)
     {
-      return this.totalMass;
+      return this.mTotalMass;
     }
-    totalMass = node.physicsBody() != null ? node.physicsBody().getMass() : 0;
+    mTotalMass = node.physicsBody() != null ? node.physicsBody().getMass() : 0;
     for (Node child : node.getChildren())
     {
-      totalMass += child.transform().mass();
+      mTotalMass += child.transform().mass();
     }
-    return totalMass;
+    return mTotalMass;
   }
 
 
@@ -235,10 +235,6 @@ public class Transform extends ANodeComponent
     this._localMatrix.m30 = position.x;
     this._localMatrix.m31 = position.y;
     this._localMatrix.m32 = position.z;
-    if (Scene.getCurrent().tick() <= 0)
-    {
-      this.updateLastPosition();
-    }
   }
 
   public void setPosition(double d, double e, double f)
@@ -452,17 +448,23 @@ public class Transform extends ANodeComponent
     return scale().z * 2;
   }
 
-  Vector3[] history = new Vector3[3];
 
-  //	private int historyCheck = 0;
+
+
+  @UpdateAfterGameLoop
   public synchronized void updateLastPosition()
   {
-    for (int i = history.length - 1; i > 0; --i)
+    mHistory[0].push(localPosition().getX());
+    mHistory[1].push(localPosition().getY());
+    mHistory[2].push(localPosition().getZ());
+    for (Stack history : mHistory)
     {
-      history[i].set(history[i - 1]);
+      if (history.size() > 10)
+      {
+        history.setSize(10);
+      }
     }
-    history[0].set(this.localPosition());
-    stepsBack = 0;
+
   }
 
   public Float distanceTo(Transform aTransform)

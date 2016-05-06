@@ -1,6 +1,7 @@
 package com.maxbilbow.aicubo;
 
 
+import com.maxbilbow.aicubo.control.SceneController;
 import com.maxbilbow.aicubo.engine.physics.PhysicsBody;
 import com.maxbilbow.aicubo.model.Node;
 import com.maxbilbow.aicubo.model.Nodes;
@@ -14,6 +15,9 @@ public class AxisGenerator extends EntityGenerator
 
   @Resource
   private Nodes mNodes;
+
+  @Resource
+  private SceneController mSceneController;
 
   private float mSize = 1000.0f;
 
@@ -32,9 +36,7 @@ public class AxisGenerator extends EntityGenerator
 //		Y.transform.setScale(1.0f, size, 1.0f);
     Z.transform().setScale(1.0f, 1.0f, mSize);
 
-    X.addToCurrentScene();
-//		Y.addToCurrentScene();
-    Z.addToCurrentScene();
+    mSceneController.getScene().addToScene(X,Z);
 
 
 //		X.physicsBody().setMass(size);

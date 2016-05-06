@@ -1,9 +1,10 @@
 package com.maxbilbow.aicubo.engine.gl;
 
-import com.maxbilbow.aicubo.control.GameController;
 import com.maxbilbow.aicubo.model.Nodes;
 import org.lwjgl.glfw.GLFWKeyCallback;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,48 +14,32 @@ import static org.lwjgl.opengl.GL11.GL_TRUE;
 //import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 
 
-//@Component
+@Component
 public class KeyCallback extends GLFWKeyCallback
 {
   public static char forward = 'w', back = 's', left = 'a', right = 'd', up = 'e', down = 'q', stop = 'c', jump = ' ';
 //	public static boolean update = true;
   //, keySpecialStates[] = new boolean[246];
 
-  @Deprecated
-  private static KeyCallback singleton;// = new KeyCallback();
 
+  @Resource
+  private CursorCallback mCursor;
 
-  //	@Resource
-  private GameController mGameController;
+  public final KeyStates mKeys = new KeyStates();
 
-  public KeyCallback()
-  {
-    if (singleton == null)
-    {
-      singleton = this;
-    }
-//		mGameController = aGameController;
-  }
-
-  //    boolean mouseLocked = false;
-  public static KeyCallback getInstance()
-  {
-    return singleton != null ? singleton : (singleton = new KeyCallback());
-  }
-
-  public ArrayList<IKeyCallback> callbacks = new ArrayList<>();
+  private ArrayList<IKeyCallback> mCallbacks = new ArrayList<>();
 
   @Override
   public void invoke(long window, int key, int scancode, int action, int mods)
   {
     if (action == GLFW_PRESS)
     {
-      mGameController.keys.put(key, true);
+      mKeys.put(key, true);
 //			System.out.println("Key Down: " + (char) key + " "+ scancode + " "+ action + " "+ mods);
     }
     else if (action == GLFW_RELEASE)
     {
-      mGameController.keys.put(key, false);
+      mKeys.put(key, false);
 //			System.out.println("  Key Up: " + (char) key + " "+ scancode + " "+ action + " "+ mods);
     }
 
@@ -69,16 +54,16 @@ public class KeyCallback extends GLFWKeyCallback
 //			 Node.getCurrent().transform.moveForward(1);
           break;
         case GLFW_KEY_M:
-          CursorCallback cursor = CursorCallback.getInstance();
-          if (cursor.isCursorLocked())
+
+          if (mCursor.isCursorLocked())
           {
             glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-            cursor.lockCursor(false);
+            mCursor.lockCursor(false);
           }
           else
           {
             glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-            cursor.lockCursor(true);
+            mCursor.lockCursor(true);
           }
           break;
         case GLFW_KEY_SPACE:
@@ -95,7 +80,7 @@ public class KeyCallback extends GLFWKeyCallback
       }
     }
 
-    for (IKeyCallback callback : this.callbacks)
+    for (IKeyCallback callback : this.mCallbacks)
     {
       callback.invoke(window, key, scancode, action, mods);
     }
@@ -121,8 +106,13 @@ public class KeyCallback extends GLFWKeyCallback
     keyListeners.get(key).add(listener);
   }
 
-  public void setGameController(GameController aGameController)
+  public void addCallback(IKeyCallback aKeyCallback)
   {
-    mGameController = aGameController;
+    mCallbacks.add(aKeyCallback);
+  }
+
+  public boolean isDown(int aKeyCode)
+  {
+    return mKeys.getOrDefault(aKeyCode,false);
   }
 }

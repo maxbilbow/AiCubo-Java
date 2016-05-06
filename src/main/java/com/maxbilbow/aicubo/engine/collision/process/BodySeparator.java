@@ -3,7 +3,6 @@ package com.maxbilbow.aicubo.engine.collision.process;
 import com.maxbilbow.aicubo.config.RMX;
 import com.maxbilbow.aicubo.engine.math.Vector3;
 import com.maxbilbow.aicubo.engine.physics.PhysicsBodyType;
-import com.maxbilbow.aicubo.model.Scene;
 import com.maxbilbow.aicubo.model.collision.CollisionEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +45,7 @@ public class BodySeparator
 
     float diff = aCollisionEvent.getDistanceBetweenPlanes();
     final String axis = aCollisionEvent.getAxis();
-    if (Scene.getCurrent().tick() > 0)
+    if (1 > 0) //todo used to use tick
     {
       if (aCollisionEvent.getPhysicsBodyTypeA() == PhysicsBodyType.Dynamic && !aCollisionEvent.getVelocityA().isZero())
       {

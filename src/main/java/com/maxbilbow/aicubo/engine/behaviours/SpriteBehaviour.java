@@ -2,7 +2,6 @@ package com.maxbilbow.aicubo.engine.behaviours;
 
 import com.maxbilbow.aicubo.engine.math.Vector3;
 import com.maxbilbow.aicubo.model.Node;
-import com.maxbilbow.aicubo.model.Scene;
 import com.maxbilbow.aicubo.model.Transform;
 
 public class SpriteBehaviour extends Behaviour
@@ -29,13 +28,13 @@ public class SpriteBehaviour extends Behaviour
   }
 
   private Vector3 stuckPosition = new Vector3();
-  private long    stuckTime     = 0;
+  private long    stuckTime     = System.currentTimeMillis();
 
-  public void setMightBeStuck(long tick)
+  public void setMightBeStuck()
   {
     this.stuckPosition.set(this.transform().position());
     this.setStuck(STUCK_MAYBE);
-    this.stuckTime = tick;
+    this.stuckTime = System.currentTimeMillis();
   }
 
   public void setNotStuck()
@@ -43,10 +42,10 @@ public class SpriteBehaviour extends Behaviour
     this.setStuck(STUCK_FALSE);
   }
 
-  public boolean isStuck(long tick)
+  public boolean isStuck()
   {
     int state = stuckState();
-    if (state == STUCK_MAYBE && tick - stuckTime > interval())
+    if (state == STUCK_MAYBE && System.currentTimeMillis() - stuckTime > interval())
     {
       Transform root = this.transform().rootTransform();
       Vector3 diff = root.position().getVectorTo(stuckPosition);
@@ -97,8 +96,7 @@ public class SpriteBehaviour extends Behaviour
 
   public void jump()
   {
-    float force = -this.getNode().transform().mass() * Scene.getCurrent().getPhysicsWorld()
-            .getGravity().y; //TODO: base this on gravity
+    float force = -this.getNode().transform().mass() * 9.8f; //TODO: base this on gravity
     this.jump(force);
   }
 

@@ -4,17 +4,14 @@ package com.maxbilbow.aicubo.engine.collision;
 import com.maxbilbow.aicubo.engine.collision.type.CollisionBody;
 import com.maxbilbow.aicubo.engine.collision.type.CollisionData;
 import com.maxbilbow.aicubo.model.collision.CollisionEvent;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import static com.maxbilbow.aicubo.engine.collision.type.CollisionBody.EXCLUSIVE_COLLISION_GROUP;
 import static com.maxbilbow.aicubo.engine.collision.type.CollisionBody.NO_COLLISIONS;
 
-@Component
-public class CollisionManager
+public class CollisionDetector
 {
 
   private BlockingQueue<CollisionEvent> mActiveCollisions;
@@ -28,21 +25,19 @@ public class CollisionManager
     }
   };
 
-
-  @PostConstruct
-  private void init()
+  public CollisionDetector()
   {
     mActiveCollisions = new LinkedBlockingQueue<>();
   }
 
   public boolean detectCollision(CollisionBody A, CollisionBody B)
   {
-    if (isCollision(A,B))
+    if (isCollision(A, B))
     {
-      final CollisionData data = new CollisionData(A,B);
+      final CollisionData data = new CollisionData(A, B);
 
-        mActiveCollisions.offer(new CollisionEvent(data));
-        mCollisionProcessor.get().processQueue(mActiveCollisions);
+      mActiveCollisions.offer(new CollisionEvent(data));
+      mCollisionProcessor.get().processQueue(mActiveCollisions);
       return true;
     }
     return false;

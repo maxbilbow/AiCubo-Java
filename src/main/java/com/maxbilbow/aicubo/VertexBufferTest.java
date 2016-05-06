@@ -9,6 +9,7 @@ import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.glfw.GLFWvidmode;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.MemoryUtil;
+import org.springframework.context.ApplicationContext;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
@@ -140,7 +141,7 @@ public class VertexBufferTest
   }
 
 
-  public static void initGL()
+  public static void initGL(ApplicationContext aContext)
   {
     // Setup an error callback. The default implementation
     // will print the error message in System.err.
@@ -167,9 +168,9 @@ public class VertexBufferTest
     }
 
     // Setup a key callback. It will be called every time a key is pressed, repeated or released.
-    glfwSetKeyCallback(_window, _keyCallback = KeyCallback.getInstance());
+    glfwSetKeyCallback(_window, _keyCallback = aContext.getBean(KeyCallback.class));
 
-    glfwSetCursorPosCallback(_window, CursorCallback.getInstance());
+    glfwSetCursorPosCallback(_window, aContext.getBean(CursorCallback.class));
     // Get the resolution of the primary monitor
     ByteBuffer vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
     // Center our window
@@ -263,16 +264,16 @@ public class VertexBufferTest
     }
   }
 
-  public static void main(String[] args)
-  {
-    try
-    {
-      initGL();
-      enterGameLoop();
-    }
-    catch (Exception e)
-    {
-      e.printStackTrace();
-    }
-  }
+//  public static void main(String[] args)
+//  {
+//    try
+//    {
+//      initGL();
+//      enterGameLoop();
+//    }
+//    catch (Exception e)
+//    {
+//      e.printStackTrace();
+//    }
+//  }
 }

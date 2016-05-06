@@ -1,7 +1,6 @@
 package com.maxbilbow.aicubo.model;
 
 import com.maxbilbow.aicubo.engine.math.Matrix4;
-import com.maxbilbow.aicubo.view.GLView;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -61,9 +60,9 @@ public class Camera extends ANodeComponent
     return _projectionMatrix;
   }
 
-  public void perspective(GLView view)
+  public void perspective(int aWidth, int aHeight)
   {
-    aspect = view.width() / view.height();
+    aspect = aWidth / aHeight;
     double fW, fH;
 
     //fH = tan( (fovY / 2) / 180 * pi ) * zNear;

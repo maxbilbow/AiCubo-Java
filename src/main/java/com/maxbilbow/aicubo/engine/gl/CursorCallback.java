@@ -1,12 +1,15 @@
 package com.maxbilbow.aicubo.engine.gl;
 
 
-import com.maxbilbow.aicubo.control.GameController;
 import com.maxbilbow.aicubo.engine.math.Vector3;
 import com.maxbilbow.aicubo.model.Nodes;
+import com.maxbilbow.aicubo.view.PointOfView;
 import org.lwjgl.glfw.GLFWCursorPosCallback;
+import org.springframework.stereotype.Component;
 
-//@Component
+import javax.annotation.Resource;
+
+@Component
 public class CursorCallback extends GLFWCursorPosCallback
 {
 //	void center();
@@ -14,19 +17,19 @@ public class CursorCallback extends GLFWCursorPosCallback
 //	void MouseMotion(int x, int y);
 //	void mouseFree(int x, int y);
 
-  //  @Resource
-  private GameController mGameController;
+  @Resource
+  private PointOfView mPointOfView;
 
-  private static CursorCallback singleton = new CursorCallback();
+//  private static CursorCallback singleton = new CursorCallback();
 
   public CursorCallback()
   {
   }
 
-  public static CursorCallback getInstance()
-  {
-    return singleton;
-  }
+//  public static CursorCallback getInstance()
+//  {
+//    return singleton;
+//  }
 
 
   private double xpos, ypos;
@@ -56,7 +59,7 @@ public class CursorCallback extends GLFWCursorPosCallback
       this.xpos = xpos;
       this.ypos = ypos;
       Nodes.getCurrent().physicsBody().applyTorque((float) dx, "yaw", Vector3.Zero);
-      mGameController.getView().pointOfView().broadcastMessage("lookUp", (float) dy);
+      mPointOfView.get().broadcastMessage("lookUp", (float) dy);
 //			mLogger.debugAndPrint(dx + ", " + dy, false);
     }
 
@@ -74,8 +77,4 @@ public class CursorCallback extends GLFWCursorPosCallback
     this.restart = true;
   }
 
-  public void setGameController(GameController aGameController)
-  {
-    mGameController = aGameController;
-  }
 }

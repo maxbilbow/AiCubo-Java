@@ -1,94 +1,53 @@
 package com.maxbilbow.aicubo.model;
 
 
-import com.maxbilbow.aicubo.engine.RenderDelegate;
 import com.maxbilbow.aicubo.engine.math.Matrix4;
-import com.maxbilbow.aicubo.engine.physics.PhysicsWorld;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.stream.Stream;
 
-@Component
 public class Scene //extends RMXObject
 {
 
   private final Logger       mLogger      = LoggerFactory.getLogger(Scene.class);
 
-  @Resource
-  private        PhysicsWorld physicsWorld;
-
-  public final   RootNode rootNode;
-
-  private static Scene    _current;// = new node(null,null,null);
+  private final RootNode mRootNode;
 
   public Scene()
   {
     mLogger.debug("Scene initializing...");
-    this.rootNode = Nodes.newRootNode();
-    if (_current == null)
-    {
-      _current = this;
-    }
+    this.mRootNode = Nodes.newRootNode();
   }
 
-  public RootNode rootNode()
+  public RootNode getRootNode()
   {
-    return this.rootNode;
+    return this.mRootNode;
   }
 
-  //	private static Scene current;
-  @Deprecated
-  public static Scene getCurrent()
-  {
-//		mLogger.debug("Get current scene...");
-//    if (_current != null)
+
+//  protected static class node
+//  {
+//    Scene scene;
+//    node  next;
+//    node  prev;
+//
+//    node(node prev, Scene scene, node next)
 //    {
-//      return _current;
+//      this.scene = scene;
+//      this.next = next;
+//      this.prev = prev;
 //    }
-//    else
-//    {
-//      _current = new Scene();
-//    }
-    return _current;
-  }
-
-//	public static Scene setCurrent(Scene scene) {
-//		Scene old = _current;
-//		_current = scene;
-//		return old;
-//	}
-
-  public void makeCurrent()
-  {
-    _current = this;
-  }
+//
+//  }
 
 
-  protected static class node
-  {
-    Scene scene;
-    node  next;
-    node  prev;
-
-    node(node prev, Scene scene, node next)
-    {
-      this.scene = scene;
-      this.next = next;
-      this.prev = prev;
-    }
-
-  }
-
-  private RenderDelegate renderDelegate;
 
 
   public void renderScene(Matrix4 viewMatrix)
   {
 
-    Stream<Node> stream = this.rootNode.getChildren().stream();
+    Stream<Node> stream = this.mRootNode.getChildren().stream();
 
     stream.forEach(n -> {
       n.shine();
@@ -101,47 +60,16 @@ public class Scene //extends RMXObject
 
   }
 
-  private long _tick = 0;
-
-  public long tick()
+  public void addToScene(Node... aNodes)
   {
-    return _tick;
-  }
-
-  public void updateSceneLogic()
-  {
-    long time = this._tick = System.currentTimeMillis();
-    if (this.renderDelegate != null)
+    for (Node aNode : aNodes)
     {
-      this.renderDelegate.updateBeforeSceneLogic();
+      if (aNode.getScene() != null)
+      {
+        aNode.getScene().mRootNode.removeChild(aNode);
+      }
+      mRootNode.addChild(aNode);
+      aNode.setScene(this);
     }
-//		 Thread logicThread = new Thread(() -> {
-    this.rootNode.updateLogic(time);
-    this.physicsWorld.updatePhysics(this.rootNode);
-    this.physicsWorld.updateCollisionEvents(this.rootNode);
-
-    this.rootNode.updateAfterPhysics(time);
-    if (this.renderDelegate != null)
-    {
-      this.renderDelegate.updateBeforeSceneRender();
-    }
-
-  }
-
-  public RenderDelegate getRenderDelegate()
-  {
-    return renderDelegate;
-  }
-
-  public void setRenderDelegate(RenderDelegate renderDelegate)
-  {
-//		mLogger.debug("Setting render delegate: " + renderDelegate);
-    this.renderDelegate = renderDelegate;
-  }
-
-
-  public PhysicsWorld getPhysicsWorld()
-  {
-    return this.physicsWorld;
   }
 }

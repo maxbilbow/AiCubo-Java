@@ -1,7 +1,7 @@
 package com.maxbilbow.aicubo.service;
 
 import com.maxbilbow.aicubo.model.generic.GenericDomain;
-import com.maxbilbow.aicubo.model.node.GameNode;
+import com.maxbilbow.aicubo.model.node.NodeLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -65,7 +65,7 @@ public abstract class GenericService <
     return aEntities;
   }
 
-  public List<GameNode> getAll()
+  public List<NodeLocation> getAll()
   {
     return getRepository().findAll();
   }

@@ -1,10 +1,10 @@
 package com.maxbilbow.aicubo.model;
 
 
+import com.maxbilbow.aicubo.engine.geometry.Geometry;
 import com.maxbilbow.aicubo.model.core.RMXObject;
 import com.maxbilbow.aicubo.engine.behaviours.IBehaviour;
 import com.maxbilbow.aicubo.engine.math.Matrix4;
-import com.maxbilbow.aicubo.model.node.GameNode;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -14,12 +14,12 @@ public class NodeEngine extends RMXObject implements Node
 {
 
 
-  private final GameNode mGameNode;
-  private Node parent;
+  private       Hierarchy<Node>         parent;
 
 
   private final HashMap<Class<?>, NodeComponent> components = new HashMap<>();
   private final Set<IBehaviour>                  behaviours = new HashSet<>();
+  private Scene mScene;
 
   /* (non-Javadoc)
    * @see Node#setComponent(java.lang.Class, NodeComponent)
@@ -64,7 +64,7 @@ public class NodeEngine extends RMXObject implements Node
 
   private final Transform transform;
 
-  private ArrayList<Node> children = new ArrayList<Node>();
+  private ArrayList<Node> mChildren = new ArrayList<Node>();
 
   /* (non-Javadoc)
    * @see Node#getChildren()
@@ -72,7 +72,7 @@ public class NodeEngine extends RMXObject implements Node
   @Override
   public List<Node> getChildren()
   {
-    return this.children;
+    return this.mChildren;
   }
 
   /* (non-Javadoc)
@@ -81,10 +81,14 @@ public class NodeEngine extends RMXObject implements Node
   @Override
   public void addChild(Node child)
   {
-    if (!this.children.contains(child))
+    if (!this.mChildren.contains(child))
     {
-      this.children.add(child);
+      this.mChildren.add(child);
       child.setParent(this);
+      if (mScene != null && child.getScene() != mScene)
+      {
+        child.setScene(mScene);
+      }
     }
   }
 
@@ -92,9 +96,9 @@ public class NodeEngine extends RMXObject implements Node
    * @see Node#removeChildNode(Node)
    */
   @Override
-  public boolean removeChildNode(Node node)
+  public boolean removeChild(Node node)
   {
-    return this.children.remove(node);
+    return this.mChildren.remove(node);
   }
 
   /* (non-Javadoc)
@@ -103,7 +107,7 @@ public class NodeEngine extends RMXObject implements Node
   @Override
   public Node getChildWithName(String name)
   {
-    for (Node child : this.children)
+    for (Node child : this.mChildren)
     {
 		if (child.getName() == name)
 		{
@@ -113,19 +117,18 @@ public class NodeEngine extends RMXObject implements Node
     return null;
   }
 
-  public NodeEngine(GameNode aGameNode)
+  public NodeEngine()
   {
-    mGameNode = aGameNode;
     transform = new Transform(this);
-
   }
+
 
 
   /* (non-Javadoc)
    * @see Node#updateLogic(long)
    */
   @Override
-  public void updateLogic(long time)
+  public void updateLogic()
   {
 
     Stream<IBehaviour> behaviours = this.behaviours.stream();
@@ -137,9 +140,9 @@ public class NodeEngine extends RMXObject implements Node
     });
 //		behaviours.close();		
 
-    Stream<Node> children = this.children.stream();
+    Stream<Node> children = this.mChildren.stream();
     children.forEach(child -> {
-      child.updateLogic(time);
+      child.updateLogic();
     });
 
 
@@ -151,7 +154,7 @@ public class NodeEngine extends RMXObject implements Node
    * @see Node#updateAfterPhysics(long)
    */
   @Override
-  public void updateAfterPhysics(long time)
+  public void updateAfterPhysics()
   {
     this.behaviours.stream().forEach(behaviour -> {
 		if (behaviour.hasLateUpdate())
@@ -160,14 +163,10 @@ public class NodeEngine extends RMXObject implements Node
 		}
     });
 
-	  for (Node child : this.children)
-	  {
-		  child.updateAfterPhysics(time);
-	  }
+    this.mChildren.forEach(Node::updateAfterPhysics);
     this.transform.updateLastPosition();
 //		this.updateTick(time);
     ///.set(arg0);
-    _timeStamp = time;
   }
 
   /* (non-Javadoc)
@@ -180,7 +179,7 @@ public class NodeEngine extends RMXObject implements Node
 	  {
 		  this.geometry().render();//, modelMatrix);
 	  }
-	  for (Node child : this.children)
+	  for (Node child : this.mChildren)
 	  {
 		  child.draw(viewMatrix);
 	  }
@@ -193,18 +192,22 @@ public class NodeEngine extends RMXObject implements Node
   @Override
   public Node getParent()
   {
-    return parent;
+    if (parent instanceof Node)
+    {
+      return (Node) parent;
+    }
+    return null;
   }
 
   /* (non-Javadoc)
    * @see Node#setParent(Node)
    */
   @Override
-  public void setParent(Node parent)
+  public void setParent(Hierarchy parent)
   {
     if (this.parent != null && parent != this.parent)
     {
-      this.parent.removeChildNode(this);
+      this.parent.removeChild(this);
       ;
     }
     this.parent = parent;
@@ -224,7 +227,7 @@ public class NodeEngine extends RMXObject implements Node
     {
       b.broadcastMessage(message);
     }
-    for (Node child : this.children)
+    for (Node child : this.mChildren)
     {
       child.broadcastMessage(message);
     }
@@ -245,7 +248,7 @@ public class NodeEngine extends RMXObject implements Node
     {
       b.broadcastMessage(message, args);
     }
-    for (Node child : this.children)
+    for (Node child : this.mChildren)
     {
       child.broadcastMessage(message, args);
     }
@@ -285,33 +288,19 @@ public class NodeEngine extends RMXObject implements Node
   }
 
 
-  /* (non-Javadoc)
-   * @see Node#addToCurrentScene()
-   */
-  @Override
-  public void addToCurrentScene()
-  {
-    Scene.getCurrent().rootNode().addChild(this);
-  }
 
-//	private long tick = System.currentTimeMillis();
-
-//	@Override
-//	public long tick() {
-//		// TODO Auto-generated method stub
-//		return this.tick;
-//	}
-
-//	@Override
-//	public void updateTick(long newTick) {
-//		this.tick = newTick;
-//	}
 
 
   @Override
   public Transform transform()
   {
     return this.transform;
+  }
+
+  @Override
+  public Scene getScene()
+  {
+    return mScene;
   }
 
 
@@ -328,9 +317,21 @@ public class NodeEngine extends RMXObject implements Node
 
 
   @Override
-  public GameNode getGameNode()
+  public void addGeometryToList(Set<Geometry> geometries)
   {
-    return mGameNode;
+    if (this.geometry() != null && this.geometry().isVisible())
+    {
+      geometries.add(this.geometry());
+    }
+    this.getChildren().stream().forEach(child -> child.addGeometryToList(geometries));
+  }
+
+
+  @Override
+  public void setScene(Scene aScene)
+  {
+    mScene = aScene;
+    mChildren.forEach(aNode -> aNode.setScene(aScene));
   }
 }
 
