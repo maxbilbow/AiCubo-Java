@@ -21,14 +21,14 @@ public class Shader
 
   private final int defaultVertexShader() throws Exception
   {
-    String url = "src/main/resources/shaders/Shader.vsh";
+    String url = ClassLoader.getSystemResource("shaders/Shader.vsh").getPath();
     mLogger.debug(url);
     return createShader(url, GL_VERTEX_SHADER_ARB);
   }
 
   private final int defaultFragmentShader() throws Exception
   {
-    String url = "src/main/resources/shaders/Shader.fsh";
+    String url = ClassLoader.getSystemResource("shaders/Shader.fsh").getPath();
     mLogger.debug(url);
     return createShader(url, GL_FRAGMENT_SHADER_ARB);
   }
